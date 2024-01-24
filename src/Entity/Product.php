@@ -25,7 +25,7 @@ class Product
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $price = null;
 
-    #[ORM\Column(length: 5)]
+    #[ORM\Column(length: 20)]
     private ?string $age = null;
 
     #[ORM\Column]
@@ -34,7 +34,7 @@ class Product
     #[ORM\Column(nullable: true)]
     private ?int $promotion = null;
 
-    #[ORM\Column(length: 10)]
+    #[ORM\Column(length: 20)]
     private ?string $state = null;
 
     #[ORM\Column(length: 8, nullable: true)]

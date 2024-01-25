@@ -1,0 +1,19 @@
+
+.navbar {
+    padding: 50px;
+    background-color: #00988e;
+    color: white;
+}
+
+.centered {
+    text-align: center;
+}
+
+.navbar_logo {
+    width: 200px;
+    height: auto;
+}
+
+.navbar_list {
+    display: flex;
+}

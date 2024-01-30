@@ -5,16 +5,49 @@ namespace App\Controller;
 use App\Entity\Product;
 use App\Entity\Supplier;
 use App\Form\ProductType;
+use App\Form\ResetPasswordType;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
+use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 class PartnerController extends AbstractController
 {
+    private $passwordHasher;
+
+    public function __construct(UserPasswordHasherInterface $passwordHasher)
+    {
+        $this->passwordHasher = $passwordHasher;
+    }
+
+    #[Route('/partner/newPassword', name: 'app_partner_new_password')]
+    public function newPassword(Request $request, UserRepository $userRepository, EntityManagerInterface $manager): Response
+    {
+        $form = $this->createForm(ResetPasswordType::class); // creation du formulaire
+
+        $form->handleRequest($request);
+
+        if($form->isSubmitted() && $form->isValid()){
+            $user = $userRepository->findOneBy(['email' => $this->getUser()->getEmail()]); // recuperation de l'email du l'utilisateur connecté
+            $encodedPassword = $this->passwordHasher->hashPassword($user, $form->get('password')->getData()); // recuperation du mdp et le mdp est hasher
+            $user->setPassword($encodedPassword); // ajout du mdp modifie
+
+            $manager->persist($user);
+            $manager->flush(); // envoie sur la base de donnee
+
+            return $this->redirectToRoute('app_partner', ['id' => $this->getUser()->getId()]); // envoie sur le tableau de bord
+        }
+
+        return $this->render('partner/newPassword.html.twig', [
+            'form' => $form, // envoie du formulaire a la vue
+        ]);
+    }
+
     #[Route('/partner/{id}', name: 'app_partner')]
     public function index(Supplier $supplier): Response
     {
@@ -30,9 +63,19 @@ class PartnerController extends AbstractController
     public function product(ProductRepository $productRepository, Supplier $supplier): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
+            $valueProduct = 0;
             $products = $productRepository->findBy(['id_supplier' => $supplier->getId()]); // recuperation des produit du partenaire
+            
+            $nbrProduct = count($products);
+
+            for ($i=0; $i < $nbrProduct ; $i++) { 
+                $valueProduct = $valueProduct + $products[$i]->getPrice();
+            }
+
             return $this->render('partner/product.html.twig', [
                 'products' => $products, //envoie de la liste des produit du partenaire a la vue
+                'nbrProduct' => $nbrProduct,
+                'valueProduct' => $valueProduct
             ]);
         }
         return $this->redirectToRoute('main'); // retour a l'acceuil du site

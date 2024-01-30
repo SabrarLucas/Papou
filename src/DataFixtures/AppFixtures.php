@@ -15,7 +15,6 @@ use App\Entity\Picture;
 use App\Entity\Product;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Inflector\Rules\Word;
 
 class AppFixtures extends Fixture
 {
@@ -46,13 +45,13 @@ class AppFixtures extends Fixture
             $user->setFirstname($this->faker->firstName())
                 ->setLastname($this->faker->lastName())
                 ->setEmail($this->faker->email())
-                ->setPassword('password')
+                ->setPassword(password_hash('password', PASSWORD_DEFAULT))
                 ->setRoles([])
                 ->setAddress($this->faker->streetAddress())
                 ->setCity($this->faker->city())
                 ->setZipcode($this->faker->postcode())
                 ->setCountry($this->faker->country())
-                ->setIsVerify(true);
+                ->setIsVerified(mt_rand(0,1) == 1 ? true : false);
 
             $this->addReference('user-'.$this->counter, $user);
             $this->counter++;

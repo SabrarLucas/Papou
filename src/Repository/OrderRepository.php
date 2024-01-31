@@ -21,6 +21,17 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
+    public function findByDesc($value): array
+    {
+        return $this->createQueryBuilder('o')
+            ->andWhere('o.id_user = :val')
+            ->setParameter('val', $value)
+            ->orderBy('o.id', 'DESC')
+            ->getQuery()
+            ->getResult()
+        ;
+    }
+
 //    /**
 //     * @return Order[] Returns an array of Order objects
 //     */

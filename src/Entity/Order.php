@@ -37,7 +37,7 @@ class Order
     private ?Supplier $id_supplier = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?User $id_user = null;
 
     #[ORM\OneToMany(mappedBy: 'id_order', targetEntity: Delivery::class)]

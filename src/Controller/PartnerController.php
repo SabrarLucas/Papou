@@ -25,7 +25,7 @@ class PartnerController extends AbstractController
         $this->passwordHasher = $passwordHasher;
     }
 
-    #[Route('/partner/newPassword', name: 'app_partner_new_password')]
+    #[Route('/partner/new-password', name: 'app_partner_new_password')]
     public function newPassword(Request $request, UserRepository $userRepository, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(ResetPasswordType::class); // creation du formulaire

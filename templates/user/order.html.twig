@@ -1,0 +1,28 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Ordre{% endblock %}
+
+{% block body %}
+<h1>order</h1>
+<table>
+    <thead>
+        <tr>
+            <th>num_order</th>
+            <th>date</th>
+            <th>statut</th>
+            <th>total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for order in orders %}    
+        <tr>
+            <td>{{ order.numOrder }}</td>
+            <td>{{ order.createdAt|date('d/m/Y') }}</td>
+            <td>{{ order.status }}</td>
+            <td>{{ order.total }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+<button><a href="{{ path('app_user_profil', {'id': app.user.id}) }}">retour</a></button>
+{% endblock %}

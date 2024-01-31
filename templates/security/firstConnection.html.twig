@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}first connection{% endblock %}
+{% block title %}première connexion{% endblock %}
 
 {% block body %}
 <form method="post">
@@ -25,10 +25,10 @@
             </div>
         {% endfor %}
 
-    <h1 class="h3 mb-3 font-weight-normal">first connection</h1>
+    <h1 class="h3 mb-3 font-weight-normal">première connexion</h1>
     <label for="inputEmail">Email</label>
     <input type="email" name="email" id="inputEmail" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
+    <label for="inputPassword">Mot de passe</label>
     <input type="password" name="password" id="inputPassword" class="form-control" required>
     
     <input type="hidden" name="_csrf_token"
@@ -36,7 +36,7 @@
     >
     <br>
     <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
+        Se connecter
     </button>
 </form>
 {% endblock %}

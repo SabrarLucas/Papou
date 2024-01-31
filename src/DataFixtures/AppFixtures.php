@@ -67,6 +67,7 @@ class AppFixtures extends Fixture
                 ->setType(mt_rand(0, 1) == 1? 'association' : 'boutique');
             
             $user = $this->getReference('user-' . rand(1, 50));
+            $user->setRoles(['ROLE_PARTENER']);
             $supplier->setIdUser($user);
 
             $this->addReference('sup-'.$this->counter, $supplier);

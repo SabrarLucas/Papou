@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\Choice;
+use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
 class ProductType extends AbstractType
@@ -28,6 +29,10 @@ class ProductType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un nom au produit'
+                    ]),
+                    new Length([
+                        'min' => 5,
+                        'max' =>  100
                     ])
                 ]
             ])
@@ -37,6 +42,9 @@ class ProductType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un prix au produit'
+                    ]),
+                    new Length([
+                        'max' => 9,
                     ])
                 ]
             ])
@@ -52,6 +60,9 @@ class ProductType extends AbstractType
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer une quantite de produit'
+                    ]),
+                    new Length([
+                        'min' => 1
                     ])
                 ]
             ])

@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Administration des produits{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1>Liste des produits</h1>
+        {% include "_partials/_adminnav.html.twig" %}
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Categorie</th>
+                    <th>Partenaire</th>
+                    <th>Nom</th>
+                    <th>Prix</th>
+                    <th>Date d'ajout</th>
+                    <th>Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for produit in produits %}
+                    <tr>
+                        <td>{{ produit.id }}</td>
+                        <td>{{ produit.idcategory.name }}</td>
+                        <td>{{ produit.idsupplier.companyname }}</td>
+                        <td>{{ produit.name }}</td>
+                        <td>{{ produit.price }}</td>
+                        <td>{{ produit.createdat | date("m/d/Y") }}</td>
+                        <td class="row">
+                            <a href="{{ path('admin_product_detail', {id: produit.id}) }}" class="btn btn-warning">Détail produit</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

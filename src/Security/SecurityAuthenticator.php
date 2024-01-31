@@ -22,6 +22,8 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
 
     public const LOGIN_ROUTE = 'app_login';
 
+    public const LOGIN_FIRST_CONNECTION_ROUTE = 'app_login_first_connection';
+
     public function __construct(private UrlGeneratorInterface $urlGenerator)
     {
     }
@@ -48,6 +50,10 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
             return new RedirectResponse($targetPath);
         }
 
+        if ($_SERVER['REQUEST_URI'] == '/new-partner') {
+            return new RedirectResponse($this->urlGenerator->generate('app_partner_new_password'));
+        }
+
         // For example:
         return new RedirectResponse($this->urlGenerator->generate('main'));
         // throw new \Exception('TODO: provide a valid redirect inside '.__FILE__);
@@ -55,6 +61,9 @@ class SecurityAuthenticator extends AbstractLoginFormAuthenticator
 
     protected function getLoginUrl(Request $request): string
     {
+        if ($_SERVER['REQUEST_URI'] == '/new-partner') {
+            return $this->urlGenerator->generate(self::LOGIN_FIRST_CONNECTION_ROUTE);
+        }
         return $this->urlGenerator->generate(self::LOGIN_ROUTE);
     }
 }

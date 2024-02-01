@@ -28,7 +28,7 @@ class AppFixtures extends Fixture
     {
         for($i = 0; $i < 5; $i++){
             $category = new Category();
-            $category->setName('produit '.$i)
+            $category->setName('categorie '.$i)
                 ->setPhoto($this->faker->imageUrl(150, 150))
                 ->setDescription($this->faker->text());
 
@@ -39,6 +39,20 @@ class AppFixtures extends Fixture
         }
 
         $this->counter = 1;
+
+        $admin = new User();
+        $admin->setLastname('Pinchon')
+            ->setFirstname('Lucas')
+            ->setEmail('pinchon.lucas@mail.fr')
+            ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setRoles(['ROLE_SUPER_ADMIN'])
+            ->setAddress($this->faker->streetAddress())
+            ->setCity($this->faker->city())
+            ->setZipcode($this->faker->postcode())
+            ->setCountry($this->faker->country())
+            ->setIsVerified(true);
+        
+        $manager->persist($admin);
 
         for($i = 0; $i < 50; $i++){
             $user = new User();

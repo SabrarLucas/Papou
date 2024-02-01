@@ -3,4 +3,11 @@
 {% block body %}
 
     <h1>Accueil</h1>
+    <ul>
+        {% for category in categories %}
+
+        <li><a href="{{ path('product', {'id': category.id}) }}">{{ category.name }}</a></li>
+        
+        {% endfor %}
+    </ul>
 {% endblock %}

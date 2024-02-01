@@ -1,0 +1,38 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}panier{% endblock %}
+
+{% block body %}
+<h1>panier</h1>
+<table class="table">
+  <thead>
+    <tr>
+      <th scope="col">Quantité</th>
+      <th scope="col">Détail produits</th>
+      <th scope="col">Prix</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for product in cart %}
+    <tr>
+      <th>{{ product.quantity }}</th>
+      <td>{{ product.product.name }}</td>
+      <td>{{ product.product.price }}€</td>
+      <td>
+        <a href="{{ path('cart_add', {'id': product.product.id}) }}">+</a>
+        <a href="{{ path('cart_decrease', {'id': product.product.id}) }}">-</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+  </br>
+  <h2>product</h2>
+    <ul>
+        {% for product in products %}
+        <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
+        {% endfor %}
+    </ul>
+</table>
+
+{% endblock %}

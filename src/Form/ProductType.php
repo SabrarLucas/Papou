@@ -88,7 +88,11 @@ class ProductType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Catégorie'
             ])
-            ->add('submit', SubmitType::class)
+            ->add('id_supplier', EntityType::class, [
+                'class' => Supplier::class,
+                'choice_label' => 'company_name',
+                'label' => 'Partenaire'
+            ])
         ;
     }
 

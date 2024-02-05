@@ -3,8 +3,8 @@
     <head>
         <meta charset="UTF-8">
         <title>
-            {% block title %}Accueil - Papou
-            {% endblock %}
+            {% block title %}Accueil 
+            {% endblock %} - Papou
         </title>
 
 
@@ -20,7 +20,6 @@
             {{ encore_entry_script_tags('app') }}
         <script src="https://kit.fontawesome.com/a867087266.js" crossorigin="anonymous"></script>
         {% endblock %}
-      
     </head>
 
 
@@ -29,7 +28,6 @@
             {% include "partials/navbar.html.twig" %}
         {% endblock %}
 
-       
     <body>
         <div class="container mt-4">
         {% block body %}{% endblock %}

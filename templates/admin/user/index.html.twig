@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Liste des utilisateurs{% endblock %}
+
+{% block body %}
+    <main class="container">
+        <h1>Liste des utilisateurs</h1>
+        {% include "partials/_adminnav.html.twig" %}
+        <table class="table mt-3">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>E-mail</th>
+                    <th>Rôle</th>
+                    <th>Vérifier</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in users %}
+                    <tr>
+                        <td>{{ user.id }}</td>
+                        <td>{{ user.firstname }}</td>
+                        <td>{{ user.lastname }}</td>
+                        <td>{{ user.email }}</td>
+                        <td>
+                            {% for role in user.roles %}
+								{% if role == "ROLE_SUPER_ADMIN" %}
+									{% set name = "Super Administrateur" %}
+									{% set color = "danger" %}
+								{% elseif role == "ROLE_ADMIN" %}
+									{% set name = "Admin" %}
+									{% set color = "warning" %}
+                                {% elseif role == "ROLE_PARTENER" %}
+                                    {% set name = Partenaire %}
+                                    {% set color = info %}
+								{% else %}
+									{% set name = "Membre" %}
+									{% set color = "success" %}
+								{% endif %}
+								<span class="badge bg-{{ color }}">{{ name }}</span>
+							{% endfor %}
+                        </td>
+                        <td>
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" role="switch" id="switch{{ user.id }}" {{ user.isVerified ? "checked" : "" }} disabled>
+                                <label class="form-check-label" for="switch{{ user.id }}"></label>
+                            </div>
+                        </td>
+                        <td class="row">
+                            <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="btn btn-warning">Modifier</a>
+                            <a href="{{ path('admin_user_delete', {id: user.id})}}" class="btn btn-danger">Supprimer</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+{% endblock %}

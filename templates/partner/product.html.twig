@@ -1,0 +1,35 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}partner-Product{% endblock %}
+
+{% block body %}
+    <h1>vos produits en ligne</h1>
+
+    <ul>
+        <li>Montant total de vos produits = {{ valueProduct }}</li>
+        <li>Nombre de produits en ligne = {{ nbrProduct }}</li>
+    </ul>
+
+    <table>
+        <thead>
+            <tr>
+                <th>nom</th>
+                <th>categorie</th>
+                <th>prix</th>
+                <th>état</th>
+                <th>age</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for product in products %}
+            <tr>
+                <td>{{ product.name }}</td>
+                <td>{{ product.idCategory.name }}</td>
+                <td>{{ product.price }}</td>
+                <td>{{ product.state }}</td>
+                <td>{{ product.age }}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

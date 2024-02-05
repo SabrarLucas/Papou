@@ -1,0 +1,27 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}partner-Profil{% endblock %}
+
+{% block body %}
+    <h1>profil</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>nom entreprise</th>
+                <th>nom</th>
+                <th>prenom</th>
+                <th>adresse</th>
+                <th>ville</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>{{ supplier.companyName }}</td>
+                <td>{{ supplier.idUser.lastname }}</td>
+                <td>{{ supplier.idUser.firstname }}</td>
+                <td>{{ supplier.idUser.address }}</td>
+                <td>{{ supplier.idUser.city }}</td>
+            </tr>
+        </tbody>
+    </table>
+{% endblock %}

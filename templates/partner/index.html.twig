@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}partner{% endblock %}
+
+{% block body %}
+    <h1>tableau de bord</h1>
+    <ul>
+        <li><a href="{{ path('app_partner_product_add', {'id': id}) }}">Ajouter Produit</a></li>
+        <li><a href="{{ path('app_partner_profil', {'id': id}) }}">Mon profil</a></li>
+        <li><a href="{{ path('app_partner_sale', {'id': id}) }}">Mes Ventes Effectuées</a></li>
+        <li><a href="{{ path('app_partner_product', {'id': id}) }}">Consulter Mes Produit en ligne</a></li>
+        <li><a href="#">j'ai un souci contacter Papou</a></li>
+        <li><a href="#">Détails commissions</a></li>
+    </ul>
+{% endblock %}

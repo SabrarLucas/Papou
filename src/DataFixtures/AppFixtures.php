@@ -15,7 +15,6 @@ use App\Entity\Picture;
 use App\Entity\Product;
 use Doctrine\Persistence\ObjectManager;
 use Doctrine\Bundle\FixturesBundle\Fixture;
-use Doctrine\Inflector\Rules\Word;
 
 class AppFixtures extends Fixture
 {
@@ -29,7 +28,7 @@ class AppFixtures extends Fixture
     {
         for($i = 0; $i < 5; $i++){
             $category = new Category();
-            $category->setName('produit '.$i)
+            $category->setName('categorie '.$i)
                 ->setPhoto($this->faker->imageUrl(150, 150))
                 ->setDescription($this->faker->text());
 
@@ -41,18 +40,32 @@ class AppFixtures extends Fixture
 
         $this->counter = 1;
 
+        $admin = new User();
+        $admin->setLastname('Pinchon')
+            ->setFirstname('Lucas')
+            ->setEmail('pinchon.lucas@mail.fr')
+            ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setRoles(['ROLE_SUPER_ADMIN'])
+            ->setAddress($this->faker->streetAddress())
+            ->setCity($this->faker->city())
+            ->setZipcode($this->faker->postcode())
+            ->setCountry($this->faker->country())
+            ->setIsVerified(true);
+        
+        $manager->persist($admin);
+
         for($i = 0; $i < 50; $i++){
             $user = new User();
             $user->setFirstname($this->faker->firstName())
                 ->setLastname($this->faker->lastName())
                 ->setEmail($this->faker->email())
-                ->setPassword('password')
+                ->setPassword(password_hash('password', PASSWORD_DEFAULT))
                 ->setRoles([])
                 ->setAddress($this->faker->streetAddress())
                 ->setCity($this->faker->city())
                 ->setZipcode($this->faker->postcode())
                 ->setCountry($this->faker->country())
-                ->setIsVerify(true);
+                ->setIsVerified(mt_rand(0,1) == 1 ? true : false);
 
             $this->addReference('user-'.$this->counter, $user);
             $this->counter++;
@@ -68,6 +81,7 @@ class AppFixtures extends Fixture
                 ->setType(mt_rand(0, 1) == 1? 'association' : 'boutique');
             
             $user = $this->getReference('user-' . rand(1, 50));
+            $user->setRoles(['ROLE_PARTENER']);
             $supplier->setIdUser($user);
 
             $this->addReference('sup-'.$this->counter, $supplier);

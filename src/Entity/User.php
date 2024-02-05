@@ -6,11 +6,13 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
+#[UniqueEntity(fields: ['email'], message: 'Un compte existe déjà avec cette adresse mail')]
 class User implements UserInterface, PasswordAuthenticatedUserInterface
 {
     #[ORM\Id]
@@ -54,9 +56,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column(length: 15, nullable: true)]
     private ?string $phone = null;
 
-    #[ORM\Column]
-    private ?bool $is_verify = null;
-
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Supplier::class)]
     private Collection $suppliers;
 
@@ -65,6 +64,9 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
 
     #[ORM\OneToMany(mappedBy: 'id_user', targetEntity: Favorite::class)]
     private Collection $favorites;
+
+    #[ORM\Column(type: 'boolean')]
+    private $isVerified = false;
 
     public function __construct()
     {
@@ -239,18 +241,6 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
         return $this;
     }
 
-    public function isIsVerify(): ?bool
-    {
-        return $this->is_verify;
-    }
-
-    public function setIsVerify(bool $is_verify): static
-    {
-        $this->is_verify = $is_verify;
-
-        return $this;
-    }
-
     /**
      * @return Collection<int, Supplier>
      */
@@ -337,6 +327,18 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
                 $favorite->setIdUser(null);
             }
         }
+
+        return $this;
+    }
+
+    public function isVerified(): bool
+    {
+        return $this->isVerified;
+    }
+
+    public function setIsVerified(bool $isVerified): static
+    {
+        $this->isVerified = $isVerified;
 
         return $this;
     }

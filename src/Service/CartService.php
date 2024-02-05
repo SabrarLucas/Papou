@@ -22,61 +22,61 @@ class CartService {
     // augmente la quantite de produit ou ajouter un produit
     public function addToCart(int $id):void
     {
-        $cart = $this->getSession()->get('cart', []);
-        if(!empty($cart[$id])){
-            $cart[$id]++;
+        $cart = $this->getSession()->get('cart', []); // recuperation de la session
+        if(!empty($cart[$id])){ // verifier si il y a un element dans cart
+            $cart[$id]++;  // augmenter la quantite
         }
         else{
-            $cart [$id] = 1;
+            $cart [$id] = 1; // ajout du produit au panier
         }
-        $this->getSession()->set('cart', $cart);
+        $this->getSession()->set('cart', $cart); // ajout a la session
     }
 
     //supprimer un produit
     public function removeToCart(int $id)
     {
-        $cart = $this->requestStack->getSession()->get('cart', []);
-        unset($cart[$id]);
-        return $this->getSession()->set('cart', $cart);
+        $cart = $this->requestStack->getSession()->get('cart', []); // recuperation de la session
+        unset($cart[$id]); // suppretion du produit 
+        return $this->getSession()->set('cart', $cart); // ajout a la session
     }
 
 
     // diminue la quantite de produit ou supprimer
     public function decrease(int $id)
     {
-        $cart = $this->getSession()->get('cart', []);
-        if ($cart[$id] > 1) { 
-            $cart[$id]--;
+        $cart = $this->getSession()->get('cart', []); // recuperation de la session
+        if ($cart[$id] > 1) {  // verifier la quantite
+            $cart[$id]--; // diminuer la quantite
         }
         else{
-            unset($cart[$id]);
+            unset($cart[$id]); // suppretion du produit
         }
-        $this->getSession()->set('cart',$cart);
+        $this->getSession()->set('cart',$cart); // ajout a la session
     }
 
     // supprimer tout le panier
     public function removeCartAll()
     {
-        return $this->getSession()->remove('cart');
+        return $this->getSession()->remove('cart'); // suppretion de la cart
     }
 
     public function getTotal() :array
     {
-        $cart = $this->getSession()->get('cart');
+        $cart = $this->getSession()->get('cart'); // recuperation de la session
         $cartData = [];
-        if($cart){
-            foreach($cart as $id => $quantity){
-                $product = $this->manager->getRepository(Product::class)->findOneBy(['id' => $id]);
+        if($cart){ // verifier si cart exite
+            foreach($cart as $id => $quantity){ 
+                $product = $this->manager->getRepository(Product::class)->findOneBy(['id' => $id]); // recherche des produit
                 if(!$product){
                     // supprimer le produit puis continuer en sortant de la boucle
                 }
                 $cartData[] = [
                     'product' => $product,
                     'quantity' => $quantity
-                ];
+                ]; // ajout de l'objet produit et la quantite associer
             }
         }
-        return $cartData;
+        return $cartData; // envoie du tableau
     }
 
     private function getSession() :SessionInterface

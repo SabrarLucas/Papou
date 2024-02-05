@@ -1,0 +1,12 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>favorite</h1>
+    <ul>
+        {% for favorite in favorites %}
+
+        <li>{{favorite.idProduct.name}}</li>
+        
+        {% endfor %}
+    </ul>
+{% endblock %}

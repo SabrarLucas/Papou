@@ -134,6 +134,7 @@ class PartnerController extends AbstractController
             $ca = 0; // initialisation d'un ca
             $caReel = 0; // initialisation d'un ca reel du partenaire
             $nbr = 0; // initialisation du nombre de commande du partenaire
+            $cart = 0; // retour du panier moyen a 0
             
             for ($i=0; $i < count($order); $i++) { // boucle sur les commandes du partenaire
                 if (date('d') == date_format($order[$i]->getCreatedAt(),'d')) { //verifie si le jour de la commande correspond a ce  jour
@@ -143,7 +144,9 @@ class PartnerController extends AbstractController
                 }
             }
     
-            $cart = $ca / $nbr; // calcul du panier moyen
+            if ($nbr != 0) {
+                $cart = $ca / $nbr; // calcul du panier moyen
+            }
     
             $saleDay['ca'] = $ca; //ajout du ca dans le tableau saleDay
             $saleDay['caReel'] = $caReel; //ajout du ca reel du parrtenaire dans le tableau saleDay
@@ -163,7 +166,9 @@ class PartnerController extends AbstractController
                 }
             }
     
-            $cart = $ca / $nbr; // calcul du panier moyen
+            if ($nbr != 0) {
+                $cart = $ca / $nbr; // calcul du panier moyen
+            }
     
             $saleMonth['ca'] = $ca; //ajout du ca dans le tableau saleMonth
             $saleMonth['caReel'] = $caReel; //ajout du ca reel du partenaire dans le tableau saleMonth
@@ -173,6 +178,7 @@ class PartnerController extends AbstractController
             $ca = 0; // retour du ca a 0
             $caReel = 0; // retour du ca a 0
             $nbr = 0; // retour du ca a 0
+            $cart = 0; // retour du panier moyen a 0
     
             for ($i=0; $i < count($order); $i++) { 
                 if (date('w') == date_format($order[$i]->getCreatedAt(),'w')) { //verifie si la semaine de la commande correspond a la semaine en cour
@@ -181,8 +187,11 @@ class PartnerController extends AbstractController
                     $nbr++; // calcule du nombre de commande
                 }
             }
+
+            if ($nbr != 0) {
+                $cart = $ca / $nbr; // calcul du panier moyen
+            }
     
-            $cart = $ca / $nbr; // calcul du panier moyen
     
             $saleWeek['ca'] = $ca; //ajout du ca dans le tableau saleWeek
             $saleWeek['caReel'] = $caReel; //ajout du ca reel du partenaire dans le tableau saleWeek

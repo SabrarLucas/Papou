@@ -33,16 +33,16 @@ class CartService {
     }
 
     //supprimer un produit
-    public function removeToCart(int $id)
+    public function removeToCart(int $id):void
     {
         $cart = $this->requestStack->getSession()->get('cart', []); // recuperation de la session
         unset($cart[$id]); // suppretion du produit 
-        return $this->getSession()->set('cart', $cart); // ajout a la session
+        $this->getSession()->set('cart', $cart); // ajout a la session
     }
 
 
     // diminue la quantite de produit ou supprimer
-    public function decrease(int $id)
+    public function decrease(int $id):void
     {
         $cart = $this->getSession()->get('cart', []); // recuperation de la session
         if ($cart[$id] > 1) {  // verifier la quantite
@@ -55,9 +55,9 @@ class CartService {
     }
 
     // supprimer tout le panier
-    public function removeCartAll()
+    public function removeCartAll():void
     {
-        return $this->getSession()->remove('cart'); // suppretion de la cart
+        $this->getSession()->remove('cart'); // suppretion de la cart
     }
 
     public function getTotal() :array

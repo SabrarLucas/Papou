@@ -31,13 +31,13 @@ class CartController extends AbstractController
             $i = 0;
             
             foreach ($cart as $id => $quantity){
-                $carts[$i] = $productRepository->findOneBy(['id' => $id]);
+                $carts[$i] = $productRepository->findOneBy(['id' => $id]); // recuperation des produit dans un tableau dans le panier
                 $i++;
             }
 
             for ($i=0; $i < count($carts) ; $i++) {
-                $val = $carts[$i];
-                $products = array_filter($products, function($value) use ($val) {
+                $val = $carts[$i]; // recuperation du produit
+                $products = array_filter($products, function($value) use ($val) { // filtre les produit du panier dans le tableau
                     return $value !== $val;
                 });
             }

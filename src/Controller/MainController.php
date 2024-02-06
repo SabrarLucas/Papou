@@ -23,11 +23,22 @@ class MainController extends AbstractController
         ]);
     }
 
+    #[Route('/product', name: 'productAll')]
+    public function productAll(ProductRepository $productRepository): Response
+    {
+
+        $products = $productRepository->findAllDesc();
+
+        return $this->render('main/productAll.html.twig', [
+            'products' => $products, // envoie des categorie
+        ]);
+    }
+
     #[Route('/product/{id}', name: 'product')]
     public function product(ProductRepository $productRepository, Category $category): Response
     {
 
-        $products = $productRepository->findBy(['id_category' => $category->getId()]); // recuperation des produits associer a sa categorie
+        $products = $productRepository->findCategoryDesc( $category->getId()); // recuperation des produits associer a sa categorie
 
         return $this->render('main/product.html.twig', [
             'products' => $products, // envoie des produits

@@ -2,6 +2,7 @@
 <html>
     <head>
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
             {% block title %}Accueil - Papou
             {% endblock %}
@@ -14,39 +15,37 @@
             <link href="{{ asset('css/index.css') }}" rel="stylesheet"/>
         {% endblock %}
 
+        
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         <script src="https://kit.fontawesome.com/a867087266.js" crossorigin="anonymous"></script>
         {% endblock %}
-        <style>
-        @font-face {
-            font-family: "Copperplate";
-            src: url("https://fontsforyou.com/fonts/c/Copperplate.ttf");
-        }
-        .copper {
-            font-family: "Copperplate";
-        }
-        </style>
-      
+              
     </head>
 
 
-
+    <header>
         {% block header %}
-            {% include "partials/navbar.html.twig" %}
+        {% include "partials/navbar.html.twig" %}
         {% endblock %}
+    </header>
+
 
        
     <body>
-        <div class="container mt-4">
+        <div>
         {% block body %}{% endblock %}
         </div>
     </body>
 
+    <footer>
+        {% block footer %}
+        {% include "partials/footer.html.twig" %}
+        {% endblock %}
+    </footer>
+
 </html>
 
-{% block footer %}
-{% include "partials/footer.html.twig" %}
-{% endblock %}
+
 
         {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}

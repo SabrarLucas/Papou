@@ -18,7 +18,7 @@ class MainController extends AbstractController
 
         $categories = $categoryRepository->findAll();
 
-        return $this->render('main/index.html.twig', [
+        return $this->render('main/home.html.twig', [
             'categories' => $categories,
         ]);
     }
@@ -29,7 +29,7 @@ class MainController extends AbstractController
 
         $products = $productRepository->findBy(['id_category' => $category->getId()]);
 
-        return $this->render('main/index.html.twig', [
+        return $this->render('main/home.html.twig', [
             'products' => $products,
         ]);
     }
@@ -37,7 +37,7 @@ class MainController extends AbstractController
     #[Route('/detail/{id}', name: 'detail')]
     public function detail(Product $product): Response
     {
-        return $this->render('main/index.html.twig', [
+        return $this->render('main/home.html.twig', [
             'product' => $product,
         ]);
     }

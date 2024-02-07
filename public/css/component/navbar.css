@@ -1,86 +1,51 @@
-.navbar {
-    background-color: #00988e;  /* couleur de fond de la navbar */
-    color: white;   /* couleur des éléments à l'intérieur de la navbar */
-    padding: 10px;  /* largeur des 4 bordures de la navbar */
+.header {
+  padding: 50px;
+  background-color: #00988e;
 }
 
-.centered {
-    text-align: center; /* centrage horizontal des éléments */
-    align-items: center;    /* centrage vertical des éléments */
-    justify-content: space-around;  /* espace entre les éléments */
+.navbar-menu {
+  color: #ffffff; /* couleur des liens de la liste */
+  font-size: 35px;    /* tailles des liens de la liste */
+  margin-left: 30px;
+  transition: .5s ease;
 }
 
-.navbar_logo {
-    width: 150px;   /* largeur du logo */
-    height: auto;   /* hauteur du logo */
+.navbar-menu:hover {
+  transform: scale(1.5);
+  color: rgb(255, 255, 255);
 }
 
-.navbar_list {
-    display: flex;  /* alignement horizontal des éléments de la liste */
-    list-style-type: none; /* style des puces de la liste */
-}
-
-li {
-    margin-right: 40px; /* marge droite entre les éléments de la liste */
-}
-
-.navbar_link {
-    color: #ffffff; /* couleur des liens de la liste */
-    font-size: 30px;    /* tailles des liens de la liste */
-}
-
-
-
-/* barre de recherche - code source : https://uiverse.io/joe-watson-sbf/shy-snake-4 */
+/* barre de recherche */
 .search {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    text-align: center;
-  }
-  .search__input {
-    font-family: inherit;
-    font-size: inherit;
-    background-color: #ffffff;
-    border: none;
-    color: #00988e;
-    padding: 0.7rem 1rem;
-    width: 15em;
-    transition: all ease-in-out .5s;
-    margin-right: -2rem;
-  }
+  display: inline-block;
+  position: relative;
+}
 
-  .search__input:hover, .search__input:focus {
-    box-shadow: 0 0 1em #00000013;
-  }
+.search input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border: none;
+  outline-color: #00988e; /* Couleur spécifique pour Firefox */
+}
 
-  .search__input:focus {
-    outline: none;
-    background-color: #ffffff;
-  }
+.search input[type="text"]:focus {
+  outline: 3px solid #ffffff; /* Définir la couleur de l'outline lorsqu'il est en focus */
+}
 
-  .search__input::-webkit-input-placeholder {
-    font-weight: 100;
-    color: #ffffff;
-  }
 
-  .search__input:focus + .search__button {
-    background-color: #ffffff;
-  }
-  
-  .search__button {
-    border: none;
-    background-color: #ffffff;
-    margin-top: .1em;
-  }
-  
-  .search__button:hover {
-    cursor: pointer;
-  }
-  
-  .search__icon {
-    height: 1.3em;
-    width: 1.3em;
-    fill: #00988e;
-  }
-/*-------------------fin barre de recherche-----------------*/
+.search button[type="submit"] {
+  background-color: #00988e;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: .5s ease;
+}
+
+.search button[type="submit"]:hover {
+  transform: scale(1.2);
+  color: rgb(255, 255, 255);
+}

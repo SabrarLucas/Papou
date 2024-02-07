@@ -1,26 +1,20 @@
-.home-card-margin {
-    margin-right: auto;
-    margin-left: auto;
+.home-card-centered {
+    align-content: center;
     justify-content: center;
-}
-
-.blur {
-    backdrop-filter: blur(10px);
+    margin-top: 50px;
+height: 1000px;
 }
 
 /* card code source : https://uiverse.io/alexruix/cowardly-ape-35 */
 .home-card {
-    width: 400px;
-    height: 200px;
+    width: 600px;
+    height: 400px;
     background-image: url(/images/test2.jpg);
     background-size: cover;
-    position: relative;
     padding: 1.8rem;
     border: 2px solid #ffffff;
     transition: 0.5s ease-out;
     overflow: visible;
-    margin-right: 8px;
-    margin-top: 8px;
    }
    
    .home-card-details {
@@ -37,8 +31,7 @@
    
    /*Hover*/
    .home-card:hover {
-    border-color: #4aa3a2;
-    box-shadow: 0 10px 20px 0 rgba(0, 0, 0, 24);
+    box-shadow: 0 0 10px 5px #00000050;
    }
    
    .home-card:hover .home-card-button {

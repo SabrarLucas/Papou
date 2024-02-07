@@ -2,7 +2,7 @@
     font-family: "Copperplate"; /* nom que l'on attribut à la nouvelle police */
     src: url("../fonts/Copperplate.ttf"); /* chemin d'accès du fichier contenant la police */
 }
-.copper {
+.copperplate {
     font-family: "Copperplate";
     font-weight: 900;   /* épaisseur de la police */
     font-size: 20px;    /* taille de la police */

@@ -16,6 +16,6 @@ body {
     display: flex;
 }
 
-.copperplate {
-    font-family: copperplate;
+.space-between {
+    justify-content: space-between;
 }

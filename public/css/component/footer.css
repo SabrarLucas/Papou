@@ -1,0 +1,19 @@
+.footer {
+    padding: 50px;
+    background-color: #ca3c66;
+}
+
+
+.footer-social {
+    color: #ffffff; /* couleur des liens de la liste */
+    font-size: 40px;    /* tailles des liens de la liste */
+}
+
+.space {
+    justify-content: space-around;
+}
+
+.footer-link {
+    color: #ffffff;
+    font-size: 20px;
+}

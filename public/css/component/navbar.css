@@ -1,18 +1,86 @@
 .navbar {
-    padding: 50px;
-    background-color: #00988e;
-    color: white;
+    background-color: #00988e;  /* couleur de fond de la navbar */
+    color: white;   /* couleur des éléments à l'intérieur de la navbar */
+    padding: 10px;  /* largeur des 4 bordures de la navbar */
 }
 
 .centered {
-    text-align: center;
+    text-align: center; /* centrage horizontal des éléments */
+    align-items: center;    /* centrage vertical des éléments */
+    justify-content: space-around;  /* espace entre les éléments */
 }
 
 .navbar_logo {
-    width: 200px;
-    height: auto;
+    width: 150px;   /* largeur du logo */
+    height: auto;   /* hauteur du logo */
 }
 
 .navbar_list {
-    display: flex;
+    display: flex;  /* alignement horizontal des éléments de la liste */
+    list-style-type: none; /* style des puces de la liste */
 }
+
+li {
+    margin-right: 40px; /* marge droite entre les éléments de la liste */
+}
+
+.navbar_link {
+    color: #ffffff; /* couleur des liens de la liste */
+    font-size: 30px;    /* tailles des liens de la liste */
+}
+
+
+
+/* barre de recherche - code source : https://uiverse.io/joe-watson-sbf/shy-snake-4 */
+.search {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+  }
+  .search__input {
+    font-family: inherit;
+    font-size: inherit;
+    background-color: #ffffff;
+    border: none;
+    color: #00988e;
+    padding: 0.7rem 1rem;
+    width: 15em;
+    transition: all ease-in-out .5s;
+    margin-right: -2rem;
+  }
+
+  .search__input:hover, .search__input:focus {
+    box-shadow: 0 0 1em #00000013;
+  }
+
+  .search__input:focus {
+    outline: none;
+    background-color: #ffffff;
+  }
+
+  .search__input::-webkit-input-placeholder {
+    font-weight: 100;
+    color: #ffffff;
+  }
+
+  .search__input:focus + .search__button {
+    background-color: #ffffff;
+  }
+  
+  .search__button {
+    border: none;
+    background-color: #ffffff;
+    margin-top: .1em;
+  }
+  
+  .search__button:hover {
+    cursor: pointer;
+  }
+  
+  .search__icon {
+    height: 1.3em;
+    width: 1.3em;
+    fill: #00988e;
+  }
+/*-------------------fin barre de recherche-----------------*/

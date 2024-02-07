@@ -2,12 +2,74 @@
 
 {% block body %}
 
-    <h1>Accueil</h1>
-    <ul>
-        {% for category in categories %}
+<br><br>
 
-        <li><a href="{{ path('product', {'id': category.id}) }}">{{ category.name }}</a></li>
-        
-        {% endfor %}
-    </ul>
+
+<div class="flex home-card-margin">
+
+    <div class="home-card">
+        <div class="home-card-details">
+            <p class="home-text-body copper blur">Here are the details of the card</p>
+        </div>
+    </div>
+
+    <div class="home-card">
+        <div class="home-card-details">
+            <p class="home-text-body copper blur">Here are the details of the card</p>
+        </div>
+    </div>
+
+    <div class="home-card">
+        <div class="home-card-details">
+            <p class="home-text-body copper blur">Here are the details of the card</p>
+        </div>
+    </div>
+
+</div>
+
+
+<div class="flex home-card-margin">
+
+    <div class="home-card">
+        <div class="home-card-details">
+            <p class="home-text-body copper blur">Here are the details of the card</p>
+        </div>
+    </div>
+
+    <div class="home-card">
+        <div class="home-card-details">
+            <p class="home-text-body copper blur">Here are the details of the card</p>
+        </div>
+    </div>
+
+    <div class="home-card">
+        <div class="home-card-details">
+            <p class="home-text-body copper blur">Here are the details of the card</p>
+        </div>
+    </div>
+
+</div>
+
+
+
+<br><br><hr><br><br>
+
+
+<div class="flex">
+
+    
+        {# {% for category in categories %}
+        <div>
+           <img src="{{ category.photo }}">
+            <a href="{{ path('product', {'id': category.id}) }}">{{ category.name }}</a>
+        </div>
+         
+        {% endfor %} #}
+
+</div>
+
+<br><hr><br><br>
+       
+
+
 {% endblock %}

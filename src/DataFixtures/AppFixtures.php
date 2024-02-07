@@ -29,7 +29,7 @@ class AppFixtures extends Fixture
         for($i = 0; $i < 5; $i++){
             $category = new Category();
             $category->setName('categorie '.$i)
-                ->setPhoto($this->faker->imageUrl(150, 150))
+                ->setPhoto($this->faker->imageUrl(250, 250))
                 ->setDescription($this->faker->text());
 
             $this->addReference('cat-'.$this->counter, $category);
@@ -116,7 +116,7 @@ class AppFixtures extends Fixture
         for($i = 0; $i<100; $i++)
         {
             $picture = new Picture();
-            $picture->setPicName($this->faker->imageUrl());
+            $picture->setPicName($this->faker->imageUrl(450,450));
             $product = $this->getReference('pro-'.rand(1,50));
             $picture->setIdProduct($product);
 

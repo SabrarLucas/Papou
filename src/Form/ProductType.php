@@ -4,7 +4,6 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Product;
-use App\Entity\Supplier;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -16,7 +15,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -40,7 +38,8 @@ class ProductType extends AbstractType
             ->add('description', TextareaType::class, [
                 'attr' => [
                     'rows' => 5
-                ]
+                ],
+                'required' => false
             ])
             ->add('price', MoneyType::class, [
                 'label' => 'Prix',
@@ -71,7 +70,9 @@ class ProductType extends AbstractType
                     ])
                 ]
             ])
-            ->add('promotion', NumberType::class)
+            ->add('promotion', NumberType::class, [
+                'required' => false
+            ])
             ->add('state', ChoiceType::class, [
                 'label' => 'État',
                 'choices' => [
@@ -80,24 +81,53 @@ class ProductType extends AbstractType
                 ]
             ])
             ->add('length', TextType::class, [
-                'label' => 'Longueur'
+                'label' => 'Longueur',
+                'required' => false
             ])
             ->add('width', TextType::class, [
-                'label' => 'Largeur'
+                'label' => 'Largeur',
+                'required' => false
             ])
             ->add('heigh', TextType::class, [
-                'label' => 'Hauteur'
+                'label' => 'Hauteur',
+                'required' => false
             ])
             ->add('id_category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Catégorie'
             ])
-            ->add('image0', TextType::class)
-            ->add('image1', TextType::class)
-            ->add('image2', TextType::class)
-            ->add('image3', TextType::class)
+            ->add('image0', FileType::class, [
+                'multiple' => true,
+                'mapped' =>false,
+                'label' => 'Image'
+            ])
+            ->add('image1', FileType::class, [
+                'multiple' => true,
+                'mapped' =>false,
+                'required' => false,
+                'label' => false
+            ])
+            ->add('image2', FileType::class, [
+                'multiple' => true,
+                'mapped' =>false,
+                'required' => false,
+                'label' => false
+            ])
+            ->add('image3', FileType::class, [
+                'multiple' => true,
+                'mapped' =>false,
+                'required' => false,
+                'label' => false
+            ])
             ->add('submit', SubmitType::class)
         ;
+    }
+
+    public function configureOptions(OptionsResolver $resolver): void
+    {
+        $resolver->setDefaults([
+            'data_class' => Product::class,
+        ]);
     }
 }

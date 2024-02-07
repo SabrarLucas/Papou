@@ -8,6 +8,7 @@ use App\Entity\Supplier;
 use App\Form\ProductType;
 use App\Service\MailService;
 use App\Form\ResetPasswordType;
+use App\Service\PictureService;
 use App\Repository\UserRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
@@ -86,40 +87,36 @@ class PartnerController extends AbstractController
     }
 
     #[Route('/partner/{id}/product/add', name: 'app_partner_product_add')]
-    public function addProduct(Request $request, EntityManagerInterface $manager, Supplier $supplier): Response
+    public function addProduct(Request $request, EntityManagerInterface $manager, Supplier $supplier, PictureService $pictureService): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
             $product = new Product(); // creation d'un nouveau objet produit
     
-            $form = $this->createForm(ProductType::class); // creation du formulaire
+            $form = $this->createForm(ProductType::class, $product); // creation du formulaire
     
             $form->handleRequest($request);
     
             if ($form->isSubmitted() && $form->isValid()) { // verification du formulaire (si il a bien etait soumit ou les donnée sont bien valide)
-                $data = $form->getData(); // ajout des données dans l'objet produit
-                
-                // dd($data);
-                $product->setName($data['name']);
-                $product->setDescription($data['description']);
-                $product->setPrice($data['price']);
-                $product->setAge($data['age']);
-                $product->setStock($data['stock']);
-                $product->setPromotion($data['promotion']);
-                $product->setState($data['state']);
-                $product->setLength($data['length']);
-                $product->setWidth($data['width']);
-                $product->setHeigh($data['heigh']);
-                $product->setIdCategory($data['id_category']);
-                $product->setIdSupplier($supplier); // ajout du partenaire
-                $product->setCreatedAt(new \DateTimeImmutable());// ajout de la date de creation de l'objet produit
-
                 for ($i=0; $i < 4; $i++) { 
-                    $image = new Picture();
-                    $image->setIdProduct($product);
-                    $image->setPicName($data['image' . $i]);
+                    
 
-                    $manager->persist($image);
+                    //on récupère l'image
+                    $images = $form->get('image' . $i)->getData();
+                    
+                    foreach($images as $image) {
+                        // on définit le dosier de destination
+                        $folder = 'products';
+    
+                        // on appelle le service d'ajout
+                        $file = $pictureService->add($image, $folder);
+                        $img = new Picture(); // creation d'un objet image
+                        $img->setPicName($file); 
+                        $product->addPicture($img); // l'image est associer avec le produit                 
+                    }
                 }
+
+                $product->setCreatedAt(new \DateTimeImmutable())
+                        ->setIdSupplier($supplier);
     
                 $manager->persist($product);
                 $manager->flush(); // l'envoie du nouveau produit sur la base de donnée

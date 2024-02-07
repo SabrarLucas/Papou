@@ -13,13 +13,16 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class MainController extends AbstractController
 {
     #[Route('/', name: 'main')]
-    public function index(CategoryRepository $categoryRepository): Response
+    public function index(CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
     {
 
         $categories = $categoryRepository->findAll(); // recuperation des categorie
 
+        $products = $productRepository->findAll();
+
         return $this->render('main/index.html.twig', [
             'categories' => $categories, // envoie des categorie
+            'products' => $products,
         ]);
     }
 

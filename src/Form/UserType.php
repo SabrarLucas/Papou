@@ -26,6 +26,7 @@ class UserType extends AbstractType
                     'min' => 7,
                     'minMessage' => 'Votre adresse mail est trop court',
                     'max' => 180,
+                    'maxMessage' => 'Votre adresse mail est trop long',
                 ]),
             ]
         ])
@@ -39,6 +40,7 @@ class UserType extends AbstractType
                     'min' => 3,
                     'minMessage' => 'Votre prenom est trop court',
                     'max' => 40,
+                    'maxMessage' => 'Votre prenom est trop long',
                 ]),
             ]
         ])
@@ -52,6 +54,7 @@ class UserType extends AbstractType
                     'min' => 3,
                     'minMessage' => 'Votre nom est trop court',
                     'max' => 40,
+                    'maxMessage' => 'Votre nom est trop long',
                 ]),
             ]
         ])
@@ -65,6 +68,7 @@ class UserType extends AbstractType
                     'min' => 5,
                     'minMessage' => 'Votre adresse est trop court',
                     'max' => 100,
+                    'maxMessage' => 'Votre adresse est trop long',
                 ]),
             ]
         ])
@@ -78,6 +82,7 @@ class UserType extends AbstractType
                     'min' => 5,
                     'minMessage' => 'Votre code postal est trop court',
                     'max' => 5,
+                    'maxMessage' => 'Votre code postal est trop long',
                 ]),
             ]
         ])
@@ -91,6 +96,7 @@ class UserType extends AbstractType
                     'min' => 1,
                     'minMessage' => 'Votre ville est trop court',
                     'max' => 105,
+                    'maxMessage' => 'Votre ville est trop long',
                 ]),
             ]
         ])
@@ -104,11 +110,20 @@ class UserType extends AbstractType
                     'min' => 5,
                     'minMessage' => 'Votre pays est trop court',
                     'max' => 50,
+                    'maxMessage' => 'Votre pays est trop long',
                 ]),
             ]
         ])
         ->add('phone', TelType::class, [
-            'label' => 'Téléphone'
+            'label' => 'Téléphone',
+            'constraints' => [
+                new Length([
+                    'min' => 15,
+                    'minMessage' => 'Votre numero de telephone est trop court',
+                    'max' => 15,
+                    'maxMessage' => 'Votre numero de telephone est trop long',
+                ]),
+            ]
         ])
         ;
     }

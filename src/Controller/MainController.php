@@ -18,11 +18,19 @@ class MainController extends AbstractController
 
         $categories = $categoryRepository->findAll(); // recuperation des categorie
 
-        $products = $productRepository->findAll();
+        $products1 = $productRepository->findAll();
 
+        
+        for($i = 0; $i < count($products1); $i++){
+            $products = array_filter($products1, function($value) { // filtre les produit du panier dans le tableau
+                return $value->getPromotion() !== null;
+            });
+        }
+        
         return $this->render('main/home.html.twig', [
             'categories' => $categories, // envoie des categorie
-            'products' => $products,
+            'products1' => $products1,
+            'products' => $products
         ]);
     }
 

@@ -25,4 +25,5 @@
         <li>nbr commandes = {{ saleMonth.nbr}}</li>
         <li>panier moyen = {{ saleMonth.cart|number_format(2, '.', ',') }}</li>
     </ul>
+    <a href="{{ path('app_partner', {'id': supplier.id}) }}">retour</a>
 {% endblock %}

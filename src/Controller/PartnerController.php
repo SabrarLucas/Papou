@@ -8,6 +8,8 @@ use App\Entity\Supplier;
 use App\Form\ProductType;
 use App\Service\MailService;
 use App\Form\ResetPasswordType;
+use App\Form\SupplierProfilType;
+use App\Service\PictureService;
 use App\Repository\UserRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
@@ -79,47 +81,44 @@ class PartnerController extends AbstractController
             return $this->render('partner/product.html.twig', [
                 'products' => $products, //envoie de la liste des produit du partenaire a la vue
                 'nbrProduct' => $nbrProduct, // envoie le nombre de produit a la vue
-                'valueProduct' => $valueProduct // envoie la valeur de tout les produit a la vue
+                'valueProduct' => $valueProduct, // envoie la valeur de tout les produit a la vue
+                'supplier' => $supplier
             ]);
         }
         return $this->redirectToRoute('app_partner', ['id' => $supplier->getId()]); // retour a l'acceuil du site
     }
 
     #[Route('/partner/{id}/product/add', name: 'app_partner_product_add')]
-    public function addProduct(Request $request, EntityManagerInterface $manager, Supplier $supplier): Response
+    public function addProduct(Request $request, EntityManagerInterface $manager, Supplier $supplier, PictureService $pictureService): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
             $product = new Product(); // creation d'un nouveau objet produit
     
-            $form = $this->createForm(ProductType::class); // creation du formulaire
+            $form = $this->createForm(ProductType::class, $product); // creation du formulaire
     
             $form->handleRequest($request);
     
             if ($form->isSubmitted() && $form->isValid()) { // verification du formulaire (si il a bien etait soumit ou les donnée sont bien valide)
-                $data = $form->getData(); // ajout des données dans l'objet produit
-                
-                // dd($data);
-                $product->setName($data['name']);
-                $product->setDescription($data['description']);
-                $product->setPrice($data['price']);
-                $product->setAge($data['age']);
-                $product->setStock($data['stock']);
-                $product->setPromotion($data['promotion']);
-                $product->setState($data['state']);
-                $product->setLength($data['length']);
-                $product->setWidth($data['width']);
-                $product->setHeigh($data['heigh']);
-                $product->setIdCategory($data['id_category']);
-                $product->setIdSupplier($supplier); // ajout du partenaire
-                $product->setCreatedAt(new \DateTimeImmutable());// ajout de la date de creation de l'objet produit
-
                 for ($i=0; $i < 4; $i++) { 
-                    $image = new Picture();
-                    $image->setIdProduct($product);
-                    $image->setPicName($data['image' . $i]);
+                    
 
-                    $manager->persist($image);
+                    //on récupère l'image
+                    $images = $form->get('image' . $i)->getData();
+                    
+                    foreach($images as $image) {
+                        // on définit le dosier de destination
+                        $folder = 'products';
+    
+                        // on appelle le service d'ajout
+                        $file = $pictureService->add($image, $folder);
+                        $img = new Picture(); // creation d'un objet image
+                        $img->setPicName($file); 
+                        $product->addPicture($img); // l'image est associer avec le produit                 
+                    }
                 }
+
+                $product->setCreatedAt(new \DateTimeImmutable())
+                        ->setIdSupplier($supplier);
     
                 $manager->persist($product);
                 $manager->flush(); // l'envoie du nouveau produit sur la base de donnée
@@ -129,17 +128,36 @@ class PartnerController extends AbstractController
     
             return $this->render('partner/addProduct.html.twig', [
                 'form' => $form, // l'envoie du formulaire sur la vue
+                'supplier' => $supplier
             ]);
         }
         return $this->redirectToRoute('app_partner', ['id' => $supplier->getId()]); // retour a l'acceuil du site
     }
 
     #[Route('/partner/{id}/profil', name: 'app_partner_profil')]
-    public function profil(Supplier $supplier): Response
+    public function profil(Supplier $supplier, Request $request, EntityManagerInterface $manager): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
+
+            $form = $this->createForm(SupplierProfilType::class); // creation du formulaire
+
+            $form->handleRequest($request);
+
+            if ($form->isSubmitted() && $form->isValid()) {
+
+                // ajout des modification
+                $supplier->setCompanyName($form->getData()['company_name']); 
+
+                $supplier->getIdUser()->setLastname($form->getData()['lastname'])
+                    ->setFirstname($form->getData()['firstname'])
+                    ->setEmail($form->getData()['email']); 
+
+                $manager->persist($supplier);
+                $manager->flush(); // envoie des modification a la bdd
+            }
             return $this->render('partner/profil.html.twig',[
-                'supplier' => $supplier // l'envoi de l'objet partenaire a la vue
+                'supplier' => $supplier, // l'envoi de l'objet partenaire a la vue
+                'form' => $form // envoie du formulaire a la vue
             ]);
         }
 
@@ -259,7 +277,8 @@ class PartnerController extends AbstractController
             return $this->render('partner/sale.html.twig', [
                 'saleDay' => $saleDay, // l'envoie du tableau saleDay a la vue
                 'saleWeek' => $saleWeek, //l'envoie du tableau saleWeek a la vue
-                'saleMonth' => $saleMonth //l'envoie du tableau saleMonth a la vue
+                'saleMonth' => $saleMonth, //l'envoie du tableau saleMonth a la vue
+                'supplier' => $supplier
             ]);
         }
 

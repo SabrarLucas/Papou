@@ -1,23 +1,40 @@
+<header class="header">
 
+    <div class="columns-3xs flex justify-center space-x-80">
 
-<div class="navbar">
+        <div class="my-auto w-80">
 
-    <div class="centered">
-        <img src="{{ asset("images/logovert.png") }}" class="navbar_logo">
+            <div class="search">
+                <input placeholder="Rechercher" type="text">
+                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+              </div>
+        
+
+        </div>
+
+        <div class="my-auto w-80 flex justify-center">
+            
+                <a href="{{ path('main') }}"> <!-- lien vers l'accueil -->
+                    <img src="{{ asset("images/logoneutre.png") }}" class="w-40"><!-- logo -->
+                </a>
+            
+        </div>
+
+        <div class="my-auto w-80">
+                <div class="flex justify-center space-x-1">
+                    <a href=""><i class="fa-solid fa-heart navbar-menu"></i></a>
+                    <a href=""><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
+                    <a href=""><i class="fa-solid fa-user navbar-menu"></i></a>
+                </div>
+        </div>
+
     </div>
 
-   
-    <div class="">
-        <input type="search" class="" placeholder="Recherche"/>
-        <span class="" id="">
-            <i class="fa-solid fa-magnifying-glass"></i>
-        </span>
-    </div>
-    
-    <nav>
-        <ul class="navbar_list">
-            <li>Connexion</li>
-            <li>Jouets</li>
-        </ul>
-    </nav>
-</div>
+
+
+</header>
+
+
+
+
+

@@ -4,18 +4,16 @@ namespace App\Form;
 
 use App\Entity\Category;
 use App\Entity\Product;
-use App\Entity\Supplier;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Validator\Constraints\Choice;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
 
@@ -32,11 +30,18 @@ class ProductType extends AbstractType
                     ]),
                     new Length([
                         'min' => 5,
-                        'max' =>  100
+                        'minMessage' => 'le nom du produit est trop court',
+                        'max' =>  100,
+                        'maxMessage' => 'le nom du produit est trop long',
                     ])
                 ]
             ])
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class, [
+                'attr' => [
+                    'rows' => 5
+                ],
+                'required' => false
+            ])
             ->add('price', MoneyType::class, [
                 'label' => 'Prix',
                 'constraints' => [
@@ -45,6 +50,7 @@ class ProductType extends AbstractType
                     ]),
                     new Length([
                         'max' => 9,
+                        'maxMessage' => 'le jouer est trop cher',
                     ])
                 ]
             ])
@@ -62,11 +68,13 @@ class ProductType extends AbstractType
                         'message' => 'Veuillez entrer une quantite de produit'
                     ]),
                     new Length([
-                        'min' => 1
+                        'min' => 1,
                     ])
                 ]
             ])
-            ->add('promotion', NumberType::class)
+            ->add('promotion', NumberType::class, [
+                'required' => false
+            ])
             ->add('state', ChoiceType::class, [
                 'label' => 'État',
                 'choices' => [
@@ -75,18 +83,44 @@ class ProductType extends AbstractType
                 ]
             ])
             ->add('length', TextType::class, [
-                'label' => 'Longueur'
+                'label' => 'Longueur',
+                'required' => false
             ])
             ->add('width', TextType::class, [
-                'label' => 'Largeur'
+                'label' => 'Largeur',
+                'required' => false
             ])
             ->add('heigh', TextType::class, [
-                'label' => 'Hauteur'
+                'label' => 'Hauteur',
+                'required' => false
             ])
             ->add('id_category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
                 'label' => 'Catégorie'
+            ])
+            ->add('image0', FileType::class, [
+                'multiple' => true,
+                'mapped' =>false,
+                'label' => 'Image'
+            ])
+            ->add('image1', FileType::class, [
+                'multiple' => true,
+                'mapped' =>false,
+                'required' => false,
+                'label' => false
+            ])
+            ->add('image2', FileType::class, [
+                'multiple' => true,
+                'mapped' =>false,
+                'required' => false,
+                'label' => false
+            ])
+            ->add('image3', FileType::class, [
+                'multiple' => true,
+                'mapped' =>false,
+                'required' => false,
+                'label' => false
             ])
             ->add('id_supplier', EntityType::class, [
                 'class' => Supplier::class,

@@ -1,0 +1,46 @@
+<div>
+
+	<section class="slider">
+
+		<ul id="autoWidth" class="cs-hidden">
+
+			{% for product in products %}
+		
+			<li class="item-{{product.id}}">
+				<div class="box"><!--img-box-->
+
+
+					<div class="slide-img">
+
+						<img alt="1" src="{{product.pictures[0].picName}}">
+						
+						<div class="overlay"><!--overlayer-->
+							<a href="#" class="buy-btn">ACHETER</a><!--buy-btn-->
+						</div>
+
+					</div>
+
+					<div class="detail-box"><!--detail-box-->
+
+						<div class="type"><!--type-->
+							<a href="#">{{product.name}}</a>
+							{# <span>{{ product.description }}</span> #}
+						</div>
+
+						<a href="#" class="price">€{{product.price}}</a><!--price-->
+
+					</div>
+
+
+				</div>		
+			</li>
+			{% endfor %}
+
+		</ul>
+
+	</section>
+
+</div>
+
+<!-- 8eme slide : class="item-h"-->
+	

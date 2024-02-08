@@ -2,12 +2,12 @@
     align-content: center;
     justify-content: center;
     margin-top: 50px;
-height: 1000px;
+    height: 500px;
 }
 
 /* card code source : https://uiverse.io/alexruix/cowardly-ape-35 */
 .home-card {
-    width: 600px;
+    width: 550px;
     height: 400px;
     background-image: url(/images/test2.jpg);
     background-size: cover;

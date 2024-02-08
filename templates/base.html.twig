@@ -6,6 +6,7 @@
         <title>
             {% block title %}Accueil - Papou
             {% endblock %}
+
         </title>
 
 
@@ -13,12 +14,17 @@
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
             <link href="{{ asset('css/index.css') }}" rel="stylesheet"/>
+            <link rel="shortcut icon" href="images/logovert.png">
+            <link rel="stylesheet" type="text/css" href="css/component/home_carousel1/home_carousel1.css">
+            <link rel="stylesheet" type="text/css" href="css/component/home_carousel1/lightslider.css">
         {% endblock %}
 
         
         {% block javascripts %}
             {{ encore_entry_script_tags('app') }}
         <script src="https://kit.fontawesome.com/a867087266.js" crossorigin="anonymous"></script>
+        <script type="text/javascript" src="js/home_carousel1/jquery.js"></script>
+        <script type="text/javascript" src="js/home_carousel1/lightslider.js"></script>
         {% endblock %}
               
     </head>
@@ -36,6 +42,7 @@
         <div>
         {% block body %}{% endblock %}
         </div>
+        <script type="text/javascript" src="js/home_carousel1/home_carousel1.js"></script>
     </body>
 
     <footer>

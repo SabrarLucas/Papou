@@ -4,24 +4,12 @@
 
 {% block body %}
     <h1>profil</h1>
-    <table class="table">
-        <thead>
-            <tr>
-                <th>nom entreprise</th>
-                <th>nom</th>
-                <th>prenom</th>
-                <th>adresse</th>
-                <th>ville</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>{{ supplier.companyName }}</td>
-                <td>{{ supplier.idUser.lastname }}</td>
-                <td>{{ supplier.idUser.firstname }}</td>
-                <td>{{ supplier.idUser.address }}</td>
-                <td>{{ supplier.idUser.city }}</td>
-            </tr>
-        </tbody>
-    </table>
+    {{ form_start(form) }}
+        {{ form_row(form.lastname, {'attr': {'value': supplier.idUser.lastname}}) }}
+        {{ form_row(form.firstname, {'attr': {'value': supplier.idUser.firstname}}) }}
+        {{ form_row(form.company_name, {'attr': {'value': supplier.companyName}}) }}
+        {{ form_row(form.email, {'attr': {'value': supplier.idUser.email}}) }}
+        <button type="submit">submit</button>
+        <a href="{{ path('app_partner', {'id': supplier.id}) }}">retour</a>
+    {{ form_end(form) }}
 {% endblock %}

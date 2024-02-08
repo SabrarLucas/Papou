@@ -98,6 +98,7 @@ class AppFixtures extends Fixture
                 ->setDescription($this->faker->text(100))
                 ->setPrice($this->faker->randomFloat(2,0,100))
                 ->setAge(mt_rand(0, 1) == 1? 'entre 6 et 8 ans' : 'entre 9 et 12 ans')
+                ->setPromotion(mt_rand(0,1) == 1 ? 50 : null)
                 ->setStock($this->faker->randomNumber())
                 ->setState(mt_rand(0, 1) == 1? 'bon état' : 'mauvais état')
                 ->setCreatedAt(new \DateTimeImmutable());

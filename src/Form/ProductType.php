@@ -10,7 +10,6 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
-use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -31,7 +30,9 @@ class ProductType extends AbstractType
                     ]),
                     new Length([
                         'min' => 5,
-                        'max' =>  100
+                        'minMessage' => 'le nom du produit est trop court',
+                        'max' =>  100,
+                        'maxMessage' => 'le nom du produit est trop long',
                     ])
                 ]
             ])
@@ -49,6 +50,7 @@ class ProductType extends AbstractType
                     ]),
                     new Length([
                         'max' => 9,
+                        'maxMessage' => 'le jouer est trop cher',
                     ])
                 ]
             ])
@@ -66,7 +68,7 @@ class ProductType extends AbstractType
                         'message' => 'Veuillez entrer une quantite de produit'
                     ]),
                     new Length([
-                        'min' => 1
+                        'min' => 1,
                     ])
                 ]
             ])
@@ -120,7 +122,6 @@ class ProductType extends AbstractType
                 'required' => false,
                 'label' => false
             ])
-            ->add('submit', SubmitType::class)
         ;
     }
 

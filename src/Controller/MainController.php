@@ -20,7 +20,7 @@ class MainController extends AbstractController
 
         $products = $productRepository->findAll();
 
-        return $this->render('main/index.html.twig', [
+        return $this->render('main/home.html.twig', [
             'categories' => $categories, // envoie des categorie
             'products' => $products,
         ]);
@@ -43,19 +43,16 @@ class MainController extends AbstractController
 
         $products = $productRepository->findCategoryDesc( $category->getId()); // recuperation des produits associer a sa categorie
 
-        return $this->render('main/product.html.twig', [
-            'products' => $products, // envoie des produits
+        return $this->render('main/index.html.twig', [
+            'products' => $products,
         ]);
     }
 
     #[Route('/detail/{id}', name: 'detail')]
     public function detail(Product $product, ProductRepository $productRepository): Response
     {
-        $products = $productRepository->findBy(['id_supplier' => $product->getIdSupplier()]); // recuperation des produit associer au partenaire du produit passer en parametre
-
-        return $this->render('main/detail.html.twig', [
-            'product' => $product, // envoie du produit passer en parametre
-            'products' => $products // envoie de liste de produit
+        return $this->render('main/index.html.twig', [
+            'product' => $product,
         ]);
     }
 

@@ -1,0 +1,19 @@
+@font-face {
+    font-family: "Copperplate"; /* nom que l'on attribut à la nouvelle police */
+    src: url("../fonts/Copperplate.ttf"); /* chemin d'accès du fichier contenant la police */
+}
+.copperplate {
+    font-family: "Copperplate";
+    font-weight: 900;   /* épaisseur de la police */
+    font-size: 20px;    /* taille de la police */
+}
+
+@font-face {
+    font-family: "Palatino";
+    src: url("../fonts/Palatino.ttf");
+}
+.palatino {
+    font-family: "Palatino";
+    font-weight: 900;
+    font-size: 20px;
+}

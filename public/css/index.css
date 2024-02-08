@@ -1,0 +1,21 @@
+@import "fonts.css";
+@import "/css/component/navbar.css";
+@import "/css/pages/home.css";
+@import "/css/component/footer.css";
+
+  
+/* Supression des marges en bordures du site */
+body {
+    margin-right: 0;
+    margin-left: 0;
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.space-between {
+    justify-content: space-between;
+}

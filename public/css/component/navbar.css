@@ -1,18 +1,51 @@
-.navbar {
-    padding: 50px;
-    background-color: #00988e;
-    color: white;
+.header {
+  padding: 50px;
+  background-color: #00988e;
 }
 
-.centered {
-    text-align: center;
+.navbar-menu {
+  color: #ffffff; /* couleur des liens de la liste */
+  font-size: 35px;    /* tailles des liens de la liste */
+  margin-left: 30px;
+  transition: .5s ease;
 }
 
-.navbar_logo {
-    width: 200px;
-    height: auto;
+.navbar-menu:hover {
+  transform: scale(1.5);
+  color: rgb(255, 255, 255);
 }
 
-.navbar_list {
-    display: flex;
+/* barre de recherche */
+.search {
+  display: inline-block;
+  position: relative;
+}
+
+.search input[type="text"] {
+  width: 300px;
+  padding: 10px;
+  border: none;
+  outline-color: #00988e; /* Couleur spécifique pour Firefox */
+}
+
+.search input[type="text"]:focus {
+  outline: 3px solid #ffffff; /* Définir la couleur de l'outline lorsqu'il est en focus */
+}
+
+
+.search button[type="submit"] {
+  background-color: #00988e;
+  border: none;
+  color: #fff;
+  cursor: pointer;
+  padding: 10px 20px;
+  position: absolute;
+  top: 0;
+  right: 0;
+  transition: .5s ease;
+}
+
+.search button[type="submit"]:hover {
+  transform: scale(1.2);
+  color: rgb(255, 255, 255);
 }

@@ -51,7 +51,7 @@ class MainController extends AbstractController
     #[Route('/detail/{id}', name: 'detail')]
     public function detail(Product $product, ProductRepository $productRepository): Response
     {
-        return $this->render('main/home.html.twig', [
+        return $this->render('main/detail.html.twig', [
             'product' => $product,
         ]);
     }

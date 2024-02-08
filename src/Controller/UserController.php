@@ -18,18 +18,18 @@ class UserController extends AbstractController
     {
         if($user == $this->getUser()){
 
-            $form = $this->createForm(UserType::class, $user);
+            $form = $this->createForm(UserType::class, $user); // creation du formulaire
 
             $form->handleRequest($request);
 
             if($form->isSubmitted() && $form->isValid()){
-                $user = $form->getData();
+                $user = $form->getData(); // ajout des donnée du formulaire dans l'objet user
 
-                $manager->persist($user);
-                $manager->flush();
+                $manager->persist($user); 
+                $manager->flush(); // envoie de l'objet dans la bbd 
             }
             return $this->render('user/profil.html.twig', [
-                'form' => $form,
+                'form' => $form, // envoie du formulaire a la vue
             ]);
         }
         return $this->redirectToRoute('main'); // retour a l'acceuil du site
@@ -39,9 +39,9 @@ class UserController extends AbstractController
     public function order (User $user, OrderRepository $orderRepository): Response
     {
         if($user == $this->getUser()){
-            $orders = $orderRepository->findByDesc($user);
+            $orders = $orderRepository->findByDesc($user); // recherche des commande par ordre decroissant
             return $this->render('user/order.html.twig', [
-                'orders' => $orders,
+                'orders' => $orders, // envoie des commande a la vue
             ]);
         }
         return $this->redirectToRoute('main'); // retour a l'acceuil du site
@@ -51,9 +51,9 @@ class UserController extends AbstractController
     public function delete (User $user, EntityManagerInterface $manager): Response
     {
         if($user == $this->getUser()){
-            $order = $user->getOrders();
+            $order = $user->getOrders(); // recuperation des commande passer par utilisateur
 
-            for($i=0; $i < count($order); $i++){
+            for($i=0; $i < count($order); $i++){ // on mette tout le id_user a null dans order pour pouvoir supprimer 
                 $order[$i]->setIdUser(null);
             }
 

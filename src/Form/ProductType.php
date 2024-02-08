@@ -8,6 +8,7 @@ use App\Entity\Supplier;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
@@ -36,7 +37,11 @@ class ProductType extends AbstractType
                     ])
                 ]
             ])
-            ->add('description', TextareaType::class)
+            ->add('description', TextareaType::class, [
+                'attr' => [
+                    'rows' => 5
+                ]
+            ])
             ->add('price', MoneyType::class, [
                 'label' => 'Prix',
                 'constraints' => [
@@ -88,14 +93,11 @@ class ProductType extends AbstractType
                 'choice_label' => 'name',
                 'label' => 'Catégorie'
             ])
+            ->add('image0', TextType::class)
+            ->add('image1', TextType::class)
+            ->add('image2', TextType::class)
+            ->add('image3', TextType::class)
             ->add('submit', SubmitType::class)
         ;
-    }
-
-    public function configureOptions(OptionsResolver $resolver): void
-    {
-        $resolver->setDefaults([
-            'data_class' => Product::class,
-        ]);
     }
 }

@@ -48,10 +48,9 @@ class MainController extends AbstractController
     #[Route('/product/{id}', name: 'product')]
     public function product(ProductRepository $productRepository, Category $category): Response
     {
-
         $products = $productRepository->findCategoryDesc( $category->getId()); // recuperation des produits associer a sa categorie
 
-        return $this->render('main/index.html.twig', [
+        return $this->render('main/product.html.twig', [
             'products' => $products,
         ]);
     }

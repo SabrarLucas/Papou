@@ -39,17 +39,13 @@
 
        
     <body>
-        <div>
         {% block body %}{% endblock %}
-        </div>
+        {% include "partials/footer.html.twig" %}
         <script type="text/javascript" src="js/home_carousel1/home_carousel1.js"></script>
     </body>
 
-    <footer>
-        {% block footer %}
-        {% include "partials/footer.html.twig" %}
-        {% endblock %}
-    </footer>
+
+
 
 </html>
 

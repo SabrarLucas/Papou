@@ -2,28 +2,53 @@
 
 {% block body %}
 
-    <h1>{{ product.name }}</h1>
-    {% for picture in product.pictures %}
-        <img src="{{picture.picName}}">
-    {% endfor %}
 
-    <ul>
-        <li>category = {{ product.idCategory.name }}</li>
-        <li>stock = {{ product.stock }}</li>
-        <li>age = {{ product.age }}</li>
-        <li>état = {{ product.state }}</li>
-        <li>vendue par {{ product.idSupplier.companyName }}</li>
-        <li>prix = {{ product.price }}€</li> 
-    </ul>
 
-    <a href="{{ path('cart_add', {'id': product.id}) }}">ajouter au panier</a>
+    
+    <div class="pname">{{product.name}}</div>
+    
+    <div class="flex-box">
 
-    <h2>product</h2>
-    <ul>
-        {% for product1 in products %}
-        
-        <li><a href="{{ path('detail' , {'id': product1.id}) }}">{{ product1.name }}</a></li>
-        
-        {% endfor %}
-    </ul>
+        <div class="left">
+            <div class="big-img">
+                <img src="{{product.pictures[0].picName}}">
+            </div>
+            <div class="images">
+                <div class="small-img">
+                    <img src="{{product.pictures[0].picName}}" onclick="showImg(this.src)">
+                </div>
+                <div class="small-img">
+                    <img src="{{product.pictures[1].picName}}" onclick="showImg(this.src)">
+                </div>
+                <div class="small-img">
+                    <img src="{{product.pictures[2].picName}}" onclick="showImg(this.src)">
+                </div>
+                <div class="small-img">
+                    <img src="{{product.pictures[3].picName}}" onclick="showImg(this.src)">
+                </div>
+            </div>
+        </div>
+
+        <div class="right">
+            <div class="price">{{product.price}} <i class="fa-solid fa-euro-sign"></i></div>
+            <div class="quantity">
+                <p>Quantité :</p>
+                <input type="number" min="1" max="{{ product.stock }}" value="1">
+            </div>
+            <div class="btn-box">
+                <button class="cart-btn">Ajouter au panier</button>
+                <button class="buy-btn">Acheter</button>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        let bigImg = document.querySelector('.big-img img');
+        function showImg(pic){
+            bigImg.src = pic;
+        }
+    </script>
+
+
 {% endblock %}

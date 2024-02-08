@@ -51,6 +51,7 @@ class MainController extends AbstractController
         $products = $productRepository->findCategoryDesc( $category->getId()); // recuperation des produits associer a sa categorie
 
         return $this->render('main/product.html.twig', [
+        return $this->render('main/product.html.twig', [
             'products' => $products,
         ]);
     }

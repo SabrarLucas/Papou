@@ -16,9 +16,9 @@ class SecurityController extends AbstractController
     #[Route(path: '/new-partner', name: 'app_login_first_connection')]
     public function login(AuthenticationUtils $authenticationUtils, Request $request, UserRepository $userRepository, EntityManagerInterface $manager): Response
     {
-        // if ($this->getUser()) {
-        //     return $this->redirectToRoute('target_path');
-        // }
+        if ($this->getUser()) {
+            return $this->redirectToRoute('main');
+        }
 
         if ($_SERVER['REQUEST_URI'] == '/new-partner') {
             // get the login error if there is one

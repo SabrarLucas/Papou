@@ -10,17 +10,18 @@
         <li>Nombre de produits en ligne = {{ nbrProduct }}</li>
     </ul>
 
-    <table>
-        <thead>
-            <tr>
-                <th>nom</th>
-                <th>categorie</th>
-                <th>prix</th>
-                <th>état</th>
-                <th>age</th>
-            </tr>
-        </thead>
-        <tbody>
+    <table class="table">
+  <thead>
+        <tr>
+            <th>nom</th>
+            <th>categorie</th>
+            <th>prix</th>
+            <th>état</th>
+            <th>age</th>
+        </tr>
+    
+  </thead>
+  <tbody>
         {% for product in products %}
             <tr>
                 <td>{{ product.name }}</td>
@@ -30,6 +31,6 @@
                 <td>{{ product.age }}</td>
             </tr>
         {% endfor %}
-        </tbody>
-    </table>
+  </tbody>
+</table>
 {% endblock %}

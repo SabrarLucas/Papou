@@ -4,16 +4,15 @@
 
 		<ul id="autoWidth" class="cs-hidden">
 
-
-
-
-			<li class="item-a">
+			{% for product in products %}
+		
+			<li class="item-{{product.id}}">
 				<div class="box"><!--img-box-->
 
 
 					<div class="slide-img">
 
-						<img alt="1" src="images/logovert.png">
+						<img alt="1" src="{{product.pictures[0].picName}}">
 						
 						<div class="overlay"><!--overlayer-->
 							<a href="#" class="buy-btn">ACHETER</a><!--buy-btn-->
@@ -24,19 +23,18 @@
 					<div class="detail-box"><!--detail-box-->
 
 						<div class="type"><!--type-->
-							<a href="#">Rabbed Cardigan</a>
-							<span>Noe Arrival</span>
+							<a href="#">{{product.name}}</a>
+							{# <span>{{ product.description }}</span> #}
 						</div>
 
-						<a href="#" class="price">$23</a><!--price-->
+						<a href="#" class="price">€{{product.price}}</a><!--price-->
 
 					</div>
 
 
 				</div>		
 			</li>
-
-
+			{% endfor %}
 
 		</ul>
 

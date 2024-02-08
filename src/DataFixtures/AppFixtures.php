@@ -29,7 +29,7 @@ class AppFixtures extends Fixture
         for($i = 0; $i < 5; $i++){
             $category = new Category();
             $category->setName('categorie '.$i)
-                ->setPhoto($this->faker->imageUrl(150, 150))
+                ->setPhoto($this->faker->imageUrl(250, 250))
                 ->setDescription($this->faker->text());
 
             $this->addReference('cat-'.$this->counter, $category);
@@ -98,6 +98,7 @@ class AppFixtures extends Fixture
                 ->setDescription($this->faker->text(100))
                 ->setPrice($this->faker->randomFloat(2,0,100))
                 ->setAge(mt_rand(0, 1) == 1? 'entre 6 et 8 ans' : 'entre 9 et 12 ans')
+                ->setPromotion(mt_rand(0, 3) == 3 ? 50 : null)
                 ->setStock($this->faker->randomNumber())
                 ->setState(mt_rand(0, 1) == 1? 'bon état' : 'mauvais état')
                 ->setCreatedAt(new \DateTimeImmutable());
@@ -106,23 +107,24 @@ class AppFixtures extends Fixture
             $supplier = $this->getReference('sup-'.rand(1,10));
             $product->setIdSupplier($supplier);
 
-            $this->addReference('pro-'.$this->counter, $product);
-            $this->counter++;
+            $products[] = $product;
 
             $manager->persist($product);
         } 
 
 
-        for($i = 0; $i<100; $i++)
-        {
-            $picture = new Picture();
-            $picture->setPicName($this->faker->imageUrl());
-            $product = $this->getReference('pro-'.rand(1,50));
-            $picture->setIdProduct($product);
-
-            $manager->persist($picture);
-
+        for ($i=0; $i < count($products); $i++) { 
+            for($j = 0; $j < 4; $j++)
+            {
+                $picture = new Picture();
+                $picture->setPicName($this->faker->imageUrl(450,450));
+                $picture->setIdProduct($products[$i]);
+    
+                $manager->persist($picture);
+    
+            }
         }
+
 
         $this->counter = 1;
 
@@ -147,8 +149,7 @@ class AppFixtures extends Fixture
             $detail = new Detail();
             $detail->setQuantity($this->faker->randomNumber())
                 ->setPriceTot($this->faker->randomFloat(2,0,100));
-            $product = $this->getReference('pro-'.rand(1,50));
-            $detail->setIdProduct($product);
+            $detail->setIdProduct($products[mt_rand(0,49)]);
             $order = $this->getReference('ord-'.rand(1,10));
             $detail->setIdOrder($order);
 
@@ -172,8 +173,7 @@ class AppFixtures extends Fixture
             $favorite = new Favorite();
             $user = $this->getReference('user-'.rand(1,50));
             $favorite->setIdUser($user);
-            $product = $this->getReference('pro-'.rand(1,50));
-            $favorite->setIdProduct($product);
+            $favorite->setIdProduct($products[mt_rand(0,49)]);
 
             $manager->persist($favorite);
         }

@@ -3,6 +3,8 @@
 namespace App\Controller\Admin;
 
 use App\Entity\User;
+use App\Entity\Product;
+use App\Entity\Supplier;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -27,7 +29,7 @@ class AdminUserController extends AbstractController
     }
 
     #[Route('/suppression/{id}', name: 'delete')]
-    public function delete(User $user, EntityManagerInterface $em): Response
+    public function delete(User $user, Supplier $supplier, Product $product, EntityManagerInterface $em): Response
     {
         $userFavorites = $user->getFavorites(); // récupérer les favoris liés à l'utilisateur
         foreach ($userFavorites as $favorite) {
@@ -47,6 +49,11 @@ class AdminUserController extends AbstractController
         $productPictures = $product->getPictures(); // récupérer les images liées au produit
         foreach ($productPictures as $picture) {
             $em->remove($picture);
+        }
+
+        $productDetails = $product->getDetails(); // récupérer les détails liés au produit
+        foreach ($productDetails as $detail) {
+            $em->remove($detail);
         }
 
         $em->remove($user);

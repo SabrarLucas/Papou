@@ -59,8 +59,15 @@ class MainController extends AbstractController
     #[Route('/detail/{id}', name: 'detail')]
     public function detail(Product $product, ProductRepository $productRepository): Response
     {
-        return $this->render('main/index.html.twig', [
-            'product' => $product,
+        $products = $productRepository->findBy(['id_supplier' => $product->getIdSupplier()]); // recuperation des produit associer au partenaire du produit passer en parametre
+
+        $products = array_filter($products, function($value) use ($product){ // filtre les produit du panier dans le tableau
+            return $value !== $product;
+        });
+
+        return $this->render('main/detail.html.twig', [
+            'product' => $product, // envoie du produit passer en parametre
+            'products' => $products // envoie de liste de produit
         ]);
     }
 

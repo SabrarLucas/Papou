@@ -21,12 +21,8 @@
     <h2>product</h2>
     <ul>
         {% for product1 in products %}
-
-            {% if product1 != product %}
         
-                <li><a href="{{ path('detail' , {'id': product1.id}) }}">{{ product1.name }}</a></li>
-        
-            {% endif %}
+            <li><a href="{{ path('detail' , {'id': product1.id}) }}">{{ product1.name }}</a></li>
         
         {% endfor %}
     </ul>

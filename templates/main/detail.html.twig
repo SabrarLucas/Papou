@@ -36,10 +36,12 @@
                     <input type="number" min="1" max="{{ product.stock }}" value="1">
                 </div>
                 <div class="btn-box">
-                    <button class="cart-btn">Ajouter au panier</button>
+                    <button class="cart-btn"><a href="{{ path('cart_add', {'id': product.id}) }}">Ajouter au panier</a></button>
                 </div>
             </div>
         </div>
+
+        {% include "partials/home_carousel1.html.twig" %}
 
         <script>
             let bigImg = document.querySelector('.big-img img');

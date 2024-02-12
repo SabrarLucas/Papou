@@ -16,19 +16,19 @@ class MainController extends AbstractController
     public function index(CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
     {
 
-        $categories = $categoryRepository->findAll(); // recuperation des categorie
+        $categories = $categoryRepository->findAll(); // recuperation des categories
 
         $products1 = $productRepository->findAll();
 
         
         for($i = 0; $i < count($products1); $i++){
-            $products = array_filter($products1, function($value) { // filtre les produit du panier dans le tableau
+            $products = array_filter($products1, function($value) { // filtre les produits du panier dans le tableau
                 return $value->getPromotion() !== null;
             });
         }
         
         return $this->render('main/home.html.twig', [
-            'categories' => $categories, // envoie des categorie
+            'categories' => $categories, // envoie des categories
             'products1' => $products1,
             'products' => $products
         ]);
@@ -41,17 +41,16 @@ class MainController extends AbstractController
         $products = $productRepository->findAllDesc();
 
         return $this->render('main/productAll.html.twig', [
-            'products' => $products, // envoie des categorie
+            'products' => $products, // envoie des categories
         ]);
     }
 
     #[Route('/product/{id}', name: 'product')]
     public function product(ProductRepository $productRepository, Category $category): Response
     {
+        $products = $productRepository->findCategoryDesc( $category->getId()); // recuperation des produits associés a sa categorie
 
-        $products = $productRepository->findCategoryDesc( $category->getId()); // recuperation des produits associer a sa categorie
-
-        return $this->render('main/index.html.twig', [
+        return $this->render('main/product.html.twig', [
             'products' => $products,
         ]);
     }
@@ -59,8 +58,15 @@ class MainController extends AbstractController
     #[Route('/detail/{id}', name: 'detail')]
     public function detail(Product $product, ProductRepository $productRepository): Response
     {
-        return $this->render('main/index.html.twig', [
-            'product' => $product,
+        $products = $productRepository->findBy(['id_supplier' => $product->getIdSupplier()]); // recuperation des produit associer au partenaire du produit passer en parametre
+
+        $products = array_filter($products, function($value) use ($product){ // filtre les produits du panier dans le tableau
+            return $value !== $product;
+        });
+
+        return $this->render('main/detail.html.twig', [
+            'product' => $product, // envoie du produit passé en parametre
+            'products' => $products // envoie de liste de produit
         ]);
     }
 
@@ -68,9 +74,9 @@ class MainController extends AbstractController
     public function favorite(): Response
     {
         if ($this->getUser()) { // verifier si utilisateur est connecté
-            $favorites = $this->getUser()->getFavorites(); // recuperation des coup de coeur de l'utilisateur 
+            $favorites = $this->getUser()->getFavorites(); // recuperation des coups de coeur de l'utilisateur 
             return $this->render('main/favorite.html.twig', [
-                'favorites' => $favorites, // envoie des coup de coeur
+                'favorites' => $favorites, // envoie des coups de coeur
             ]);
         }
         return $this->redirectToRoute('main');

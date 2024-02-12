@@ -1,6 +1,7 @@
 <div>
 
 	<section class="slider">
+		
 
 		<ul id="autoWidth" class="cs-hidden">
 
@@ -15,7 +16,7 @@
 						<img alt="1" src="{{product.pictures[0].picName}}">
 						
 						<div class="overlay"><!--overlayer-->
-							<a href="#" class="buy-btn">ACHETER</a><!--buy-btn-->
+							<a href="{{ path('detail', {'id': product.id}) }}" class="buy-btn">ACHETER</a><!--buy-btn-->
 						</div>
 
 					</div>
@@ -37,10 +38,8 @@
 			{% endfor %}
 
 		</ul>
-
+	</nav>
 	</section>
 
 </div>
-
-<!-- 8eme slide : class="item-h"-->
 	

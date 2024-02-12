@@ -1,0 +1,106 @@
+/* Existing styles from your original CSS file */
+@charset "utf-8";
+/* ... (existing styles) ... */
+
+/* New styles for the product page */
+.product-page .flex-box {
+    display: flex;
+    width: 1500px;
+    margin-left: 150px;
+}
+
+.product-page .left {
+    width: 100%;
+    margin-right: 50px;
+}
+
+.product-page .big-img {
+    width: 650px;
+}
+
+.product-page .big-img img {
+    width: inherit;
+}
+
+.product-page .images {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 50px;
+}
+
+.product-page .small-img {
+    width: 200px;
+    margin-right: 10px;
+    overflow: hidden;
+}
+
+.product-page .small-img img {
+    width: inherit;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.product-page .small-img:hover img {
+    transform: scale(1.2);
+}
+
+.product-page .pname {
+    display: flex;
+    font-family: "Copperplate";
+    font-size: 40px;
+    font-weight: 600;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    justify-content: center;
+    align-content: center;
+}
+
+.product-page .price {
+    font-size: 25px;
+    font-weight: 500;
+    margin: 20px 0;
+}
+
+.product-page .quantity {
+    display: flex;
+}
+
+.product-page .quantity p {
+    font-size: 22px;
+    font-weight: 500;
+}
+
+.product-page .quantity input {
+    width: 60px;
+    font-size: 17px;
+    font-weight: 500;
+    text-align: center;
+    margin-left: 15px;
+}
+
+.product-page .btn-box {
+    display: flex;
+    margin-top: 40px;
+}
+
+.product-page .btn-box button {
+    font-size: 18px;
+    padding: 8px 25px;
+    outline: none;
+    cursor: pointer;
+    color: #ffffff;
+    background-color: #00988e;
+}
+
+.product-page .cart-btn {
+    background-color: #ffffff;
+    margin-right: 20px;
+}
+
+.product-page .cart-btn:hover {
+    border: 2px solid #00988e;
+    background-color: #ffffff;
+    color: #00988e;
+}
+

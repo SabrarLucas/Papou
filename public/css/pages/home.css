@@ -2,13 +2,19 @@
     align-content: center;
     justify-content: center;
     margin-top: 50px;
-    height: 500px;
+    margin-bottom: 50px;
+}
+
+.home-div-size1 {
+    height: 400px;
+}
+
+.home-div-size2 {
+    height: 550px;
 }
 
 /* card code source : https://uiverse.io/alexruix/cowardly-ape-35 */
 .home-card {
-    width: 550px;
-    height: 400px;
     background-image: url(/images/test2.jpg);
     background-size: cover;
     padding: 1.8rem;
@@ -16,6 +22,16 @@
     transition: 0.5s ease-out;
     overflow: visible;
    }
+
+.home-card-size1 {
+    width: 550px;
+    height: 400px;
+}
+
+.home-card-size2 {
+    width: 800px;
+    height: 550px;
+}
    
    .home-card-details {
     color: black;

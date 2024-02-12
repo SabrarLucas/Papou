@@ -14,29 +14,17 @@ class CartController extends AbstractController
     #[Route('/cart', name: 'cart')]
     public function index(CartService $cartService, Request $request, ProductRepository $productRepository): Response
     {
-        if ($request->getSession()->get('cart')) {
-            $cart = $request->getSession()->get('cart'); // recuperation de la cart
-        }
-        else{
-            $cart = array();
-        }
+
+        $cart = $cartService->getTotal();
 
         if(count($cart) > 0){
-            $idProduct = array_key_first($cart); // recuperation de id du premier produit
-    
-            $product = $productRepository->findOneBy(['id' => $idProduct]); // recuperation du premier produit
+
+            $product = $cart[0]['product']; //
     
             $products = $productRepository->findBy(['id_supplier' => $product->getIdSupplier()]); // recuperation des produit associer au partenaire
 
-            $i = 0;
-            
-            foreach ($cart as $id => $quantity){
-                $carts[$i] = $productRepository->findOneBy(['id' => $id]); // recuperation des produit dans un tableau dans le panier
-                $i++;
-            }
-
-            for ($i=0; $i < count($carts) ; $i++) {
-                $val = $carts[$i]; // recuperation du produit
+            for ($i=0; $i < count($cart) ; $i++) {
+                $val = $cart[$i]['product']; // recuperation du produit
                 $products = array_filter($products, function($value) use ($val) { // filtre les produit du panier dans le tableau
                     return $value !== $val;
                 });
@@ -48,7 +36,7 @@ class CartController extends AbstractController
         }
 
         return $this->render('cart/index.html.twig', [
-            'cart' => $cartService->getTotal(), // envoie de la cart a la vue
+            'cart' => $cart, // envoie de la cart a la vue
             'products' => $products, // envoie des produits a la vue
         ]);
     }

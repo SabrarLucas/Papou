@@ -1,17 +1,11 @@
 @charset "utf-8";
 /* CSS Document */
-body{
-    margin:0px;
-    padding: 0px;
-    background-color:#eef8ff;
-}
 a{
     text-decoration:none;
 }
 .box{
     width:200px;
     box-shadow: 2px 2px 30px rgba(0,0,0,0.2);
-    border-radius: 10px;
     overflow: hidden;
     margin: 25px;
 }
@@ -32,7 +26,8 @@ a{
     align-items: center;
     padding: 10px 20px;
     box-sizing: border-box;
-    font-family: calibri;
+    font-family: palatino;
+    font-size: 20px;
 }
 .type{
     display: flex;
@@ -52,7 +47,7 @@ a{
     color: #333333;
     font-weight: 600;
     font-size: 1.1rem;
-    font-family: poppins;
+    font-family: copperplate;
     letter-spacing: 0.5px;
 }
 .overlay{

@@ -13,8 +13,6 @@ class SearchController extends AbstractController
     #[Route('/search', name: 'search')]
     public function index(Request $request, ProductRepository $productRepository): Response
     {
-        // dd($request->request->get('search'));
-
         $search = $request->request->get('search');
 
         if($search){

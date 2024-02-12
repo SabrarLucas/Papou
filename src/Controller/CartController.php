@@ -29,7 +29,6 @@ class CartController extends AbstractController
                     return $value !== $val;
                 });
             }
-
         }
         else{
             $products = array(); // initialisation d'un tableau vide
@@ -42,9 +41,9 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/add/{id}', name: 'cart_add')]
-    public function addToRoute(CartService $cartService, int $id): Response
+    public function addToRoute(CartService $cartService, int $id, Request $request): Response
     {
-        $cartService->addToCart($id);
+        $cartService->addToCart($id, $request->request->get('quantity'));
         return $this->redirectToRoute('cart');
     }
 

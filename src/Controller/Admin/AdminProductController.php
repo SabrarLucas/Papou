@@ -29,11 +29,7 @@ class AdminProductController extends AbstractController
     }
 
     #[Route('/edition/{id}', name: 'edit')]
-    public function edit(
-        Product $product,
-        Request $request, 
-        EntityManagerInterface $em
-        ): Response
+    public function edit(Product $product, Request $request, EntityManagerInterface $em): Response
     {
         $this->denyAccessUnlessGranted('PRODUCT_EDIT', $product);
 

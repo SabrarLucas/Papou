@@ -18,7 +18,7 @@ class PictureService
     public function add(UploadedFile $picture, ?string $folder = '', ?int $width = 350, ?int $height = 350) :string
     {
         // on donne un nouveau nom à l'image
-        $file = md5(uniqid(rand(), true)) . '.jpeg';
+        $file = md5(uniqid(rand(), true)) . '.png';
 
         // on récupère les infos de l'image
         $pictureInfos = getimagesize($picture);
@@ -87,7 +87,7 @@ class PictureService
 
 
         // on stocke l'image recadée
-        imagejpeg($resizedPicture, $path . '/mini/' . $width . 'x' . $height . '-' . $file);
+        imagepng($resizedPicture, $path . '/mini/' . $width . 'x' . $height . '-' . $file);
 
         $picture->move($path . '/' . $file);
 

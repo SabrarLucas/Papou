@@ -4,6 +4,7 @@
 
 {% block body %}
 <h1>panier</h1>
+{% if cart %}
 <table class="table">
   <thead>
     <tr>
@@ -20,8 +21,13 @@
       <td>{{ product.product.name }}</td>
       <td>{{ product.product.price }}€</td>
       <td>
-        <a href="{{ path('cart_add', {'id': product.product.id}) }}">+</a>
+        {% if product.quantity < product.product.stock %}
+          <a href="{{ path('cart_add', {'id': product.product.id}) }}">+</a>
+        {% else %}
+          <a href="#">+</a>
+        {% endif %}
         <a href="{{ path('cart_decrease', {'id': product.product.id}) }}">-</a>
+        <a href="{{ path('cart_remove', {'id': product.product.id}) }}">X</a>
       </td>
     </tr>
     {% endfor %}
@@ -34,5 +40,8 @@
         <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
         {% endfor %}
     </ul>
+{% else %}
 
+<h2>votre panier est vide</h2>
+{% endif %}
 {% endblock %}

@@ -31,6 +31,10 @@ class AdminUserController extends AbstractController
     #[Route('/suppression/{id}', name: 'delete')]
     public function delete(User $user, Supplier $supplier, Product $product, EntityManagerInterface $em): Response
     {
+        for($i = 0; $i < count($user->getOrders()); $i++) {
+            $user->getOrders()[$i]->setIdUser(null);
+        }
+        
         $userFavorites = $user->getFavorites(); // récupérer les favoris liés à l'utilisateur
         foreach ($userFavorites as $favorite) {
             $em->remove($favorite);
@@ -49,11 +53,6 @@ class AdminUserController extends AbstractController
         $productPictures = $product->getPictures(); // récupérer les images liées au produit
         foreach ($productPictures as $picture) {
             $em->remove($picture);
-        }
-
-        $productDetails = $product->getDetails(); // récupérer les détails liés au produit
-        foreach ($productDetails as $detail) {
-            $em->remove($detail);
         }
 
         $em->remove($user);

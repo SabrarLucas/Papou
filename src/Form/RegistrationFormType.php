@@ -81,8 +81,9 @@ class RegistrationFormType extends AbstractType
                     ]),
                     new Length([
                         'min' => 5,
-                        'minMessage' => 'Votre code postal est trop court',
+                        'minMessage' => 'Votre code postal est invalide',
                         'max' => 5,
+                        'maxMessage' => 'Votre code postal est invalide',
                     ]),
                 ]
             ])

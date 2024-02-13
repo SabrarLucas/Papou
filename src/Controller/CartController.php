@@ -41,9 +41,9 @@ class CartController extends AbstractController
     }
 
     #[Route('/cart/add/{id}', name: 'cart_add')]
-    public function addToRoute(CartService $cartService, int $id, Request $request): Response
+    public function addToRoute(CartService $cartService, int $id): Response
     {
-        $cartService->addToCart($id, $request->request->get('quantity'));
+        $cartService->addToCart($id);
         return $this->redirectToRoute('cart');
     }
 
@@ -51,13 +51,6 @@ class CartController extends AbstractController
     public function removeToRoute(CartService $cartService, int $id): Response
     {
         $cartService->removeToCart($id);
-        return $this->redirectToRoute('cart');
-    }
-
-    #[Route('/cart/decrease/{id}', name: 'cart_decrease')]
-    public function decrease(CartService $cartService, int $id): Response
-    {
-        $cartService->decrease($id);
         return $this->redirectToRoute('cart');
     }
 

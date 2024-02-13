@@ -28,6 +28,9 @@ class Detail
     #[ORM\JoinColumn(nullable: false)]
     private ?Order $id_order = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $name_product = null;
+
     public function getId(): ?int
     {
         return $this->id;
@@ -77,6 +80,18 @@ class Detail
     public function setIdOrder(?Order $id_order): static
     {
         $this->id_order = $id_order;
+
+        return $this;
+    }
+
+    public function getNameProduct(): ?string
+    {
+        return $this->name_product;
+    }
+
+    public function setNameProduct(string $name_product): static
+    {
+        $this->name_product = $name_product;
 
         return $this;
     }

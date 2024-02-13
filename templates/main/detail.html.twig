@@ -4,41 +4,42 @@
     <div class="product-container product-page">
         <div class="pname">{{ product.name }}</div>
 
-        <div class="flex-box">
-            <div class="left">
-                <div class="big-img">
-                    <img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}">
-                </div>
-            </div>
+            <div class="flex-box">
 
-            <div class="right">
-                <div class="images">
-                    <div class="small-img">
-                        <img src="{{ product.pictures[0].picName }}" onclick="showImg(this.src)">
-                    </div>
-                    <div class="small-img">
-                        <img src="{{ product.pictures[1].picName }}" onclick="showImg(this.src)">
-                    </div>
-                    <div class="small-img">
-                        <img src="{{ product.pictures[2].picName }}" onclick="showImg(this.src)">
-                    </div>
-                    <div class="small-img">
-                        <img src="{{ product.pictures[3].picName }}" onclick="showImg(this.src)">
+                <div class="left">
+                    <div class="big-img">
+                        <img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}">
                     </div>
                 </div>
-                <hr><br>
-                <div class="palatino">{{ product.description }}</div>
-                <br><hr><br>
-                <div class="palatino">{{ product.state }}</div>
-                <div class="price">{{ product.price }} <i class="fa-solid fa-euro-sign"></i></div>
-                <div class="quantity">
-                    <p class="palatino">Nombre :</p>
-                    <input type="number" min="1" max="{{ product.stock }}" value="1">
+
+                <div class="right">
+                    <div class="images">
+                        <div class="small-img">
+                            <img src="{{ product.pictures[0].picName }}" onclick="showImg(this.src)">
+                        </div>
+                        <div class="small-img">
+                            <img src="{{ product.pictures[1].picName }}" onclick="showImg(this.src)">
+                        </div>
+                        <div class="small-img">
+                            <img src="{{ product.pictures[2].picName }}" onclick="showImg(this.src)">
+                        </div>
+                        <div class="small-img">
+                            <img src="{{ product.pictures[3].picName }}" onclick="showImg(this.src)">
+                        </div>
+                    </div>
+                    <hr><br>
+                    <div class="palatino">{{ product.description }}</div>
+                    <br><hr><br>
+                    <div class="palatino">{{ product.state }}</div>
+                    <div class="price">{{ product.price }} <i class="fa-solid fa-euro-sign"></i></div>
+                    <div class="quantity">
+                        <p class="palatino">Nombre :</p>
+                        <input type="number" min="1" max="{{ product.stock }}" value="1">
+                    </div>
+                    <div class="btn-box">
+                        <button class="cart-btn">Ajouter au panier  <i class="fa-solid fa-cart-shopping"></i></button>
+                    </div>
                 </div>
-                <div class="btn-box">
-                    <button class="cart-btn">Ajouter au panier</button>
-                </div>
-            </div>
         </div>
 
         <script>

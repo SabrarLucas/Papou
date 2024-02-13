@@ -152,8 +152,7 @@ class AppFixtures extends Fixture
             $product = $products[mt_rand(0,49)];
 
             $detail = new Detail();
-            $detail->setQuantity($this->faker->randomNumber())
-                ->setPriceTot($this->faker->randomFloat(2,0,100));
+            $detail->setPriceTot($this->faker->randomFloat(2,0,100));
             $detail->setIdProduct($product);
             $detail->setNameProduct($product->getName());
             $order = $this->getReference('ord-'.rand(1,10));

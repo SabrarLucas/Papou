@@ -33,11 +33,11 @@ class Order
     private ?string $num_bill = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?Supplier $id_supplier = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL' )]
     private ?User $id_user = null;
 
     #[ORM\OneToMany(mappedBy: 'id_order', targetEntity: Delivery::class)]

@@ -25,7 +25,7 @@ class Supplier
     private ?string $qrcode = null;
 
     #[ORM\ManyToOne(inversedBy: 'suppliers')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?User $id_user = null;
 
     #[ORM\OneToMany(mappedBy: 'id_supplier', targetEntity: Order::class)]

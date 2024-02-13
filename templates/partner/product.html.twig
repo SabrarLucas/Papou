@@ -13,15 +13,26 @@
     <table class="table">
   <thead>
         <tr>
+        </tr>
+    
+  </thead>
+  <tbody>
+  </tbody>
+</table>
+
+
+<div class="overflow-x-auto m-5">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
             <th>nom</th>
             <th>categorie</th>
             <th>prix</th>
             <th>état</th>
             <th>age</th>
-        </tr>
-    
-  </thead>
-  <tbody>
+          </tr>
+        </thead>
+        <tbody>
         {% for product in products %}
             <tr>
                 <td>{{ product.name }}</td>
@@ -31,7 +42,9 @@
                 <td>{{ product.age }}</td>
             </tr>
         {% endfor %}
-  </tbody>
-</table>
+        </tbody>
+    </table>
+</div>
+
 <a href="{{ path('app_partner', {'id': supplier.id}) }}">retour</a>
 {% endblock %}

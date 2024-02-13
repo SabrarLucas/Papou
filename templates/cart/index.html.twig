@@ -5,29 +5,30 @@
 {% block body %}
 <h1>panier</h1>
 {% if cart %}
-<table class="table">
-  <thead>
-    <tr>
-      <th scope="col">Quantité</th>
-      <th scope="col">Détail produits</th>
-      <th scope="col">Prix</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-    {% for product in cart %}
-    <tr>
-      <th>{{ product.quantity }}</th>
-      <td>{{ product.product.name }}</td>
-      <td>{{ product.product.price }}€</td>
-      <td>
-        <a href="{{ path('cart_remove', {'id': product.product.id}) }}">X</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-  </br>
-</table>
+<div class="overflow-x-auto mx-5 mb-5">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+          <tr>
+            <th scope="col">Quantité</th>
+            <th scope="col">Détail produits</th>
+            <th scope="col">Prix</th>
+            <th scope="col">Action</th>  
+          </tr>
+        </thead>
+        <tbody>
+        {% for product in cart %}
+        <tr>
+          <th>{{ product.quantity }}</th>
+          <td>{{ product.product.name }}</td>
+          <td>{{ product.product.price }}€</td>
+          <td>
+            <a href="{{ path('cart_remove', {'id': product.product.id}) }}">X</a>
+          </td>
+        </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+</div>
   <h2>product</h2>
     <ul>
         {% for product in products %}

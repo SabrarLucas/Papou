@@ -48,7 +48,7 @@ class UserController extends AbstractController
     }
 
     #[Route('/profil/{id}/delete', name: 'app_user_profil_delete')]
-    public function delete (User $user, EntityManagerInterface $manager): Response
+    public function delete (User $user, EntityManagerInterface $manager, Request $request): Response
     {
         if($user == $this->getUser()){
             $order = $user->getOrders(); // recuperation des commande passer par utilisateur
@@ -59,6 +59,10 @@ class UserController extends AbstractController
 
             $manager->remove($user);
             $manager->flush();
+
+            $request->getSession()->invalidate();
+            $this->container->get('security.token_storage')->setToken(null);
+
             return $this->redirectToRoute('main'); // retour a l'acceuil du site
         }
         return $this->redirectToRoute('main'); // retour a l'acceuil du site

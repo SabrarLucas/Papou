@@ -134,9 +134,12 @@ class AppFixtures extends Fixture
             $order->setCreatedAt(new \DateTimeImmutable())
                 ->setTotal($this->faker->randomFloat(2,0,100));
             $supplier = $this->getReference('sup-'.rand(1,10));
-            $order->setIdSupplier($supplier);
+            $order->setIdSupplier($supplier)
+                ->setSupplierName($supplier->getCompanyName());
             $user = $this->getReference('user-'.rand(1,50));
-            $order->setIdUser($user);
+            $order->setIdUser($user)
+                ->setUserFirstname($user->getFirstName())
+                ->setUserLasname($user->getLastName());
 
             $this->addReference('ord-'.$this->counter, $order);
             $this->counter++;

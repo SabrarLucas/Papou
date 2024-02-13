@@ -122,6 +122,11 @@ class ProductType extends AbstractType
                 'required' => false,
                 'label' => false
             ])
+            ->add('id_supplier', EntityType::class, [
+                'class' => Supplier::class,
+                'choice_label' => 'company_name',
+                'label' => 'Partenaire'
+            ])
         ;
     }
 

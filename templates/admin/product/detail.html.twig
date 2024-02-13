@@ -4,7 +4,7 @@
 
 {% block body %}
 
-{% include "_partials/_adminnav.html.twig" %}
+{% include "partials/_adminnav.html.twig" %}
 
     <main class="container mb-3">
         <section class="row">
@@ -30,6 +30,7 @@
             <div class="mt-3">
                 <h2>Actions</h2>
                 <a href="{{ path('admin_product_delete', {id: product.id}) }}" class="btn btn-danger">Supprimer</a>
+                <a href="{{ path('admin_product_edit', {id: product.id})}}" class="btn btn-warning">Modifier</a>
             </div>
         </section>
     </main>

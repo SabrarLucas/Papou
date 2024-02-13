@@ -21,7 +21,7 @@ class Detail
     private ?string $price_tot = null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true)]
     private ?Product $id_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]

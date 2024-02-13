@@ -14,9 +14,6 @@ class Detail
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $quantity = null;
-
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $price_tot = null;
 
@@ -34,18 +31,6 @@ class Detail
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(int $quantity): static
-    {
-        $this->quantity = $quantity;
-
-        return $this;
     }
 
     public function getPriceTot(): ?string

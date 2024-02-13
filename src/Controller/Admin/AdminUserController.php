@@ -34,7 +34,15 @@ class AdminUserController extends AbstractController
         for($i = 0; $i < count($user->getOrders()); $i++) {
             $user->getOrders()[$i]->setIdUser(null);
         }
-        
+
+        for($i = 0; $i < count($supplier->getProducts()); $i++) {
+            $supplier->getProducts()[$i]->setIdSupplier(null);
+        }
+
+        for($i = 0; $i < count($supplier->getOrders()); $i++) {
+            $supplier->getOrders()[$i]->setIdSupplier(null);
+        }
+
         $userFavorites = $user->getFavorites(); // récupérer les favoris liés à l'utilisateur
         foreach ($userFavorites as $favorite) {
             $em->remove($favorite);

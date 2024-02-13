@@ -32,15 +32,20 @@
                     <br><hr><br>
                     <div class="palatino">{{ product.state }}</div>
                     <div class="price">{{ product.price }} <i class="fa-solid fa-euro-sign"></i></div>
-                    <div class="quantity">
-                        <p class="palatino">Nombre :</p>
-                        <input type="number" min="1" max="{{ product.stock }}" value="1">
-                    </div>
-                    <div class="btn-box">
-                        <button class="cart-btn">Ajouter au panier  <i class="fa-solid fa-cart-shopping"></i></button>
-                    </div>
+
+                <form method="post" action="{{ path('cart_add', {'id': product.id}) }}">
+                        <div class="quantity">
+                            <p class="palatino">Nombre :</p>
+                            <input type="number" name="quantity" id="quantity" min="1" max="{{ product.stock }}" value="1">
+                        </div>
+                        <div class="btn-box">
+                            <button class="cart-btn" type="submit">Ajouter au panier  <i class="fa-solid fa-cart-shopping"></i></button>
+                        </div>
+                </form>
                 </div>
         </div>
+
+        {% include "partials/home_carousel1.html.twig" %}
 
         <script>
             let bigImg = document.querySelector('.big-img img');

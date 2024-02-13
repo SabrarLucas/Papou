@@ -4,6 +4,7 @@ namespace App\Service;
 
 use App\Entity\Product;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 
@@ -20,14 +21,24 @@ class CartService {
     }
 
     // augmente la quantite de produit ou ajouter un produit
-    public function addToCart(int $id):void
+    public function addToCart(int $id, ?int $quantity = null):void
     {
         $cart = $this->getSession()->get('cart', []); // recuperation de la session
         if(!empty($cart[$id])){ // verifier si il y a un element dans cart
-            $cart[$id]++;  // augmenter la quantite
+            if ($quantity) {
+                $cart[$id] = $quantity;
+            }
+            else{
+                $cart[$id]++;  // augmenter la quantite
+            }
         }
         else{
-            $cart [$id] = 1; // ajout du produit au panier
+            if ($quantity) {
+                $cart[$id] = $quantity;
+            }
+            else{
+                $cart[$id] = 1; // ajout du produit au panier
+            }
         }
         $this->getSession()->set('cart', $cart); // ajout a la session
     }

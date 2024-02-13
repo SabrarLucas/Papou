@@ -1,0 +1,17 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Search{% endblock %}
+
+{% block body %}
+    <h1>Search</h1>
+
+    {% if products|length != 0 %}
+    <ul>
+    {% for product in products %}
+        <li><a href="{{ path('detail', {'id': product.id}) }}">{{ product.name }}</a></li>
+    {% endfor %}
+    </ul>
+    {% else %}
+    <h2>il y a aucun resultat pour votre recherche</h2>
+    {% endif %}
+{% endblock %}

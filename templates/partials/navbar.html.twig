@@ -4,10 +4,10 @@
 
         <div class="my-auto w-80">
 
-            <div class="search">
-                <input placeholder="Rechercher" type="text">
+            <form class="search" method="post" action="{{ path('search') }}">
+                <input placeholder="Rechercher" name="search" type="text">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
-              </div>
+            </form>
         
 
         </div>

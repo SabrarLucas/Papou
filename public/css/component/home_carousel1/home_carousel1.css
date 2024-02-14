@@ -77,9 +77,10 @@ a{
 }
 .buy-btn:hover{
     color:#000000;
-    background-color: #ececec;
+    background-color: #ffffff;
     border: 6px #000000;
     transition: all ease 0.3s;
+    scale: 1.1;
 }
 .overlay{
     visibility: hidden;

@@ -3,42 +3,46 @@
 {% block title %}Se connecter{% endblock %}
 
 {% block body %}
-<form method="post">
-    {% for message in app.flashes('success') %}          {# success = Nom de l'alerte  #}
-            <div class="alert alert-success mt-4">           {# alert-success = Type d'alerte Bootstrap #}
+
+<div class="login-container">
+    <form method="post" class="login-form">
+        {% for message in app.flashes('success') %}
+            <div class="alert alert-success">
                 <h5>{{ message.info }}</h5>
-                {{message.bonus}}
+                {{ message.bonus }}
             </div>
         {% endfor %}
 
-        {% for message in app.flashes('warning') %}          {# warning = Nom de l'alerte  #}
-            <div class="alert alert-warning mt-4">           {# alert-warning = Type d'alerte Bootstrap #}
+        {% for message in app.flashes('warning') %}
+            <div class="alert alert-warning">
                 <h5>{{ message.info }}</h5>
-                {{message.bonus}}
+                {{ message.bonus }}
             </div>
         {% endfor %}
 
-        {% for message in app.flashes('danger') %}          {# danger = Nom de l'alerte  #}
-            <div class="alert alert-danger mt-4">           {# alert-danger = Type d'alerte Bootstrap #}
+        {% for message in app.flashes('danger') %}
+            <div class="alert alert-danger">
                 <h5>{{ message.info }}</h5>
-                {{message.bonus}}
+                {{ message.bonus }}
             </div>
         {% endfor %}
 
-    <h1 class="h3 mb-3 font-weight-normal">Veuillez vous connecter</h1>
-    <label for="inputEmail">Email</label>
-    <input type="email" value="{{ last_username }}" name="email" id="inputEmail" class="form-control" autocomplete="email" required autofocus>
-    <label for="inputPassword">Mot de passe</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" autocomplete="current-password" required>
-    
-    <small><a href="{{ path('reset_password_request') }}">Mot de passe oublié ? Faites une demande de réinitialisation de mot de passe en cliquant sur ce lien</a></small>
+        <h1>Connexion</h1>
+        <label for="inputEmail">Email</label>
+        <input type="email" value="{{ last_username }}" name="email" id="inputEmail" autocomplete="email" required autofocus>
 
-    <input type="hidden" name="_csrf_token"
-           value="{{ csrf_token('authenticate') }}"
-    >
-    <br>
-    <button class="btn btn-lg btn-primary" type="submit">
-        Se connecter
-    </button>
-</form>
+        <label for="inputPassword">Mot de passe</label>
+        <input type="password" name="password" id="inputPassword" autocomplete="current-password" required>
+        <p class="forgot-password"><a href="{{ path('reset_password_request') }}">Mot de passe oublié ?</a></p>
+
+        <input type="hidden" name="_csrf_token" value="{{ csrf_token('authenticate') }}">
+        
+        <button type="submit">Se connecter</button>
+        
+        
+        <p class="text-center mt-5">Vous n'avez pas de compte ?</p>
+        <p class="text-center mt-3 login-btn"><a href="{{ path('app_register') }}">Créer un compte</a></p>
+    </form>
+</div>
+
 {% endblock %}

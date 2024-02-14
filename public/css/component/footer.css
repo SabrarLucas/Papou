@@ -1,16 +1,16 @@
 .footer {
-    padding: 50px;
+    padding: 20px;
     background-color: #ca3c66;
-    margin-top: 50px;
+    bottom: 0;
+    width: 100%;
 }
 
 .footer-social {
-    color: #ffffff; /* couleur des liens de la liste */
-    font-size: 40px;    /* tailles des liens de la liste */
+    color: #ffffff;
+    font-size: 40px;
 }
 
 .footer-link {
     color: #ffffff;
     font-size: 20px;
 }
-

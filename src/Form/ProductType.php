@@ -78,8 +78,8 @@ class ProductType extends AbstractType
             ->add('state', ChoiceType::class, [
                 'label' => 'État',
                 'choices' => [
-                    'bon état' => 'bon état',
-                    'état correct' => 'état correct'
+                    'bon etat' => 'bon etat',
+                    'etat correct' => 'etat correct'
                 ]
             ])
             ->add('length', TextType::class, [
@@ -97,7 +97,7 @@ class ProductType extends AbstractType
             ->add('id_category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
-                'label' => 'Catégorie'
+                'label' => 'Categorie'
             ])
             ->add('image0', FileType::class, [
                 'multiple' => true,
@@ -121,6 +121,11 @@ class ProductType extends AbstractType
                 'mapped' =>false,
                 'required' => false,
                 'label' => false
+            ])
+            ->add('id_supplier', EntityType::class, [
+                'class' => Supplier::class,
+                'choice_label' => 'company_name',
+                'label' => 'Partenaire'
             ])
         ;
     }

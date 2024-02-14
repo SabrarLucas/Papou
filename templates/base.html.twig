@@ -4,9 +4,8 @@
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>
-            {% block title %}Accueil - Papou
-            {% endblock %}
-
+            {% block title %}Accueil 
+            {% endblock %} - Papou
         </title>
 
 
@@ -26,18 +25,12 @@
         <script type="text/javascript" src="js/home_carousel1/jquery.js"></script>
         <script type="text/javascript" src="js/home_carousel1/lightslider.js"></script>
         {% endblock %}
-              
     </head>
 
-
-    <header>
         {% block header %}
         {% include "partials/navbar.html.twig" %}
         {% endblock %}
-    </header>
 
-
-       
     <body>
         
             {% block body %}{% endblock %}

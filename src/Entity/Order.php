@@ -33,11 +33,11 @@ class Order
     private ?string $num_bill = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?Supplier $id_supplier = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]
-    #[ORM\JoinColumn(nullable: true)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL' )]
     private ?User $id_user = null;
 
     #[ORM\OneToMany(mappedBy: 'id_order', targetEntity: Delivery::class)]
@@ -45,6 +45,15 @@ class Order
 
     #[ORM\OneToMany(mappedBy: 'id_order', targetEntity: Detail::class)]
     private Collection $details;
+
+    #[ORM\Column(length: 40)]
+    private ?string $user_lasname = null;
+
+    #[ORM\Column(length: 40)]
+    private ?string $user_firstname = null;
+
+    #[ORM\Column(length: 50)]
+    private ?string $supplier_name = null;
 
     public function __construct()
     {
@@ -197,6 +206,42 @@ class Order
                 $detail->setIdOrder(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getUserLasname(): ?string
+    {
+        return $this->user_lasname;
+    }
+
+    public function setUserLasname(string $user_lasname): static
+    {
+        $this->user_lasname = $user_lasname;
+
+        return $this;
+    }
+
+    public function getUserFirstname(): ?string
+    {
+        return $this->user_firstname;
+    }
+
+    public function setUserFirstname(string $user_firstname): static
+    {
+        $this->user_firstname = $user_firstname;
+
+        return $this;
+    }
+
+    public function getSupplierName(): ?string
+    {
+        return $this->supplier_name;
+    }
+
+    public function setSupplierName(string $supplier_name): static
+    {
+        $this->supplier_name = $supplier_name;
 
         return $this;
     }

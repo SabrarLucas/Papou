@@ -21,12 +21,6 @@
       <td>{{ product.product.name }}</td>
       <td>{{ product.product.price }}€</td>
       <td>
-        {% if product.quantity < product.product.stock %}
-          <a href="{{ path('cart_add', {'id': product.product.id}) }}">+</a>
-        {% else %}
-          <a href="#">+</a>
-        {% endif %}
-        <a href="{{ path('cart_decrease', {'id': product.product.id}) }}">-</a>
         <a href="{{ path('cart_remove', {'id': product.product.id}) }}">X</a>
       </td>
     </tr>

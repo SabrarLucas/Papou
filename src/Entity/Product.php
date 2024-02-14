@@ -54,7 +54,7 @@ class Product
     private ?Category $id_category = null;
 
     #[ORM\ManyToOne(inversedBy: 'products')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'CASCADE')]
     private ?Supplier $id_supplier = null;
 
     #[ORM\OneToMany(mappedBy: 'id_product', targetEntity: Picture::class, orphanRemoval: true, cascade: ['persist'])]

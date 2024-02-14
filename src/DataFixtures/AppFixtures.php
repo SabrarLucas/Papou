@@ -100,7 +100,7 @@ class AppFixtures extends Fixture
                 ->setAge(mt_rand(0, 1) == 1? 'entre 6 et 8 ans' : 'entre 9 et 12 ans')
                 ->setPromotion(mt_rand(0, 3) == 3 ? 50 : null)
                 ->setStock($this->faker->randomNumber())
-                ->setState(mt_rand(0, 1) == 1? 'bon état' : 'mauvais état')
+                ->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
                 ->setCreatedAt(new \DateTimeImmutable());
             $category = $this->getReference('cat-'.rand(1,5));
             $product->setIdCategory($category);
@@ -134,9 +134,12 @@ class AppFixtures extends Fixture
             $order->setCreatedAt(new \DateTimeImmutable())
                 ->setTotal($this->faker->randomFloat(2,0,100));
             $supplier = $this->getReference('sup-'.rand(1,10));
-            $order->setIdSupplier($supplier);
+            $order->setIdSupplier($supplier)
+                ->setSupplierName($supplier->getCompanyName());
             $user = $this->getReference('user-'.rand(1,50));
-            $order->setIdUser($user);
+            $order->setIdUser($user)
+                ->setUserFirstname($user->getFirstName())
+                ->setUserLasname($user->getLastName());
 
             $this->addReference('ord-'.$this->counter, $order);
             $this->counter++;
@@ -146,10 +149,12 @@ class AppFixtures extends Fixture
 
         for($i = 0; $i < 20; $i++)
         {
+            $product = $products[mt_rand(0,49)];
+
             $detail = new Detail();
-            $detail->setQuantity($this->faker->randomNumber())
-                ->setPriceTot($this->faker->randomFloat(2,0,100));
-            $detail->setIdProduct($products[mt_rand(0,49)]);
+            $detail->setPriceTot($this->faker->randomFloat(2,0,100));
+            $detail->setIdProduct($product);
+            $detail->setNameProduct($product->getName());
             $order = $this->getReference('ord-'.rand(1,10));
             $detail->setIdOrder($order);
 

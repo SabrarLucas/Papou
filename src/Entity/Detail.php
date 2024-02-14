@@ -14,35 +14,23 @@ class Detail
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column]
-    private ?int $quantity = null;
-
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $price_tot = null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?Product $id_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'details')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Order $id_order = null;
 
+    #[ORM\Column(length: 100)]
+    private ?string $name_product = null;
+
     public function getId(): ?int
     {
         return $this->id;
-    }
-
-    public function getQuantity(): ?int
-    {
-        return $this->quantity;
-    }
-
-    public function setQuantity(int $quantity): static
-    {
-        $this->quantity = $quantity;
-
-        return $this;
     }
 
     public function getPriceTot(): ?string
@@ -77,6 +65,18 @@ class Detail
     public function setIdOrder(?Order $id_order): static
     {
         $this->id_order = $id_order;
+
+        return $this;
+    }
+
+    public function getNameProduct(): ?string
+    {
+        return $this->name_product;
+    }
+
+    public function setNameProduct(string $name_product): static
+    {
+        $this->name_product = $name_product;
 
         return $this;
     }

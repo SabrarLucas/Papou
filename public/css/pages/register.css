@@ -1,0 +1,44 @@
+/* Ajoutez ce code CSS à votre fichier de styles ou à la section <style> de votre Twig */
+
+.formulaire h1 {
+    text-align: center;
+}
+
+.formulaire form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #f9f9f9;
+}
+
+.formulaire form label {
+    display: block;
+    margin-top: 10px;
+}
+
+.formulaire form input,
+.formulaire form button {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    box-sizing: border-box;
+}
+
+.formulaire form button {
+    background-color: #00988e;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.formulaire form button:hover {
+    background-color: #007a6d;
+}
+
+.formulaire .alert-danger {
+    margin-top: 10px;
+}

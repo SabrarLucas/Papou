@@ -9,11 +9,11 @@
 }
 
 @font-face {
-    font-family: "Palatino";
-    src: url("../fonts/Palatino.ttf");
+    font-family: "Georgia";
+    src: url("../fonts/Georgia.ttf");
 }
-.palatino {
-    font-family: "Palatino";
+.georgia {
+    font-family: "Georgia";
     font-weight: 900;
     font-size: 20px;
 }

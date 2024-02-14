@@ -1,5 +1,5 @@
 .header {
-  padding: 50px;
+  padding: 20px;
   background-color: #00988e;
 }
 
@@ -21,7 +21,7 @@
 
 .navbar-menu:hover {
   transform: scale(1.5);
-  color: rgb(62, 167, 185);
+  color: rgb(255, 255, 255);
 }
 
 /* barre de recherche */

@@ -51,11 +51,6 @@ class UserController extends AbstractController
     public function delete (User $user, EntityManagerInterface $manager, Request $request): Response
     {
         if($user == $this->getUser()){
-            $order = $user->getOrders(); // recuperation des commande passer par utilisateur
-
-            for($i=0; $i < count($order); $i++){ // on mette tout le id_user a null dans order pour pouvoir supprimer 
-                $order[$i]->setIdUser(null);
-            }
 
             $manager->remove($user);
             $manager->flush();

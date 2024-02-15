@@ -3,39 +3,49 @@
 {% block title %}panier{% endblock %}
 
 {% block body %}
-<h1>panier</h1>
-{% if cart %}
-<table class="table">
+
+<div class="cart-title copperplate">
+  <h1>votre panier</h1>
+</div>
+
+{% if cart %}  {# affichage du tableau si au moins un produit se trouve dans la panier #}
+<table class="cart-table">
   <thead>
     <tr>
-      <th scope="col">Quantité</th>
-      <th scope="col">Détail produits</th>
-      <th scope="col">Prix</th>
-      <th scope="col">Action</th>
+      <th scope="col" id="th1">Détail produit</th>
+      <th scope="col" id="th2">Prix</th>
+      <th scope="col" id="th3">Action</th>
     </tr>
   </thead>
-  <tbody>
-    {% for product in cart %}
-    <tr>
-      <th>{{ product.quantity }}</th>
-      <td>{{ product.product.name }}</td>
-      <td>{{ product.product.price }}€</td>
-      <td>
-        <a href="{{ path('cart_remove', {'id': product.product.id}) }}">X</a>
-      </td>
-    </tr>
-    {% endfor %}
-  </tbody>
-  </br>
-</table>
-  <h2>product</h2>
-    <ul>
-        {% for product in products %}
-        <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
-        {% endfor %}
-    </ul>
-{% else %}
 
-<h2>votre panier est vide</h2>
+    <tbody>
+      {% for product in cart %}
+        <tr>
+          <td>{{ product.product.name }}</td>
+          <td>{{ product.product.price }}€</td>
+          <td><a href="{{ path('cart_remove', {'id': product.product.id}) }}">X</a></td>
+        </tr>
+      {% endfor %}
+    </tbody>
+</table>
+
+{% else %}  {# Sinon information le panier est vide #}
+<div class="cart-title copperplate">
+  <h1>est vide</h1>
+</div>
 {% endif %}
+
+
+<h2>product</h2>
+<ul>
+    {% for product in products %}
+    <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
+    {% endfor %}
+</ul>
+
+
+
+
+
+
 {% endblock %}

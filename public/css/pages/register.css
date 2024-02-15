@@ -8,9 +8,12 @@
     max-width: 400px;
     margin: 0 auto;
     padding: 20px;
-    border: 1px solid #ddd;
+    border: 1px solid #00988e;
     border-radius: 8px;
     background-color: #f9f9f9;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-family: "Georgia";
 }
 
 .formulaire form label {
@@ -41,4 +44,8 @@
 
 .formulaire .alert-danger {
     margin-top: 10px;
+}
+
+.formulaire form input {
+    border: 1px solid #00988e;
 }

@@ -9,13 +9,14 @@
 
     <div class="formulaire">
 
-        <h1>inscription</h1>
+        
 
         {# le formulaire d'inscription #}
 
         {{ form_errors(registrationForm) }}
 
         {{ form_start(registrationForm) }}
+        <h1>Inscription</h1>
             {{ form_row(registrationForm.lastname) }}
             {{ form_row(registrationForm.firstname) }}
             {{ form_row(registrationForm.address) }}

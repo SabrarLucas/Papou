@@ -1,38 +1,27 @@
-<header class="header">
+<div class="header">
 
-    <div class="columns-3xs flex justify-center space-x-80">
-
-        <div class="my-auto w-80">
-
-            <form class="search" method="post" action="{{ path('search') }}">
+    <div class="section-container" id="left-section">
+        <div class="search">
+            <form method="post" action="{{ path('search') }}" class="flex">
                 <input placeholder="Rechercher" name="search" type="text">
                 <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
-        
-
         </div>
-
-        <div class="my-auto w-80 flex justify-center">
-            
-                <a href="{{ path('main') }}"> <!-- lien vers l'accueil -->
-                    <img src="{{ asset("images/logoneutre.png") }}" class="w-40 logo-hover"><!-- logo -->
-                </a>
-            
-        </div>
-
-        <div class="my-auto w-80">
-                <div class="flex justify-center space-x-1">
-                    <a href=""><i class="fa-solid fa-heart navbar-menu"></i></a>
-                    <a href="{{ path('cart') }}"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
-                    <a href="{{ path('app_login') }}"><i class="fa-solid fa-user navbar-menu"></i></a>
-                </div>
-        </div>
-
     </div>
 
-</header>
+    <div class="section-container" id="middle-section">
+        <a href="{{ path('main') }}">
+            <!-- lien vers l'accueil -->
+            <img id="navbar-image" src="{{ asset("images/logobleupapou.png") }}" class="navbar-logo" alt="Logo">
+        </a>
+    </div>
 
+    <div class="section-container" id="right-section">
+        <div>
+            <a href=""><i class="fa-solid fa-heart navbar-menu"></i></a>
+            <a href="{{ path('cart') }}"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
+            <a href="{{ path('app_login') }}"><i class="fa-solid fa-user navbar-menu"></i></a>
+        </div>
+    </div>
 
-
-
-
+</div>

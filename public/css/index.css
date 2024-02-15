@@ -1,10 +1,13 @@
 @import "fonts.css";
 @import "/css/component/navbar.css";
-@import "/css/pages/home.css";
 @import "/css/component/footer.css";
+@import "css/component/home_carousel1.css";
+@import "css/component/lightslider.css";
+@import "/css/pages/home.css";
 @import "/css/pages/detail.css";
 @import "/css/pages/login.css";
 @import "/css/pages/register.css";
+@import "/css/pages/cart.css";
 
   
 /* Supression des marges en bordures du site */

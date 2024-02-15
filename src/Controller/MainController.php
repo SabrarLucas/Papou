@@ -45,6 +45,16 @@ class MainController extends AbstractController
         ]);
     }
 
+    #[Route('/product/{age}', name: 'productAge')]
+    public function productAge(ProductRepository $productRepository, string $age): Response
+    {
+        $products = $productRepository->findBy(['age' => $age]);
+
+        return $this->render('main/product.html.twig', [
+            'products' => $products,
+        ]);
+    }
+
     #[Route('/product/{id}', name: 'product')]
     public function product(ProductRepository $productRepository, Category $category): Response
     {

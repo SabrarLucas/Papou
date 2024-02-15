@@ -56,9 +56,10 @@ class ProductType extends AbstractType
             ])
             ->add('age', ChoiceType::class, [
                 'choices' => [
-                    '0-2 ans' => '0-2',
-                    '3-5 ans' => '3-5',
-                    '6-9 ans' => '6-9',
+                    '0-1 ans' => '0-1',
+                    '2-4 ans' => '2-4',
+                    '5-7 ans' => '5-7',
+                    '8-10 ans' => '8-10',
                     '+10 ans' => '+10'
                 ]
             ])
@@ -121,11 +122,6 @@ class ProductType extends AbstractType
                 'mapped' =>false,
                 'required' => false,
                 'label' => false
-            ])
-            ->add('id_supplier', EntityType::class, [
-                'class' => Supplier::class,
-                'choice_label' => 'company_name',
-                'label' => 'Partenaire'
             ])
         ;
     }

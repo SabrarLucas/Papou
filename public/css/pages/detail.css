@@ -1,23 +1,22 @@
-/* Existing styles from your original CSS file */
-@charset "utf-8";
-/* ... (existing styles) ... */
-
-/* New styles for the product page */
 .product-page .flex-box {
     display: flex;
-    width: 1500px;
-    margin-left: 150px;
     margin-top: 50px;
-    margin-bottom: 100px;
+    margin-bottom: 50px;
+    width: 100%;
 }
 
 .product-page .left {
-    width: 100%;
-    margin-right: 50px;
+    width: 50%;
+}
+
+.product-page .right {
+    width: 50%;
 }
 
 .product-page .big-img {
-    width: 650px;
+    width: 750px;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 .product-page .big-img img {
@@ -26,7 +25,6 @@
 
 .product-page .images {
     display: flex;
-    justify-content: space-between;
     width: 100%;
     margin-bottom: 20px;
 }
@@ -70,13 +68,6 @@
     font-weight: 500;
 }
 
-.product-page .quantity input {
-    width: 60px;
-    font-size: 17px;
-    font-weight: 500;
-    text-align: center;
-    margin-left: 15px;
-}
 
 .product-page .btn-box {
     display: flex;
@@ -89,6 +80,7 @@
     outline: none;
     cursor: pointer;
     color: #ffffff;
+    font-weight: 900;
     background-color: #0ac0ba;
 }
 
@@ -103,3 +95,24 @@
     color: #00988e;
 }
 
+.supplier-section {
+    display: flex;
+    margin-bottom: 50px;
+    margin-top: 20px;
+    justify-content: center;
+    align-items: center;
+    width: 750px;
+    height: 80px;
+    color: #0ac0ba;
+    border: 2px solid #0ac0ba;
+    border-radius: 10px;
+    margin-left: 88px;
+}
+
+.supplier-name {
+    font-family: "Copperplate";
+    font-size: 25px;
+    font-weight: 900;
+    margin-left: 2px;
+
+}

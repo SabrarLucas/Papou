@@ -60,7 +60,7 @@ class MainController extends AbstractController
     {
         $products = $productRepository->findBy(['id_supplier' => $product->getIdSupplier()]); // recuperation des produit associer au partenaire du produit passer en parametre
 
-        $products = array_filter($products, function($value) use ($product){ // filtre les produits du panier dans le tableau
+        $products = array_filter($products, function($value) use ($product){ // filtre le produit en parametre dans le tableau
             return $value !== $product;
         });
 

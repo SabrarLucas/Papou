@@ -59,8 +59,8 @@ class ProductType extends AbstractType
                     '0-1 ans' => '0-1',
                     '2-4 ans' => '2-4',
                     '5-7 ans' => '5-7',
-                    '8-10 ans' => '8-10',
-                    '+10 ans' => '+10'
+                    '8-9 ans' => '8-9',
+                    '10 ans et +' => '10+'
                 ]
             ])
             ->add('stock', NumberType::class, [

@@ -39,17 +39,17 @@
 
 <div class="category-section copperplate">
 
-        <a href="" class="category-button">Tout nos jouets</a>
+        <a href="{{ path("productAll") }}" class="category-button">Tout nos jouets</a>
 
-        <a href="" class="category-button">0 - 1 an</a>
+        <a href="{{ path("productAge", {'age': '0-1'}) }}" class="category-button">0 - 1 an</a>
 
-        <a href="" class="category-button">2 - 4 ans</a>
+        <a href="{{ path("productAge", {'age': '2-4'}) }}" class="category-button">2 - 4 ans</a>
 
-        <a href="" class="category-button">5 - 7 ans</a>
+        <a href="{{ path("productAge", {'age': '5-7'}) }}" class="category-button">5 - 7 ans</a>
 
-        <a href="" class="category-button">8 - 9 ans</a>
+        <a href="{{ path("productAge", {'age': '8-9'}) }}" class="category-button">8 - 9 ans</a>
 
-        <a href="" class="category-button">10 ans et +</a>
+        <a href="{{ path("productAge", {'age': '10+'}) }}" class="category-button">10 ans et +</a>
 
 
 </div>

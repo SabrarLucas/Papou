@@ -29,13 +29,6 @@
     </tbody>
 </table>
 
-{% else %}  {# Sinon information le panier est vide #}
-<div class="cart-title copperplate">
-  <h1>est vide</h1>
-</div>
-{% endif %}
-
-
 <h2>product</h2>
 <ul>
     {% for product in products %}
@@ -43,7 +36,11 @@
     {% endfor %}
 </ul>
 
-
+{% else %}  {# Sinon information le panier est vide #}
+<div class="cart-title copperplate">
+  <h1>est vide</h1>
+</div>
+{% endif %}
 
 
 

@@ -5,55 +5,53 @@
 {% endblock %}
 
 {% block body %}
-    <div class="product-container product-page">
-        
+<div class="product-container product-page">
+    
+        <div class="flex-box palatino">
 
-            <div class="flex-box palatino">
+            <div class="left">
+                <div class="big-img">
+                    <img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}">
+                </div>
+            </div>
 
-                <div class="left">
-                    <div class="big-img">
-                        <img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}">
+            <div class="right">
+                <div class="images">
+                    <div class="small-img">
+                        <img src="{{ product.pictures[0].picName }}" onclick="showImg(this.src)">
+                    </div>
+                    <div class="small-img">
+                        <img src="{{ product.pictures[1].picName }}" onclick="showImg(this.src)">
+                    </div>
+                    <div class="small-img">
+                        <img src="{{ product.pictures[2].picName }}" onclick="showImg(this.src)">
+                    </div>
+                    <div class="small-img">
+                        <img src="{{ product.pictures[3].picName }}" onclick="showImg(this.src)">
                     </div>
                 </div>
+                <div class="pname">{{ product.name }}</div>
+                <hr>
+                <div>{{ product.description }}</div>
+                <hr><br>
+                <div>{{ product.state }}</div>
+                <div class="price">{{ product.price }} <i class="fa-solid fa-euro-sign"></i></div>
 
-                <div class="right">
-                    <div class="images">
-                        <div class="small-img">
-                            <img src="{{ product.pictures[0].picName }}" onclick="showImg(this.src)">
-                        </div>
-                        <div class="small-img">
-                            <img src="{{ product.pictures[1].picName }}" onclick="showImg(this.src)">
-                        </div>
-                        <div class="small-img">
-                            <img src="{{ product.pictures[2].picName }}" onclick="showImg(this.src)">
-                        </div>
-                        <div class="small-img">
-                            <img src="{{ product.pictures[3].picName }}" onclick="showImg(this.src)">
-                        </div>
+            <form method="post" action="{{ path('cart_add', {'id': product.id}) }}">
+                    <div class="btn-box">
+                        <button class="cart-btn" type="submit">Ajouter au panier  <i class="fa-solid fa-cart-shopping"></i></button>
                     </div>
-                    <div class="pname">{{ product.name }}</div>
-                    <hr>
-                    <div>{{ product.description }}</div>
-                    <hr><br>
-                    <div>{{ product.state }}</div>
-                    <div class="price">{{ product.price }} <i class="fa-solid fa-euro-sign"></i></div>
-
-                <form method="post" action="{{ path('cart_add', {'id': product.id}) }}">
-                        <div class="btn-box">
-                            <button class="cart-btn" type="submit">Ajouter au panier  <i class="fa-solid fa-cart-shopping"></i></button>
-                        </div>
-                </form>
-                </div>
-        </div>
-
-
-
-
-
+            </form>
+            </div>
     </div>
 
+</div>
 
-    {% include "partials/home_carousel1.html.twig" %}
+<div>
+    <h1>Partenaire : {{product.supplier}}</h1>
+</div>
+
+{% include "partials/home_carousel1.html.twig" %}
 
             <script>
             let bigImg = document.querySelector('.big-img img');

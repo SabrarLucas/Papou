@@ -8,6 +8,7 @@
     width: 1500px;
     margin-left: 150px;
     margin-top: 50px;
+    margin-bottom: 100px;
 }
 
 .product-page .left {
@@ -88,7 +89,7 @@
     outline: none;
     cursor: pointer;
     color: #ffffff;
-    background-color: #00988e;
+    background-color: #0ac0ba;
 }
 
 .product-page .cart-btn {
@@ -97,7 +98,7 @@
 }
 
 .product-page .cart-btn:hover {
-    border: 2px solid #00988e;
+    border: 2px solid #0ac0ba;
     background-color: #ffffff;
     color: #00988e;
 }

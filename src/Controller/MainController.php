@@ -45,6 +45,16 @@ class MainController extends AbstractController
         ]);
     }
 
+    #[Route('/product/{age}', name: 'productAge')]
+    public function productAge(ProductRepository $productRepository, string $age): Response
+    {
+        $products = $productRepository->findBy(['age' => $age]);
+
+        return $this->render('main/product.html.twig', [
+            'products' => $products,
+        ]);
+    }
+
     #[Route('/product/{id}', name: 'product')]
     public function product(ProductRepository $productRepository, Category $category): Response
     {
@@ -60,7 +70,7 @@ class MainController extends AbstractController
     {
         $products = $productRepository->findBy(['id_supplier' => $product->getIdSupplier()]); // recuperation des produit associer au partenaire du produit passer en parametre
 
-        $products = array_filter($products, function($value) use ($product){ // filtre les produits du panier dans le tableau
+        $products = array_filter($products, function($value) use ($product){ // filtre le produit en parametre dans le tableau
             return $value !== $product;
         });
 

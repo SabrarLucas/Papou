@@ -20,7 +20,18 @@
         <div>
             <a href=""><i class="fa-solid fa-heart navbar-menu"></i></a>
             <a href="{{ path('cart') }}"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
-            <a href="{{ path('app_login') }}"><i class="fa-solid fa-user navbar-menu"></i></a>
+
+            {% if app.user %}
+                {% if app.user.roles[0] == "ROLE_USER" %}
+                    <a href="{{ path('app_user_profil', {'id': app.user.id}) }}"><i class="fa-regular fa-user navbar-menu"></i></a>
+                {% elseif app.user.roles[0] == "ROLE_PARTENER" %}
+                    <a href="{{ path('app_partner', {'id': app.user.suppliers[0].id}) }}"><i class="fa-regular fa-user navbar-menu"></i></a>
+                {% else %}
+                    <a href="{{ path('admin_index') }}"><i class="fa-regular fa-user navbar-menu"></i></a>
+                {% endif %}
+            {% else %}
+                <a href="{{ path('app_login') }}"><i class="fa-solid fa-user navbar-menu"></i></a>
+            {% endif %}
         </div>
     </div>
 
@@ -28,17 +39,17 @@
 
 <div class="category-section copperplate">
 
-        <a href="{{ path('productAll') }}" class="category-button">Tout nos jouets</a>
+        <a href="{{ path("productAll") }}" class="category-button">Tout nos jouets</a>
 
-        <a href="" class="category-button">0 - 1 an</a>
+        <a href="{{ path("productAge", {'age': '0-1'}) }}" class="category-button">0 - 1 an</a>
 
-        <a href="" class="category-button">2 - 4 ans</a>
+        <a href="{{ path("productAge", {'age': '2-4'}) }}" class="category-button">2 - 4 ans</a>
 
-        <a href="" class="category-button">5 - 7 ans</a>
+        <a href="{{ path("productAge", {'age': '5-7'}) }}" class="category-button">5 - 7 ans</a>
 
-        <a href="" class="category-button">8 - 9 ans</a>
+        <a href="{{ path("productAge", {'age': '8-9'}) }}" class="category-button">8 - 9 ans</a>
 
-        <a href="" class="category-button">10 ans et +</a>
+        <a href="{{ path("productAge", {'age': '10+'}) }}" class="category-button">10 ans et +</a>
 
 
 </div>

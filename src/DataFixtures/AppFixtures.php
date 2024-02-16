@@ -96,9 +96,24 @@ class AppFixtures extends Fixture
             $product = new Product();
             $product->setName($this->faker->word())
                 ->setDescription($this->faker->text(100))
-                ->setPrice($this->faker->randomFloat(2,0,100))
-                ->setAge(mt_rand(0, 1) == 1? 'entre 6 et 8 ans' : 'entre 9 et 12 ans')
-                ->setPromotion(mt_rand(0, 3) == 3 ? 50 : null)
+                ->setPrice($this->faker->randomFloat(2,0,100));
+            $random = mt_rand(0,4);
+            if ($random == 0) {
+                $product->setAge('0-1');
+            }
+            elseif ($random == 1) {
+                $product->setAge('2-4');
+            }
+            elseif ($random == 2) {
+                $product->setAge('5-7');
+            }
+            elseif ($random == 3) {
+                $product->setAge('8-9');
+            }
+            else {
+                $product->setAge('10+');
+            }
+            $product->setPromotion(mt_rand(0, 3) == 3 ? 50 : null)
                 ->setStock($this->faker->randomNumber())
                 ->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
                 ->setCreatedAt(new \DateTimeImmutable());

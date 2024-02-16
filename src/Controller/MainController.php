@@ -48,7 +48,7 @@ class MainController extends AbstractController
     #[Route('/product/{age}', name: 'productAge')]
     public function productAge(ProductRepository $productRepository, string $age): Response
     {
-        $products = $productRepository->findBy(['age' => $age]);
+        $products = $productRepository->findAgeDesc($age);
 
         return $this->render('main/product.html.twig', [
             'products' => $products,

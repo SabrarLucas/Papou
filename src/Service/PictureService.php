@@ -98,7 +98,7 @@ class PictureService
 
     public function delete(string $file, ?string $folder = '', ?int $width = 250, ?int $height = 250) :bool
     {
-        if($file !== 'default.webp'){
+        if($file !== 'default.png'){
             $success = false;
             $path = $this->params->get('images_directory') . $folder;
 

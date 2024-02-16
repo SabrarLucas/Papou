@@ -19,7 +19,7 @@ class CartService {
         $this->manager = $manager;
     }
 
-    // augmente la quantite de produit ou ajouter un produit
+    // ajouter un produit dans le panier
     public function addToCart(int $id):void
     {
         $cart = $this->getSession()->get('cart', []); // recuperation de la session
@@ -34,20 +34,6 @@ class CartService {
         $cart = $this->requestStack->getSession()->get('cart', []); // recuperation de la session
         unset($cart[$id]); // suppretion du produit 
         $this->getSession()->set('cart', $cart); // ajout a la session
-    }
-
-
-    // diminue la quantite de produit ou supprimer
-    public function decrease(int $id):void
-    {
-        $cart = $this->getSession()->get('cart', []); // recuperation de la session
-        if ($cart[$id] > 1) {  // verifier la quantite
-            $cart[$id]--; // diminuer la quantite
-        }
-        else{
-            unset($cart[$id]); // suppretion du produit
-        }
-        $this->getSession()->set('cart',$cart); // ajout a la session
     }
 
     // supprimer tout le panier

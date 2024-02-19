@@ -1,20 +1,21 @@
 .header {
-  background-color: #ffffff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  background-color: #ffffff; /* couleur de fond de la navbar */
+  display: flex; /* positionnement en ligne des 3 sections de la navbar */
+  justify-content: space-between; /* centrage et espacement horizontal des 3 sections */
+  align-items: center; /* centrage vertical des 3 sections */
 }
 
 .section-container {
-  display: flex;
-  justify-content: center;
+  display: flex; /* positionnement en ligne du contenu d'une section */
+  justify-content: center; /* centrage horizontal du contenu d'une section */
   align-items: center;
   text-align: center;
 }
 
+/* taille des sections */
 #left-section, #middle-section, #right-section {
-  width: 33.33%;
-  height: 20vh; /* Utilisation de l'unité de vue pour définir la hauteur de 100% de la vue */
+  width: 33.33%; /* largeur d'une section (1/3 de l'écran par section) */
+  height: 20vh; /* hauteur d'une section */
 }
 
 .search {
@@ -26,8 +27,9 @@
 .search input[type="text"] {
   width: 100%;
   padding: 10px;
-  border: none;
-  color: #0ac0ba;
+  border: none; /* supression de la bordure de la barre de recherche */
+  color: #0ac0ba; /* couleur d'écriture */
+  font-size: 20px;
 }
 
 .search input[type="text"]:focus {
@@ -52,27 +54,22 @@
 .navbar-logo {
   width: 25%;
   height: auto;
-  cursor: pointer;
-  transition: .3s ease;
+  cursor: pointer; /* changement de forme du curseur */
+  transition: .3s ease; /* vitesse d'animation */
   display: block;
   margin: auto;
 }
 
 .navbar-logo:hover {
-  transform: scale(1.2);
-}
-
-.space-x-1 {
-  display: flex;
-  align-items: center;
+  transform: scale(1.2); /* grossissement du logo au survol de la souris */
 }
 
 .navbar-menu {
   color: #0ac0ba;
-  font-size: 35px;
+  font-size: 40px;
   transition: .5s ease;
-  margin-left: 10px;
-  margin-right: 10px;
+  margin-left: 40px;
+  margin-right: 40px;
 }
 
 .navbar-menu:hover {
@@ -103,7 +100,6 @@
   transform: scale(1.3);
 }
 
-/* Ajout pour centrer l'image horizontalement de manière responsive */
 @media screen and (max-width: 768px) {
   .navbar-logo {
     width: 80%;

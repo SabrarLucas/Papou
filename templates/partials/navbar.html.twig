@@ -1,6 +1,6 @@
 <div class="header">
 
-    <div class="section-container" id="left-section">
+    <div class="section-container" id="left-section"> <!-- partie gauche -->
         <div class="search">
             <form method="post" action="{{ path('search') }}" class="flex">
                 <input placeholder="Rechercher" name="search" type="text">
@@ -9,14 +9,13 @@
         </div>
     </div>
 
-    <div class="section-container" id="middle-section">
-        <a href="{{ path('main') }}">
-            <!-- lien vers l'accueil -->
+    <div class="section-container" id="middle-section"> <!-- partie centrale -->
+        <a href="{{ path('main') }}"><!-- lien vers l'accueil -->
             <img id="navbar-image" src="{{ asset("images/logobleupapou.png") }}" class="navbar-logo" alt="Logo">
         </a>
     </div>
 
-    <div class="section-container" id="right-section">
+    <div class="section-container" id="right-section"> <!-- partie droite -->
         <div>
             <a href=""><i class="fa-solid fa-heart navbar-menu"></i></a>
             <a href="{{ path('cart') }}"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
@@ -37,7 +36,7 @@
 
 </div>
 
-<div class="category-section copperplate">
+<div class="category-section copperplate"> <!-- partie inférieure -->
 
         <a href="{{ path("productAll") }}" class="category-button">Tout nos jouets</a>
 

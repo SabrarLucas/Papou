@@ -62,6 +62,20 @@ class AppFixtures extends Fixture
         
         $manager->persist($admin);
 
+        $partenaire = new User();
+        $partenaire->setLastname('Fearne')
+            ->setFirstname('Vincent')
+            ->setEmail('fearne.vincent@mail.fr')
+            ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+            ->setRoles(['ROLE_PARTENERE'])
+            ->setAddress($this->faker->streetAddress())
+            ->setCity($this->faker->city())
+            ->setZipcode($this->faker->postcode())
+            ->setCountry($this->faker->country())
+            ->setIsVerified(true);
+
+        $manager->persist($partenaire);
+
         for($i = 0; $i < 50; $i++){
             $user = new User();
             $user->setFirstname($this->faker->firstName())

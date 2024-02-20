@@ -18,62 +18,64 @@ class AdminCaController extends AbstractController
         $saleDay = array();
         $saleWeek = array();
         $saleMonth = array();
+        $saleYear = array();
 
         $ca = 0; //initialisation d'un ca
-        $caReel = 0; //initialisation d'un ca reel
+        $caPapou = 0; //initialisation de ca de Papou
         $nbr = 0; //initialisation du nombre de commande
         $cart = 0; //initialisation du panier moyen a 0
 
         //------------CALCUL DU CA PAR JOUR------------
 
-        for ($i=0; $i < count($order); $i++) { //boucle sur les commandes du partenaire
+        for ($i=0; $i < count($order); $i++) { //boucle sur les commandes
             if (date('d') == date_format($order[$i]->getCreatedAt(),'d')) { //verifie si le jour de la commande correspond a ce jour
                 $ca = $ca + $order[$i]->getTotal(); //calcul du ca
-                $caReel = $caReel + ($order[$i]->getTotal() * 0.85); //calcule du ca reel du partenaire
-                $nbr++; //calcule du nombre de commande
+                $caPapou = $caPapou + ($order[$i]->getTotal() * 0.15); //calcul du ca Papou
             }
         }
 
-        if ($nbr != 0) {
-            $cart = $ca / $nbr; //calcul du panier moyen
-        }
-
         $saleDay['ca'] = $ca; //ajout du ca dans le tableau saleDay
-        $saleDay['caReel'] = $caReel; //ajout du ca reel dans le tableau saleDay
-        $saleDay['nbr'] = $nbr; //ajout du nombre de commande dans le tableau saleDay
-        $saleDay['cart'] = $cart; //ajout du panier moyen dans le tableau saleDay
+        $saleDay['caPapou'] = $caPapou; //ajout du ca Papou dans le tableau saleDay
 
         $ca = 0; //retour du ca a 0
-        $caReel = 0; //retour du ca reel a 0
-        $nbr = 0; //retour du nombre de commande a 0
-        $cart = 0; //retour du panier moyen a 0
+        $caPapou = 0; //retour du ca Papou a 0
 
         //------------CALCUL DU CA PAR SEMAINE------------
 
         for ($i=0; $i < count($order); $i++) { 
             if (date('w') == date_format($order[$i]->getCreatedAt(),'w')) { //verifie si la semaine de la commande correspond a la semaine en cour
                 $ca = $ca + $order[$i]->getTotal(); //calcul du ca
-                $caReel = $caReel + ($order[$i]->getTotal() * 0.85); //calcul du ca reel
-                $nbr++; //calcul du nombre de commande
+                $caPapou = $caPapou + ($order[$i]->getTotal() * 0.15); //calcul du ca Papou
             }
         }
 
-        if ($nbr != 0) {
-            $cart = $ca / $nbr; //calcul du panier moyen
-        }
-
-
         $saleWeek['ca'] = $ca; //ajout du ca dans le tableau saleWeek
-        $saleWeek['caReel'] = $caReel; //ajout du ca reel dans le tableau saleWeek
-        $saleWeek['nbr'] = $nbr; //ajout du nombre de commande dans le tableau saleWeek
-        $saleWeek['cart'] = $cart; //ajout du ca dans le tableau saleWeek
+        $saleWeek['caPapou'] = $caPapou; //ajout du ca Papou dans le tableau saleWeek
+
+        $ca = 0; //retour du ca a 0
+        $caPapou = 0; //retour du ca Papou a 0
 
         //------------CALCUL DU CA PAR MOIS------------
 
         for ($i=0; $i < count($order); $i++) { //boucle sur les commandes
             if (date('m') == date_format($order[$i]->getCreatedAt(),'m')) { //verifie si le mois de la commande correspond a ce mois
                 $ca = $ca + $order[$i]->getTotal(); //calcul du ca
-                $caReel = $caReel + ($order[$i]->getTotal() * 0.85); //calcul du ca reel
+                $caPapou = $caPapou + ($order[$i]->getTotal() * 0.15); //calcul du ca Papou
+            }
+        }
+
+        $saleMonth['ca'] = $ca; //ajout du ca dans le tableau saleMonth
+        $saleMonth['caPapou'] = $caPapou; //ajout du ca Papou du partenaire dans le tableau saleMonth
+
+        $ca = 0; // retour du ca a 0
+        $caPapou = 0; // retour du ca Papou a 0
+
+        //------------CALCUL DU CA PAR ANNEE------------
+
+        for ($i=0; $i < count($order); $i++) { //boucle sur les commandes
+            if (date('y') == date_format($order[$i]->getCreatedAt(),'y')) { //verifie si le mois de la commande correspond a ce mois
+                $ca = $ca + $order[$i]->getTotal(); //calcul du ca
+                $caPapou = $caPapou + ($order[$i]->getTotal() * 0.15); //calcul du ca Papou
                 $nbr++; // calcule du nombre de commande
             }
         }
@@ -82,20 +84,21 @@ class AdminCaController extends AbstractController
             $cart = $ca / $nbr; //calcul du panier moyen
         }
 
-        $saleMonth['ca'] = $ca; //ajout du ca dans le tableau saleMonth
-        $saleMonth['caReel'] = $caReel; //ajout du ca reel du partenaire dans le tableau saleMonth
-        $saleMonth['nbr'] = $nbr; //ajout du nombre de commande dans le tableau saleMonth
-        $saleMonth['cart'] = $cart; //ajout du panier moyen dans le tableau saleMonth
+        $saleYear['ca'] = $ca; //ajout du ca dans le tableau saleYear$saleYear
+        $saleYear['caPapou'] = $caPapou; //ajout du ca Papou du partenaire dans le tableau saleYear$saleYear
+        $saleYear['nbr'] = $nbr; //ajout du nombre de commande dans le tableau saleYear$saleYear
+        $saleYear['cart'] = $cart; //ajout du panier moyen dans le tableau saleYear$saleYear
 
         $ca = 0; // retour du ca a 0
-        $caReel = 0; // retour du ca a 0
-        $nbr = 0; // retour du ca a 0
+        $caPapou = 0; // retour du ca Papou a 0
+        $nbr = 0; // retour du nbr a 0
         $cart = 0; // retour du panier moyen a 0
 
         return $this->render('admin/ca/index.html.twig', [
             'saleDay' => $saleDay, //l'envoie du tableau saleDay a la vue
             'saleWeek' => $saleWeek, //l'envoie du tableau saleWeek a la vue
             'saleMonth' => $saleMonth, //l'envoie du tableau saleMonth a la vue
+            'saleYear' => $saleYear, //l'envoie du tableau saleYear a la vue
         ]);
     }
 }

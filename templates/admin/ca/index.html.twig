@@ -10,35 +10,45 @@
     {# Les chiffres d'affaires du site #}
     <div>
         <br>
-        <h2>vente du jour</h2>
-        <ul>
-            <li>CA = {{ saleDay.ca|number_format(2, '.', ',') }}</li>
-            <li>CA reel = {{ saleDay.caReel|number_format(2, '.', ',') }}</li>
-            <li>nbr commandes = {{ saleDay.nbr }}</li>
-            <li>panier moyen = {{ saleDay.cart|number_format(2, '.', ',') }}</li>
-        </ul>
+        <h3>CA général</h3>
         <br>
-        <h2>vente de la semaine</h2>
-        <ul>
-            <li>CA = {{ saleWeek.ca|number_format(2, '.', ',') }}</li>
-            <li>CA reel = {{ saleWeek.caReel|number_format(2, '.', ',') }}</li>
-            <li>nbr commandes = {{ saleWeek.nbr }}</li>
-            <li>panier moyen = {{ saleWeek.cart|number_format(2, '.', ',') }}</li>
-        </ul>
+        <h3>vente du jour</h3>
+        <p>{{ saleDay.ca|number_format(2, '.', ',') }}
+        <p>
+            <br>
+        <h3>vente de la semaine</h3>
+        <p>{{ saleWeek.ca|number_format(2, '.', ',') }}</p>
         <br>
-        <h2>vente du mois</h2>
-        <ul>
-            <li>CA = {{ saleMonth.ca|number_format(2, '.', ',') }}</li>
-            <li>CA reel = {{ saleMonth.caReel|number_format(2, '.', ',') }}</li>
-            <li>nbr commandes = {{ saleMonth.nbr}}</li>
-            <li>panier moyen = {{ saleMonth.cart|number_format(2, '.', ',') }}</li>
-        </ul>
+        <h3>vente du mois</h3>
+        <p>{{ saleMonth.ca|number_format(2, '.', ',') }}</p>
+        <br>
+        <h3>vente de l'année</h3>
+        <p>{{ saleYear.ca|number_format(2, '.', ',') }}</p>
+        <p>panier moyen = {{ saleYear.cart|number_format(2, '.', ',') }}</p>
+        <br>
     </div>
 
     {# Les chiffres d'affaires de Papou #}
     <div>
+        <h3>CA Papou</h3>
+        <br>
+        <h3>Vente du jour</h3>
+        <p>{{ saleDay.caPapou|number_format(2, '.', ',') }}</p>
+        <br>
+
+        <h3>Vente de la semain</h3>
+        <p>{{ saleWeek.caPapou|number_format(2, '.', ',') }}</p>
+        <br>
+
+        <h3>Vente du mois</h3>
+        <p>{{ saleMonth.caPapou|number_format(2, '.', ',') }}</p>
+        <br>
+
+        <h3>Vente de l'année</h3>
+        <p>{{ saleYear.caPapou|number_format(2, '.', ',') }}</p>
+        <br>
     </div>
-    
+
     {# Les chiffres par partenaires #}
     {# voir pour comment bien le faire #}
     <div>

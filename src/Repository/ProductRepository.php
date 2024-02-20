@@ -40,7 +40,7 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-   public function findCategoryDesc($value): array
+   public function findCategoryDesc(string $value): array
    {
        return $this->createQueryBuilder('p')
            ->andWhere('p.id_category = :val')
@@ -51,7 +51,18 @@ class ProductRepository extends ServiceEntityRepository
        ;
    }
 
-   public function findSupplierDesc($value): array
+   public function findAgeDesc(string $value): array
+   {
+       return $this->createQueryBuilder('p')
+           ->andWhere('p.age = :val')
+           ->setParameter('val', $value)
+           ->orderBy('p.id', 'DESC')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
+   public function findSupplierDesc(string $value): array
    {
        return $this->createQueryBuilder('p')
            ->andWhere('p.id_supplier = :val')

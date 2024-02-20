@@ -172,7 +172,7 @@ class PartnerController extends AbstractController
             if ($request->request->get('subjet') && $request->request->get('content')) {
                 
                  // preparation de l'envoie
-                 $emailData = [
+                $emailData = [
                     'from' => $this->getUser()->getEmail(),
                     'to' => 'contact@papou.fr',
                     'subject' => $request->request->get('subjet'),

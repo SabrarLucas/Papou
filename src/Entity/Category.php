@@ -28,9 +28,16 @@ class Category
     #[ORM\OneToMany(mappedBy: 'id_category', targetEntity: Product::class)]
     private Collection $products;
 
+    #[ORM\ManyToOne(targetEntity: self::class, inversedBy: 'categories')]
+    private ?self $category = null;
+
+    #[ORM\OneToMany(mappedBy: 'category', targetEntity: self::class)]
+    private Collection $categories;
+
     public function __construct()
     {
         $this->products = new ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -98,6 +105,48 @@ class Category
             // set the owning side to null (unless already changed)
             if ($product->getIdCategory() === $this) {
                 $product->setIdCategory(null);
+            }
+        }
+
+        return $this;
+    }
+
+    public function getCategory(): ?self
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?self $category): static
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, self>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(self $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+            $category->setCategory($this);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(self $category): static
+    {
+        if ($this->categories->removeElement($category)) {
+            // set the owning side to null (unless already changed)
+            if ($category->getCategory() === $this) {
+                $category->setCategory(null);
             }
         }
 

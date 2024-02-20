@@ -31,10 +31,18 @@ class AppFixtures extends Fixture
             $category->setName('categorie '.$i)
                 ->setPhoto($this->faker->imageUrl(250, 250))
                 ->setDescription($this->faker->text());
+            for ($j=0; $j < 5; $j++) { 
+                $categoryChildren = new Category();
+                $categoryChildren->setName($this->faker->word())
+                    ->setPhoto($this->faker->imageUrl(250, 250))
+                    ->setDescription($this->faker->text());
 
-            $this->addReference('cat-'.$this->counter, $category);
-            $this->counter++;
-            
+                $category->addCategory($categoryChildren);
+
+                $this->addReference('cat-'.$this->counter, $categoryChildren);
+                $this->counter++;
+                $manager->persist($categoryChildren);
+            }
             $manager->persist($category);
         }
 

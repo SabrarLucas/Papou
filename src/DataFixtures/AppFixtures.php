@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
             ->setFirstname('Vincent')
             ->setEmail('fearne.vincent@mail.fr')
             ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-            ->setRoles(['ROLE_PARTNERE'])
+            ->setRoles(['ROLE_PARTNER'])
             ->setAddress($this->faker->streetAddress())
             ->setCity($this->faker->city())
             ->setZipcode($this->faker->postcode())
@@ -103,7 +103,7 @@ class AppFixtures extends Fixture
                 ->setType(mt_rand(0, 1) == 1? 'association' : 'boutique');
             
             $user = $this->getReference('user-' . rand(1, 50));
-            $user->setRoles(['ROLE_PARTENER']);
+            $user->setRoles(['ROLE_PARTNER']);
             $supplier->setIdUser($user);
 
             $this->addReference('sup-'.$this->counter, $supplier);

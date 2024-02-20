@@ -109,7 +109,7 @@ class AppFixtures extends Fixture
                 ->setStock($this->faker->randomNumber())
                 ->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
                 ->setCreatedAt(new \DateTimeImmutable());
-            $category = $this->getReference('cat-'.rand(1,5));
+            $category = $this->getReference('cat-'.rand(1,25));
             $product->setIdCategory($category);
             $product->setIdSupplier($supplier);
 
@@ -181,7 +181,7 @@ class AppFixtures extends Fixture
                 ->setStock($this->faker->randomNumber())
                 ->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
                 ->setCreatedAt(new \DateTimeImmutable());
-            $category = $this->getReference('cat-'.rand(1,5));
+            $category = $this->getReference('cat-'.rand(1,25));
             $product->setIdCategory($category);
             $supplier = $this->getReference('sup-'.rand(1,10));
             $product->setIdSupplier($supplier);

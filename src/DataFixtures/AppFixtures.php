@@ -79,6 +79,7 @@ class AppFixtures extends Fixture
 
         $supplier = new Supplier();
         $supplier->setCompanyName($this->faker->name())
+            ->setPicture($this->faker->imageUrl(250, 250))
             ->setType(mt_rand(0, 1) == 1? 'association' : 'boutique')
             ->setIdUser($partenaire);
             
@@ -142,7 +143,8 @@ class AppFixtures extends Fixture
         for($i = 0; $i < 10; $i++){
             $supplier = new Supplier();
             $supplier->setCompanyName($this->faker->name())
-                ->setType(mt_rand(0, 1) == 1? 'association' : 'boutique');
+                ->setType(mt_rand(0, 1) == 1? 'association' : 'boutique')
+                ->setPicture($this->faker->imageUrl(250, 250));
             
             $user = $this->getReference('user-' . rand(1, 50));
             $user->setRoles(['ROLE_PARTNER']);

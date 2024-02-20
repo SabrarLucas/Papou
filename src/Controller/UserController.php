@@ -52,11 +52,11 @@ class UserController extends AbstractController
     {
         if($user == $this->getUser()){
 
-            $manager->remove($user);
+            $manager->remove($user); // on supprime l'utilisateur
             $manager->flush();
 
-            $request->getSession()->invalidate();
-            $this->container->get('security.token_storage')->setToken(null);
+            $request->getSession()->invalidate(); // on ferme la session
+            $this->container->get('security.token_storage')->setToken(null); // on retire le token
 
             return $this->redirectToRoute('main'); // retour a l'acceuil du site
         }

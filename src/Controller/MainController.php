@@ -60,19 +60,19 @@ class MainController extends AbstractController
     #[Route('/products/{id}', name: 'product')]
     public function product(ProductRepository $productRepository, CategoryRepository $categoryRepository, Category $category): Response
     {
-        $categories = $categoryRepository->findBy(['category' => $category->getId()]);
+        $categories = $categoryRepository->findBy(['category' => $category->getId()]);  // recuperation des categorie associés a sa categorie parente
 
         for ($i=0; $i < count($categories) ; $i++) { 
             $product = $productRepository->findCategoryDesc($categories[$i]->getId()); // recuperation des produits associés a sa categorie
 
             for ($j=0; $j < count($product) ; $j++) { 
-                $products[] = $product[$j];
+                $products[] = $product[$j]; //ajout de tout les produit dans un tableau
             }
         }
 
-        // dd($products);
-
-        arsort($products);
+        if (count($products) != 0) {
+            arsort($products); // trie du tableau
+        }
 
         return $this->render('main/product.html.twig', [
             'products' => $products,
@@ -82,7 +82,7 @@ class MainController extends AbstractController
     #[Route('/product/{age}', name: 'productAge')]
     public function productAge(ProductRepository $productRepository, string $age): Response
     {
-        $products = $productRepository->findAgeDesc($age);
+        $products = $productRepository->findAgeDesc($age); // recuperation des produits en fonction de age
 
         return $this->render('main/product.html.twig', [
             'products' => $products,

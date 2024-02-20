@@ -4,11 +4,12 @@
 
 {% block body %}
 
+
+
+{% if cart %}  {# affichage du tableau si au moins un produit se trouve dans la panier #}
 <div class="cart-title copperplate">
   <h1>votre panier</h1>
 </div>
-
-{% if cart %}  {# affichage du tableau si au moins un produit se trouve dans la panier #}
 <table class="cart-table">
   <thead>
     <tr>
@@ -37,12 +38,32 @@
 </ul>
 
 {% else %}  {# Sinon information le panier est vide #}
-<div class="cart-title copperplate">
-  <h1>est vide</h1>
+
+
+
+
+  
+<div class="cart-empty">
+
+
+  <div class="empty copperplate">
+    <h1>votre panier est vide</h1>
+  </div>
+
+  <div class="empty-button">
+    <a href="{{ path("productAll") }}">Continuez votre shopping</a>
+  </div>
+
+
 </div>
+
+
+
+
+
+
+
+
 {% endif %}
-
-
-
 
 {% endblock %}

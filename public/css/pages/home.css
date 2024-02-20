@@ -1,59 +1,85 @@
+.category-container {
+    margin-top: 50px;
+    display: flex;
+    justify-content: space-evenly;
+    border-top: 1px solid #f19a76;
+    border-bottom: 1px solid #f19a76;
+
+}
+
+.category-btn {
+    font-size: 20px; /* taille de police */
+    cursor: pointer; /* changement de forme du curseur */
+    transition: .3s ease; /* vitesse d'animation */
+}
+
+.category-btn:hover {
+    transform: scale(1.2); /* grossissement des boutons au survol de la souris */
+}
+
 .home-card-centered {
     align-content: center;
     justify-content: center;
-    margin-top: 50px;
-    margin-bottom: 50px;
-}
-
-.home-div-size1 {
-    height: 400px;
+    margin-top: 70px;
+    margin-bottom: 70px;
 }
 
 .home-div-size2 {
     height: 550px;
 }
 
-/* card code source : https://uiverse.io/alexruix/cowardly-ape-35 */
 .home-card {
-    background-image: url(/images/test2.jpg);
-    background-size: cover;
-    padding: 1.8rem;
-    border: 2px solid #ffffff;
-    transition: 0.5s ease-out;
-    overflow: visible;
-   }
+    transition: .5s ease;
+}
 
-.home-card-size1 {
-    width: 550px;
-    height: 400px;
+.home-card:hover {
+    transform: scale(1.05);
 }
 
 .home-card-size2 {
     width: 800px;
     height: 550px;
 }
-   
-   .home-card-details {
-    color: black;
-    height: 100%;
-    gap: .5em;
-    display: grid;
-    place-content: center;
-   }
-   
-   .home-text-body {
-    color: rgb(255, 255, 255);
-   }
-   
-   /*Hover*/
-   .home-card:hover {
-    box-shadow: 0 0 10px 5px #00000050;
-   }
-   
-   .home-card:hover .home-card-button {
-    transform: translate(-50%, 50%);
-    opacity: 1;
-   }
-   /* -------------------------------------------- */
 
-   
+.home-text-body {
+color: rgb(255, 255, 255);
+}
+
+.home-promo {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    font-size: 25px;
+}
+
+.home-age-title {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 30px;
+    font-size: 25px;
+}
+
+.bandeau {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 500px;
+    background-color: #f5f3ce;
+    margin-top: 40px;
+    margin-bottom: 20px;
+}
+
+.section-superman {
+    width: 100vw;
+    height: 50vh;
+    background-color: #f19a76;
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.img-superman {
+    width: 70vw;
+    height: auto;
+}

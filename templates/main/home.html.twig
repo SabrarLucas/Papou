@@ -3,76 +3,62 @@
 {% block body %}
 
 
+<div class="category-container copperplate">
+
+    {% for category in categories %}
+        <a href="" class="category-btn">{{category.name}}</a>
+    {% endfor %}
+
+</div>
+
 <div class="flex home-card-centered home-div-size1">
 
     <div class="mx-2">
-
         <a href="">
-            <div class="home-card home-card-size1">
-                <div class="home-card-details">
-                    <p class="home-text-body copperplate">Here are the details of the card</p>
-                </div>
-            </div>
+                <img src="{{ asset("images/accueil1.png") }}" class="home-card">
         </a>
-
     </div>
 
     <div class="mx-2">
-
         <a href="">
-            <div class="home-card home-card-size1">
-                <div class="home-card-details">
-                    <p class="home-text-body copperplate">Here are the details of the card</p>
-                </div>
-            </div>
+                <img src="{{ asset("images/accueil2.png") }}" class="home-card">
         </a>
-
     </div>
 
     <div class="mx-2">
-
         <a href="">
-            <div class="home-card home-card-size1">
-                <div class="home-card-details">
-                    <p class="home-text-body copperplate">Here are the details of the card</p>
-                </div>
-            </div>
+                <img src="{{ asset("images/accueil3.png") }}" class="home-card">
         </a>
-
     </div>
 
+</div>
+
+
+<h1 class="home-age-title copperplate">Retrouvez nos jouets par tranche d'âge</h1>
+{% include "partials/age_carousel.html.twig" %}
+
+
+
+<div class="bandeau">
+    content coming soon...
+</div>
+
+
+
+<div class="home-promo copperplate">
+    <h1>Le coin des bonnes affaires :</h1>
 </div>
 
 {% include "partials/home_carousel1.html.twig" %}
 
 
-<div class="flex home-card-centered home-div-size2">
-
-    <div class="mx-2">
-
-        <a href="">
-            <div class="home-card home-card-size2">
-                <div class="home-card-details">
-                    <p class="home-text-body copperplate">Tout nos produits</p>
-                </div>
-            </div>
-        </a>
-
-    </div>
-
-    <div class="mx-2">
-
-        <a href="">
-            <div class="home-card home-card-size2">
-                <div class="home-card-details">
-                    <p class="home-text-body copperplate">Here are the details of the card</p>
-                </div>
-            </div>
-        </a>
-
-    </div>
-
+<div class="section-superman">
+    <img src="/images/superman.png" alt="superman" class="img-superman">
 </div>
+
+
+
+
 
 
 {% endblock %}

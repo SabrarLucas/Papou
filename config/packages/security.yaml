@@ -39,7 +39,7 @@ security:
     access_control:
         - { path: ^/admin, roles: ROLE_SUPER_ADMIN }
         - { path: ^/admin, roles: ROLE_ADMIN }
-        - { path: ^/partner, roles: ROLE_PARTENER }
+        - { path: ^/partner, roles: ROLE_PARTNER }
         - { path: ^/profile, roles: ROLE_USER }
 
     role_hierarchy:

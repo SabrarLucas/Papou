@@ -76,6 +76,48 @@ class AppFixtures extends Fixture
 
         $manager->persist($partenaire);
 
+
+        $supplier = new Supplier();
+        $supplier->setCompanyName($this->faker->name())
+            ->setType(mt_rand(0, 1) == 1? 'association' : 'boutique')
+            ->setIdUser($partenaire);
+            
+        $manager->persist($supplier);
+
+        for($i = 0; $i < 10; $i++){
+            $product = new Product();
+            $product->setName($this->faker->word())
+                ->setDescription($this->faker->text(100))
+                ->setPrice($this->faker->randomFloat(2,0,100));
+            $random = mt_rand(0,4);
+            if ($random == 0) {
+                $product->setAge('0-1');
+            }
+            elseif ($random == 1) {
+                $product->setAge('2-4');
+            }
+            elseif ($random == 2) {
+                $product->setAge('5-7');
+            }
+            elseif ($random == 3) {
+                $product->setAge('8-9');
+            }
+            else {
+                $product->setAge('10+');
+            }
+            $product->setPromotion(mt_rand(0, 3) == 3 ? 50 : null)
+                ->setStock($this->faker->randomNumber())
+                ->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
+                ->setCreatedAt(new \DateTimeImmutable());
+            $category = $this->getReference('cat-'.rand(1,5));
+            $product->setIdCategory($category);
+            $product->setIdSupplier($supplier);
+
+            $products[] = $product;
+
+            $manager->persist($product);
+        } 
+
         for($i = 0; $i < 50; $i++){
             $user = new User();
             $user->setFirstname($this->faker->firstName())

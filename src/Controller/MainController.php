@@ -57,7 +57,7 @@ class MainController extends AbstractController
         ]);
     }
     
-    #[Route('/product/{id}', name: 'product')]
+    #[Route('/products/{id}', name: 'product')]
     public function product(ProductRepository $productRepository, CategoryRepository $categoryRepository, Category $category): Response
     {
         $categories = $categoryRepository->findBy(['category' => $category->getId()]);
@@ -69,6 +69,8 @@ class MainController extends AbstractController
                 $products[] = $product[$j];
             }
         }
+
+        // dd($products);
 
         arsort($products);
 

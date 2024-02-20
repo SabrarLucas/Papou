@@ -1,45 +1,38 @@
-<div>
+<section class="slider">
 
-	<section class="slider">
-		
+	<ul id="autoWidth" class="cs-hidden">
 
-		<ul id="autoWidth" class="cs-hidden">
+		{% for product in products %}
+	
+		<li class="item-{{product.id}}">
+			<div class="box"><!--img-box-->
 
-			{% for product in products %}
-		
-			<li class="item-{{product.id}}">
-				<div class="box"><!--img-box-->
+				<div class="slide-img">
 
-
-					<div class="slide-img">
-
-						<img alt="{{product.name}}" src="{{product.pictures[0].picName}}">
-						
-						<div class="overlay"><!--overlayer-->
-							<a href="{{ path('detail', {'id': product.id}) }}" class="buy-btn">ACHETER</a><!--buy-btn-->
-						</div>
-
+					<img alt="{{product.name}}" src="{{product.pictures[0].picName}}">
+					
+					<div class="overlay"><!--overlayer-->
+						<a href="{{ path('detail', {'id': product.id}) }}" class="buy-btn">ACHETER</a><!--buy-btn-->
 					</div>
 
-					<div class="detail-box"><!--detail-box-->
+				</div>
 
-						<div class="type"><!--type-->
-							<a href="#">{{product.name}}</a>
-							{# <span>{{ product.description }}</span> #}
-						</div>
+				<div class="detail-box"><!--detail-box-->
 
-						<a href="#" class="price">€{{product.price}}</a><!--price-->
-
+					<div class="type"><!--type-->
+						<a href="#">{{product.name}}</a>
+						{# <span>{{ product.description }}</span> #}
 					</div>
 
+					<a href="#" class="price">€{{product.price}}</a><!--price-->
 
-				</div>		
-			</li>
-			{% endfor %}
+				</div>
 
-		</ul>
-	</nav>
-	</section>
+			</div>		
+		</li>
+		{% endfor %}
 
-</div>
+	</ul>
+
+</section>
 	

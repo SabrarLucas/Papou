@@ -1,13 +1,12 @@
 @import "fonts.css";
 @import "/css/component/navbar.css";
 @import "/css/component/footer.css";
-@import "css/component/home_carousel1.css";
-@import "css/component/lightslider.css";
 @import "/css/pages/home.css";
 @import "/css/pages/detail.css";
 @import "/css/pages/login.css";
 @import "/css/pages/register.css";
 @import "/css/pages/cart.css";
+@import "/css/component/age_carousel/age_carousel.css";
 
   
 /* Supression des marges en bordures du site */
@@ -19,6 +18,11 @@ body {
     font-family: "Georgia";
 }
 
-.flex {
+.pdf-page{
+    width: 100vw;
+    height: 100vh;
     display: flex;
+    justify-content: center;
+    align-items: center;
 }
+

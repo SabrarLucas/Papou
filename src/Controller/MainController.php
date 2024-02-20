@@ -40,6 +40,12 @@ class MainController extends AbstractController
         ]);
     }
 
+    #[Route('/mentionslegales', name: 'mentionsLegales')]
+    public function mentionsLegales(): Response
+    {
+        return $this->render('main/mentionsLegales.html.twig');
+    }
+
     #[Route('/product', name: 'productAll')]
     public function productAll(ProductRepository $productRepository): Response
     {

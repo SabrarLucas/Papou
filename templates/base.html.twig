@@ -17,14 +17,16 @@
             <link rel="shortcut icon" href="images/logovert.png">
             <link rel="stylesheet" href="css/component/home_carousel1/home_carousel1.css">
             <link rel="stylesheet" href="css/component/home_carousel1/lightslider.css">
+            <link rel="stylesheet" href="css/component/age_carousel/swiper-bundle.min.css" />
         {% endblock %}
 
         
         {% block javascripts %}
-            {{ encore_entry_script_tags('app') }}
-            <script src="https://kit.fontawesome.com/a867087266.js" crossorigin="anonymous"></script>
+        {{ encore_entry_script_tags('app') }}
+        <script src="https://kit.fontawesome.com/a867087266.js" crossorigin="anonymous"></script>
         <script type="text/javascript" src="js/home_carousel1/jquery.js"></script>
         <script type="text/javascript" src="js/home_carousel1/lightslider.js"></script>
+
         {% endblock %}
     </head>
 
@@ -44,7 +46,11 @@
             {% include "partials/footer.html.twig" %}
         {% endblock %}
 
+
+        {# liens des js pour les carrousels #}
         <script type="text/javascript" src="js/home_carousel1/home_carousel1.js"></script>
+        <script type="text/javascript" src="js/age_carousel/swiper-bundle.min.js"></script>
+        <script type="text/javascript" src="js/age_carousel/swiper.js"></script>
     </body>
     
 

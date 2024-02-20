@@ -1,0 +1,48 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Les Chiffres d'Affaires{% endblock %}
+
+{% block body %}
+<main class="container">
+    <h1>Consultation Chiffres d'Affaires</h1>
+    {% include "partials/_adminnav.html.twig" %}
+
+    {# Les chiffres d'affaires du site #}
+    <div>
+        <br>
+        <h2>vente du jour</h2>
+        <ul>
+            <li>CA = {{ saleDay.ca|number_format(2, '.', ',') }}</li>
+            <li>CA reel = {{ saleDay.caReel|number_format(2, '.', ',') }}</li>
+            <li>nbr commandes = {{ saleDay.nbr }}</li>
+            <li>panier moyen = {{ saleDay.cart|number_format(2, '.', ',') }}</li>
+        </ul>
+        <br>
+        <h2>vente de la semaine</h2>
+        <ul>
+            <li>CA = {{ saleWeek.ca|number_format(2, '.', ',') }}</li>
+            <li>CA reel = {{ saleWeek.caReel|number_format(2, '.', ',') }}</li>
+            <li>nbr commandes = {{ saleWeek.nbr }}</li>
+            <li>panier moyen = {{ saleWeek.cart|number_format(2, '.', ',') }}</li>
+        </ul>
+        <br>
+        <h2>vente du mois</h2>
+        <ul>
+            <li>CA = {{ saleMonth.ca|number_format(2, '.', ',') }}</li>
+            <li>CA reel = {{ saleMonth.caReel|number_format(2, '.', ',') }}</li>
+            <li>nbr commandes = {{ saleMonth.nbr}}</li>
+            <li>panier moyen = {{ saleMonth.cart|number_format(2, '.', ',') }}</li>
+        </ul>
+    </div>
+
+    {# Les chiffres d'affaires de Papou #}
+    <div>
+    </div>
+    
+    {# Les chiffres par partenaires #}
+    {# voir pour comment bien le faire #}
+    <div>
+
+    </div>
+</main>
+{% endblock %}

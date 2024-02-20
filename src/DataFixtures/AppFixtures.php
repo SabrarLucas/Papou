@@ -67,7 +67,7 @@ class AppFixtures extends Fixture
             ->setFirstname('Vincent')
             ->setEmail('fearne.vincent@mail.fr')
             ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-            ->setRoles(['ROLE_PARTENERE'])
+            ->setRoles(['ROLE_PARTNERE'])
             ->setAddress($this->faker->streetAddress())
             ->setCity($this->faker->city())
             ->setZipcode($this->faker->postcode())

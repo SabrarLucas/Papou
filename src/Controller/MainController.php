@@ -34,7 +34,7 @@ class MainController extends AbstractController
         }
         
         return $this->render('main/home.html.twig', [
-            // 'categories' => $categories, // envoie des categories
+            'categories' => $categories, // envoie des categories
             'products1' => $product,
             'products' => $products
         ]);

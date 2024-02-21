@@ -21,7 +21,7 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function findProductByWord(string $query)
+    public function findProductByWord(string $query) // recupere les produit d'un mot ou un phrase donnee
     {
         $qb = $this->createQueryBuilder('p');
         $qb
@@ -40,7 +40,7 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
 
-   public function findCategoryDesc(string $value): array
+   public function findCategoryDesc(string $value): array // recupere les produit par ordre decroissant d'une categorie donnee
    {
        return $this->createQueryBuilder('p')
            ->andWhere('p.id_category = :val')
@@ -51,7 +51,7 @@ class ProductRepository extends ServiceEntityRepository
        ;
    }
 
-   public function findAgeDesc(string $value): array
+   public function findAgeDesc(string $value): array // recupere les produit par ordre decroissant d'une tranche age donnee
    {
        return $this->createQueryBuilder('p')
            ->andWhere('p.age = :val')
@@ -62,7 +62,7 @@ class ProductRepository extends ServiceEntityRepository
        ;
    }
 
-   public function findSupplierDesc(string $value): array
+   public function findSupplierDesc(string $value): array // recupere les produit par ordre decroissant d'un partenaire donnee
    {
        return $this->createQueryBuilder('p')
            ->andWhere('p.id_supplier = :val')
@@ -73,10 +73,21 @@ class ProductRepository extends ServiceEntityRepository
        ;
    }
 
-   public function findAllDesc(): array
+   public function findAllDesc(): array // recupere les produit par ordre decroissant
    {
        return $this->createQueryBuilder('p')
            ->orderBy('p.id', 'DESC')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
+   public function find20Max(): array // recupere les produit par ordre decroissant a moins de 20 euro (20max)
+   {
+       return $this->createQueryBuilder('p')
+            ->where('p.price <= 20')
+           ->orderBy('p.id', 'DESC')
+           ->setMaxResults(20)
            ->getQuery()
            ->getResult()
        ;

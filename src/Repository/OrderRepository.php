@@ -21,7 +21,7 @@ class OrderRepository extends ServiceEntityRepository
         parent::__construct($registry, Order::class);
     }
 
-    public function findByDesc($value): array
+    public function findByDesc($value): array // recupere les commande par ordre decroissant d'un utilisateur donnee
     {
         return $this->createQueryBuilder('o')
             ->andWhere('o.id_user = :val')

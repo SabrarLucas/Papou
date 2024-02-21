@@ -24,7 +24,7 @@ class MainController extends AbstractController
             });
         }
 
-        $product = $productRepository->findAll();
+        $product = $productRepository->findAll(); // recuperation des produits
 
         
         for($i = 0; $i < count($product); $i++){
@@ -33,7 +33,7 @@ class MainController extends AbstractController
             });
         }
 
-        $product20 = $productRepository->find20Max();
+        $product20 = $productRepository->find20Max(); // recuperation des produit a moins de 20 euro
 
         
         return $this->render('main/home.html.twig', [

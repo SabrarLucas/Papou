@@ -24,7 +24,7 @@ class MainController extends AbstractController
             });
         }
 
-        $product = $productRepository->findAll();
+        $product = $productRepository->findAll(); // recuperation des produits
 
         
         for($i = 0; $i < count($product); $i++){
@@ -32,11 +32,15 @@ class MainController extends AbstractController
                 return $value->getPromotion() !== null;
             });
         }
+
+        $product20 = $productRepository->find20Max(); // recuperation des produit a moins de 20 euro
+
         
         return $this->render('main/home.html.twig', [
             'categories' => $categories, // envoie des categories
             'products1' => $product,
-            'products' => $products
+            'products' => $products,
+            'product20' => $product20
         ]);
     }
 
@@ -60,31 +64,37 @@ class MainController extends AbstractController
     #[Route('/products/{id}', name: 'product')]
     public function product(ProductRepository $productRepository, CategoryRepository $categoryRepository, Category $category): Response
     {
-        $categories = $categoryRepository->findBy(['category' => $category->getId()]);
-
-        for ($i=0; $i < count($categories) ; $i++) { 
-            $product = $productRepository->findCategoryDesc($categories[$i]->getId()); // recuperation des produits associés a sa categorie
-
-            for ($j=0; $j < count($product) ; $j++) { 
-                $products[] = $product[$j];
+        if ($category->getCategory() == null) {
+            $categories = $categoryRepository->findBy(['category' => $category->getId()]);  // recuperation des categorie associés a sa categorie parente
+    
+            for ($i=0; $i < count($categories) ; $i++) { 
+                $product = $productRepository->findCategoryDesc($categories[$i]->getId()); // recuperation des produits associés a sa categorie
+    
+                for ($j=0; $j < count($product) ; $j++) { 
+                    $products[] = $product[$j]; //ajout de tout les produit dans un tableau
+                }
+            }
+    
+            if (count($products) != 0) {
+                arsort($products); // trie du tableau
             }
         }
-
-        // dd($products);
-
-        arsort($products);
+        else{
+            $products = $productRepository->findCategoryDesc($category->getId()); // recuperation des produits associés a sa categorie
+        }
 
         return $this->render('main/product.html.twig', [
             'products' => $products,
+            'category' => $category
         ]);
     }
 
     #[Route('/product/{age}', name: 'productAge')]
     public function productAge(ProductRepository $productRepository, string $age): Response
     {
-        $products = $productRepository->findAgeDesc($age);
+        $products = $productRepository->findAgeDesc($age); // recuperation des produits en fonction de age
 
-        return $this->render('main/product.html.twig', [
+        return $this->render('main/productAge.html.twig', [
             'products' => $products,
         ]);
     }

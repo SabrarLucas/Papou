@@ -3,6 +3,8 @@
 {% block title %}partner-Product-Add{% endblock %}
 
 {% block body %}
+
+<div>
     <h1>Ajouter votre produit</h1>
     {{ form_start(form) }}
         {{ form_row(form.name) }}
@@ -23,4 +25,6 @@
         <button type="submit">submit<button>
         <a href="{{ path('app_partner', {'id': supplier.id}) }}">retour</a>
     {{ form_end(form) }}
+</div>
+    
 {% endblock %}

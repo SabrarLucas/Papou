@@ -79,9 +79,9 @@ class PartnerController extends AbstractController
             }
 
             return $this->render('partner/product.html.twig', [
-                'products' => $products, //envoie de la liste des produit du partenaire a la vue
+                'products' => $products, //envoie de la liste des produits du partenaire a la vue
                 'nbrProduct' => $nbrProduct, // envoie le nombre de produit a la vue
-                'valueProduct' => $valueProduct, // envoie la valeur de tout les produit a la vue
+                'valueProduct' => $valueProduct, // envoie la valeur de tout les produits a la vue
                 'supplier' => $supplier
             ]);
         }

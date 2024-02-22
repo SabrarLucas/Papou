@@ -76,8 +76,6 @@
     margin: 10px 0 0;
     padding: 0;
     text-align: center;
-	display: none;
-	
 }
 .lSSlideOuter .lSPager.lSpg > li {
     cursor: pointer;
@@ -85,7 +83,7 @@
     padding: 0 5px;
 }
 .lSSlideOuter .lSPager.lSpg > li a {
-    background-color: #222222;
+    background-color: #f19a76; /* couleur des puces du carrousel */
     border-radius: 30px;
     display: inline-block;
     height: 8px;

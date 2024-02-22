@@ -16,6 +16,7 @@
             <link href="{{ asset('css/index.css') }}" rel="stylesheet"/>
             <link rel="shortcut icon" href="images/logovert.png">
             <link rel="stylesheet" href="css/component/home_carousel1/home_carousel1.css">
+            <link rel="stylesheet" href="css/component/home_carousel2/home_carousel2.css">
             <link rel="stylesheet" href="css/component/home_carousel1/lightslider.css">
             <link rel="stylesheet" href="css/component/age_carousel/swiper-bundle.min.css" />
         {% endblock %}
@@ -40,11 +41,13 @@
         {% block body %}
         {% endblock %}
        
-
-
-        {% block footer %}
+        <footer>
+            {% block footer %}
             {% include "partials/footer.html.twig" %}
-        {% endblock %}
+            {% endblock %}
+        </footer>
+
+
 
 
         {# liens des js pour les carrousels #}

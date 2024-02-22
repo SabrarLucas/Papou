@@ -8,8 +8,7 @@
 .section-container {
   display: flex; /* positionnement en ligne du contenu d'une section */
   justify-content: center; /* centrage horizontal du contenu d'une section */
-  align-items: center;
-  text-align: center;
+  align-items: center; /* centrage vertical du contenu d'une section */
 }
 
 /* taille des sections */
@@ -52,8 +51,8 @@
 }
 
 .navbar-logo {
-  width: 25%;
-  height: auto;
+  width: 25%; /* largeur du logo */
+  height: auto; /* hauteur du logo */
   cursor: pointer; /* changement de forme du curseur */
   transition: .3s ease; /* vitesse d'animation */
   display: block;

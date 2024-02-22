@@ -17,6 +17,11 @@
     transform: scale(1.2); /* grossissement des boutons au survol de la souris */
 }
 
+.products-carousel {
+    margin-top: 50px;
+    margin-bottom: 40px;
+}
+
 .home-card-centered {
     align-content: center;
     justify-content: center;
@@ -59,27 +64,65 @@ color: rgb(255, 255, 255);
     font-size: 25px;
 }
 
-.bandeau {
+.section-bandeau {
     display: flex;
     justify-content: center;
     align-items: center;
     width: 100vw;
-    height: 500px;
-    background-color: #f5f3ce;
     margin-top: 40px;
     margin-bottom: 20px;
 }
 
+.bandeau {
+    width: 100vw;
+    height: auto;
+}
+
 .section-superman {
     width: 100vw;
-    height: 50vh;
-    background-color: #f19a76;
     display: flex;
     justify-content: center;
     align-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
 }
 
 .img-superman {
-    width: 70vw;
+    width: 50vw;
     height: auto;
 }
+
+.section-partenaire {
+    width: 100vw;
+    height: 60vh;
+    background-color: #f5f3ce;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: 1fr;
+    gap: 0px 0px;
+    grid-auto-flow: row;
+    margin-top: 40px;
+    margin-bottom: 40px;
+  }
+  
+  .section-papou {
+    width: 40vw;
+    height: 60vh;
+    background-color: aqua;
+    justify-self: end;
+    align-self: center;
+    grid-area: 1 / 1 / 2 / 2;
+    z-index: 1;
+  }
+  
+  .section-partner {
+    width: 20vw;
+    height: 30vh;
+    background-color: chartreuse;
+    justify-self: center; 
+    align-self: end; 
+    grid-area: 1 / 2 / 2 / 3; 
+  }
+
+
+  

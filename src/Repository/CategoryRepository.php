@@ -21,20 +21,21 @@ class CategoryRepository extends ServiceEntityRepository
         parent::__construct($registry, Category::class);
     }
 
-//    /**
-//     * @return Category[] Returns an array of Category objects
-//     */
-//    public function findByExampleField($value): array
-//    {
-//        return $this->createQueryBuilder('c')
-//            ->andWhere('c.exampleField = :val')
-//            ->setParameter('val', $value)
-//            ->orderBy('c.id', 'ASC')
-//            ->setMaxResults(10)
-//            ->getQuery()
-//            ->getResult()
-//        ;
-//    }
+   /**
+    * @return Category[] Returns an array of Category objects
+    */
+   public function findParentCategory(): array
+   {
+       return $this->createQueryBuilder('c')
+            ->select('m.name, m.id, m.photo, m.description')
+            ->join('c.category', 'm')
+            ->groupBy('m.name')
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
+// SELECT m.* FROM `category` m JOIN category f ON m.id = f.category_id GROUP BY m.name; 
 
 //    public function findOneBySomeField($value): ?Category
 //    {

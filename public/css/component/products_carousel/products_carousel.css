@@ -5,6 +5,7 @@
     margin-right: 0px;
     margin-left: auto;
     position: relative;
+    overflow: hidden;
 }
 
 #products-carousel-container {

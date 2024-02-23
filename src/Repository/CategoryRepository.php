@@ -35,8 +35,6 @@ class CategoryRepository extends ServiceEntityRepository
        ;
    }
 
-// SELECT m.* FROM `category` m JOIN category f ON m.id = f.category_id GROUP BY m.name; 
-
 //    public function findOneBySomeField($value): ?Category
 //    {
 //        return $this->createQueryBuilder('c')

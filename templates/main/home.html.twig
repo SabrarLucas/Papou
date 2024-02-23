@@ -11,23 +11,28 @@
 
 </div>
 
+<div class="products-carousel">
+    {% include "partials/home_carousel2.html.twig" %}
+</div>
+
+
 <div class="flex home-card-centered home-div-size1">
 
     <div class="mx-2">
         <a href="">
-                <img src="{{ asset("images/accueil1.png") }}" class="home-card">
+                <img src="{{ asset("images/accueil/accueil1.png") }}" class="home-card">
         </a>
     </div>
 
     <div class="mx-2">
         <a href="">
-                <img src="{{ asset("images/accueil2.png") }}" class="home-card">
+                <img src="{{ asset("images/accueil/accueil2.png") }}" class="home-card">
         </a>
     </div>
 
     <div class="mx-2">
         <a href="">
-                <img src="{{ asset("images/accueil3.png") }}" class="home-card">
+                <img src="{{ asset("images/accueil/accueil3.png") }}" class="home-card">
         </a>
     </div>
 
@@ -39,8 +44,10 @@
 
 
 
-<div class="bandeau">
-    content coming soon...
+<div class="section-bandeau">
+    <a href="">
+        <img src="/images/accueil/bandeau-partager.png" alt="partager" class="bandeau">
+    </a>
 </div>
 
 
@@ -49,16 +56,19 @@
     <h1>Le coin des bonnes affaires :</h1>
 </div>
 
-{% include "partials/home_carousel1.html.twig" %}
+<div class="products-carousel">
+    {% include "partials/home_carousel1.html.twig" %}
+</div>
 
-
-<div class="section-superman">
-    <img src="/images/superman.png" alt="superman" class="img-superman">
+<div class="section-partenaire">
+    <div class="section-papou"></div>
+    <div class="section-partner"></div>
 </div>
 
 
-
-
+<div class="section-superman">
+    <img src="/images/accueil/superman.png" alt="superman" class="img-superman">
+</div>
 
 
 {% endblock %}

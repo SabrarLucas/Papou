@@ -94,7 +94,7 @@ class MainController extends AbstractController
         if ($this->getUser()) { // verifier si utilisateur est connecté
             $favorites = $this->getUser()->getFavorites(); // recuperation des coups de coeur de l'utilisateur 
             return $this->render('main/favorite.html.twig', [
-                'favorites' => $favorites, // envoie des coups de coeur
+                'favorites' => $favorites // envoie des coups de coeur
             ]);
         }
         return $this->redirectToRoute('main');

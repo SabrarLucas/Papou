@@ -8,8 +8,7 @@
 .section-container {
   display: flex; /* positionnement en ligne du contenu d'une section */
   justify-content: center; /* centrage horizontal du contenu d'une section */
-  align-items: center;
-  text-align: center;
+  align-items: center; /* centrage vertical du contenu d'une section */
 }
 
 /* taille des sections */
@@ -28,7 +27,7 @@
   width: 100%;
   padding: 10px;
   border: none; /* supression de la bordure de la barre de recherche */
-  color: #0ac0ba; /* couleur d'écriture */
+  color: #000000; /* couleur d'écriture */
   font-size: 20px;
 }
 
@@ -37,7 +36,7 @@
 }
 
 .search button[type="submit"] {
-  background-color: #0ac0ba;
+  background-color: #f19a76;
   border: none;
   color: #fff;
   cursor: pointer;
@@ -52,8 +51,8 @@
 }
 
 .navbar-logo {
-  width: 25%;
-  height: auto;
+  width: 25%; /* largeur du logo */
+  height: auto; /* hauteur du logo */
   cursor: pointer; /* changement de forme du curseur */
   transition: .3s ease; /* vitesse d'animation */
   display: block;
@@ -65,7 +64,7 @@
 }
 
 .navbar-menu {
-  color: #0ac0ba;
+  color: #f19a76;
   font-size: 40px;
   transition: .5s ease;
   margin-left: 40px;

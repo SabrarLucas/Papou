@@ -1,5 +1,6 @@
 .category-container {
     margin-top: 50px;
+    margin-bottom: 30px;
     display: flex;
     justify-content: space-evenly;
     border-top: 1px solid #f19a76;
@@ -18,7 +19,6 @@
 }
 
 .products-carousel {
-    margin-top: 50px;
     margin-bottom: 40px;
 }
 
@@ -53,8 +53,8 @@ color: rgb(255, 255, 255);
 .home-promo {
     display: flex;
     justify-content: center;
-    margin-top: 40px;
     font-size: 25px;
+    margin-bottom: 30px;
 }
 
 .home-age-title {
@@ -70,7 +70,7 @@ color: rgb(255, 255, 255);
     align-items: center;
     width: 100vw;
     margin-top: 40px;
-    margin-bottom: 20px;
+    margin-bottom: 70px;
 }
 
 .bandeau {

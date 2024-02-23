@@ -1,0 +1,10 @@
+.product-card {
+    display: flex;
+    justify-content: center;
+}
+
+.dev1, .dev2 {
+    width: 100vw;
+    height: 100px;
+    background-color: rgb(206, 206, 206);
+}

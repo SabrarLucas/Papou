@@ -47,3 +47,7 @@
 .formulaire form input {
     border: 1px solid #00988e;
 }
+
+#registration_form_agreeTerms {
+    width: 20px;
+}

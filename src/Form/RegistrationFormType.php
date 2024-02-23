@@ -125,10 +125,6 @@ class RegistrationFormType extends AbstractType
                     ]),
                 ],
             ])
-            // ->add('password', ,[ //avec RepeatedType les deux option doit etre identique
-                
-            //      // Message si les mdp 1 et 2 ne sont pas identiques
-            // ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
                 'first_options' => [

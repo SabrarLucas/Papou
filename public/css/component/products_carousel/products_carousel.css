@@ -1,6 +1,6 @@
 #products-carousel {
-    width: 80vw;
-    height: 80vw;
+    width: 15vw;
+    height: 15vw;
     border: 4px solid #f19a76;
     margin-right: 0px;
     margin-left: auto;
@@ -8,13 +8,13 @@
 }
 
 #products-carousel-container {
-    width: 80vw;
-    height: 80vw;
+    width: 15vw;
+    height: 15vw;
 }
 
 .products-carousel-img {
-    width: 80vw;
-    height: 80vw;
+    width: 15vw;
+    height: 15vw;
     margin: 0;
     display: inline-block;
     background-size: cover;
@@ -22,9 +22,9 @@
 
 .btn-swipe {
     position: absolute;
-    width: 70px;
+    width: 35px;
     cursor: pointer;
-    top: 60vh;
+    top: 5vh;
     transition: .3s ease;
 }
 

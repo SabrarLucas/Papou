@@ -31,9 +31,6 @@ class Product
     #[ORM\Column]
     private ?int $stock = null;
 
-    #[ORM\Column(nullable: true)]
-    private ?int $promotion = null;
-
     #[ORM\Column(length: 20)]
     private ?string $state = null;
 
@@ -134,18 +131,6 @@ class Product
     public function setStock(int $stock): static
     {
         $this->stock = $stock;
-
-        return $this;
-    }
-
-    public function getPromotion(): ?int
-    {
-        return $this->promotion;
-    }
-
-    public function setPromotion(?int $promotion): static
-    {
-        $this->promotion = $promotion;
 
         return $this;
     }

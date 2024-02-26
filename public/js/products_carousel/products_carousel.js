@@ -1,14 +1,33 @@
-window.onload=function(){
-    nbr=4;  // nombre d'images dans le carrousel
-    p=0;    // position initiale
-    container=document.getElementById("products-carousel-container");    // récupération du container contenant les images
-    g=document.getElementById("btn-swipe-left");    // récupération du bouton de défilement gauche
-    d=document.getElementById("btn-swipe-right");    // récupération du bouton de défilement droite
-    container.style.width=(80*nbr)+"vw"; // largeur du carrousel
-    for( i=1 ; i < 5 ; i++){ // boucle itérative pour le défilement des images
-        div=document.createElement("div");  // création d'une div (html dynamique)
-        div.className="products-carousel-img"; // class de la div qui est crée
-        div.style.backgroundImage = "url('/images/image" + i + ".png')";// background de la div qui est crée
-        container.appendChild(div); // ajout de la div crée dans le conteneur 'products-carousel-container'
-    }
-}
+
+        document.addEventListener("DOMContentLoaded", function() {
+            var nbr = 4;
+            var p = 0;
+            var container = document.getElementById("products-carousel-container");
+            var g = document.getElementById("btn-swipe-left");
+            var d = document.getElementById("btn-swipe-right");
+            container.style.width = (80 * nbr) + "vw";
+
+            for (var i = 1; i <= nbr; i++) {
+                var div = document.createElement("div");
+                div.className = "products-carousel-img";
+                div.style.backgroundImage = "url('../images/image" + i + ".png')"; // Correction ici : ajout de "url()"
+                container.appendChild(div);
+            }
+
+            // Ajout des fonctionnalités pour les boutons de défilement
+            g.addEventListener("click", function() {
+                if (p > 0) {
+                    p--;
+                    container.style.transform = "translateX(-" + (80 * p) + "vw)";
+                    container.style.transition = "all 0.5s ease"
+                }
+            });
+
+            d.addEventListener("click", function() {
+                if (p < nbr - 1) {
+                    p++;
+                    container.style.transform = "translateX(-" + (80 * p) + "vw)";
+                    container.style.transition = "all 0.5s ease"
+                }
+            });
+        });

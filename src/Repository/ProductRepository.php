@@ -39,48 +39,61 @@ class ProductRepository extends ServiceEntityRepository
             ->getQuery()
             ->getResult();
     }
-
-   public function findCategoryDesc(string $value): array // recupere les produit par ordre decroissant d'une categorie donnee
-   {
-       return $this->createQueryBuilder('p')
-           ->andWhere('p.id_category = :val')
-           ->setParameter('val', $value)
-           ->orderBy('p.id', 'DESC')
-           ->getQuery()
-           ->getResult()
-       ;
-   }
-
-   public function findAgeDesc(string $value): array // recupere les produit par ordre decroissant d'une tranche age donnee
-   {
-       return $this->createQueryBuilder('p')
-           ->andWhere('p.age = :val')
-           ->setParameter('val', $value)
-           ->orderBy('p.id', 'DESC')
-           ->getQuery()
-           ->getResult()
-       ;
-   }
-
-   public function findSupplierDesc(string $value): array // recupere les produit par ordre decroissant d'un partenaire donnee
-   {
-       return $this->createQueryBuilder('p')
-           ->andWhere('p.id_supplier = :val')
-           ->setParameter('val', $value)
-           ->orderBy('p.id', 'DESC')
-           ->getQuery()
-           ->getResult()
-       ;
-   }
-
-   public function findAllDesc(): array // recupere les produit par ordre decroissant
-   {
-       return $this->createQueryBuilder('p')
-           ->orderBy('p.id', 'DESC')
-           ->getQuery()
-           ->getResult()
-       ;
-   }
+    
+    public function findCategoryDesc(string $value): array // recupere les produit par ordre decroissant d'une categorie donnee
+    {
+        return $this->createQueryBuilder('p')
+        ->andWhere('p.id_category = :val')
+        ->setParameter('val', $value)
+        ->orderBy('p.id', 'DESC')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+    
+    public function findAgeDesc(string $value): array // recupere les produit par ordre decroissant d'une tranche age donnee
+    {
+        return $this->createQueryBuilder('p')
+        ->andWhere('p.age = :val')
+        ->setParameter('val', $value)
+        ->orderBy('p.id', 'DESC')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+    
+    public function findSupplierDesc(string $value): array // recupere les produit par ordre decroissant d'un partenaire donnee
+    {
+        return $this->createQueryBuilder('p')
+        ->andWhere('p.id_supplier = :val')
+        ->setParameter('val', $value)
+        ->orderBy('p.id', 'DESC')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+    
+    public function findAllDesc(): array // recupere les produit par ordre decroissant
+    {
+        return $this->createQueryBuilder('p')
+        ->orderBy('p.id', 'DESC')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
+    
+    public function findAllCategoryDesc(string $value): array // recupere les produit par ordre decroissant
+    {
+        return $this->createQueryBuilder('p')
+        ->join('p.id_category', 'f')
+        ->join('f.category', 'm')
+        ->where('m.id = :val')
+        ->setParameter('val', $value)
+        ->orderBy('p.id', 'DESC')
+        ->getQuery()
+        ->getResult()
+        ;
+    }
 
    public function find20Max(): array // recupere les produit par ordre decroissant a moins de 20 euro (20max)
    {

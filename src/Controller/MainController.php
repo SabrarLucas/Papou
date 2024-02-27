@@ -15,32 +15,16 @@ class MainController extends AbstractController
     #[Route('/', name: 'main')]
     public function index(CategoryRepository $categoryRepository, ProductRepository $productRepository): Response
     {
-
-        $category = $categoryRepository->findAll(); // recuperation des categories
-
-        for($i = 0; $i < count($category); $i++){
-            $categories = array_filter($category, function($value) { // filtre les produits du panier dans le tableau
-                return $value->getCategory() == null;
-            });
-        }
+        $categories = $categoryRepository->findParentCategory(); // recuperation des categories
 
         $product = $productRepository->findAll(); // recuperation des produits
 
-        
-        for($i = 0; $i < count($product); $i++){
-            $products = array_filter($product, function($value) { // filtre les produits du panier dans le tableau
-                return $value->getPromotion() !== null;
-            });
-        }
-
         $product20 = $productRepository->find20Max(); // recuperation des produit a moins de 20 euro
-
         
         return $this->render('main/home.html.twig', [
             'categories' => $categories, // envoie des categories
-            'products1' => $product,
-            'products' => $products,
-            'product20' => $product20
+            'product' => $product,
+            'products' => $product20
         ]);
     }
 
@@ -62,22 +46,12 @@ class MainController extends AbstractController
     }
     
     #[Route('/products/{id}', name: 'product')]
-    public function product(ProductRepository $productRepository, CategoryRepository $categoryRepository, Category $category): Response
+    public function product(ProductRepository $productRepository, Category $category): Response
     {
         if ($category->getCategory() == null) {
-            $categories = $categoryRepository->findBy(['category' => $category->getId()]);  // recuperation des categorie associés a sa categorie parente
-    
-            for ($i=0; $i < count($categories) ; $i++) { 
-                $product = $productRepository->findCategoryDesc($categories[$i]->getId()); // recuperation des produits associés a sa categorie
-    
-                for ($j=0; $j < count($product) ; $j++) { 
-                    $products[] = $product[$j]; //ajout de tout les produit dans un tableau
-                }
-            }
-    
-            if (count($products) != 0) {
-                arsort($products); // trie du tableau
-            }
+
+            $products = $productRepository->findAllCategoryDesc($category->getId());
+            
         }
         else{
             $products = $productRepository->findCategoryDesc($category->getId()); // recuperation des produits associés a sa categorie
@@ -120,7 +94,7 @@ class MainController extends AbstractController
         if ($this->getUser()) { // verifier si utilisateur est connecté
             $favorites = $this->getUser()->getFavorites(); // recuperation des coups de coeur de l'utilisateur 
             return $this->render('main/favorite.html.twig', [
-                'favorites' => $favorites, // envoie des coups de coeur
+                'favorites' => $favorites // envoie des coups de coeur
             ]);
         }
         return $this->redirectToRoute('main');

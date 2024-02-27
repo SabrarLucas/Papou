@@ -44,7 +44,7 @@ security:
 
     role_hierarchy:
         ROLE_PARTENAIRE: ROLE_USER
-        ROLE_ADMIN: ROLE_PARTENAIRE
+        ROLE_ADMIN: ROLE_PARTNER
         ROLE_SUPER_ADMIN: ROLE_ADMIN
 
 when@test:

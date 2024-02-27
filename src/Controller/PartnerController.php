@@ -20,6 +20,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
+#[Route('/partner', name: 'partner_')]
 class PartnerController extends AbstractController
 {
     private $passwordHasher;
@@ -31,7 +32,7 @@ class PartnerController extends AbstractController
         $this->mailService = $mailService;
     }
 
-    #[Route('/partner/new-password', name: 'app_partner_new_password')]
+    #[Route('/new-password', name: 'new_password')]
     public function newPassword(Request $request, UserRepository $userRepository, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(ResetPasswordType::class); // creation du formulaire
@@ -46,7 +47,7 @@ class PartnerController extends AbstractController
             $manager->persist($user);
             $manager->flush(); // envoie sur la base de donnee
 
-            return $this->redirectToRoute('app_partner', ['id' => $this->getUser()->getId()]); // envoie sur le tableau de bord
+            return $this->redirectToRoute('partner_index', ['id' => $this->getUser()->getId()]); // envoie sur le tableau de bord
         }
 
         return $this->render('partner/newPassword.html.twig', [
@@ -54,7 +55,7 @@ class PartnerController extends AbstractController
         ]);
     }
 
-    #[Route('/partner/{id}', name: 'app_partner')]
+    #[Route('/{id}', name: 'index')]
     public function index(Supplier $supplier): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
@@ -62,10 +63,10 @@ class PartnerController extends AbstractController
                 'id' => $supplier->getId(), // envoie de l'id du partenaire a la vue
             ]);
         }
-        return $this->redirectToRoute('app_partner', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
     }
 
-    #[Route('/partner/{id}/product', name: 'app_partner_product')]
+    #[Route('/{id}/product', name: 'product')]
     public function product(ProductRepository $productRepository, Supplier $supplier): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
@@ -85,10 +86,10 @@ class PartnerController extends AbstractController
                 'supplier' => $supplier
             ]);
         }
-        return $this->redirectToRoute('app_partner', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
     }
 
-    #[Route('/partner/{id}/product/add', name: 'app_partner_product_add')]
+    #[Route('/{id}/product/add', name: 'product_add')]
     public function addProduct(Request $request, EntityManagerInterface $manager, Supplier $supplier, PictureService $pictureService): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
@@ -123,7 +124,7 @@ class PartnerController extends AbstractController
                 $manager->persist($product);
                 $manager->flush(); // l'envoie du nouveau produit sur la base de donnée
 
-                return $this->redirectToRoute('app_partner', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+                return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
             }
     
             return $this->render('partner/addProduct.html.twig', [
@@ -131,10 +132,10 @@ class PartnerController extends AbstractController
                 'supplier' => $supplier
             ]);
         }
-        return $this->redirectToRoute('app_partner', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
     }
 
-    #[Route('/partner/{id}/profil', name: 'app_partner_profil')]
+    #[Route('/{id}/profil', name: 'profil')]
     public function profil(Supplier $supplier, Request $request, EntityManagerInterface $manager): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
@@ -161,10 +162,10 @@ class PartnerController extends AbstractController
             ]);
         }
 
-        return $this->redirectToRoute('app_partner', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
     }
 
-    #[Route('/partner/{id}/contact', name: 'app_partner_contact')]
+    #[Route('/{id}/contact', name: 'contact')]
     public function contact(Supplier $supplier, Request $request): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
@@ -193,10 +194,10 @@ class PartnerController extends AbstractController
         
         }
 
-        return $this->redirectToRoute('app_partner', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
     }
 
-    #[Route('/partner/{id}/sale', name: 'app_partner_sale')]
+    #[Route('/{id}/sale', name: 'sale')]
     public function sale(OrderRepository $orderRepository, Supplier $supplier): Response
     {
         if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
@@ -282,6 +283,6 @@ class PartnerController extends AbstractController
             ]);
         }
 
-        return $this->redirectToRoute('app_partner', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
     }
 }

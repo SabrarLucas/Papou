@@ -75,9 +75,6 @@ class ProductType extends AbstractType
                     ])
                 ]
             ])
-            ->add('promotion', NumberType::class, [
-                'required' => false
-            ])
             ->add('state', ChoiceType::class, [
                 'label' => 'État',
                 'choices' => [

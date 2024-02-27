@@ -4,7 +4,7 @@
 
 {% block body %}
     <h1>contact</h1>
-    <form action="{{ path('app_partner_contact', {'id': supplier.id}) }}" method="post" id="contact">
+    <form action="{{ path('partner_contact', {'id': supplier.id}) }}" method="post" id="contact">
          <div class="mb-3">
             <label for="company" class="form-label">Company</label>
             <input type="text" value="{{ supplier.companyName }}" class="form-control" id="company" name="company" disabled>
@@ -23,5 +23,5 @@
         </div>
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-    <a href="{{ path('app_partner', {'id': supplier.id}) }}">retour</a>
+    <a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a>
 {% endblock %}

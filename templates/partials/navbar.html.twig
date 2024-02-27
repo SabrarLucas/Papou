@@ -18,13 +18,13 @@
     <div class="section-container" id="right-section"> <!-- partie droite -->
         <div>
             <a href=""><i class="fa-solid fa-heart navbar-menu"></i></a>
-            <a href="{{ path('cart') }}"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
+            <a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
 
             {% if app.user %}
                 {% if app.user.roles[0] == "ROLE_USER" %}
-                    <a href="{{ path('app_user_profil', {'id': app.user.id}) }}"><i class="fa-regular fa-user navbar-menu"></i></a>
+                    <a href="{{ path('user_profil', {'id': app.user.id}) }}"><i class="fa-regular fa-user navbar-menu"></i></a>
                 {% elseif app.user.roles[0] == "ROLE_PARTNER" %}
-                    <a href="{{ path('app_partner', {'id': app.user.suppliers[0].id}) }}"><i class="fa-regular fa-user navbar-menu"></i></a>
+                    <a href="{{ path('partner_index', {'id': app.user.suppliers[0].id}) }}"><i class="fa-regular fa-user navbar-menu"></i></a>
                 {% else %}
                     <a href="{{ path('admin_index') }}"><i class="fa-regular fa-user navbar-menu"></i></a>
                 {% endif %}

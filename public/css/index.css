@@ -8,6 +8,7 @@
 @import "/css/pages/cart.css";
 @import "/css/pages/product_age.css";
 @import "/css/component/age_carousel/age_carousel.css";
+@import "/css/pages/partner_index.css";
 
   
 /* Supression des marges en bordures du site */
@@ -19,6 +20,7 @@ body {
     font-family: "Georgia";
 }
 
+/* mise en forme de l'affichage des pdf */
 .pdf-page{
     width: 100vw;
     height: 100vh;

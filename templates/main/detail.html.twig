@@ -13,6 +13,16 @@
                 <div class="big-img">
                     <img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}">
                 </div>
+
+                <div class="supplier-section palatino">
+                    <div>
+                        <h1>Vendu par : </h1>
+                    </div>
+                    <div class="supplier-name">
+                        <h1>{{ product.idSupplier.companyName }}</h1>
+                    </div>
+                </div>
+
             </div>
             
 
@@ -39,11 +49,21 @@
                 <div>{{ product.state }}</div>
                 <div class="price">{{ product.price }} <i class="fa-solid fa-euro-sign"></i></div>
 
-                <form method="post" action="{{ path('cart_add', {'id': product.id}) }}">
-                        <div class="btn-box">
-                            <button class="cart-btn" type="submit">Ajouter au panier  <i class="fa-solid fa-cart-shopping"></i></button>
+
+                <div class="detail-actions">
+                    <form method="post" action="{{ path('cart_add', {'id': product.id}) }}">
+                            <div class="btn-box">
+                                <button class="cart-btn" type="submit">Ajouter au panier  <i class="fa-solid fa-cart-shopping"></i></button>
+                            </div>
+                    </form>
+                    <form method="post" action="">
+                        <div class="detail-ajout-favoris">
+                            <i class="fa-solid fa-heart"></i>
                         </div>
-                </form>
+                    </form>
+                </div>
+
+
             </div>
 
 
@@ -51,19 +71,15 @@
 
 </div>
 
-<div class="supplier-section palatino">
-    <div>
-        <h1>Vendu par : </h1>
-    </div>
-    <div class="supplier-name">
-        <h1>{{ product.idSupplier.companyName }}</h1>
-    </div>
+<br>
+
+<div class="title-other-products copperplate">
+    <h1>Autres produits de notre partenaire :</h1>
 </div>
 
-<br>
-<h1>Autres produits de notre partenaire :</h1>
 
 {% include "partials/home_carousel1.html.twig" %}
+<br><br>
 
             <script>
             let bigImg = document.querySelector('.big-img img');

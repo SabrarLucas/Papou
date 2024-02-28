@@ -3,13 +3,47 @@
 {% block title %}partner{% endblock %}
 
 {% block body %}
-    <h1>tableau de bord</h1>
+
+<div class="partner-index-title">
+    <h1>Tableau de bord</h1>
+</div>
+
+<div class="partner-index-content">
     <ul>
-        <li><a href="{{ path('app_partner_product_add', {'id': id}) }}">Ajouter Produit</a></li>
-        <li><a href="{{ path('app_partner_profil', {'id': id}) }}">Mon profil</a></li>
-        <li><a href="{{ path('app_partner_sale', {'id': id}) }}">Mes Ventes Effectuées</a></li>
-        <li><a href="{{ path('app_partner_product', {'id': id}) }}">Consulter Mes Produit en ligne</a></li>
-        <li><a href="{{ path('app_partner_contact', {'id': id}) }}">j'ai un souci contacter Papou</a></li>
-        <li><a href="{{ path('app_logout') }}">logout</a></li>
+        <li>
+            <a href="{{ path('app_partner_product_add', {'id': id}) }}">Ajouter Produit</a>
+        </li>
+        <li>
+            <a href="{{ path('app_partner_profil', {'id': id}) }}">Mon profil</a>
+        </li>
+        <li>
+            <a href="{{ path('app_partner_sale', {'id': id}) }}">Mes Ventes Effectuées</a>
+        </li>
+        <li>
+            <a href="{{ path('app_partner_product', {'id': id}) }}">Consulter Mes Produit en ligne</a>
+        </li>
+        <li>
+            <a href="{{ path('app_partner_contact', {'id': id}) }}">J'ai un souci : contacter Papou</a>
+        </li>
+        <li>
+            <a href="{{ path('app_logout') }}">Déconnexion</a>
+        </li>
     </ul>
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 {% endblock %}

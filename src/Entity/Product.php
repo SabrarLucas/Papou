@@ -62,7 +62,7 @@ class Product
     #[ORM\OneToMany(mappedBy: 'id_product', targetEntity: Detail::class)]
     private Collection $details;
 
-    #[ORM\OneToMany(mappedBy: 'id_product', targetEntity: Favorite::class)]
+    #[ORM\OneToMany(mappedBy: 'id_product', targetEntity: Favorite::class, orphanRemoval: true)]
     private Collection $favorites;
 
     public function __construct()

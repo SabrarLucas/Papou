@@ -3,10 +3,11 @@
 {% block title %}Administration des produits{% endblock %}
 
 {% block body %}
+{% include "partials/_adminnav.html.twig" %}
     <main class="container">
         <h1>Liste des produits</h1>
-        {% include "partials/_adminnav.html.twig" %}
-        <table class="table mt-3">
+        <div id="app-product"></div>
+        {# <table class="table mt-3">
             <thead>
                 <tr>
                     <th>ID</th>
@@ -33,6 +34,6 @@
                     </tr>
                 {% endfor %}
             </tbody>
-        </table>
+        </table> #}
     </main>
 {% endblock %}

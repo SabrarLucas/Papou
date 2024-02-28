@@ -1,27 +1,35 @@
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 
-const Filter = () => {
+const Filter = ({onChange}) => {
     const [suppliers, setSuppliers] = useState([]);
 
     useEffect(() => {
-        axios.get('http://127.0.0.1:8000/api/suppliers')
+        axios.get('http://127.0.0.1:8000/api/suppliers', {
+            headers: {
+              Accept: "application/json"
+            }
+          })
             .then((r) => setSuppliers(r.data))
             .catch((e) => console.error(e))
     },[]);
-    console.log(suppliers)
+
+    const handleChange = (e) => {
+        onChange(e.target.value);
+    }
+
     return (
-        <div>
+        <form onChange={handleChange}>
             {suppliers.map((supplier) => {
                 return(
-                    <div key={supplier.id}>
+                    <>
                         <label htmlFor={supplier.companyName}>{supplier.companyName}</label>
-                        <input type="checkbox" name={supplier.companyName} />
-                    </div>
+                        <input type="radio" name="group" id={supplier.companyName} value={supplier.companyName}/>
+                    </>
                 ) 
             })}
-        </div>
-    )
+        </form>
+    );
 }
 
 export default Filter;

@@ -29,18 +29,14 @@
                             {% for role in user.roles %}
 								{% if role == "ROLE_SUPER_ADMIN" %}
 									{% set name = "Super Administrateur" %}
-									{% set color = "danger" %}
 								{% elseif role == "ROLE_ADMIN" %}
 									{% set name = "Admin" %}
-									{% set color = "warning" %}
-                                {% elseif role == "ROLE_PARTENER" %}
+                                {% elseif role == "ROLE_PARTNER" %}
                                     {% set name = "Partenaire" %}
-                                    {% set color = "info" %}
 								{% else %}
 									{% set name = "Membre" %}
-									{% set color = "success" %}
 								{% endif %}
-								<span class="badge bg-{{ color }}">{{ name }}</span>
+								<span>{{ name }}</span>
 							{% endfor %}
                         </td>
                         <td>
@@ -52,6 +48,11 @@
                         <td class="row">
                             <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="btn btn-warning">Modifier</a>
                             <a href="{{ path('admin_user_delete', {id: user.id})}}" class="btn btn-danger">Supprimer</a>
+                            {% for role in user.roles %}
+                                {% if role == "ROLE_PARTNER" %}
+                                    <a href="{{ path('admin_user_qr_code', {id: user.id}) }}">Generer qr-code</a>
+								{% endif %}
+							{% endfor %}
                         </td>
                     </tr>
                 {% endfor %}

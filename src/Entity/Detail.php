@@ -2,11 +2,14 @@
 
 namespace App\Entity;
 
-use App\Repository\DetailRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\DetailRepository;
+use ApiPlatform\Metadata\ApiResource;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: DetailRepository::class)]
+#[ApiResource]
 class Detail
 {
     #[ORM\Id]
@@ -26,6 +29,7 @@ class Detail
     private ?Order $id_order = null;
 
     #[ORM\Column(length: 100)]
+    #[Groups(["getIdOrder"])]
     private ?string $name_product = null;
 
     public function getId(): ?int

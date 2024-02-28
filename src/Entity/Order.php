@@ -2,14 +2,17 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\OrderRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Serializer\Annotation\Groups;
 
 #[ORM\Entity(repositoryClass: OrderRepository::class)]
 #[ORM\Table(name: '`order`')]
+#[ApiResource]
 class Order
 {
     #[ORM\Id]
@@ -47,7 +50,7 @@ class Order
     private Collection $details;
 
     #[ORM\Column(length: 40)]
-    private ?string $user_lasname = null;
+    private ?string $user_lastname = null;
 
     #[ORM\Column(length: 40)]
     private ?string $user_firstname = null;
@@ -210,14 +213,14 @@ class Order
         return $this;
     }
 
-    public function getUserLasname(): ?string
+    public function getUserLastname(): ?string
     {
-        return $this->user_lasname;
+        return $this->user_lastname;
     }
 
-    public function setUserLasname(string $user_lasname): static
+    public function setUserLastname(string $user_lastname): static
     {
-        $this->user_lasname = $user_lasname;
+        $this->user_lastname = $user_lastname;
 
         return $this;
     }

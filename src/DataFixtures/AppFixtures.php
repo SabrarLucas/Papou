@@ -106,8 +106,7 @@ class AppFixtures extends Fixture
             else {
                 $product->setAge('10+');
             }
-            $product->setPromotion(mt_rand(0, 3) == 3 ? 50 : null)
-                ->setStock($this->faker->randomNumber())
+            $product->setStock($this->faker->randomNumber())
                 ->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
                 ->setCreatedAt(new \DateTimeImmutable());
             $category = $this->getReference('cat-'.rand(1,25));
@@ -158,7 +157,7 @@ class AppFixtures extends Fixture
 
         $this->counter = 1;
 
-        for($i = 0; $i < 50; $i++){
+        for($i = 0; $i < 100; $i++){
             $product = new Product();
             $product->setName($this->faker->word())
                 ->setDescription($this->faker->text(100))
@@ -179,8 +178,7 @@ class AppFixtures extends Fixture
             else {
                 $product->setAge('10+');
             }
-            $product->setPromotion(mt_rand(0, 3) == 3 ? 50 : null)
-                ->setStock($this->faker->randomNumber())
+            $product->setStock($this->faker->randomNumber())
                 ->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
                 ->setCreatedAt(new \DateTimeImmutable());
             $category = $this->getReference('cat-'.rand(1,25));
@@ -220,7 +218,7 @@ class AppFixtures extends Fixture
             $user = $this->getReference('user-'.rand(1,50));
             $order->setIdUser($user)
                 ->setUserFirstname($user->getFirstName())
-                ->setUserLasname($user->getLastName());
+                ->setUserLastname($user->getLastName());
 
             $this->addReference('ord-'.$this->counter, $order);
             $this->counter++;

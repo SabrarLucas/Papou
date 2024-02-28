@@ -8,9 +8,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/cart', name: 'cart_')]
 class CartController extends AbstractController
 {
-    #[Route('/cart', name: 'cart')]
+    #[Route('/', name: 'index')]
     public function index(CartService $cartService, ProductRepository $productRepository): Response
     {
 
@@ -39,24 +40,24 @@ class CartController extends AbstractController
         ]);
     }
 
-    #[Route('/cart/add/{id}', name: 'cart_add')]
+    #[Route('/add/{id}', name: 'add')]
     public function addToRoute(CartService $cartService, int $id): Response
     {
         $cartService->addToCart($id); // ajouter produit dans le panier
-        return $this->redirectToRoute('cart'); // retour sur le panier
+        return $this->redirectToRoute('cart_index'); // retour sur le panier
     }
 
-    #[Route('/cart/remove/{id}', name: 'cart_remove')]
+    #[Route('/remove/{id}', name: 'remove')]
     public function removeToRoute(CartService $cartService, int $id): Response
     {
         $cartService->removeToCart($id); // supprimer un produit du panier
-        return $this->redirectToRoute('cart'); // retour sur le panier
+        return $this->redirectToRoute('cart_index'); // retour sur le panier
     }
 
-    #[Route('/cart/removeAll', name: 'cart_removeAll')]
+    #[Route('/removeAll', name: 'removeAll')]
     public function removeAll(CartService $cartService): Response
     {
         $cartService->removeCartAll(); // supprimer le panier
-        return $this->redirectToRoute('cart'); // retour sur le panier
+        return $this->redirectToRoute('cart_index'); // retour sur le panier
     }
 }

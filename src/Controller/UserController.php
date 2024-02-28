@@ -11,9 +11,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
+#[Route('/profil', name: 'user_')]
 class UserController extends AbstractController
 {
-    #[Route('/profil/{id}', name: 'app_user_profil')]
+    #[Route('/{id}', name: 'profil')]
     public function profil(User $user, Request $request, EntityManagerInterface $manager): Response
     {
         if($user == $this->getUser()){
@@ -35,7 +36,7 @@ class UserController extends AbstractController
         return $this->redirectToRoute('main'); // retour a l'acceuil du site
     }
 
-    #[Route('/profil/{id}/order', name: 'app_user_profil_order')]
+    #[Route('/{id}/order', name: 'order')]
     public function order (User $user, OrderRepository $orderRepository): Response
     {
         if($user == $this->getUser()){
@@ -47,7 +48,7 @@ class UserController extends AbstractController
         return $this->redirectToRoute('main'); // retour a l'acceuil du site
     }
 
-    #[Route('/profil/{id}/delete', name: 'app_user_profil_delete')]
+    #[Route('/{id}/delete', name: 'delete')]
     public function delete (User $user, EntityManagerInterface $manager, Request $request): Response
     {
         if($user == $this->getUser()){

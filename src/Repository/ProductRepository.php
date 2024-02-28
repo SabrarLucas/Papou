@@ -106,6 +106,21 @@ class ProductRepository extends ServiceEntityRepository
        ;
    }
 
+   public function findSupplierAndCategoryDesc(): array // recupere les produit par ordre decroissant d'un partenaire donnee
+   {
+       return $this->createQueryBuilder('p')
+        ->select('p.id, p.name, p.description, p.price, p.state, p.age, p.created_at, c.name as category_name, s.company_name')
+        ->join('p.id_category', 'c')
+        ->join('p.id_supplier', 's')
+       ->orderBy('p.id', 'DESC')
+       ->getQuery()
+       ->getResult()
+       ;
+   }
+   
+
+//    SELECT p.*, c.name, s.company_name FROM `product` p JOIN category c ON c.id = p.id_category_id JOIN supplier s ON s.id = p.id_supplier_id; 
+
 //    public function findOneBySomeField($value): ?Product
 //    {
 //        return $this->createQueryBuilder('p')

@@ -218,7 +218,7 @@ class Order
         return $this->user_lastname;
     }
 
-    public function setUserLasname(string $user_lastname): static
+    public function setUserLastname(string $user_lastname): static
     {
         $this->user_lastname = $user_lastname;
 

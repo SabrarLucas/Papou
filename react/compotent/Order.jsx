@@ -23,6 +23,7 @@ const Order = () => {
                         <th>total commande sans livraison</th>
                         <th>total pour le partnaire</th>
                         <th>total com papou</th>
+                        <th>supplier</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -39,6 +40,7 @@ const Order = () => {
                                 <td>{order.total} €</td>
                                 <td>par la suite</td>
                                 <td>par la suite</td>
+                                <td>{order.supplierName}</td>
                             </tr>
                         )
                     })}

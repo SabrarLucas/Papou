@@ -12,7 +12,7 @@ const Detail = ({details}) => {
 
     return(
         <li>{detail.nameProduct}</li>
-    )
+    );
 }
 
 export default Detail;

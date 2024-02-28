@@ -2,10 +2,12 @@
 
 namespace App\Entity;
 
-use App\Repository\FavoriteRepository;
 use Doctrine\ORM\Mapping as ORM;
+use ApiPlatform\Metadata\ApiResource;
+use App\Repository\FavoriteRepository;
 
 #[ORM\Entity(repositoryClass: FavoriteRepository::class)]
+#[ApiResource]
 class Favorite
 {
     #[ORM\Id]
@@ -14,7 +16,7 @@ class Favorite
     private ?int $id = null;
 
     #[ORM\ManyToOne(inversedBy: 'favorites')]
-    #[ORM\JoinColumn(nullable: false)]
+    #[ORM\JoinColumn(nullable: false,  onDelete: 'CASCADE')]
     private ?Product $id_product = null;
 
     #[ORM\ManyToOne(inversedBy: 'favorites')]

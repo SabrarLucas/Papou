@@ -157,7 +157,7 @@ class AppFixtures extends Fixture
 
         $this->counter = 1;
 
-        for($i = 0; $i < 50; $i++){
+        for($i = 0; $i < 100; $i++){
             $product = new Product();
             $product->setName($this->faker->word())
                 ->setDescription($this->faker->text(100))
@@ -218,7 +218,7 @@ class AppFixtures extends Fixture
             $user = $this->getReference('user-'.rand(1,50));
             $order->setIdUser($user)
                 ->setUserFirstname($user->getFirstName())
-                ->setUserLasname($user->getLastName());
+                ->setUserLastname($user->getLastName());
 
             $this->addReference('ord-'.$this->counter, $order);
             $this->counter++;

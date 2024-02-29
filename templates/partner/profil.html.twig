@@ -15,7 +15,7 @@
         {{ form_row(form.company_name, {'attr': {'value': supplier.companyName}}) }}
         {{ form_row(form.email, {'attr': {'value': supplier.idUser.email}}) }}
         <button type="submit">submit</button>
-        <a href="{{ path('app_partner', {'id': supplier.id}) }}">retour</a>
+        <a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a>
 
         
     {{ form_end(form) }}

@@ -13,7 +13,7 @@ class AdminCaController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(OrderRepository $orderRepository): Response
     {
-        $order = $orderRepository->findAll(); // recuperation des commandes 
+        $order = $orderRepository->findAll(); // recuperation des commandes
         //creation de tableau (pour les ventes du jour, de la semaine et du mois)
         $saleDay = array();
         $saleWeek = array();

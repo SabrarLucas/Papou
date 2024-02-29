@@ -13,6 +13,7 @@ use App\Form\SupplierProfilType;
 use App\Repository\UserRepository;
 use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
+use App\Repository\SupplierRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -129,6 +130,75 @@ class PartnerController extends AbstractController
     
             return $this->render('partner/addProduct.html.twig', [
                 'form' => $form, // l'envoie du formulaire sur la vue
+                'supplier' => $supplier
+            ]);
+        }
+        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+    }
+
+    #[Route('/{idPartner}/product/delete/{idProduct}', name: 'product_delete')]
+    public function productDelete(int $idPartner, int $idProduct, EntityManagerInterface $manager, ProductRepository $productRepository, SupplierRepository $supplierRepository): Response
+    {
+        $supplier = $supplierRepository->findOneBy(['id' => $idPartner]);
+
+        $product = $productRepository->findOneBy(['id' => $idProduct]);
+
+
+        if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
+            
+            $manager->remove($product);
+            $manager->flush();
+
+            return $this->redirectToRoute('partner_product', ['id' => $supplier->getId()]);
+        }
+        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+    }
+
+    #[Route('/{idPartner}/product/edit/{idProduct}', name: 'product_edit')]
+    public function productEdit(Request $request, PictureService $pictureService, int $idPartner, int $idProduct, EntityManagerInterface $manager, ProductRepository $productRepository, SupplierRepository $supplierRepository): Response
+    {
+        $supplier = $supplierRepository->findOneBy(['id' => $idPartner]);
+
+        $product = $productRepository->findOneBy(['id' => $idProduct]);
+
+
+        if ($supplier->getIdUser() === $this->getUser()) { // verifier si le bon partenaire
+            
+            $form = $this->createForm(ProductType::class, $product); // creation du formulaire
+    
+            $form->handleRequest($request);
+    
+            if ($form->isSubmitted() && $form->isValid()) { // verification du formulaire (si il a bien etait soumit ou les donnée sont bien valide)
+                for ($i=0; $i < 4; $i++) { 
+                    
+
+                    //on récupère l'image
+                    $images = $form->get('image' . $i)->getData();
+                    
+                    foreach($images as $image) {
+                        // on définit le dosier de destination
+                        $folder = 'products';
+    
+                        // on appelle le service d'ajout
+                        $file = $pictureService->add($image, $folder);
+                        $img = new Picture(); // creation d'un objet image
+                        $img->setPicName($file); 
+                        $product->addPicture($img); // l'image est associer avec le produit                 
+                    }
+                }
+
+                $product->setCreatedAt(new \DateTimeImmutable())
+                        ->setIdSupplier($supplier);
+    
+                $manager->persist($product);
+                $manager->flush(); // l'envoie du nouveau produit sur la base de donnée
+
+                return $this->redirectToRoute('partner_product', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+            }
+    
+            return $this->render('partner/editProduct.html.twig', [
+                'form' => $form, // l'envoie du formulaire sur la vue
+                'product' => $product,
                 'supplier' => $supplier
             ]);
         }

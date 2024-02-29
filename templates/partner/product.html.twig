@@ -3,48 +3,49 @@
 {% block title %}partner-Product{% endblock %}
 
 {% block body %}
-    <h1>vos produits en ligne</h1>
 
-    <ul>
-        <li>Montant total de vos produits = {{ valueProduct }}</li>
-        <li>Nombre de produits en ligne = {{ nbrProduct }}</li>
-    </ul>
-
-    <table class="table">
-  <thead>
-        <tr>
-        </tr>
-    
-  </thead>
-  <tbody>
-  </tbody>
-</table>
+<div class="partner-products-title">
+  <h1>vos produits en ligne</h1>
+</div>
 
 
-<div class="overflow-x-auto m-5">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50">
+
+
+<div class="partner-products-table">
+    <table>
+        <thead>
           <tr>
-            <th>nom</th>
-            <th>categorie</th>
-            <th>prix</th>
-            <th>état</th>
-            <th>age</th>
+            <th>Nom</th>
+            <th>Etat</th>
+            <th>Prix</th>
+            <th>Photo</th>
           </tr>
         </thead>
         <tbody>
         {% for product in products %}
             <tr>
                 <td>{{ product.name }}</td>
-                <td>{{ product.idCategory.name }}</td>
-                <td>{{ product.price }}</td>
                 <td>{{ product.state }}</td>
-                <td>{{ product.age }}</td>
+                <td>{{ product.price }}</td>
+                <td><img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}"></td>
             </tr>
         {% endfor %}
         </tbody>
     </table>
 </div>
 
-<a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a>
+
+<div class="partner-products-infos">
+  <ul>
+    <li>Montant total de vos produits = {{ valueProduct }}</li>
+    <li>Nombre de produits en ligne = {{ nbrProduct }}</li>
+    <li><a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a></li>
+  </ul>
+
+
+</div>
+
+
+
+
 {% endblock %}

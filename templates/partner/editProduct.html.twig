@@ -5,7 +5,7 @@
 {% block body %}
 
 <div>
-    <h1>Ajouter votre produit</h1>
+    <h1>Modifier votre produit</h1>
     {{ form_start(form) }}
         {{ form_row(form.name) }}
         {{ form_row(form.description) }}
@@ -18,11 +18,15 @@
         {{ form_row(form.heigh) }}
         {{ form_row(form.id_category) }}
         {{ form_row(form.image0) }}
+        <img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}">
         {{ form_row(form.image1) }}
+        <img src="{{ product.pictures[1].picName }}" alt="{{ product.name }}">
         {{ form_row(form.image2) }}
+        <img src="{{ product.pictures[2].picName }}" alt="{{ product.name }}">
         {{ form_row(form.image3) }}
+        <img src="{{ product.pictures[3].picName }}" alt="{{ product.name }}">
         <button type="submit">submit<button>
-        <a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a>
+        <a href="{{ path('partner_product', {'id': supplier.id}) }}">retour</a>
     {{ form_end(form) }}
 </div>
     

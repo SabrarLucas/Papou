@@ -18,10 +18,6 @@
     transform: scale(1.2); /* grossissement des boutons au survol de la souris */
 }
 
-.products-carousel {
-    margin-bottom: 40px;
-}
-
 .home-card-centered {
     align-content: center;
     justify-content: center;
@@ -65,12 +61,8 @@ color: rgb(255, 255, 255);
 }
 
 .section-bandeau {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100vw;
-    margin-top: 40px;
-    margin-bottom: 70px;
+    margin-bottom: 40px;
 }
 
 .bandeau {
@@ -94,7 +86,7 @@ color: rgb(255, 255, 255);
 
 .section-partenaire {
     width: 100vw;
-    height: 60vh;
+    height: 50vh;
     background-color: #f5f3ce;
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -107,21 +99,31 @@ color: rgb(255, 255, 255);
   
   .section-papou {
     width: 40vw;
-    height: 60vh;
-    background-color: aqua;
+    height: 50vh;
     justify-self: end;
     align-self: center;
     grid-area: 1 / 1 / 2 / 2;
     z-index: 1;
   }
+
+  .section-papou-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
   
   .section-partner {
-    width: 20vw;
-    height: 30vh;
+    width: 40vw;
+    height: 50vh;
     background-color: chartreuse;
-    justify-self: center; 
-    align-self: end; 
+    justify-self: start; 
+    align-self: center; 
     grid-area: 1 / 2 / 2 / 3; 
+  }
+
+  .partner-img {
+    width: 40vw;
+    height: 50vh;
   }
 
 

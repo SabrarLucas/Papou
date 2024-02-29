@@ -1,10 +1,29 @@
-.product-card {
+.product-age-content {
     display: flex;
-    justify-content: center;
 }
 
-.dev1, .dev2 {
+
+.product-age-left-section {
+    width: 20vw;
+    height: auto;
+    border-right: 2px solid #f19a76;
+    margin-bottom: 40px;
+}
+
+.product-age-right-section {
+    display: flex;
+    flex-wrap: wrap;
+    width: 80vw;
+    height: auto;
+    margin-bottom: 40px;
+}
+
+.product-age-title {
     width: 100vw;
-    height: 100px;
-    background-color: rgb(206, 206, 206);
+    height: 10vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 30px;
+    font-family: 'Copperplate';
 }

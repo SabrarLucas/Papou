@@ -34,6 +34,12 @@ class MainController extends AbstractController
         return $this->render('main/mentionsLegales.html.twig');
     }
 
+    #[Route('/RGPD', name: 'RGPD')]
+    public function RGPD(): Response
+    {
+        return $this->render('main/RGPD.html.twig');
+    }
+
     #[Route('/product', name: 'productAll')]
     public function productAll(ProductRepository $productRepository): Response
     {

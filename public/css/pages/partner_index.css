@@ -1,0 +1,38 @@
+.partner-index-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-family: 'Copperplate';
+}
+
+.partner-index-content {
+    display: flex;
+    justify-content: center;
+    width: 50vw;
+    height: auto;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 40px;
+}
+
+.partner-index-content a {
+    display: flex;
+    justify-content: center;
+    width: 40vw;
+    font-size: 20px;
+    padding: 10px;
+    margin-bottom: 40px;
+    margin-top: 40px;
+    background-color: #f19a76;
+    color: #fff;
+    transition: .5s ease;
+}
+
+.partner-index-content a:hover {
+    background-color: white;
+    color: #f19a76;
+    font-weight: 900;
+    transform: scale(1.2);
+}

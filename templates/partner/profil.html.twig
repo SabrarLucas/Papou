@@ -3,13 +3,23 @@
 {% block title %}partner-Profil{% endblock %}
 
 {% block body %}
-    <h1>profil</h1>
+
+
+
+    <h1>Votre profil</h1>
+
+
     {{ form_start(form) }}
         {{ form_row(form.lastname, {'attr': {'value': supplier.idUser.lastname}}) }}
         {{ form_row(form.firstname, {'attr': {'value': supplier.idUser.firstname}}) }}
         {{ form_row(form.company_name, {'attr': {'value': supplier.companyName}}) }}
         {{ form_row(form.email, {'attr': {'value': supplier.idUser.email}}) }}
         <button type="submit">submit</button>
-        <a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a>
+        <a href="{{ path('app_partner', {'id': supplier.id}) }}">retour</a>
+
+        
     {{ form_end(form) }}
+
+
+
 {% endblock %}

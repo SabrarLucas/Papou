@@ -7,7 +7,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
-#[Route('/admin/ca', name: 'admin_ca_')]
+#[Route('/admin', name: 'admin_ca_')]
 class AdminCaController extends AbstractController
 {
     #[Route('/', name: 'index')]
@@ -94,7 +94,7 @@ class AdminCaController extends AbstractController
         $nbr = 0; // retour du nbr a 0
         $cart = 0; // retour du panier moyen a 0
 
-        return $this->render('admin/ca/index.html.twig', [
+        return $this->render('admin/index.html.twig', [
             'saleDay' => $saleDay, //l'envoie du tableau saleDay a la vue
             'saleWeek' => $saleWeek, //l'envoie du tableau saleWeek a la vue
             'saleMonth' => $saleMonth, //l'envoie du tableau saleMonth a la vue

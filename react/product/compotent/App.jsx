@@ -4,7 +4,7 @@ import Product from "./Product";
 
 const App = () => {
 
-    const [supplier, setSupplier] = useState(null)
+    const [supplier, setSupplier] = useState("null")
 
     const handleChange = (supplierName) => {
         setSupplier(supplierName);

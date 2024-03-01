@@ -4,32 +4,32 @@
         <div class="search">
             <form method="post" action="{{ path('search') }}" class="flex">
                 <input placeholder="Rechercher" name="search" type="text">
-                <button type="submit"><i class="fa-solid fa-magnifying-glass"></i></button>
+                <button type="submit" title="rechercher"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
         </div>
     </div>
 
     <div class="section-container" id="middle-section"> <!-- partie centrale -->
-            <a href="{{ path('main') }}"><!-- lien vers l'accueil -->
+            <a href="{{ path('main') }}" title="Accueil"><!-- lien vers l'accueil -->
                 <img id="navbar-image" src="{{ asset("images/logobleupapou.png") }}" class="navbar-logo" alt="Logo">
             </a>
     </div>
 
     <div class="section-container" id="right-section"> <!-- partie droite -->
         <div>
-            <a href=""><i class="fa-solid fa-heart navbar-menu"></i></a>
-            <a href="{{ path('cart_index') }}"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
+            <a href="" title="Mes coups de coeur"><i class="fa-solid fa-heart navbar-menu"></i></a>
+            <a href="{{ path('cart_index') }}" title="Mon panier"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
 
             {% if app.user %}
                 {% if app.user.roles[0] == "ROLE_USER" %}
-                    <a href="{{ path('user_profil', {'id': app.user.id}) }}"><i class="fa-regular fa-user navbar-menu"></i></a>
+                    <a href="{{ path('user_profil', {'id': app.user.id}) }}" title="Mon profil"><i class="fa-regular fa-user navbar-menu"></i></a>
                 {% elseif app.user.roles[0] == "ROLE_PARTNER" %}
-                    <a href="{{ path('partner_index', {'id': app.user.suppliers[0].id}) }}"><i class="fa-regular fa-user navbar-menu"></i></a>
+                    <a href="{{ path('partner_index', {'id': app.user.suppliers[0].id}) }}" title="Tableau de bord"><i class="fa-regular fa-user navbar-menu"></i></a>
                 {% else %}
-                    <a href="{{ path('admin_index') }}"><i class="fa-regular fa-user navbar-menu"></i></a>
+                    <a href="{{ path('admin_index') }}" title="tableau de bord"><i class="fa-regular fa-user navbar-menu"></i></a>
                 {% endif %}
             {% else %}
-                <a href="{{ path('app_login') }}"><i class="fa-solid fa-user navbar-menu"></i></a>
+                <a href="{{ path('app_login') }}" title="Se connecter"><i class="fa-solid fa-user navbar-menu"></i></a>
             {% endif %}
         </div>
     </div>

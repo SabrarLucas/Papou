@@ -39,8 +39,8 @@ const Product = ({supplier}) => {
                 console.error(error);
             });
     };
-
-    const filteredProducts = supplier ? products.filter(product => product.company_name === supplier) : products;
+    
+    const filteredProducts = supplier != "null" ? products.filter(product => product.company_name === supplier) : products;
 
     return(
         <table>

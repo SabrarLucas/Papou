@@ -6,24 +6,24 @@ import Detail from "./Detail";
 const Order = ({ supplier }) => {
     const [orders, setOrders] = useState([]);
 
-    useEffect(() => {
-        const fetchData = async () => {
-            try {
-                const response = await axios.get('http://127.0.0.1:8000/api/orders', {
-                    headers: {
-                      Accept: "application/json"
-                    }
-                  });
-                setOrders(response.data);
-            } catch (error) {
-                console.error(error);
-            }
-        };
+    const fetchOrder = async () => {
+        try {
+            const response = await axios.get('http://127.0.0.1:8000/api/orders', {
+                headers: {
+                    Accept: "application/json"
+                }
+              });
+            setOrders(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
-        fetchData();
+    useEffect(() => {
+        fetchOrder();
     }, []);
 
-    const filteredOrders = supplier ? orders.filter(order => order.supplierName === supplier) : orders;
+    const filteredOrders = supplier != "null" ? orders.filter(order => order.supplierName === supplier) : orders;
 
     return (
         <div>

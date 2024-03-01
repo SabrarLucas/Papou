@@ -18,6 +18,9 @@ const Filter = ({onChange}) => {
         onChange(e.target.value);
     }
 
+    const handleClick = () => {
+        onChange("null");
+    }
     return (
         <form onChange={handleChange}>
             {suppliers.map((supplier) => {
@@ -28,6 +31,7 @@ const Filter = ({onChange}) => {
                     </>
                 ) 
             })}
+            <button onClick={handleClick} >retour</button>
         </form>
     );
 }

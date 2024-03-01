@@ -7,22 +7,19 @@
             <a href="{{ path('admin_user_index') }}">Liste des utilisateurs</a>
         </li>
         <li>
-            <a href="{{ path('admin_ca_index') }}">Consultation CA</a>
-        </li>
-        <li>
             <a href="{{ path('admin_commande_index') }}">Consultation commande</a>
         </li>
         <li>
             <a href="#">Suivi de livraison</a>
         </li>
         <li>
-            <a href="#">+ de chiffres</a>
+            <a href="{{ path('admin_chiffres_index') }}">+ de chiffres</a>
         </li>
         <li>
             <a href="{{ path('app_logout') }}" title="Déconnexion">Déconnexion</a>
         </li>
         <li>
-            <a href="{{ path('admin_index') }}" title="index">Retour à l'espace d'administration</a>
+            <a href="{{ path('admin_ca_index') }}" title="index">Retour à l'espace d'administration</a>
         </li>
     </ul>
 </div>

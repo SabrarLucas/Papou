@@ -26,7 +26,7 @@
                 {% elseif app.user.roles[0] == "ROLE_PARTNER" %}
                     <a href="{{ path('partner_index', {'id': app.user.suppliers[0].id}) }}" title="Tableau de bord"><i class="fa-regular fa-user navbar-menu"></i></a>
                 {% else %}
-                    <a href="{{ path('admin_index') }}" title="tableau de bord"><i class="fa-regular fa-user navbar-menu"></i></a>
+                    <a href="{{ path('admin_ca_index') }}" title="tableau de bord"><i class="fa-regular fa-user navbar-menu"></i></a>
                 {% endif %}
             {% else %}
                 <a href="{{ path('app_login') }}" title="Se connecter"><i class="fa-solid fa-user navbar-menu"></i></a>

@@ -11,39 +11,24 @@
 <div class="partner-index-content">
     <ul>
         <li>
-            <a href="{{ path('partner_product_add', {'id': id}) }}">Ajouter un produit</a>
+            <a href="{{ path('partner_product_add', {'id': id}) }}" title="Ajouter un produit">Ajouter un produit</a>
         </li>
         <li>
-            <a href="{{ path('partner_profil', {'id': id}) }}">Mon profil</a>
+            <a href="{{ path('partner_profil', {'id': id}) }}" title="Consulter mon profil">Mon profil</a>
         </li>
         <li>
-            <a href="{{ path('partner_sale', {'id': id}) }}">Mes Ventes Effectuées</a>
+            <a href="{{ path('partner_sale', {'id': id}) }}" title="Consulter mes ventes">Mes Ventes Effectuées</a>
         </li>
         <li>
-            <a href="{{ path('partner_product', {'id': id}) }}">Consulter mes produits en ligne</a>
+            <a href="{{ path('partner_product', {'id': id}) }}" title="Consulter mes produits">Mes produits en ligne</a>
         </li>
         <li>
-            <a href="{{ path('partner_contact', {'id': id}) }}">J'ai un souci : contacter Papou</a>
+            <a href="{{ path('partner_contact', {'id': id}) }}" title="Formulaire de contact">J'ai un souci : contacter Papou</a>
         </li>
         <li>
-            <a href="{{ path('app_logout') }}">Déconnexion</a>
+            <a href="{{ path('app_logout') }}" title="Déconnexion">Déconnexion</a>
         </li>
     </ul>
 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 {% endblock %}

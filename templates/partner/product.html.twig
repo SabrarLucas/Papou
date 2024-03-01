@@ -19,6 +19,7 @@
             <th>Etat</th>
             <th>Prix</th>
             <th>Photo</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -28,6 +29,10 @@
                 <td>{{ product.state }}</td>
                 <td>{{ product.price }}</td>
                 <td><img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}"></td>
+                <td>
+                  <a href="" class="partner-products-btn1" title="Modifier"><i class="fa-solid fa-pen-to-square"></i></a>
+                  <a href="" class="partner-products-btn2" title="Supprimer"><i class="fa-solid fa-trash"></i></a>
+                </td>
             </tr>
         {% endfor %}
         </tbody>
@@ -36,14 +41,22 @@
 
 
 <div class="partner-products-infos">
-  <ul>
-    <li>Montant total de vos produits = {{ valueProduct }}</li>
-    <li>Nombre de produits en ligne = {{ nbrProduct }}</li>
-    <li><a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a></li>
-  </ul>
 
+  <div class="partner-products-total-number">
+    Nombre de produits en ligne = {{ nbrProduct }}
+  </div>
+
+  <div class="partner-products-total-value">
+    Montant total de vos produits = {{ valueProduct }}
+  </div>
+
+  <div class="partner-products-return">
+    <a href="{{ path('partner_index', {'id': supplier.id}) }}" title="retour au tableau de bord">retour</a>
+  </div>
 
 </div>
+
+
 
 
 

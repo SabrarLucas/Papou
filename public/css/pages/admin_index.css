@@ -1,0 +1,23 @@
+.admin-index-title {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-family: 'Copperplate';
+}
+
+.admin-index-content {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #f5f3ce;
+}
+
+.admin-index-content h1 {
+    font-size: 50px;
+    color: #00988e;
+    display: flex;
+}

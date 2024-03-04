@@ -3,7 +3,6 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 
-
 const Product = ({supplier}) => {
 
     const [products, setProducts] = useState([]);

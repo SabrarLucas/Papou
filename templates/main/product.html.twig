@@ -12,11 +12,15 @@
     </ul>
     <hr>
     <h1>product partner</h1>
-    <ul>
-        {% for product in products %}
+    {% if products|length != 0 %}
+        <ul>
+            {% for product in products.data %}
 
-        <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
-        
-        {% endfor %}
-    </ul>
+            <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
+            
+            {% endfor %}
+        </ul>
+    {% endif %}
+
+    {% include "partials/pagination.html.twig" %}
 {% endblock %}

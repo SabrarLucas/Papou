@@ -169,21 +169,22 @@ class PartnerController extends AbstractController
             $form->handleRequest($request);
     
             if ($form->isSubmitted() && $form->isValid()) { // verification du formulaire (si il a bien etait soumit ou les donnée sont bien valide)
-                for ($i=0; $i < 4; $i++) { 
-                    
+                for ($i = 0; $i < 4; $i++) {     
 
                     //on récupère l'image
                     $images = $form->get('image' . $i)->getData();
-                    
-                    foreach($images as $image) {
-                        // on définit le dosier de destination
-                        $folder = 'products';
-    
-                        // on appelle le service d'ajout
-                        $file = $pictureService->add($image, $folder);
-                        $img = new Picture(); // creation d'un objet image
-                        $img->setPicName($file); 
-                        $product->addPicture($img); // l'image est associer avec le produit                 
+
+                    if (count($images) != 0) {
+                        foreach($images as $image) {
+                            // on définit le dosier de destination
+                            $folder = 'products';
+        
+                            // on appelle le service d'ajout
+                            $file = $pictureService->add($image, $folder);
+                            $img = new Picture(); // creation d'un objet image
+                            $img->setPicName($file); 
+                            $product->addPicture($img); // l'image est associer avec le produit                 
+                        }
                     }
                 }
 

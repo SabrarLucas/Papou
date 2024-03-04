@@ -30,8 +30,8 @@
                 <td>{{ product.price }}</td>
                 <td><img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}"></td>
                 <td>
-                  <a href="" class="partner-products-btn1" title="Modifier"><i class="fa-solid fa-pen-to-square"></i></a>
-                  <a href="" class="partner-products-btn2" title="Supprimer"><i class="fa-solid fa-trash"></i></a>
+                  <a href="{{ path('partner_product_edit', {'idPartner': supplier.id, 'idProduct': product.id }) }}" class="partner-products-btn1" title="Modifier"><i class="fa-solid fa-pen-to-square"></i></a>
+                  <a href="{{ path('partner_product_delete', {'idPartner': supplier.id, 'idProduct': product.id }) }}" class="partner-products-btn2" title="Supprimer"><i class="fa-solid fa-trash"></i></a>
                 </td>
             </tr>
         {% endfor %}

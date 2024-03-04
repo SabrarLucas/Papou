@@ -6,6 +6,7 @@ use App\Entity\Product;
 use App\Entity\Category;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -41,10 +42,10 @@ class MainController extends AbstractController
     }
 
     #[Route('/product', name: 'productAll')]
-    public function productAll(ProductRepository $productRepository): Response
+    public function productAll(ProductRepository $productRepository, Request $request): Response
     {
-
-        $products = $productRepository->findAllDesc();
+        $page = $request->query->getInt('page',1);
+        $products = $productRepository->findAllDesc($page);
 
         return $this->render('main/productAll.html.twig', [
             'products' => $products, // envoie des categories
@@ -52,15 +53,18 @@ class MainController extends AbstractController
     }
     
     #[Route('/products/{id}', name: 'product')]
-    public function product(ProductRepository $productRepository, Category $category): Response
+    public function product(ProductRepository $productRepository, Category $category, Request $request): Response
     {
+        $page = $request->query->getInt('page',1);
         if ($category->getCategory() == null) {
 
-            $products = $productRepository->findAllCategoryDesc($category->getId());
+            $products = $productRepository->findAllCategoryDesc($page,$category->getId());
             
         }
         else{
-            $products = $productRepository->findCategoryDesc($category->getId()); // recuperation des produits associés a sa categorie
+            $products = $productRepository->findCategoryDesc($page, $category->getId()); // recuperation des produits associés a sa categorie
+
+            // dd($products);
         }
 
         return $this->render('main/product.html.twig', [
@@ -70,12 +74,14 @@ class MainController extends AbstractController
     }
 
     #[Route('/product/{age}', name: 'productAge')]
-    public function productAge(ProductRepository $productRepository, string $age): Response
+    public function productAge(ProductRepository $productRepository, string $age, Request $request): Response
     {
-        $products = $productRepository->findAgeDesc($age); // recuperation des produits en fonction de age
+        $page = $request->query->getInt('page',1);
+        $products = $productRepository->findAgeDesc($page, $age); // recuperation des produits en fonction de age
 
         return $this->render('main/productAge.html.twig', [
             'products' => $products,
+            'age' => $age
         ]);
     }
 

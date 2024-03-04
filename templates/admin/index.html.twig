@@ -4,23 +4,27 @@
 
 {% block body %}
 
-    <h1>Consultation Chiffres d'Affaires</h1>
-    {% include "partials/_adminnav.html.twig" %}
 
-    {# Les chiffres d'affaires du site #}
-    <div>
-        <br>
-        <h2>CA général</h2>
-        <br>
+{% include "partials/_adminnav.html.twig" %}
 
+
+<h1 class="admin-index-title">Espace administrateur</h1>
+
+
+<div class="admin-index-content">
+    <div class="admin-index-left-section">
+        <h2>C.A général</h2>
+    </div>
+    
+    <div class="admin-index-right-section">
         <h3>vente du jour</h3>
         <p>{{ saleDay.ca|number_format(2, '.', ',') }}</p>
         <br>
-
+    
         <h3>vente de la semaine</h3>
         <p>{{ saleWeek.ca|number_format(2, '.', ',') }}</p>
         <br>
-
+    
         <h3>vente du mois</h3>
         <p>{{ saleMonth.ca|number_format(2, '.', ',') }}</p>
         <br>
@@ -30,12 +34,21 @@
         <p>panier moyen = {{ saleYear.cart|number_format(2, '.', ',') }}</p>
         <br>
     </div>
+</div>
+
+
+
+
 
     {# Les chiffres d'affaires de Papou #}
-    <div>
+<div class="admin-index-content">
+    
+    <div class="admin-index-left-section">
         <h2>CA Papou</h2>
-        <br>
+    </div>
 
+
+    <div class="admin-index-right-section">
         <h3>Vente du jour</h3>
         <p>{{ saleDay.caPapou|number_format(2, '.', ',') }}</p>
         <br>
@@ -52,6 +65,8 @@
         <p>{{ saleYear.caPapou|number_format(2, '.', ',') }}</p>
         <br>
     </div>
+
+</div>
 
     {# Les chiffres par partenaires #}
     {# voir pour comment bien le faire #}

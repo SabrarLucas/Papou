@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import Filter from "./Filter";
 import Product from "./Product";
 
@@ -11,7 +11,7 @@ const App = () => {
     }
 
     return(
-        <div>
+        <div className="product-app-react-content">
             <Filter onChange={handleChange}/>
             <Product supplier={supplier}/>
         </div>

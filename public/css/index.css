@@ -12,6 +12,7 @@
 @import "/css/pages/partner_products.css";
 @import "/css/component/admin_nav.css";
 @import "/css/pages/admin_index.css";
+@import "/css/component/product-react-component.css";
   
 /* Supression des marges en bordures du site */
 body {

@@ -9,15 +9,21 @@
 
 .admin-index-content {
     width: 100vw;
-    height: 100vh;
+    display: flex;
+    margin-bottom: 5vh;
+}
+
+.admin-index-left-section {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
+    width: 20vw;
+    border-right: 1px solid black;
+}
+
+.admin-index-right-section {
+    width: 80vw;
     background-color: #f5f3ce;
 }
 
-.admin-index-content h1 {
-    font-size: 50px;
-    color: #00988e;
-    display: flex;
-}

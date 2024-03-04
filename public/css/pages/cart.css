@@ -49,6 +49,6 @@ margin-left: auto;
 margin-right: auto;
 }
 
-.cart-table thead, th, tr, td {
+.cart-table thead th tr td {
     border: 1px solid black;
 }

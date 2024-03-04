@@ -2,6 +2,8 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import dayjs from 'dayjs';
 
+
+
 const Product = ({supplier}) => {
 
     const [products, setProducts] = useState([]);
@@ -43,10 +45,10 @@ const Product = ({supplier}) => {
     const filteredProducts = supplier != "null" ? products.filter(product => product.company_name === supplier) : products;
 
     return(
-        <table>
+        <table className="product-table-react-component">
             <thead>
                 <tr>
-                    <th>Categorie</th>
+                    <th>Catégorie</th>
                     <th>Partenaire</th>
                     <th>Nom</th>
                     <th>Prix</th>
@@ -63,7 +65,7 @@ const Product = ({supplier}) => {
                         <td>{product.price}</td>
                         <td>{dayjs(product.createdAt).format("DD/MM/YYYY")}</td>
                         <td>
-                            <button onClick={() => handleDelete(product.id)}>Supprimer</button>
+                            <button onClick={() => handleDelete(product.id)} className='redbtn'>DELETE</button>
                         </td>
                     </tr>
                 ))}

@@ -4,59 +4,68 @@
 
 {% block body %}
 
-        <h1>Liste des utilisateurs</h1>
-        {% include "partials/_adminnav.html.twig" %}
-        <table class="table mt-3">
-            <thead>
-                <tr>
-                    <th>ID</th>
-                    <th>Nom</th>
-                    <th>Prénom</th>
-                    <th>E-mail</th>
-                    <th>Rôle</th>
-                    <th>Vérifier</th>
-                    <th>Action</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for user in users %}
-                    <tr>
-                        <td>{{ user.id }}</td>
-                        <td>{{ user.firstname }}</td>
-                        <td>{{ user.lastname }}</td>
-                        <td>{{ user.email }}</td>
-                        <td>
-                            {% for role in user.roles %}
-								{% if role == "ROLE_SUPER_ADMIN" %}
-									{% set name = "Super Administrateur" %}
-								{% elseif role == "ROLE_ADMIN" %}
-									{% set name = "Admin" %}
-                                {% elseif role == "ROLE_PARTNER" %}
-                                    {% set name = "Partenaire" %}
-								{% else %}
-									{% set name = "Membre" %}
-								{% endif %}
-								<span>{{ name }}</span>
-							{% endfor %}
-                        </td>
-                        <td>
-                            <div class="form-check form-switch">
-                                <input class="form-check-input" type="checkbox" role="switch" id="switch{{ user.id }}" {{ user.isVerified ? "checked" : "" }} disabled>
-                                <label class="form-check-label" for="switch{{ user.id }}"></label>
-                            </div>
-                        </td>
-                        <td class="row">
-                            <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="btn btn-warning">Modifier</a>
-                            <a href="{{ path('admin_user_delete', {id: user.id})}}" class="btn btn-danger">Supprimer</a>
-                            {% for role in user.roles %}
-                                {% if role == "ROLE_PARTNER" %}
-                                    <a href="{{ path('admin_user_qr_code', {id: user.id}) }}">Generer qr-code</a>
-								{% endif %}
-							{% endfor %}
-                        </td>
-                    </tr>
-                {% endfor %}
-            </tbody>
-        </table>
+
+{% include "partials/_adminnav.html.twig" %}
+
+<h1 class="admin-index-title">Liste des utilisateurs</h1>
+
+<table class="admin-index-user-table">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>E-mail</th>
+            <th>Rôle</th>
+            <th>Vérifié</th>
+            <th class="admin-actions">Actions</th>
+            <th>QR code</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for user in users %}
+            <tr>
+                <td>{{ user.id }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.lastname }}</td>
+                <td>{{ user.email }}</td>
+                <td>
+                    {% for role in user.roles %}
+                        {% if role == "ROLE_SUPER_ADMIN" %}
+                            {% set name = "Super Administrateur" %}
+                        {% elseif role == "ROLE_ADMIN" %}
+                            {% set name = "Admin" %}
+                        {% elseif role == "ROLE_PARTNER" %}
+                            {% set name = "Partenaire" %}
+                        {% else %}
+                            {% set name = "Membre" %}
+                        {% endif %}
+                        <span>{{ name }}</span>
+                    {% endfor %}
+                </td>
+                <td>
+                    <div class="form-check form-switch">
+                        <input class="form-check-input" type="checkbox" role="switch" id="switch{{ user.id }}" {{ user.isVerified ? "checked" : "" }} disabled>
+                        <label class="form-check-label" for="switch{{ user.id }}"></label>
+                    </div>
+                </td>
+                <td>
+                    <div class="admin-actions-btn">
+                    <a href="{{ path('admin_user_edit', {id: user.id}) }}" class="btn-modifier">Modifier</a>
+                    <a href="{{ path('admin_user_delete', {id: user.id})}}" class="btn-supprimer">Supprimer</a>
+                    </div>
+                </td>
+                <td>
+                    {% for role in user.roles %}
+                    {% if role == "ROLE_PARTNER" %}
+                        <a href="{{ path('admin_user_qr_code', {id: user.id}) }}" class="btn-qrcode">Generer qr-code</a>
+                    {% endif %}
+                    {% endfor %}
+                </td>
+
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 
 {% endblock %}

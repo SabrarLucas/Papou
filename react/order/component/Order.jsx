@@ -35,7 +35,7 @@ const Order = ({ supplier }) => {
                         <th>Détail</th>
                         <th>total commande sans livraison</th>
                         <th>total pour le partenaire</th>
-                        <th>total com papou</th>
+                        <th>total com papouuuuuu</th>
                     </tr>
                 </thead>
                 <tbody>

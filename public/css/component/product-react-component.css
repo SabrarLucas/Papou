@@ -1,0 +1,78 @@
+.redbtn {
+    background-color: #f19a76;
+    color: black;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.product-app-react-content {
+    display: flex;
+    margin-bottom: 5vh;
+}
+
+.product-filter-react-title {
+    display: flex;
+    justify-content: center;
+    font-size: 2vh;
+    font-family: 'Copperplate';
+    margin-bottom: 2vw;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.product-filter-react-form {
+    width: 18vw;
+    margin-left: 2vw;
+    padding: 2vw;
+    background-color: #d2df98;
+}
+
+.product-table-react-component td {
+    text-align: center;
+    border: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.product-table-react-component tr {
+    border-top:  1px solid rgba(0, 0, 0, 0.5);
+    border-bottom:  1px solid rgba(0, 0, 0, 0.5);
+}
+
+
+.product-table-react-component tr:nth-child(even) {
+    background-color: #f2f2f2;  /* Applique une couleur de fond différente pour les lignes paires */
+}
+
+
+.product-table-react-component tr:nth-child(odd) {
+    background-color: #ffffff;  /* Applique une couleur de fond différente pour les lignes impaires */
+}
+  
+
+.product-table-react-component th {
+    border:  2px solid rgba(0, 0, 0, 0.5);
+    background-color: #f19a76;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.product-filter-react-form button {
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    padding: 1vw;
+    background-color: #ffffffbd;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.product-filter-react-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.product-table-react-component {
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+}

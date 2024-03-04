@@ -3,7 +3,7 @@
 {% block body %}
 
 <div class="product-age-title">
-    <h1>Nos produits pour les {{ products[0].age }} ans</h1>
+    <h1>Nos produits pour les {{ age }} ans</h1>
 </div>
 
 
@@ -13,7 +13,7 @@
 
     <div class="product-age-right-section">
 
-        {% for product in products %}
+        {% for product in products.data %}
 
         <div class="products-age-carousel">
         
@@ -52,6 +52,10 @@
         </div>
         
         {% endfor %}
+
+        <div>
+            {% include "partials/paginationAge.html.twig" %}
+        </div>
 
     </div>
 

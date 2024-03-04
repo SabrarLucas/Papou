@@ -9,15 +9,103 @@
 
 .admin-index-content {
     width: 100vw;
-    height: 100vh;
+    display: flex;
+    margin-bottom: 5vh;
+}
+
+.admin-index-left-section {
     display: flex;
     justify-content: center;
     align-items: center;
+    font-size: 20px;
+    width: 20vw;
+    border-right: 1px solid black;
+}
+
+.admin-index-right-section {
+    width: 80vw;
     background-color: #f5f3ce;
 }
 
-.admin-index-content h1 {
-    font-size: 50px;
-    color: #00988e;
+.admin-index-user-table {
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 5vh;
+    margin-bottom: 5vh;
+    width: 80vw;
+}
+
+.admin-index-user-table td {
+    text-align: center;
+    border: none;
+    padding-top: 8px;
+    padding-bottom: 8px;
+    cursor: default;
+}
+
+.admin-index-user-table tr:nth-child(even) {
+    background-color: #f2f2f2;  /* Applique une couleur de fond différente pour les lignes paires */
+    transition: .5s ease;
+}
+
+.admin-index-user-table tr:nth-child(even):hover {
+    background-color: #f19b764f;  /* Applique une couleur de fond différente au survol de la souris */
+}
+
+.admin-index-user-table tr:nth-child(odd) {
+    background-color: #ffffff;  /* Applique une couleur de fond différente pour les lignes impaires */
+}
+
+.admin-index-user-table tr:nth-child(odd):hover {
+    background-color: #f19b764f;  /* Applique une couleur de fond différente au survol de la souris */
+}
+
+.admin-index-user-table th {
+    border:  2px solid rgba(0, 0, 0, 0.5);
+    background-color: #f19a76;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+.admin-index-user-table .btn-modifier {
+    background-color: #0ac0ba;
+    color: white;
+}
+
+.admin-index-user-table .btn-modifier:hover {
+    background-color: white;
+    color: #0ac0ba;
+}
+
+.admin-index-user-table .btn-supprimer {
+    background-color: #a2493e;
+    color: white;
+}
+
+.admin-index-user-table .btn-supprimer:hover {
+    background-color: red;
+}
+
+.admin-index-user-table .btn-qrcode {
+    background-color: #d2df98;
+    color: black;
+}
+
+.admin-index-user-table .btn-qrcode:hover {
+    background-color: white;
+    color: black;
+}
+
+.admin-index-user-table .btn-modifier,
+.admin-index-user-table .btn-supprimer,
+.admin-index-user-table .btn-qrcode {
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.admin-index-user-table .admin-actions-btn {
     display: flex;
+    justify-content: space-around;
 }

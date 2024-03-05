@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from "react";
 import Filter from "./Filter";
-import Product from "./Product";
+import Pagination from "./Pagination";
 
 const App = () => {
 
@@ -13,7 +13,7 @@ const App = () => {
     return(
         <div className="product-app-react-content">
             <Filter onChange={handleChange}/>
-            <Product supplier={supplier}/>
+            <Pagination supplier={supplier} productsPerPage={10} />
         </div>
     );
 }

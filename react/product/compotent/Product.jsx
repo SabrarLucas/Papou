@@ -3,28 +3,7 @@ import axios from 'axios';
 import dayjs from 'dayjs';
 
 
-const Product = ({supplier}) => {
-
-    const [products, setProducts] = useState([]);
-
-
-    useEffect(() => {
-        fetchProducts();
-    }, []);
-
-    const fetchProducts = () => {
-        axios.get('http://127.0.0.1:8000/api/product', {
-            headers: {
-              Accept: "application/json"
-            }
-          })
-            .then((response) => {
-                setProducts(response.data);
-            })
-            .catch((error) => {
-                console.error(error);
-            });
-    };
+const Product = ({productsPage}) => {
 
     const handleDelete = (productId) => {
         axios.delete(`http://127.0.0.1:8000/api/products/${productId}`, {
@@ -40,8 +19,6 @@ const Product = ({supplier}) => {
                 console.error(error);
             });
     };
-    
-    const filteredProducts = supplier != "null" ? products.filter(product => product.company_name === supplier) : products;
 
     return(
         <table className="product-table-react-component">
@@ -56,7 +33,7 @@ const Product = ({supplier}) => {
                 </tr>
             </thead>
             <tbody>
-                {filteredProducts.map((product) => (
+                {productsPage.map((product) => (
                     <tr key={product.id}>
                         <td>{product.category_name}</td>
                         <td>{product.company_name}</td>

@@ -220,6 +220,9 @@ class AppFixtures extends Fixture
                 ->setUserFirstname($user->getFirstName())
                 ->setUserLastname($user->getLastName());
 
+            $order->setCAPartner($order->getTotal() * 0.85)
+                ->setCAPapou($order->getTotal() * 0.15);
+
             $this->addReference('ord-'.$this->counter, $order);
             $this->counter++;
 

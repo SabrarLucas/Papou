@@ -58,6 +58,12 @@ class Order
     #[ORM\Column(length: 50)]
     private ?string $supplier_name = null;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    private ?string $CAPartner = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    private ?string $CAPapou = null;
+
     public function __construct()
     {
         $this->deliveries = new ArrayCollection();
@@ -245,6 +251,30 @@ class Order
     public function setSupplierName(string $supplier_name): static
     {
         $this->supplier_name = $supplier_name;
+
+        return $this;
+    }
+
+    public function getCAPartner(): ?string
+    {
+        return $this->CAPartner;
+    }
+
+    public function setCAPartner(string $CAPartner): static
+    {
+        $this->CAPartner = $CAPartner;
+
+        return $this;
+    }
+
+    public function getCAPapou(): ?string
+    {
+        return $this->CAPapou;
+    }
+
+    public function setCAPapou(string $CAPapou): static
+    {
+        $this->CAPapou = $CAPapou;
 
         return $this;
     }

@@ -30,8 +30,8 @@ const Order = ({ ordersPage }) => {
                                 </ul>
                             </td>
                             <td>{order.total} €</td>
-                            <td>par la suite</td>
-                            <td>par la suite</td>
+                            <td>{order.CAPartner} €</td>
+                            <td>{order.CAPapou} €</td>
                         </tr>
                     ))}
                 </tbody>

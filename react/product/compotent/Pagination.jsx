@@ -39,7 +39,7 @@ const Pagination = ({productsPerPage, supplier}) => {
     };
 
     return (
-        <>
+        <div>
           <Product productsPage={productsPage} />
 
           <div className="admin-index-products-pagination">
@@ -57,8 +57,6 @@ const Pagination = ({productsPerPage, supplier}) => {
           ):
           (<></>)
           }
-          </div>
-
         </>
       );
 }

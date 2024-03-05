@@ -24,7 +24,7 @@ class AdminUserController extends AbstractController
     #[Route('/', name: 'index')]
     public function index(UserRepository $userRepository, Request $request): Response
     {
-        $page = $request->request->get('page', 1);
+        $page = $request->query->getInt('page',1);
 
         $users = $userRepository->findPaginationAll($page, 10); 
 

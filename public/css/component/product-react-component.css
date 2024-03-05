@@ -49,6 +49,15 @@
 .product-table-react-component tr:nth-child(odd) {
     background-color: #ffffff;  /* Applique une couleur de fond différente pour les lignes impaires */
 }
+
+.product-table-react-component tr:nth-child(even):hover {
+    background-color: #f19b764f;  /* Applique une couleur de fond différente pour les lignes paires */
+}
+
+
+.product-table-react-component tr:nth-child(odd):hover {
+    background-color: #f19b764f;  /* Applique une couleur de fond différente pour les lignes impaires */
+}
   
 
 .product-table-react-component th {
@@ -73,6 +82,16 @@
 
 .product-table-react-component {
     width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.admin-index-products-pagination ul {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    width: 40vh;
     margin-left: auto;
     margin-right: auto;
 }

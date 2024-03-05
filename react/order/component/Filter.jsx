@@ -23,16 +23,22 @@ const Filter = ({onChange}) => {
     }
 
     return (
-        <form onChange={handleChange}>
+        <form onChange={handleChange} className="order-filter-react-form">
+            <div className="order-filter-react-title">
+                <h1>Filtrer par partenaire</h1>
+            </div>
             {suppliers.map((supplier) => {
                 return(
-                    <>
+                    <div className="order-filter-react-content">
                         <label htmlFor={supplier.companyName}>{supplier.companyName}</label>
                         <input type="radio" name="group" id={supplier.companyName} value={supplier.companyName}/>
-                    </>
+                    </div>
                 ) 
             })}
-            <button onClick={handleClick} >retour</button>
+            <div className="flex justify-center">
+                <button onClick={handleClick} >supprimer le filtre</button>
+            </div>
+
         </form>
     );
 }

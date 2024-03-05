@@ -41,7 +41,7 @@ const Product = ({productsPage}) => {
                         <td>{product.price}</td>
                         <td>{dayjs(product.createdAt).format("DD/MM/YYYY")}</td>
                         <td>
-                            <button onClick={() => handleDelete(product.id)} className='redbtn'>DELETE</button>
+                            <button onClick={() => handleDelete(product.id)} className='redbtn'>SUPPRIMER</button>
                         </td>
                     </tr>
                 ))}

@@ -26,8 +26,7 @@ const Order = ({ supplier }) => {
     const filteredOrders = supplier != "null" ? orders.filter(order => order.supplierName === supplier) : orders;
 
     return (
-        <div>
-            <table>
+            <table className="order-table-react-component">
                 <thead>
                     <tr>
                         <th>Nom du client</th>
@@ -57,7 +56,7 @@ const Order = ({ supplier }) => {
                     ))}
                 </tbody>
             </table>
-        </div>
+        
     );
 }
 

@@ -11,7 +11,7 @@ const App = () => {
     }
 
     return(
-        <div>
+        <div className="order-app-react-content">
             <Filter onChange={handleChange}/>
             <Order supplier={supplier}/>
         </div>

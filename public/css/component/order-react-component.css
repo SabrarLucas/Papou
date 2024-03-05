@@ -1,0 +1,79 @@
+.order-app-react-content {
+    display: flex;
+}
+
+.order-filter-react-form {
+    width: 18vw;
+    margin-left: 2vw;
+    padding: 2vw;
+    background-color: #d2df98;
+    margin-bottom: 10vh;
+}
+
+.order-filter-react-content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.order-filter-react-title {
+    display: flex;
+    justify-content: center;
+    font-size: 2vh;
+    font-family: 'Copperplate';
+    margin-bottom: 2vw;
+    border-bottom: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.order-filter-react-form button {
+    margin-top: 2vw;
+    margin-bottom: 2vw;
+    padding: 1vw;
+    background-color: #ffffffbd;
+    border: 2px solid rgba(0, 0, 0, 0.5);
+}
+
+.order-table-react-component {
+    width: 70vw;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 10vh;
+}
+
+.order-table-react-component td {
+    text-align: center;
+    border: none;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+
+.order-table-react-component tr {
+    border-top:  1px solid rgba(0, 0, 0, 0.5);
+    border-bottom:  1px solid rgba(0, 0, 0, 0.5);
+}
+
+
+.order-table-react-component tr:nth-child(even) {
+    background-color: #f2f2f2;  /* Applique une couleur de fond différente pour les lignes paires */
+}
+
+
+.order-table-react-component tr:nth-child(odd) {
+    background-color: #ffffff;  /* Applique une couleur de fond différente pour les lignes impaires */
+}
+
+.order-table-react-component tr:nth-child(even):hover {
+    background-color: #f19b764f;  /* Applique une couleur de fond différente pour les lignes paires */
+}
+
+
+.order-table-react-component tr:nth-child(odd):hover {
+    background-color: #f19b764f;  /* Applique une couleur de fond différente pour les lignes impaires */
+}
+  
+
+.order-table-react-component th {
+    border:  2px solid rgba(0, 0, 0, 0.5);
+    background-color: #f19a76;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}

@@ -13,6 +13,7 @@
 @import "/css/component/admin_nav.css";
 @import "/css/pages/admin_index.css";
 @import "/css/component/product-react-component.css";
+@import "/css/component/order-react-component.css";
   
 /* Supression des marges en bordures du site */
 body {
@@ -20,7 +21,7 @@ body {
     margin-left: 0;
     margin-top: 0;
     margin-bottom: 0;
-    font-family: "Georgia";
+    font-family: "Georgia"; /* police par défaut du corps du site */
 }
 
 /* mise en forme de l'affichage des pdf */

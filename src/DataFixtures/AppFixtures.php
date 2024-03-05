@@ -207,7 +207,7 @@ class AppFixtures extends Fixture
 
         $this->counter = 1;
 
-        for($i = 0; $i < 10; $i++)
+        for($i = 0; $i < 20; $i++)
         {
             $order = new Order();
             $order->setCreatedAt(new \DateTimeImmutable())

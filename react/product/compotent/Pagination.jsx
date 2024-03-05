@@ -9,7 +9,7 @@ const Pagination = ({productsPerPage, supplier}) => {
     const [itemOffset, setItemOffset] = useState(0);
 
     const fetchProducts = () => {
-        axios.get('https://127.0.0.1:8000/api/product', {
+        axios.get('http://127.0.0.1:8000/api/product', {
             headers: {
               Accept: "application/json"
             }

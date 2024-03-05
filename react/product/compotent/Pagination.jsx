@@ -9,7 +9,7 @@ const Pagination = ({productsPerPage, supplier}) => {
     const [itemOffset, setItemOffset] = useState(0);
 
     const fetchProducts = () => {
-        axios.get('http://127.0.0.1:8000/api/product', {
+        axios.get('https://127.0.0.1:8000/api/product', {
             headers: {
               Accept: "application/json"
             }
@@ -43,24 +43,31 @@ const Pagination = ({productsPerPage, supplier}) => {
     };
 
     return (
-        <>
+        <div>
           <Product productsPage={productsPage} />
 
           {filteredProducts.length > productsPerPage  ? (
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel="next >"
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={pageCount}
-              previousLabel="< previous"
-              renderOnZeroPageCount={null}
-            />
-
+            <nav aria-label="Page navigation example" className='flex justify-center mt-4'>
+              <ReactPaginate
+                containerClassName={"inline-flex -space-x-px text-sm"}
+                pageClassName={"flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700"}
+                activeClassName={"flex items-center justify-center px-3 h-8 leading-tight border-gray-300 bg-blue-50  border border-gray-300 hover:bg-gray-100 hover:text-gray-700"}
+                breakClassName={'flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700'}
+                previousClassName={"flex items-center justify-center px-3 h-8 ms-0 leading-tight text-gray-500 bg-white border border-e-0 border-gray-300 rounded-s-lg hover:bg-gray-100 hover:text-gray-700"}
+                nextClassName={"flex items-center justify-center px-3 h-8 leading-tight text-gray-500 bg-white border border-gray-300 rounded-e-lg hover:bg-gray-100 hover:text-gray-700"}
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+              />
+            </nav>
           ):
           (<></>)
           }
-        </>
+        </div>
       );
 }
 

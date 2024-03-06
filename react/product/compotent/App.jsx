@@ -13,7 +13,9 @@ const App = () => {
     return(
         <div className="product-app-react-content">
             <Filter onChange={handleChange}/>
-            <Pagination supplier={supplier} productsPerPage={10} />
+            <div className="product-table-react-component">
+            <Pagination supplier={supplier} productsPerPage={21} />
+            </div>
         </div>
     );
 }

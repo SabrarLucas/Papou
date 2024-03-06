@@ -27,3 +27,17 @@
     font-size: 30px;
     font-family: 'Copperplate';
 }
+
+.product-age-pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 10vh;
+}
+
+.product-age-pagination {
+    width: 40vh;
+    display: flex;
+    justify-content: space-around;
+    font-size: 20px;
+    color: black;
+}

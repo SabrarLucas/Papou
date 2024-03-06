@@ -1,33 +1,11 @@
-import axios from "axios";
-import React, { useEffect, useState } from "react";
+import React from "react";
 import dayjs from "dayjs";
 import Detail from "./Detail";
 
-const Order = ({ supplier }) => {
-    const [orders, setOrders] = useState([]);
-
-    const fetchOrder = async () => {
-        try {
-            const response = await axios.get('http://127.0.0.1:8000/api/orders', {
-                headers: {
-                    Accept: "application/json"
-                }
-              });
-            setOrders(response.data);
-        } catch (error) {
-            console.error(error);
-        }
-    };
-
-    useEffect(() => {
-        fetchOrder();
-    }, []);
-
-    const filteredOrders = supplier != "null" ? orders.filter(order => order.supplierName === supplier) : orders;
-
+const Order = ({ ordersPage }) => {
+    
     return (
-        <div>
-            <table>
+            <table className="order-table-react-component">
                 <thead>
                     <tr>
                         <th>Nom du client</th>
@@ -35,11 +13,11 @@ const Order = ({ supplier }) => {
                         <th>Détail</th>
                         <th>total commande sans livraison</th>
                         <th>total pour le partenaire</th>
-                        <th>total com papouuuuuu</th>
+                        <th>total com papou</th>
                     </tr>
                 </thead>
                 <tbody>
-                    {filteredOrders.map((order) => (
+                    {ordersPage.map((order) => (
                         <tr key={order.id}>
                             <td>{order.userLastname} {order.userFirstname}</td>
                             <td>{dayjs(order.createdAt).format("DD/MM/YYYY")}</td>
@@ -51,13 +29,13 @@ const Order = ({ supplier }) => {
                                 </ul>
                             </td>
                             <td>{order.total} €</td>
-                            <td>par la suite</td>
-                            <td>par la suite</td>
+                            <td>{order.CAPartner} €</td>
+                            <td>{order.CAPapou} €</td>
                         </tr>
                     ))}
                 </tbody>
             </table>
-        </div>
+        
     );
 }
 

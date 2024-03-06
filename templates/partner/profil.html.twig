@@ -6,19 +6,32 @@
 
 
 
-    <h1>Votre profil</h1>
+<h1 class="admin-index-title">Votre profil</h1>
 
 
-    {{ form_start(form) }}
-        {{ form_row(form.lastname, {'attr': {'value': supplier.idUser.lastname}}) }}
-        {{ form_row(form.firstname, {'attr': {'value': supplier.idUser.firstname}}) }}
-        {{ form_row(form.company_name, {'attr': {'value': supplier.companyName}}) }}
-        {{ form_row(form.email, {'attr': {'value': supplier.idUser.email}}) }}
-        <button type="submit">submit</button>
-        <a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a>
+<div class="flex justify-center align-center h-full partner-form">
+    <div>
+        {{ form_start(form, {'attr': {'class': 'form-container'}}) }}
+            <div class="form-group">
+                {{ form_row(form.lastname, {'attr': {'class': 'form-control', 'value': supplier.idUser.lastname}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(form.firstname, {'attr': {'class': 'form-control', 'value': supplier.idUser.firstname}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(form.company_name, {'attr': {'class': 'form-control', 'value': supplier.companyName}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_row(form.email, {'attr': {'class': 'form-control', 'value': supplier.idUser.email}}) }}
+            </div>
+            <div class="btn-container">
+                <a href="{{ path('partner_index', {'id': supplier.id}) }}" class="btn btn-secondary">RETOUR</a>
+                <button type="submit" class="btn btn-primary">Valider les modifications</button>
+            </div>
+        {{ form_end(form) }}
+    </div>
+</div>
 
-        
-    {{ form_end(form) }}
 
 
 

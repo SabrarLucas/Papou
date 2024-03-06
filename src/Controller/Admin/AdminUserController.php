@@ -22,9 +22,11 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminUserController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(UserRepository $userRepository): Response
+    public function index(UserRepository $userRepository, Request $request): Response
     {
-        $users = $userRepository->findAll(); 
+        $page = $request->query->getInt('page',1);
+
+        $users = $userRepository->findPaginationAll($page, 10); 
 
         return $this->render('admin/user/index.html.twig', compact('users'));
     }

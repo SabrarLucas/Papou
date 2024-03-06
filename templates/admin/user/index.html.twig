@@ -23,7 +23,7 @@
         </tr>
     </thead>
     <tbody>
-        {% for user in users %}
+        {% for user in users.data %}
             <tr>
                 <td>{{ user.id }}</td>
                 <td>{{ user.firstname }}</td>
@@ -67,5 +67,10 @@
         {% endfor %}
     </tbody>
 </table>
+
+<div class="flex justify-center mb-20">
+    {% include "partials/paginationUser.html.twig" %}
+</div>
+
 
 {% endblock %}

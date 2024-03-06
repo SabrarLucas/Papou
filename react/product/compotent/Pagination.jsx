@@ -29,38 +29,37 @@ const Pagination = ({productsPerPage, supplier}) => {
 
     const filteredProducts = supplier != "null" ? products.filter(product => product.company_name === supplier) : products;
 
-    // Simulate fetching items from another resources.
-    // (This could be items from props; or items loaded in a local state
-    // from an API endpoint with useEffect and useState)
     const endOffset = itemOffset + productsPerPage;
     const productsPage = filteredProducts.slice(itemOffset, endOffset);
     const pageCount = Math.ceil(filteredProducts.length / productsPerPage);
 
-    // Invoke when user click to request another page.
     const handlePageClick = (event) => {
         const newOffset = (event.selected * productsPerPage) % filteredProducts.length;
         setItemOffset(newOffset);
     };
 
     return (
-        <>
+        <div>
           <Product productsPage={productsPage} />
 
+          <div className="admin-index-products-pagination">
           {filteredProducts.length > productsPerPage  ? (
             <ReactPaginate
               breakLabel="..."
-              nextLabel="next >"
+              nextLabel="suivant >"
               onPageChange={handlePageClick}
               pageRangeDisplayed={5}
               pageCount={pageCount}
-              previousLabel="< previous"
+              previousLabel="< précédent"
               renderOnZeroPageCount={null}
             />
+            
 
           ):
           (<></>)
-          }
-        </>
+          }</div>
+
+        </div>
       );
 }
 

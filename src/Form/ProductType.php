@@ -45,7 +45,7 @@ class ProductType extends AbstractType
                 'required' => false
             ])
             ->add('price', MoneyType::class, [
-                'label' => 'Prix',
+                'label' => 'Prix en ',
                 'constraints' => [
                     new NotBlank([
                         'message' => 'Veuillez entrer un prix au produit'
@@ -68,7 +68,7 @@ class ProductType extends AbstractType
             ->add('stock', NumberType::class, [
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer une quantite de produit'
+                        'message' => 'Veuillez entrer une quantité de produit'
                     ]),
                     new Length([
                         'min' => 1,
@@ -78,20 +78,21 @@ class ProductType extends AbstractType
             ->add('state', ChoiceType::class, [
                 'label' => 'État',
                 'choices' => [
-                    'bon etat' => 'bon etat',
-                    'etat correct' => 'etat correct'
+                    'état neuf' => 'bon etat',
+                    'bon état' => 'bon etat',
+                    'état correct' => 'etat correct'
                 ]
             ])
             ->add('length', TextType::class, [
-                'label' => 'Longueur',
+                'label' => 'Longueur (facultatif)',
                 'required' => false
             ])
             ->add('width', TextType::class, [
-                'label' => 'Largeur',
+                'label' => 'Largeur (facultatif)',
                 'required' => false
             ])
             ->add('heigh', TextType::class, [
-                'label' => 'Hauteur',
+                'label' => 'Hauteur (facultatif)',
                 'required' => false
             ])
             ->add('id_category', EntityType::class, [
@@ -108,7 +109,7 @@ class ProductType extends AbstractType
                 'multiple' => true,
                 'mapped' =>false,
                 'required' => false,
-                'label' => 'Image'
+                'label' => false
             ])
             ->add('image1', FileType::class, [
                 'multiple' => true,

@@ -85,12 +85,11 @@ class AdminUserController extends AbstractController
             ->setForegroundColor(new Color(0, 0, 0))
             ->setBackgroundColor(new Color(255, 255, 255));
 
-        $qrCodes = [];
-        $qrCodes['simple'] = $writer->write(
-                                $qrCode,
-                                null,
-                            )->getDataUri();
+            $userData = [
+                'userName' => $user->getSuppliers()[0]->getCompanyName(),
+                'qrCodeUri' => $writer->write($qrCode, null)->getDataUri()
+            ];
 
-        return $this->render('admin/user/qr_code.html.twig', $qrCodes);
+        return $this->render('admin/user/qr_code.html.twig', $userData);
     }
 }

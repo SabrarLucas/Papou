@@ -115,7 +115,7 @@ class PartnerController extends AbstractController
                         $file = $pictureService->add($image, $folder);
                         $img = new Picture(); // creation d'un objet image
                         $img->setPicName($file); 
-                        $product->addPicture($img); // l'image est associer avec le produit                 
+                        $product->addPicture($img); // l'image est associée avec le produit                 
                     }
                 }
 
@@ -123,9 +123,9 @@ class PartnerController extends AbstractController
                         ->setIdSupplier($supplier);
     
                 $manager->persist($product);
-                $manager->flush(); // l'envoie du nouveau produit sur la base de donnée
+                $manager->flush(); // l'envoi du nouveau produit sur la base de donnée
 
-                return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+                return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'espace partenaire
             }
     
             return $this->render('partner/addProduct.html.twig', [
@@ -133,7 +133,7 @@ class PartnerController extends AbstractController
                 'supplier' => $supplier
             ]);
         }
-        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'acceuil du site
+        return $this->redirectToRoute('partner_index', ['id' => $supplier->getId()]); // retour a l'espace partenaire
     }
 
     #[Route('/{idPartner}/product/delete/{idProduct}', name: 'product_delete')]

@@ -14,6 +14,7 @@
 @import "/css/pages/admin_index.css";
 @import "/css/component/product-react-component.css";
 @import "/css/component/order-react-component.css";
+@import "/css/pages/partner_forms.css";
   
 /* Supression des marges en bordures du site */
 body {
@@ -33,3 +34,11 @@ body {
     align-items: center;
 }
 
+.admin-index-title { /* mise en page des titres de l'espace admin - utilisé également pour les titres de l'espace partenaire */
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    margin-bottom: 40px;
+    font-size: 30px;
+    font-family: 'Copperplate';
+}

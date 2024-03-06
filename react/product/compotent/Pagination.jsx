@@ -53,11 +53,13 @@ const Pagination = ({productsPerPage, supplier}) => {
               previousLabel="< précédent"
               renderOnZeroPageCount={null}
             />
+            
 
           ):
           (<></>)
-          }
-        </>
+          }</div>
+
+        </div>
       );
 }
 

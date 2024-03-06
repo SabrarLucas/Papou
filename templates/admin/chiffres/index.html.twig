@@ -3,13 +3,34 @@
 {% block title %}+ de chiffres{% endblock %}
 
 {% block body %}
-    <h1>+ de Chiffres</h1>
-    {% include "partials/_adminnav.html.twig" %}
 
-    <p>{{ nbrProduct }} produits en ligne.</p>
-    <p>{{ nbrUser }} utilisateurs inscrits.</p>
-    <p>{{ nbrUserLog }} utilisateurs connectés.</p>
-    {# <p>{{ nbrInsta }} follower sur insta</p> #}
-    <p>{{ nbrCommandes }} commandes faites à partir de minuit.</p>
-    <p>{{ CA }} € à partir de minuit.</p>
+{% include "partials/_adminnav.html.twig" %}
+
+<h1 class="admin-index-title">+ de Chiffres</h1>
+
+<div class="flex justify-center">
+    <div>
+        <div class="text-center admin-index-chiffres">
+            <p>{{ nbrProduct }} produits en ligne.</p>
+        </div>
+        <div class="text-center admin-index-chiffres">
+            <p>{{ nbrUser }} utilisateurs inscrits.</p>
+        </div>
+        <div class="text-center admin-index-chiffres">
+            <p>{{ nbrUserLog }} utilisateurs connectés.</p>
+        </div>
+        <div class="text-center admin-index-chiffres">
+            <p>{{ nbrCommandes }} commandes faites à partir de minuit.</p>
+        </div>
+        <div class="text-center admin-index-chiffres">
+            <p>{{ CA }} € à partir de minuit.</p>
+        </div>
+    </div>
+</div>
+<br><br>
+
+{# <p>{{ nbrInsta }} follower sur insta</p> #}
+
+
+
 {% endblock %}

@@ -43,16 +43,16 @@ class SupplierProfilType extends AbstractType
                 ]
             ])
             ->add('company_name', TextType::class, [
-                'label' => 'nom de la structure',
+                'label' => 'Nom de votre structure',
                 'constraints' => [
                     new NotBlank([
-                        'message' => 'Veuillez entrer le nom de votre entreprise'
+                        'message' => 'Veuillez entrer le nom de votre structure'
                     ]),
                     new Length([
                         'min' => 3,
-                        'minMessage' => 'le nom de votre entreprise est trop court',
+                        'minMessage' => 'le nom de votre structure est trop court',
                         'max' => 50,
-                        'maxMessage' => 'le nom de votre entreprise est trop long',
+                        'maxMessage' => 'le nom de votre structure est trop long',
                     ]),
                 ]
             ])

@@ -3,27 +3,42 @@
 {% block title %}partner-sale{% endblock %}
 
 {% block body %}
-    <h1>consultation ventes</h1>
-    <h2>vente du jour</h2>
-    <ul>
-        <li>CA = {{ saleDay.ca|number_format(2, '.', ',') }}</li>
-        <li>CA reel = {{ saleDay.caReel|number_format(2, '.', ',') }}</li>
-        <li>nbr commandes = {{ saleDay.nbr }}</li>
-        <li>panier moyen = {{ saleDay.cart|number_format(2, '.', ',') }}</li>
-    </ul>
-    <h2>vente de la semaine</h2>
-    <ul>
-        <li>CA = {{ saleWeek.ca|number_format(2, '.', ',') }}</li>
-        <li>CA reel = {{ saleWeek.caReel|number_format(2, '.', ',') }}</li>
-        <li>nbr commandes = {{ saleWeek.nbr }}</li>
-        <li>panier moyen = {{ saleWeek.cart|number_format(2, '.', ',') }}</li>
-    </ul>
-    <h2>vente du mois</h2>
-    <ul>
-        <li>CA = {{ saleMonth.ca|number_format(2, '.', ',') }}</li>
-        <li>CA reel = {{ saleMonth.caReel|number_format(2, '.', ',') }}</li>
-        <li>nbr commandes = {{ saleMonth.nbr}}</li>
-        <li>panier moyen = {{ saleMonth.cart|number_format(2, '.', ',') }}</li>
-    </ul>
+
+<h1 class="admin-index-title">Consultation ventes</h1>
+
+
+<div class="flex">
+    <div class="mx-auto">
+        <h2>vente du jour</h2>
+        <ul>
+            <li>CA = {{ saleDay.ca|number_format(2, '.', ',') }}</li>
+            <li>CA reel = {{ saleDay.caReel|number_format(2, '.', ',') }}</li>
+            <li>nbr commandes = {{ saleDay.nbr }}</li>
+            <li>panier moyen = {{ saleDay.cart|number_format(2, '.', ',') }}</li>
+        </ul>
+    </div>
+
+    <div class="mx-auto">
+        <h2>vente de la semaine</h2>
+        <ul>
+            <li>CA = {{ saleWeek.ca|number_format(2, '.', ',') }}</li>
+            <li>CA reel = {{ saleWeek.caReel|number_format(2, '.', ',') }}</li>
+            <li>nbr commandes = {{ saleWeek.nbr }}</li>
+            <li>panier moyen = {{ saleWeek.cart|number_format(2, '.', ',') }}</li>
+        </ul>
+    </div>
+
+    <div class="mx-auto">
+        <h2>vente du mois</h2>
+        <ul>
+            <li>CA = {{ saleMonth.ca|number_format(2, '.', ',') }}</li>
+            <li>CA reel = {{ saleMonth.caReel|number_format(2, '.', ',') }}</li>
+            <li>nbr commandes = {{ saleMonth.nbr}}</li>
+            <li>panier moyen = {{ saleMonth.cart|number_format(2, '.', ',') }}</li>
+        </ul>
+    </div class="mx-auto">
+</div>     
+
+
     <a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a>
 {% endblock %}

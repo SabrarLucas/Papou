@@ -1,11 +1,3 @@
-.admin-index-title {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    font-size: 30px;
-    font-family: 'Copperplate';
-}
 
 .admin-index-content {
     width: 100vw;
@@ -108,4 +100,15 @@
 .admin-index-user-table .admin-actions-btn {
     display: flex;
     justify-content: space-around;
+}
+
+.admin-index-chiffres {
+    width: 30vw;
+    padding: 10px;
+    background-color: #f19a76;
+    color: white;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
+    font-family: 'Copperplate';
 }

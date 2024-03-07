@@ -74,7 +74,7 @@ class AdminUserController extends AbstractController
             throw new \InvalidArgumentException("ID of supplier is empty.");
         }
 
-        $url = $this->generateUrl('partner_index', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL);
+        $url = $this->generateUrl('partner_product_add', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $writer = new PngWriter();
         $qrCode = QrCode::create($url)

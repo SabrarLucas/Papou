@@ -3,7 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Product;
-use App\Entity\Category;
+use App\Form\SearchType;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use Symfony\Component\HttpFoundation\Request;
@@ -41,47 +41,43 @@ class MainController extends AbstractController
         return $this->render('main/RGPD.html.twig');
     }
 
-    #[Route('/product', name: 'productAll')]
-    public function productAll(ProductRepository $productRepository, Request $request): Response
+    #[Route('/product', name: 'product')]
+    public function product(ProductRepository $productRepository, Request $request): Response
     {
         $page = $request->query->getInt('page',1);
-        $products = $productRepository->findAllDesc($page);
 
-        return $this->render('main/productAll.html.twig', [
-            'products' => $products, // envoie des categories
-        ]);
-    }
-    
-    #[Route('/products/{id}', name: 'product')]
-    public function product(ProductRepository $productRepository, Category $category, Request $request): Response
-    {
-        $page = $request->query->getInt('page',1);
-        if ($category->getCategory() == null) {
-
-            $products = $productRepository->findAllCategoryDesc($page,$category->getId());
-            
+        if ($request->query->has('categories')) {
+            $data['categories'] = $request->query->all()['categories'];
         }
         else{
-            $products = $productRepository->findCategoryDesc($page, $category->getId()); // recuperation des produits associés a sa categorie
+            $data['categories'] = [];
+        }
 
-            // dd($products);
+        if ($request->query->has('age')) {
+            $data['age'] = $request->query->all()['age'];
+        }
+        else{
+            $data['age'] = [];
+        }
+
+
+        $form = $this->createForm(SearchType::class);
+
+        $form->handleRequest($request);
+
+        
+        if ($form->isSubmitted() && $form->isValid()) {
+            $data = $form->getData();
+
+            $products = $productRepository->findSearch($page, $data, 8);
+        } else {
+            $products = $productRepository->findSearch($page, $data, 8);
         }
 
         return $this->render('main/product.html.twig', [
             'products' => $products,
-            'category' => $category
-        ]);
-    }
-
-    #[Route('/product/{age}', name: 'productAge')]
-    public function productAge(ProductRepository $productRepository, string $age, Request $request): Response
-    {
-        $page = $request->query->getInt('page',1);
-        $products = $productRepository->findAgeDesc($page, $age); // recuperation des produits en fonction de age
-
-        return $this->render('main/productAge.html.twig', [
-            'products' => $products,
-            'age' => $age
+            'data' => $data,
+            'form' => $form
         ]);
     }
 

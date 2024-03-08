@@ -3,17 +3,17 @@
         <ul class="product-age-pagination">
             {% if products.page > 1 %}
                 <li>
-                    <a href="{{ path('productAge', {'age': age, 'page': products.page - 1}) }}">Précédent</a>
+                    <a href="{{ path('product', {'page': products.page - 1, 'categories': data['categories'], 'age': data['age']}) }}">Précédent</a>
                 </li>
             {% endif %}
             {% for page in 1..products.pages %}
                 <li>
-                    <a href="{{ path('productAge', {'age': age, 'page': page}) }}">{{ page }}</a>
+                    <a href="{{ path('product', {'page': page, 'categories': data['categories'], 'age': data['age']}) }}">{{ page }}</a>
                 </li>
             {% endfor %}
             {% if products.page < products.pages %}
                 <li>
-                    <a href="{{ path('productAge', {'age': age, 'page': products.page + 1}) }}">Suivant</a>
+                    <a href="{{ path('product', {'page': products.page + 1, 'categories': data['categories'], 'age': data['age']}) }}">Suivant</a>
                 </li>
             {% endif %}
         </ul>

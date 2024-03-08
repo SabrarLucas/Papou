@@ -47,6 +47,7 @@ class SearchType extends AbstractType {
     {
         $resolver->setDefaults([
             'method' => 'GET',
+            'allow_extra_fields' => true,
             'csrf_protection' => false
         ]);
     }

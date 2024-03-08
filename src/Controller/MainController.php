@@ -42,7 +42,7 @@ class MainController extends AbstractController
     }
 
     #[Route('/product', name: 'product')]
-    public function product(ProductRepository $productRepository, Request $request): Response
+    public function product(ProductRepository $productRepository, Request $request, CategoryRepository $categoryRepository): Response
     {
         $page = $request->query->getInt('page',1);
 
@@ -59,7 +59,8 @@ class MainController extends AbstractController
         else{
             $data['age'] = [];
         }
-
+    
+        $products = [];
 
         $form = $this->createForm(SearchType::class);
 
@@ -71,9 +72,24 @@ class MainController extends AbstractController
 
             $products = $productRepository->findSearch($page, $data, 8);
         } else {
-            $products = $productRepository->findSearch($page, $data, 8);
-        }
+            if (count($data['categories']) != 0) {
+                $categories = $categoryRepository->findParentCategory(); // recuperation des categories
+                for ($i=0; $i < count($categories) ; $i++) { 
+    
+                    if ($categories[$i]['id'] === intval($data['categories'][0])) {
+                        $products = $productRepository->findAllCategoryDesc($page,$categories[$i]['id']);
+                    }
+                }
+            }
 
+            if (count($products) === 0) {
+                $products = $productRepository->findSearch($page, $data, 8);
+                if (count($products) === 0) {
+                    $products = $productRepository->findAllDesc($page);
+                }
+            }
+        }
+        
         return $this->render('main/product.html.twig', [
             'products' => $products,
             'data' => $data,

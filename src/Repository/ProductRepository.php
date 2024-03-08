@@ -213,7 +213,7 @@ class ProductRepository extends ServiceEntityRepository
                 ->setParameter('age', $data['age'][$i]);
         }
 
-        if (!empty($data['categories'])) {
+        if (count($data['categories']) != 0) {
             $query->andWhere('c.id IN (:categories)')
                 ->setParameter('categories', $data['categories']);
         }

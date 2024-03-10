@@ -199,8 +199,46 @@ class ProductRepository extends ServiceEntityRepository
        ;
    }
    
+   public function findSearch(int $page, array $data, int $limit):array
+   {
+        $limit = abs($limit);
 
-//    SELECT p.*, c.name, s.company_name FROM `product` p JOIN category c ON c.id = p.id_category_id JOIN supplier s ON s.id = p.id_supplier_id; 
+        $result = [];
+
+        $query = $this->createQueryBuilder('p')
+            ->join('p.id_category', 'c');
+
+        for($i = 0; $i < count($data['age']); $i++){
+            $query->andWhere('p.age = :age')
+                ->setParameter('age', $data['age'][$i]);
+        }
+
+        if (count($data['categories']) != 0) {
+            $query->andWhere('c.id IN (:categories)')
+                ->setParameter('categories', $data['categories']);
+        }
+
+        $query->orderBy('p.id', 'DESC')
+        ->setMaxResults($limit)
+        ->setFirstResult(($page * $limit) - $limit);
+        
+        $paginator = new Paginator($query);
+
+        $datas = $paginator->getQuery()->getResult();
+
+        if (empty($datas)){
+            return $result;
+        }
+
+        $pages = ceil($paginator->count() / $limit);
+
+        $result['data'] = $datas;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit;
+
+        return $result;
+   }
 
 //    public function findOneBySomeField($value): ?Product
 //    {

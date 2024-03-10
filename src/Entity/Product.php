@@ -30,9 +30,6 @@ class Product
     #[ORM\Column(length: 20)]
     private ?string $age = null;
 
-    #[ORM\Column]
-    private ?int $stock = null;
-
     #[ORM\Column(length: 20)]
     private ?string $state = null;
 
@@ -121,18 +118,6 @@ class Product
     public function setAge(string $age): static
     {
         $this->age = $age;
-
-        return $this;
-    }
-
-    public function getStock(): ?int
-    {
-        return $this->stock;
-    }
-
-    public function setStock(int $stock): static
-    {
-        $this->stock = $stock;
 
         return $this;
     }

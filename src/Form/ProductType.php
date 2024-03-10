@@ -16,7 +16,6 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProductType extends AbstractType
@@ -63,16 +62,6 @@ class ProductType extends AbstractType
                     '5-7 ans' => '5-7',
                     '8-9 ans' => '8-9',
                     '10 ans et +' => '10+'
-                ]
-            ])
-            ->add('stock', NumberType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer une quantité de produit'
-                    ]),
-                    new Length([
-                        'min' => 1,
-                    ])
                 ]
             ])
             ->add('state', ChoiceType::class, [

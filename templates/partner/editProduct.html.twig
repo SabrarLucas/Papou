@@ -4,30 +4,84 @@
 
 {% block body %}
 
-<div>
-    <h1>Modifier votre produit</h1>
-    {{ form_start(form) }}
-        {{ form_row(form.name) }}
-        {{ form_row(form.description) }}
-        {{ form_row(form.price) }}
-        {{ form_row(form.age) }}
-        {{ form_row(form.stock) }}
-        {{ form_row(form.state) }}
-        {{ form_row(form.length) }}
-        {{ form_row(form.width) }}
-        {{ form_row(form.heigh) }}
-        {{ form_row(form.id_category) }}
-        {{ form_row(form.image0) }}
-        <img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}">
-        {{ form_row(form.image1) }}
-        <img src="{{ product.pictures[1].picName }}" alt="{{ product.name }}">
-        {{ form_row(form.image2) }}
-        <img src="{{ product.pictures[2].picName }}" alt="{{ product.name }}">
-        {{ form_row(form.image3) }}
-        <img src="{{ product.pictures[3].picName }}" alt="{{ product.name }}">
-        <button type="submit">submit<button>
-        <a href="{{ path('partner_product', {'id': supplier.id}) }}">retour</a>
-    {{ form_end(form) }}
+
+<h1 class="admin-index-title">Modifier votre produit</h1>
+
+<div class="flex justify-center align-center h-full partner-form">
+    <div class="form-container">
+        {{ form_start(form, {'attr': {'class': 'partner-form'}}) }}
+            <div class="form-group">
+                {{ form_label(form.name) }}
+                {{ form_widget(form.name, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.description) }}
+                {{ form_widget(form.description, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.price) }}
+                {{ form_widget(form.price, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.age) }}
+                {{ form_widget(form.age, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.state) }}
+                {{ form_widget(form.state, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.length) }}
+                {{ form_widget(form.length, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.width) }}
+                {{ form_widget(form.width, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.heigh) }}
+                {{ form_widget(form.heigh, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.id_category) }}
+                {{ form_widget(form.id_category, {'attr': {'class': 'form-control'}}) }}
+            </div>
+            <div class="form-group">
+                {{ form_label(form.image0) }}
+                <div class="flex">
+                    {{ form_widget(form.image0, {'attr': {'class': 'form-control text-center mt-auto mb-auto border-none'}}) }}
+                    <img src="{{ product.pictures[0].picName }}" alt="{{ product.name }}">
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.image1) }}
+                <div class="flex">
+                    {{ form_widget(form.image1, {'attr': {'class': 'form-control text-center mt-auto mb-auto border-none'}}) }}
+                    <img src="{{ product.pictures[1].picName }}" alt="{{ product.name }}">
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.image2) }}
+                <div class="flex">
+                    {{ form_widget(form.image2, {'attr': {'class': 'form-control text-center mt-auto mb-auto border-none'}}) }}
+                    <img src="{{ product.pictures[2].picName }}" alt="{{ product.name }}">
+                </div>
+            </div>
+            <div class="form-group">
+                {{ form_label(form.image3) }}
+                <div class="flex">
+                    {{ form_widget(form.image3, {'attr': {'class': 'form-control text-center mt-auto mb-auto border-none'}}) }}
+                    <img src="{{ product.pictures[3].picName }}" alt="{{ product.name }}">
+                </div>
+            </div>
+
+            <div class="btn-container mt-10">
+                <a href="{{ path('partner_product', {'id': supplier.id}) }}" class="btn btn-secondary">RETOUR</a>
+                <button type="submit" class="btn btn-primary">VALIDER</button>
+            </div>
+        {{ form_end(form) }}
+    </div>
 </div>
+
     
 {% endblock %}

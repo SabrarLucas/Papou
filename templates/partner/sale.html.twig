@@ -4,41 +4,67 @@
 
 {% block body %}
 
-<h1 class="admin-index-title">Consultation ventes</h1>
-
+<h1 class="admin-index-title">Consultation de vos ventes</h1>
 
 <div class="flex">
-    <div class="mx-auto">
-        <h2>vente du jour</h2>
-        <ul>
-            <li>CA = {{ saleDay.ca|number_format(2, '.', ',') }}</li>
-            <li>CA reel = {{ saleDay.caReel|number_format(2, '.', ',') }}</li>
-            <li>nbr commandes = {{ saleDay.nbr }}</li>
-            <li>panier moyen = {{ saleDay.cart|number_format(2, '.', ',') }}</li>
-        </ul>
+    <div class="partner-sales-section mx-auto">
+        <h1 class="partner-sales-title">Ventes du jour</h1>
+        <div class="flex justify-between ml-5 mr-10 mb-5">
+            <ul>
+                <li>Chiffre d'affaire = </li>
+                <li>Chiffre d'affaire réel = </li>
+                <li>Nombre de commandes = </li>
+                <li>Valeur du panier moyen = </li>
+            </ul>
+            <ul>
+                <li>{{ saleDay.ca|number_format(2, '.', ',') }}</li>
+                <li>{{ saleDay.caReel|number_format(2, '.', ',') }}</li>
+                <li>{{ saleDay.nbr }}</li>
+                <li>{{ saleDay.cart|number_format(2, '.', ',') }}</li>
+            </ul>
+        </div>
     </div>
 
-    <div class="mx-auto">
-        <h2>vente de la semaine</h2>
-        <ul>
-            <li>CA = {{ saleWeek.ca|number_format(2, '.', ',') }}</li>
-            <li>CA reel = {{ saleWeek.caReel|number_format(2, '.', ',') }}</li>
-            <li>nbr commandes = {{ saleWeek.nbr }}</li>
-            <li>panier moyen = {{ saleWeek.cart|number_format(2, '.', ',') }}</li>
-        </ul>
+    <div class="partner-sales-section mx-auto">
+        <h1 class="partner-sales-title">Ventes de la semaine</h1>
+        <div class="flex justify-between ml-5 mr-10 mb-5">
+            <ul>
+                <li>Chiffre d'affaire = </li>
+                <li>Chiffre d'affaire réel = </li>
+                <li>Nombre de commandes = </li>
+                <li>Valeur du panier moyen = </li>
+            </ul>
+            <ul>
+                <li>{{ saleWeek.ca|number_format(2, '.', ',') }}</li>
+                <li>{{ saleWeek.caReel|number_format(2, '.', ',') }}</li>
+                <li>{{ saleWeek.nbr }}</li>
+                <li>{{ saleWeek.cart|number_format(2, '.', ',') }}</li>
+            </ul>
+        </div>
     </div>
 
-    <div class="mx-auto">
-        <h2>vente du mois</h2>
-        <ul>
-            <li>CA = {{ saleMonth.ca|number_format(2, '.', ',') }}</li>
-            <li>CA reel = {{ saleMonth.caReel|number_format(2, '.', ',') }}</li>
-            <li>nbr commandes = {{ saleMonth.nbr}}</li>
-            <li>panier moyen = {{ saleMonth.cart|number_format(2, '.', ',') }}</li>
-        </ul>
-    </div class="mx-auto">
+    <div class="partner-sales-section mx-auto">
+        <h1 class="partner-sales-title">Ventes du mois</h1>
+        <div class="flex justify-between ml-5 mr-10 mb-5">
+            <ul>
+                <li>Chiffre d'affaire = </li>
+                <li>Chiffre d'affaire réel = </li>
+                <li>Nombre de commandes = </li>
+                <li>Valeur du panier moyen = </li>
+            </ul>
+            <ul>
+                <li>{{ saleMonth.ca|number_format(2, '.', ',') }}</li>
+                <li>{{ saleMonth.caReel|number_format(2, '.', ',') }}</li>
+                <li>{{ saleMonth.nbr}}</li>
+                <li>{{ saleMonth.cart|number_format(2, '.', ',') }}</li>
+            </ul>
+        </div>
+
+    </div>
 </div>     
 
+<div class="flex justify-center mt-10 mb-10">
+    <a href="{{ path('partner_index', {'id': supplier.id}) }}" class="btn btn-secondary">RETOUR</a>
+</div>
 
-    <a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a>
 {% endblock %}

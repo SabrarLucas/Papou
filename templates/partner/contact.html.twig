@@ -3,25 +3,36 @@
 {% block title %}partner-contact{% endblock %}
 
 {% block body %}
-    <h1>contact</h1>
-    <form action="{{ path('partner_contact', {'id': supplier.id}) }}" method="post" id="contact">
-        <div class="mb-3">
-            <label for="company" class="form-label">Company</label>
-            <input type="text" value="{{ supplier.companyName }}" class="form-control" id="company" name="company" disabled>
-        </div>
-        <div class="mb-3">
-            <label for="email" class="form-label">Email</label>
-            <input type="email" class="form-control" value="{{ app.user.email }}" id="email" name="email" disabled>
-        </div>
-        <div class="mb-3">
-            <label for="subjet" class="form-label">Subjet</label>
-            <input type="text" class="form-control" id="subjet" name="subjet">
-        </div>
-        <div class="mb-3">
-            <label for="content" class="form-label">Content</label>
-            <textarea class="form-control" id="content" name="content" rows="5"></textarea>
-        </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-    <a href="{{ path('partner_index', {'id': supplier.id}) }}">retour</a>
+
+<h1 class="admin-index-title">Contact</h1>
+
+<div class="flex justify-center align-center h-full partner-form">
+    <div class="form-container">
+        <form action="{{ path('partner_contact', {'id': supplier.id}) }}" method="post" id="contact" class="partner-form">
+            <div class="mb-3 form-group">
+                <label for="company" class="form-label">Votre structure</label>
+                <input type="text" value="{{ supplier.companyName }}" class="form-control" id="company" name="company" disabled>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" value="{{ app.user.email }}" id="email" name="email" disabled>
+            </div>
+            <div class="mb-3 form-group">
+                <label for="subject" class="form-label">Objet</label>
+                <input type="text" class="form-control" id="subject" name="subject">
+            </div>
+            <div class="mb-3 form-group">
+                <label for="content" class="form-label">Votre message</label>
+                <textarea class="form-control" id="content" name="content" rows="5"></textarea>
+            </div>
+            <div class="btn-container">
+                <a href="{{ path('partner_index', {'id': supplier.id}) }}" class="btn btn-secondary">RETOUR</a>
+                <button type="submit" class="btn btn-primary">ENVOYER</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+
+
 {% endblock %}

@@ -35,11 +35,6 @@
     justify-content: space-between;
 }
 
-.partner-form .btn {
-    padding: 10px 20px;
-    cursor: pointer;
-}
-
 .partner-form .btn-primary {
     font-weight: 900;
     background-color: #0ac0ba;
@@ -53,14 +48,8 @@
     border: 2px solid #0ac0ba;
 }
 
-.partner-form .btn-secondary {
-    background-color: #f19a76;
-    color: white;
-    font-weight: 900;
+.form-group img {
+    width: 100px;
+    height: auto;
 }
 
-.partner-form .btn-secondary:hover {
-    background-color: white;
-    color: #f19a76;
-    font-weight: 900;
-}

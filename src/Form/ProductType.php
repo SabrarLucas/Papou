@@ -65,16 +65,6 @@ class ProductType extends AbstractType
                     '10 ans et +' => '10+'
                 ]
             ])
-            ->add('stock', NumberType::class, [
-                'constraints' => [
-                    new NotBlank([
-                        'message' => 'Veuillez entrer une quantité de produit'
-                    ]),
-                    new Length([
-                        'min' => 1,
-                    ])
-                ]
-            ])
             ->add('state', ChoiceType::class, [
                 'label' => 'État',
                 'choices' => [
@@ -98,7 +88,7 @@ class ProductType extends AbstractType
             ->add('id_category', EntityType::class, [
                 'class' => Category::class,
                 'choice_label' => 'name',
-                'label' => 'Categorie',
+                'label' => 'Catégorie',
                 'query_builder' => function (CategoryRepository $cr): QueryBuilder {
                     return $cr->createQueryBuilder('c')
                         ->join('c.category', 'm')

@@ -86,16 +86,5 @@
     justify-self: center;
     align-self: center;
     grid-area: 2 / 1 / 3 / 3;
-    background-color: #f19a76;
-    color: white;
-    padding: 5px;
-    width: 8vw;
     text-align: center;
-    transition: .5s ease;
-}
-
-.partner-products-return:hover {
-    background-color: white;
-    color: #f19a76;
-    transform: scale(1.2);
 }

@@ -9,11 +9,11 @@
                 {% else %}
                     {% if data['categories']|length == 0 %}
                         <li>
-                            <a href="{{ path('product', {'page': products.page - 1, 'age': data['age']}) }}">Précédent</a>
+                            <a href="{{ path('product', {'page': products.page - 1, 'age': data.age}) }}">Précédent</a>
                         </li>
                     {% else %}    
                         <li>
-                            <a href="{{ path('product', {'page': products.page - 1, 'categories': data['categories'], 'age': data['age']}) }}">Précédent</a>
+                            <a href="{{ path('product', {'page': products.page - 1, 'categories': data.categories, 'age': data.age}) }}">Précédent</a>
                         </li>
                     {% endif %}
                 {% endif %}
@@ -26,11 +26,11 @@
                 {% else %}
                     {% if data['categories']|length == 0 %}
                         <li>
-                            <a href="{{ path('product', {'page': page, 'age': data['age']}) }}">{{ page }}</a>
+                            <a href="{{ path('product', {'page': page, 'age': data.age}) }}">{{ page }}</a>
                         </li>
                     {% else %}    
                         <li>
-                            <a href="{{ path('product', {'page': page,  'categories': data['categories'], 'age': data['age']}) }}">{{ page }}</a>
+                            <a href="{{ path('product', {'page': page,  'categories': data.categories, 'age': data.age}) }}">{{ page }}</a>
                         </li>
                     {% endif %}
                 {% endif %}

@@ -2,10 +2,28 @@
 
 {% block body %}
 
-{# <div class="product-age-title">
-    <h1>Nos produits pour les {{ age }} ans</h1>
-</div> #}
+{% if data.age|length > 1 or data.categories|length != 0 %}
+    <div class="product-age-title">
+        <h1>le resultat du filtre</h1>
+    </div>
+{% endif %}
 
+{% if data.age|length == 1 and data.categories|length == 0 %}
+    <div class="product-age-title">
+        <h1>Nos produits pour les {{ data.age[0] }} ans</h1>
+    </div>
+{% endif %}
+
+{% if data.category != 0 %}
+    <div class="product-age-title">
+        <h1>Nos produits de la categorie {{ category.name }}</h1>
+    </div>
+{% endif %}
+{% if data.category == 0 and data.age|length == 0 and data.categories|length == 0 %}
+    <div class="product-age-title">
+        <h1>Tout nos produit</h1>
+    </div>
+{% endif %}
 
 <div class="product-age-content">
 
@@ -26,27 +44,14 @@
         <div class="products-age-carousel">
         
             <div class="products-age-carousel-container">
-        
-                <div class="products-carousel-img">
-                    <a href="{{ path('detail' , {'id': product.id}) }}">
-                        <div class="products-carousel-img" style="background-image: url('{{product.pictures[0].picName}}')"></div>
-                    </a>
-                </div>
-                <div class="product-carousel-img">
-                    <a href="{{ path('detail' , {'id': product.id}) }}">
-                        <div class="products-carousel-img" style="background-image: url('{{product.pictures[1].picName}}')"></div>
-                    </a>
-                </div>
-                <div class="product-carousel-img">
-                    <a href="{{ path('detail' , {'id': product.id}) }}">
-                        <div class="products-carousel-img" style="background-image: url('{{product.pictures[2].picName}}')"></div>
-                    </a>
-                </div>
-                <div class="product-carousel-img">
-                    <a href="{{ path('detail' , {'id': product.id}) }}">
-                        <div class="products-carousel-img" style="background-image: url('{{product.pictures[3].picName}}')"></div>
-                    </a>
-                </div>
+
+                {% for picture in product.pictures %}    
+                    <div class="products-carousel-img">
+                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                            <div class="products-carousel-img" style="background-image: url('{{picture.picName}}')"></div>
+                        </a>
+                    </div>
+                {% endfor %}
         
             </div>
             <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-left"> <!-- faire un bouton qui pointe vers la gauche -->

@@ -44,22 +44,22 @@ class MainController extends AbstractController
     #[Route('/product', name: 'product')]
     public function product(ProductRepository $productRepository, Request $request, CategoryRepository $categoryRepository): Response
     {
-        $page = $request->query->getInt('page',1);
+        $page = $request->query->getInt('page',1); //recupere le numero de page
         
-        $data['category'] = $request->query->getInt('category', 0);
+        $data['category'] = $request->query->getInt('category', 0); //recupere id de la categorie parente si elle existe
 
         if ($request->query->has('categories')) {
-            $data['categories'] = $request->query->all()['categories'];
+            $data['categories'] = $request->query->all()['categories']; //recupere id de les categories
         }
         else{
-            $data['categories'] = [];
+            $data['categories'] = []; //envoie un tableau vide
         }
 
         if ($request->query->has('age')) {
-            $data['age'] = $request->query->all()['age'];
+            $data['age'] = $request->query->all()['age']; //recupere les age
         }
         else{
-            $data['age'] = [];
+            $data['age'] = []; //envoie un tableau vide
         }
     
         $products = [];
@@ -70,29 +70,35 @@ class MainController extends AbstractController
 
         
         if ($form->isSubmitted() && $form->isValid()) {
-            $data = $form->getData();
+            $data = $form->getData(); //recuperation des donne du formulaire
 
-            $data['category'] = 0;
+            $data['category'] = 0; 
 
-            // dd($data);
+            $products = $productRepository->findSearch($page, $data, 8); // recherche des produit
 
-            $products = $productRepository->findSearch($page, $data, 8);
+            $data['categories'] = $data['categories']->toArray(); // convertire une collection en un tableau
+
+            for ($i=0; $i < count($data['categories']) ; $i++) { 
+                $data['categories'][$i] =$data['categories'][$i]->getId(); //remplace les categorie par leur id
+            }
+            
         } else {
-            if ($data['category'] != 0) {
-                $products = $productRepository->findAllCategoryDesc($page,$data['category']);
+            if ($data['category'] != 0) { // verifier id de la category n'est pas nul
+                $products = $productRepository->findAllCategoryDesc($page,$data['category']); //recuperation des produit
             }
             
 
-            if (count($products) === 0) {
-                $products = $productRepository->findSearch($page, $data, 8);
-                if (count($products) === 0) {
-                    $products = $productRepository->findAllDesc($page);
+            if (count($products) === 0) { // verifier si il y a un element dans le tableau
+                $products = $productRepository->findSearch($page, $data, 8); //recuperation des produit
+                if (count($products) === 0) { // verifier si il y a un element dans le tableau
+                    $products = $productRepository->findAllDesc($page); //recuperation des produit
                 }
             }
         }
         
         return $this->render('main/product.html.twig', [
             'products' => $products,
+            'category' => $data['category'] != 0 ? $categoryRepository->findOneBy(['id' => $data['category']]):null,
             'data' => $data,
             'form' => $form
         ]);

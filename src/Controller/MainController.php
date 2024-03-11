@@ -74,8 +74,6 @@ class MainController extends AbstractController
 
             $data['category'] = 0;
 
-            // dd($data);
-
             $products = $productRepository->findSearch($page, $data, 8);
         } else {
             if ($data['category'] != 0) {
@@ -93,6 +91,7 @@ class MainController extends AbstractController
         
         return $this->render('main/product.html.twig', [
             'products' => $products,
+            'category' => $data['category'] != 0 ? $categoryRepository->findOneBy(['id' => $data['category']]):null,
             'data' => $data,
             'form' => $form
         ]);

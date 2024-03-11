@@ -2,10 +2,17 @@
 
 {% block body %}
 
-{# <div class="product-age-title">
-    <h1>Nos produits pour les {{ age }} ans</h1>
-</div> #}
+{% if data.age|length == 1 %}
+    <div class="product-age-title">
+        <h1>Nos produits pour les {{ data.age[0] }} ans</h1>
+    </div>
+{% endif %}
 
+{% if data.category != 0 %}
+    <div class="product-age-title">
+        <h1>Nos produits de la categorie {{ category.name }}</h1>
+    </div>
+{% endif %}
 
 <div class="product-age-content">
 

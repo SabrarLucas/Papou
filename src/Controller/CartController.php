@@ -19,7 +19,7 @@ class CartController extends AbstractController
 
         if(count($cart) > 0){
 
-            $product = $cart[0]['product']; // recuperation du permier produit du panier
+            $product = $cart[0]['product']; // recuperation du premier produit du panier
     
             $products = $productRepository->findBy(['id_supplier' => $product->getIdSupplier()]); // recuperation des produit associer au partenaire
 

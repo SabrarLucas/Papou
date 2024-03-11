@@ -15,8 +15,8 @@ class SecurityController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils, SessionInterface $sessionInterface): Response
     {
         if ($this->getUser()) {
-            return $this->redirectToRoute('main');
             $sessionInterface->set('is_logged_in', true);
+            return $this->redirectToRoute('main');
         }
 
         if ($_SERVER['REQUEST_URI'] == '/new-partner') {

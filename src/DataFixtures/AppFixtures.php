@@ -106,8 +106,7 @@ class AppFixtures extends Fixture
             else {
                 $product->setAge('10+');
             }
-            $product->setStock($this->faker->randomNumber())
-                ->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
+            $product->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
                 ->setCreatedAt(new \DateTimeImmutable());
             $category = $this->getReference('cat-'.rand(1,25));
             $product->setIdCategory($category);
@@ -178,8 +177,7 @@ class AppFixtures extends Fixture
             else {
                 $product->setAge('10+');
             }
-            $product->setStock($this->faker->randomNumber())
-                ->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
+            $product->setState(mt_rand(0, 1) == 1? 'bon etat' : 'mauvais etat')
                 ->setCreatedAt(new \DateTimeImmutable());
             $category = $this->getReference('cat-'.rand(1,25));
             $product->setIdCategory($category);

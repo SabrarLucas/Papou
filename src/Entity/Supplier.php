@@ -23,7 +23,7 @@ class Supplier
     #[ORM\Column(length: 20)]
     private ?string $type = null;
 
-    #[ORM\Column(length: 50, nullable:true)]
+    #[ORM\Column(length: 50, nullable: true)]
     private ?string $qrcode = null;
 
     #[ORM\ManyToOne(inversedBy: 'suppliers')]
@@ -43,6 +43,11 @@ class Supplier
     {
         $this->orders = new ArrayCollection();
         $this->products = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return (string) $this->getId();
     }
 
     public function getId(): ?int

@@ -4,65 +4,56 @@
 
 {% block body %}
 
-
-
 {% if cart %}  {# affichage du tableau si au moins un produit se trouve dans la panier #}
-<div class="cart-title copperplate">
-  <h1>votre panier</h1>
-</div>
-<table class="cart-table">
-  <thead>
-    <tr>
-      <th scope="col" id="th1">Détail produit</th>
-      <th scope="col" id="th2">Prix</th>
-      <th scope="col" id="th3">Action</th>
-    </tr>
-  </thead>
-
-    <tbody>
-      {% for product in cart %}
+  <div class="cart-title copperplate">
+    <h1>votre panier</h1>
+  </div>
+  <table class="cart-table">
+    <thead>
+      <tr>
+        <th scope="col" id="th1">Détail produit</th>
+        <th scope="col" id="th2">Prix</th>
+        <th scope="col" id="th3">Action</th>
+      </tr>
+    </thead>
+      <tbody>
+        {% for product in cart %}
+          <tr>
+            <td>{{ product.product.name }}</td>
+            <td>{{ product.product.price }}€</td>
+            <td><a href="{{ path('cart_remove', {'id': product.product.id}) }}">X</a></td>
+          </tr>
+        {% endfor %}
+      </tbody>
+      <tfoot>
         <tr>
-          <td>{{ product.product.name }}</td>
-          <td>{{ product.product.price }}€</td>
-          <td><a href="{{ path('cart_remove', {'id': product.product.id}) }}">X</a></td>
+          <td><a href="{{ path('cart_removeAll') }}">Vider le panier</a></td>
         </tr>
-      {% endfor %}
-    </tbody>
-</table>
+        <tr>
+          <td><a href="{{ path('order_add') }}">Valider mon panier</a></td>{# bouton pour valider le panier #}
+        </tr>
+      </tfoot>
+  </table>
 
-<h2>product</h2>
-<ul>
-    {% for product in products %}
-    <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
-    {% endfor %}
-</ul>
+
+  <h2>product</h2>
+  <ul>
+      {% for product in products %}
+      <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
+      {% endfor %}
+  </ul>
 
 {% else %}  {# Sinon information le panier est vide #}
 
+  <div class="cart-empty">
+    <div class="empty copperplate">
+      <h1>votre panier est vide</h1>
+    </div>
 
-
-
-  
-<div class="cart-empty">
-
-
-  <div class="empty copperplate">
-    <h1>votre panier est vide</h1>
+    <div class="empty-button">
+      <a href="{{ path('product') }}">Continuez votre shopping</a>
+    </div>
   </div>
-
-  <div class="empty-button">
-    <a href="{{ path("productAll") }}">Continuez votre shopping</a>
-  </div>
-
-
-</div>
-
-
-
-
-
-
-
 
 {% endif %}
 

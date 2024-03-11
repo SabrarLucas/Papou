@@ -54,8 +54,9 @@ class CartService {
                 }
                 $cartData[] = [
                     'product' => $product,
-                    'quantity' => $quantity
+                    'quantity' => $quantity,
                 ]; // ajout de l'objet produit et la quantite associer
+                
             }
         }
         return $cartData; // envoie du tableau

@@ -64,8 +64,10 @@ class OrderController extends AbstractController
         $supplier = $product->getIdSupplier();
         $supplierIdAsString = (string) $supplier->getId();
 
+        $userIdAsString = (string) $user;
+
         //On forme la référence de commande
-        $reference = 'CMD-'. $date->format('Ymd').'-'.strtoupper(substr($user->getLastname(), 0, 2)).'-'.sprintf('%03d',$supplierIdAsString);
+        $reference = sprintf('%03d', $supplierIdAsString).'/'.sprintf('%06d', $userIdAsString).'/';
 
         //Calcule des Chiffres d'affaires
         $CAPartener = $total * 0.85;

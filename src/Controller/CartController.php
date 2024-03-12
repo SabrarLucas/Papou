@@ -17,6 +17,14 @@ class CartController extends AbstractController
 
         $cart = $cartService->getTotal(); // recuperation du panier
 
+        $total = 0;
+
+        for ($i=0; $i < count($cart) ; $i++) { 
+            $total = $total + $cart[$i]['product']->getPrice();
+        }
+
+        dd($total);
+
         if(count($cart) > 0){
 
             $product = $cart[0]['product']; // recuperation du premier produit du panier
@@ -37,6 +45,7 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', [
             'cart' => $cart, // envoie de la cart a la vue
             'products' => $products, // envoie des produits a la vue
+            'total' => $total
         ]);
     }
 

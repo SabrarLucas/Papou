@@ -5,7 +5,7 @@
 
 {% if products|length == 0 %}
     <div class="product-age-title">
-        <h1>Aucun produit trouver</h1>
+        <h1>Aucun produit trouvé</h1>
     </div>
     <div class="product-age-content">
 
@@ -60,12 +60,15 @@
 
         <div class="product-age-right-section">
 
-            {% for product in products.data %}
+            <ul>
+                {% for product in products.data %}
 
-            <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
-            
-            {% endfor %}
-        </ul>
+                <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
+                
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
     {% endif %}
 
 

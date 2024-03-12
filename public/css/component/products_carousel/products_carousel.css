@@ -23,6 +23,20 @@
     background-size: cover;
 }
 
+.btn-favoris {
+    position: absolute;
+    font-size: 35px;
+    color: #fff;
+    cursor: pointer;
+    top: 5px;
+    right: 10px;
+    transition: .3s ease;
+}
+
+.btn-favoris:hover {
+    transform: scale(1.4);
+}
+
 .btn-swipe {
     position: absolute;
     width: 35px;
@@ -65,4 +79,13 @@
     justify-content: space-around;
     align-items: center;
     font-size: 20px;
+}
+
+.product-add-btn {
+    position: absolute;
+    bottom: 0.5vh;
+    right: 15px;
+    font-family: 'Georgia';
+    font-size: 30px;
+    color: #f19a76;
 }

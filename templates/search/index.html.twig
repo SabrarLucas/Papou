@@ -1,17 +1,30 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Search{% endblock %}
+{% block title %}Recherche{% endblock %}
 
 {% block body %}
-    <h1>Search</h1>
 
-    {% if products|length != 0 %}
+{% if products|length != 0 %}
+
+    <h1 class="admin-index-title">Résultats de votre recherche</h1>
     <ul>
-    {% for product in products %}
+        {% for product in products %}
         <li><a href="{{ path('detail', {'id': product.id}) }}">{{ product.name }}</a></li>
-    {% endfor %}
+        {% endfor %}
     </ul>
-    {% else %}
-    <h2>il y a aucun resultat pour votre recherche</h2>
-    {% endif %}
+
+{% else %}
+
+    <div class="cart-empty">
+        <div class="empty copperplate">
+            <h1>Aucun produit ne correspond à votre recherche</h1>
+        </div>
+
+        <div class="empty-button">
+            <a href="{{ path('product') }}">Continuez votre shopping</a>
+        </div>
+    </div>
+
+{% endif %}
+
 {% endblock %}

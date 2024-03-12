@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use App\Service\CartService;
 use Symfony\Component\HttpFoundation\Response;
@@ -13,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CartController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(CartService $cartService, ProductRepository $productRepository, OrderRepository $orderRepository): Response
+    public function index(CartService $cartService, ProductRepository $productRepository): Response
     {
 
         $cart = $cartService->getTotal(); // recuperation du panier

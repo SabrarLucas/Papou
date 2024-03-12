@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Detail;
 use App\Entity\Order;
+use App\Repository\OrderRepository;
 use App\Repository\ProductRepository;
 use App\Service\CartService;
 use Doctrine\ORM\EntityManagerInterface;
@@ -18,7 +19,8 @@ class OrderController extends AbstractController
     #[Route('/ajout', name: 'add')]
     public function add(
         SessionInterface $session, 
-        ProductRepository $productRepository, 
+        ProductRepository $productRepository,
+        OrderRepository $orderRepository,
         EntityManagerInterface $manager,
         CartService $cartService
     ): Response
@@ -64,8 +66,15 @@ class OrderController extends AbstractController
         $supplier = $product->getIdSupplier();
         $supplierIdAsString = (string) $supplier->getId();
 
-        //On forme la référence de commande
-        $reference = 'CMD-'. $date->format('Ymd').'-'.strtoupper(substr($user->getLastname(), 0, 2)).'-'.sprintf('%03d',$supplierIdAsString);
+        //On transforme l'id du `User`en string
+        $userIdAsString = (string) $user;
+
+        //On recupere l'id de la derniere commande
+        $lastOrder = $orderRepository->findFirstOrder();
+        $orderID = $lastOrder->getId() + 1;
+
+        //On forme la référence de commande idsupplier/iduser/idcommande
+        $reference = sprintf('%03d', $supplierIdAsString).'/'.sprintf('%06d', $userIdAsString).'/'.sprintf('%07d', $orderID);
 
         //Calcule des Chiffres d'affaires
         $CAPartener = $total * 0.85;
@@ -75,6 +84,7 @@ class OrderController extends AbstractController
         $order->setIdUser($this->getUser())
             ->setIdSupplier($product->getIdSupplier())
             ->setNumOrder($reference)
+            ->setNumBill($reference)
             ->setCreatedAt($date)
             ->setTotal($total)
             ->setUserLastname($user->getLastname())

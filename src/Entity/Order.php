@@ -29,10 +29,10 @@ class Order
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $total = null;
 
-    #[ORM\Column(length: 20, nullable: true)]
+    #[ORM\Column(length: 18, nullable: true)]
     private ?string $num_order = null;
 
-    #[ORM\Column(length: 15, nullable: true)]
+    #[ORM\Column(length: 18, nullable: true)]
     private ?string $num_bill = null;
 
     #[ORM\ManyToOne(inversedBy: 'orders')]

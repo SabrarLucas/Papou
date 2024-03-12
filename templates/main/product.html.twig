@@ -62,10 +62,43 @@
 
             {% for product in products.data %}
 
-            <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
-            
+            <div class="products-age-carousel">
+    
+                <div class="products-age-carousel-container">
+    
+                    <div class="products-carousel-img">
+                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[0].picName}}')"></div>
+                        </a>
+                    </div>
+                    <div class="product-carousel-img">
+                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[1].picName}}')"></div>
+                        </a>
+                    </div>
+                    <div class="product-carousel-img">
+                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[2].picName}}')"></div>
+                        </a>
+                    </div>
+                    <div class="product-carousel-img">
+                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[3].picName}}')"></div>
+                        </a>
+                    </div>
+    
+                </div>
+                <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-left"> <!-- faire un bouton qui pointe vers la gauche -->
+                <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-right"> <!-- appliquer également le bouton qui pointe vers la gauche -->
+    
+                <div class="product-card-detail copperplate">
+                    <p>{{product.name}}</p>
+                    <p>{{product.price}} €</p>
+                </div>
+    
+            </div>
+    
             {% endfor %}
-        </ul>
     {% endif %}
 
 

@@ -3,9 +3,11 @@
 {% block body %}
 
 {% if products|length == 0 %}
+
     <div class="products-title">
         <h1>Aucun produit trouvé</h1>
     </div>
+
     <div class="products-content">
 
         <div class="products-left-section">
@@ -23,8 +25,8 @@
                     {{form_row(form.age)}}
                 </div>
 
-
                 <button type="submit" class="btn btn-info">Filtrer</button>
+
             {{ form_end(form) }}
 
         </div>
@@ -70,6 +72,7 @@
                     {{form_row(form.age)}}
  
                 <button type="submit" class="btn btn-info">Filtrer</button>
+                
             {{ form_end(form) }}
 
         </div>

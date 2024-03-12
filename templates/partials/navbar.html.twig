@@ -2,7 +2,7 @@
 
     <div class="section-container" id="left-section"> <!-- partie gauche -->
         <div class="search">
-            <form method="post" action="{{ path('search') }}" class="flex">
+            <form method="GET" action="{{ path('search') }}" class="flex">
                 <input placeholder="Rechercher" name="search" type="text">
                 <button type="submit" title="rechercher"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>

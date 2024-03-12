@@ -1,0 +1,39 @@
+{% if products.pages > 1 %}
+    <div class="product-age-pagination-container">
+        <ul class="product-age-pagination">
+            {% if products.page > 1 %}
+                {% if data['categories']|length == 0 %}
+                    <li>
+                        <a href="{{ path('search', {'page': products.page - 1, 'search': data.search, 'age': data.age}) }}">Précédent</a>
+                    </li>
+                {% else %}    
+                    <li>
+                        <a href="{{ path('search', {'page': products.page - 1, 'search': data.search,'categories': data.categories, 'age': data.age}) }}">Précédent</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+            {% for page in 1..products.pages %}
+                {% if data['categories']|length == 0 %}
+                    <li>
+                        <a href="{{ path('search', {'page': products.page , 'search': data.search, 'age': data.age}) }}">{{page}}</a>
+                    </li>
+                {% else %}    
+                    <li>
+                        <a href="{{ path('search', {'page': products.page , 'search': data.search,'categories': data.categories, 'age': data.age}) }}">{{page}}</a>
+                    </li>
+                {% endif %}
+            {% endfor %}
+            {% if products.page < products.pages %}
+                {% if data['categories']|length == 0 %}
+                    <li>
+                        <a href="{{ path('search', {'page': products.page + 1, 'search': data.search, 'age': data.age}) }}">Suivant</a>
+                    </li>
+                {% else %}    
+                    <li>
+                        <a href="{{ path('search', {'page': products.page + 1, 'search': data.search,'categories': data.categories, 'age': data.age}) }}">Suivant</a>
+                    </li>
+                {% endif %}
+            {% endif %}
+        </ul>
+    </div>
+{% endif %}

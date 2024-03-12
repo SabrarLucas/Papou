@@ -1,10 +1,13 @@
-.redbtn {
+.btn-delete {
     background-color: #f19a76;
     color: black;
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 5px;
-    padding-right: 5px;
+}
+
+.btn-info {
+    background-color: #0ac0ba;
+    color: white;
+    border: 3px solid #0ac0ba;
+    margin-right: 5px;
 }
 
 .product-app-react-content {

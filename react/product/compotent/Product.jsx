@@ -24,9 +24,9 @@ const Product = ({productsPage}) => {
         <table className="product-table-react-component">
             <thead>
                 <tr>
-                    <th>Catégorie</th>
-                    <th>Partenaire</th>
                     <th>Nom</th>
+                    <th>Partenaire</th>
+                    <th>Catégorie</th>
                     <th>Prix</th>
                     <th>Date d'ajout</th>
                     <th>Action</th>
@@ -35,13 +35,14 @@ const Product = ({productsPage}) => {
             <tbody>
                 {productsPage.map((product) => (
                     <tr key={product.id}>
-                        <td>{product.category_name}</td>
+                        <td><a href="{{ path('detail', {'id': product.id}) }}">{product.name}</a></td>
                         <td>{product.company_name}</td>
-                        <td>{product.name}</td>
+                        <td>{product.category_name}</td>
                         <td>{product.price}</td>
                         <td>{dayjs(product.createdAt).format("DD/MM/YYYY")}</td>
                         <td>
-                            <button onClick={() => handleDelete(product.id)} className='redbtn'>SUPPRIMER</button>
+                            <a href={"http://127.0.0.1:8000/detail/" + product.id} className="btn btn-info">DETAIL</a>
+                            <button onClick={() => handleDelete(product.id)} className='btn btn-delete'>SUPPRIMER</button>
                         </td>
                     </tr>
                 ))}

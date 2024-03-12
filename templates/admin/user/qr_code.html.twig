@@ -3,11 +3,13 @@
 {% block title %}QrCode{% endblock %}
 
 {% block body %}
-    <div class="container text-center">
-        <div class="row">
-            <div class="col">
-                <img src="{{ simple }}" />
-            </div>
-        </div>
+
+{% include "partials/_adminnav.html.twig" %}
+
+<h1 class="admin-index-title">QR Code pour {{ userName }}</h1>
+
+
+    <div>
+        <img src="{{ qrCodeUri }}" />
     </div>
 {% endblock %}

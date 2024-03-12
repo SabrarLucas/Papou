@@ -69,9 +69,9 @@ class AdminChiffresController extends AbstractController
             'nbrProduct' => $nbrProduct,
             'nbrUser' => $nbrUser,
             'nbrUserLog' => $nbrUserLog,
-            // 'nbrInsta' => $nbrInsta,
             'nbrCommandes' => $nbrCommandes,
-            'CA' => $CA
+            'CA' => $CA,
+            // 'nbrInsta' => $nbrInsta,
         ]);
     }
 }

@@ -74,7 +74,7 @@ class AdminUserController extends AbstractController
             throw new \InvalidArgumentException("ID of supplier is empty.");
         }
 
-        $url = $this->generateUrl('partner_index', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL);
+        $url = $this->generateUrl('partner_product_add', ['id' => $id], UrlGeneratorInterface::ABSOLUTE_URL);
 
         $writer = new PngWriter();
         $qrCode = QrCode::create($url)
@@ -85,12 +85,11 @@ class AdminUserController extends AbstractController
             ->setForegroundColor(new Color(0, 0, 0))
             ->setBackgroundColor(new Color(255, 255, 255));
 
-        $qrCodes = [];
-        $qrCodes['simple'] = $writer->write(
-                                $qrCode,
-                                null,
-                            )->getDataUri();
+            $userData = [
+                'userName' => $user->getSuppliers()[0]->getCompanyName(),
+                'qrCodeUri' => $writer->write($qrCode, null)->getDataUri()
+            ];
 
-        return $this->render('admin/user/qr_code.html.twig', $qrCodes);
+        return $this->render('admin/user/qr_code.html.twig', $userData);
     }
 }

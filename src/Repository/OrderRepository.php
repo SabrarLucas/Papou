@@ -32,6 +32,16 @@ class OrderRepository extends ServiceEntityRepository
         ;
     }
 
+    public function findFirstOrder(): Order // recupere les commande par ordre decroissant d'un utilisateur donnee
+    {
+        return $this->createQueryBuilder('o')
+            ->orderBy('o.id', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getOneOrNullResult()
+        ;
+    }
+
 //    /**
 //     * @return Order[] Returns an array of Order objects
 //     */

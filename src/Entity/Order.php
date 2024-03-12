@@ -29,7 +29,7 @@ class Order
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
     private ?string $total = null;
 
-    #[ORM\Column(length: 15, nullable: true)]
+    #[ORM\Column(length: 20, nullable: true)]
     private ?string $num_order = null;
 
     #[ORM\Column(length: 15, nullable: true)]
@@ -46,7 +46,7 @@ class Order
     #[ORM\OneToMany(mappedBy: 'id_order', targetEntity: Delivery::class)]
     private Collection $deliveries;
 
-    #[ORM\OneToMany(mappedBy: 'id_order', targetEntity: Detail::class)]
+    #[ORM\OneToMany(mappedBy: 'id_order', targetEntity: Detail::class, cascade: ['persist'])]
     private Collection $details;
 
     #[ORM\Column(length: 40)]

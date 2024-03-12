@@ -18,7 +18,7 @@ class AdminProductController extends AbstractController
     public function index(ProductRepository $productRepository): Response
     {
         return $this->render('admin/product/index.html.twig', [
-            'produits' => $productRepository->findAll()
+            'produits' => $productRepository->findBy([], ['created_at' => 'DESC'])
         ]);
     }
 

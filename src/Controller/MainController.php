@@ -74,12 +74,12 @@ class MainController extends AbstractController
 
             $data['category'] = 0; 
 
-            $products = $productRepository->findSearch($page, $data, 8); // recherche des produit
+            $products = $productRepository->findSearch($page, $data); // recherche des produit
 
             $data['categories'] = $data['categories']->toArray(); // convertire une collection en un tableau
 
             for ($i=0; $i < count($data['categories']) ; $i++) { 
-                $data['categories'][$i] =$data['categories'][$i]->getId(); //remplace les categorie par leur id
+                $data['categories'][$i] = $data['categories'][$i]->getId(); //remplace les categorie par leur id
             }
             
         } else {
@@ -89,7 +89,7 @@ class MainController extends AbstractController
             
 
             if (count($products) === 0) { // verifier si il y a un element dans le tableau
-                $products = $productRepository->findSearch($page, $data, 8); //recuperation des produit
+                $products = $productRepository->findSearch($page, $data); //recuperation des produit
                 if (count($products) === 0) { // verifier si il y a un element dans le tableau
                     $products = $productRepository->findAllDesc($page); //recuperation des produit
                 }

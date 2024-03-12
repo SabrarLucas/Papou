@@ -41,7 +41,7 @@ class ProductRepository extends ServiceEntityRepository
             ->getResult();
     }
     
-    public function findCategoryDesc(int $page, string $value, int $limit = 8): array // recupere les produit par ordre decroissant d'une categorie donnee
+    public function findCategoryDesc(int $page, string $value, int $limit = 16): array // recupere les produit par ordre decroissant d'une categorie donnee
     {
         $limit = abs($limit);
 
@@ -72,7 +72,7 @@ class ProductRepository extends ServiceEntityRepository
         return $result;
     }
     
-    public function findAgeDesc(int $page, string $value, int $limit = 8): array // recupere les produit par ordre decroissant d'une tranche age donnee
+    public function findAgeDesc(int $page, string $value, int $limit = 16): array // recupere les produit par ordre decroissant d'une tranche age donnee
     {
         $limit = abs($limit);
 
@@ -114,7 +114,7 @@ class ProductRepository extends ServiceEntityRepository
         ;
     }
     
-    public function findAllDesc(int $page, int $limit = 8): array // recupere les produit par ordre decroissant
+    public function findAllDesc(int $page, int $limit = 16): array // recupere les produit par ordre decroissant
     {
         $limit = abs($limit);
 
@@ -143,7 +143,7 @@ class ProductRepository extends ServiceEntityRepository
         return $result;
     }
     
-    public function findAllCategoryDesc(int $page, string $value, int $limit = 8): array // recupere les produit par ordre decroissant
+    public function findAllCategoryDesc(int $page, string $value, int $limit = 16): array // recupere les produit par ordre decroissant
     {
         $limit = abs($limit);
 
@@ -199,7 +199,7 @@ class ProductRepository extends ServiceEntityRepository
        ;
    }
    
-   public function findSearch(int $page, array $data, int $limit):array
+   public function findSearch(int $page, array $data, int $limit = 16):array
    {
         $limit = abs($limit);
 
@@ -208,11 +208,11 @@ class ProductRepository extends ServiceEntityRepository
         $query = $this->createQueryBuilder('p')
             ->join('p.id_category', 'c');
 
-        for($i = 0; $i < count($data['age']); $i++){
-            $query->andWhere('p.age = :age')
-                ->setParameter('age', $data['age'][$i]);
+        if (count($data['age']) != 0) {
+            $query->andWhere('p.age IN (:age)')
+                ->setParameter('age', $data['age']);
         }
-
+        
         if (count($data['categories']) != 0) {
             $query->andWhere('c.id IN (:categories)')
                 ->setParameter('categories', $data['categories']);

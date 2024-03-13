@@ -17,7 +17,7 @@
 
     <div class="section-container" id="right-section"> <!-- partie droite -->
         <div>
-            <a href="" title="Mes coups de coeur"><i class="fa-solid fa-heart navbar-menu"></i></a>
+            <a href="{{ path('favorite') }}" title="Mes coups de coeur"><i class="fa-solid fa-heart navbar-menu"></i></a>
             <a href="{{ path('cart_index') }}" title="Mon panier"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
 
             {% if app.user %}

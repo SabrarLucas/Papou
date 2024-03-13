@@ -25,7 +25,7 @@
 {% else %}    
     {% if data.age|length > 1 or data.categories|length != 0 %}
         <div class="product-age-title">
-            <h1>le resultat du filtre</h1>
+            <h1>Nos produits</h1>
         </div>
     {% endif %}
 
@@ -42,7 +42,7 @@
     {% endif %}
     {% if data.category == 0 and data.age|length == 0 and data.categories|length == 0 %}
         <div class="product-age-title">
-            <h1>Tout nos produit</h1>
+            <h1>Tout nos produits</h1>
         </div>
     {% endif %}
 
@@ -60,7 +60,7 @@
 
         <div class="product-age-right-section">
 
-            <ul>
+            
                 {% for product in products.data %}
 
             <div class="products-age-carousel">

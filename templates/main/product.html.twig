@@ -10,12 +10,26 @@
     <div class="product-age-content">
 
         <div class="product-age-left-section">
-            {{ form_start(form) }}
-                <h2>Categorie</h2>
-                {{form_row(form.categories)}}
-                <h2>Age</h2>
-                {{form_row(form.age)}}
-                <button type="submit">filter</button>
+            {{ form_start(form, {'attr': {'class': 'filter'}}) }}
+                <div class="categories">
+                    <label for="{{ form.categories.vars.id }}" class="categoriesLabel">catégorie</label>
+                    {% for key, value in form.categories %}
+                        <div class="category">
+                            {{ form_widget(value, {'attr': {'class': 'ageInput'}}) }}
+                            <label class="categoryLabel" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        </div>
+                    {% endfor %}   
+                </div>
+                <div class="ages">
+                    <label for="{{ form.age.vars.id }}" class="agesLabel">âge</label>
+                    {% for key, value in form.age %}
+                        <div class="age">
+                            {{ form_widget(value, {'attr': {'class': 'ageInput'}}) }}
+                            <label class="ageLabel" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        </div>
+                    {% endfor %}    
+                </div>
+                <button type="submit" class="button">Filtrer</button>
             {{ form_end(form) }}
         </div>
 
@@ -49,12 +63,26 @@
     <div class="product-age-content">
 
         <div class="product-age-left-section">
-            {{ form_start(form) }}
-                <h2>Categorie</h2>
-                {{form_row(form.categories)}}
-                <h2>Age</h2>
-                {{form_row(form.age)}}
-                <button type="submit">filter</button>
+            {{ form_start(form, {'attr': {'class': 'filter'}}) }}
+                <div class="categories">
+                    <label for="{{ form.categories.vars.id }}" class="categoriesLabel">catégorie</label>
+                    {% for key, value in form.categories %}
+                        <div class="category">
+                            {{ form_widget(value, {'attr': {'class': 'ageInput'}}) }}
+                            <label class="categoryLabel" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        </div>
+                    {% endfor %}   
+                </div>
+                <div class="ages">
+                    <label for="{{ form.age.vars.id }}" class="agesLabel">âge</label>
+                    {% for key, value in form.age %}
+                        <div class="age">
+                            {{ form_widget(value, {'attr': {'class': 'ageInput'}}) }}
+                            <label class="ageLabel" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        </div>
+                    {% endfor %}    
+                </div>
+                <button type="submit" class="button">Filtrer</button>
             {{ form_end(form) }}
         </div>
 

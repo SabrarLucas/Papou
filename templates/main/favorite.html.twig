@@ -2,26 +2,31 @@
 
 {% block body %}
     <h1>favorite</h1>
-    <table>
-        <thead>
-            <tr>
-                <th>nom</th>
-                <th>image</th>
-                <th>prix</th>
-                <th>detail</th>
-                <th>supprimer</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for favorite in favorites %}
+
+    {% if favorites|length == 0 %}
+        <h2>vous n'avez pas de produit dans vos favorie</h2>
+    {% else %}
+        <table>
+            <thead>
                 <tr>
-                    <td>{{favorite.idProduct.name}}</td>
-                    <td><img src="{{favorite.idProduct.pictures[0].picName}}" alt="{{favorite.idProduct.name}}"></td>
-                    <td>{{favorite.idProduct.price}}</td>
-                    <td><a href="{{path('detail',{'id': favorite.idProduct.id})}}">detail</a></td>
-                    <td><a href="{{path('favorite_delete',{'id': favorite.idProduct.id})}}">supp</a></td>
+                    <th>nom</th>
+                    <th>image</th>
+                    <th>prix</th>
+                    <th>detail</th>
+                    <th>supprimer</th>
                 </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for favorite in favorites %}
+                    <tr>
+                        <td>{{favorite.idProduct.name}}</td>
+                        <td><img src="{{favorite.idProduct.pictures[0].picName}}" alt="{{favorite.idProduct.name}}"></td>
+                        <td>{{favorite.idProduct.price}}</td>
+                        <td><a href="{{path('detail',{'id': favorite.idProduct.id})}}">detail</a></td>
+                        <td><a href="{{path('favorite_delete',{'id': favorite.idProduct.id})}}">supp</a></td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    {% endif %}
 {% endblock %}

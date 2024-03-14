@@ -5,15 +5,18 @@
 {% block body %}
 
 {% if cart %}  {# affichage du tableau si au moins un produit se trouve dans la panier #}
-  <div class="cart-title copperplate">
+
+  <div class="admin-index-title">
     <h1>votre panier</h1>
   </div>
+
   <table class="cart-table">
     <thead>
       <tr>
-        <th scope="col" id="th1">Détail produit</th>
+        <th scope="col" id="th1">Nom du produit</th>
         <th scope="col" id="th2">Prix</th>
-        <th scope="col" id="th3">Action</th>
+        <th scope="col" id="th3">Photo</th>
+        <th scope="col" id="th4">Actions</th>
       </tr>
     </thead>
       <tbody>
@@ -21,7 +24,8 @@
           <tr>
             <td>{{ product.product.name }}</td>
             <td>{{ product.product.price }}€</td>
-            <td><a href="{{ path('cart_remove', {'id': product.product.id}) }}">X</a></td>
+            <td><img src="{{ product.product.pictures[0].picName }}" alt="{{ product.product.name }}"></td>
+            <td><a href="{{ path('cart_remove', {'id': product.product.id}) }}">Supprimer</a></td>
           </tr>
         {% endfor %}
       </tbody>

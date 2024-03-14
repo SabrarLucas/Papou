@@ -14,13 +14,13 @@
 
             {{ form_start(form) }}
 
-                <h2 class="flex text-xl copperplate">Catégorie</h2>
+                <h2 class="flex justify-center text-xl copperplate">Catégorie</h2>
                 <div>
                     {{form_row(form.categories)}}
                 </div>
 
 
-                <h2>Age</h2>
+                <h2 class="flex justify-center text-xl copperplate">Age</h2>
                 <div>
                     {{form_row(form.age)}}
                 </div>
@@ -62,16 +62,16 @@
 
             {{ form_start(form) }}
 
-                <h1 class="flex text-xl copperplate">Catégorie</h1>
+                <h1 class="flex justify-center text-xl copperplate">Catégorie</h1>
 
                     {{form_row(form.categories)}}
 
 
-                <h1 class="flex text-xl copperplate">Age</h1>
+                <h1 class="flex justify-center text-xl copperplate">Age</h1>
 
                     {{form_row(form.age)}}
  
-                <button type="submit" class="btn btn-info">Filtrer</button>
+                <button type="submit" class="btn btn-info flex justify-center">Filtrer</button>
                 
             {{ form_end(form) }}
 
@@ -86,30 +86,30 @@
                 <div class="products-age-carousel-container">
     
                     <div class="products-carousel-img">
-                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                        <a href="{{ path('detail' , {'id': product.id}) }}" title="{{product.name}}">
                             <div class="products-carousel-img" style="background-image: url('{{product.pictures[0].picName}}')"></div>
                         </a>
                     </div>
                     <div class="product-carousel-img">
-                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                        <a href="{{ path('detail' , {'id': product.id}) }}" title="{{product.name}}">
                             <div class="products-carousel-img" style="background-image: url('{{product.pictures[1].picName}}')"></div>
                         </a>
                     </div>
                     <div class="product-carousel-img">
-                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                        <a href="{{ path('detail' , {'id': product.id}) }}" title="{{product.name}}">
                             <div class="products-carousel-img" style="background-image: url('{{product.pictures[2].picName}}')"></div>
                         </a>
                     </div>
                     <div class="product-carousel-img">
-                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                        <a href="{{ path('detail' , {'id': product.id}) }}" title="{{product.name}}">
                             <div class="products-carousel-img" style="background-image: url('{{product.pictures[3].picName}}')"></div>
                         </a>
                     </div>
     
                 </div>
                 <div class="btn-favoris"><a href=""><i class="fa-regular fa-heart" title="Ajouter aux favoris"></i></a></div>
-                <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-left"> <!-- bouton qui défile vers la gauche -->
-                <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-right"> <!-- bouton qui défile vers la gauche -->
+                <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-left"> <!-- bouton de défilement vers la gauche -->
+                <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-right"> <!-- bouton de défilement vers la gauche -->
     
                 <div class="product-card-detail copperplate">
                     <div>

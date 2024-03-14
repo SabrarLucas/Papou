@@ -42,6 +42,15 @@
 }
 
 #categories {
-    /* display: grid; */
-    margin-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 5vw;
+}
+
+#categories input {
+    margin-right: 10vw;
+}
+
+#categories label {
+    margin-right: 100%;
 }

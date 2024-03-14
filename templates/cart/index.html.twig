@@ -12,12 +12,6 @@
 
   <table class="cart-table">
     <thead>
-      <tr>
-        <th scope="col" id="th1">Nom du produit</th>
-        <th scope="col" id="th2">Prix</th>
-        <th scope="col" id="th3">Photo</th>
-        <th scope="col" id="th4">Actions</th>
-      </tr>
     </thead>
       <tbody>
         {% for product in cart %}
@@ -25,20 +19,27 @@
             <td>{{ product.product.name }}</td>
             <td>{{ product.product.price }}€</td>
             <td><img src="{{ product.product.pictures[0].picName }}" alt="{{ product.product.name }}"></td>
-            <td><a href="{{ path('cart_remove', {'id': product.product.id}) }}">Supprimer</a></td>
+            <td>
+              <a href="{{ path('cart_remove', {'id': product.product.id}) }}" title="Retirer du panier"><i class="fa-solid fa-trash btn-trash"></i></a>
+            </td>
           </tr>
         {% endfor %}
       </tbody>
       <tfoot>
-        <tr>
-          <td><a href="{{ path('cart_removeAll') }}">Vider le panier</a></td>
-        </tr>
-        <tr>
-          <td><a href="{{ path('order_add') }}">Valider mon panier</a></td>{# bouton pour valider le panier #}
+        <tr class="cart-table-actions">
+          <td>
+            <a href="{{ path('cart_removeAll') }}" class="btn btn-secondary">VIDER LE PANIER</a>
+          </td>
+          <td></td>
+          <td>
+
+          </td>
+          <td>
+            <a href="{{ path('order_add') }}" class="btn btn-cart-confirm"><span>VALIDER </span><i class="fa-solid fa-cart-shopping"></i></a>
+          </td>
         </tr>
       </tfoot>
-  </table>
-
+</table>
 
   <h2>product</h2>
   <ul>

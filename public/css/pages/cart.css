@@ -1,4 +1,3 @@
-
 .cart-empty {
     height: 100vh;
     display: grid;
@@ -26,26 +25,74 @@
 .empty-button:hover {
     transform: scale(1.4);
 }
-  
-
-
-#th1 {
-    width: 200px;
-}
-
-#th2 {
-    width: 100px;
-}
-
-#th3 {
-    width: 100px;
-}
 
 .cart-table {
-margin-left: auto;
-margin-right: auto;
+    margin-left: auto;
+    margin-right: auto;
+    width: 80vw;
+    max-width: 1400px;
 }
 
-.cart-table thead th tr td {
-    border: 1px solid black;
+.cart-table thead {
+    height: 10vh;
+}
+
+.cart-table td {
+    font-size: 20px;
+    font-family: 'copperplate';
+    text-align: center;
+}
+
+.cart-table img {
+    width: 20vh;
+    height: auto;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+.cart-table th {
+    font-size: 20px;
+}
+
+.cart-table td:last-child {
+    width: 20vw;
+}
+
+.cart-table tr {
+    border-top: 1px solid #f19a76;
+    border-bottom: 1px solid #f19a76;
+    transition: .5s ease;
+}
+
+.cart-table tbody tr:hover {
+    background-color: #f19b7623;  /* Applique une couleur de fond différente au survol de la souris */
+}
+
+.cart-table-actions {
+    height: 10vh;
+}
+
+.btn-trash {
+    font-size: 30px;
+    color: rgb(209, 0, 0);
+    transition: .3s ease;
+}
+
+.btn-trash:hover {
+    transform: scale(1.5);
+}
+
+.btn-cart-confirm {
+    background-color: #0ac0ba;
+    color: white;
+    transition: .3s ease; /* Ajoute une transition pour l'effet de transformation */
+}
+
+.btn-cart-confirm:hover {
+    background-color: white;
+    color: #0ac0ba;
+    border-radius: 2px solid #0ac0ba;
+    font-size: 30px;
+    padding: 20px 40px;
+
 }

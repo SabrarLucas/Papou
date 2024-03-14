@@ -35,7 +35,7 @@ body {
     align-items: center;
 }
 
-.admin-index-title { /* mise en page des titres de l'espace admin - utilisé également pour les titres de l'espace partenaire */
+.admin-index-title { /* mise en page des titres de l'espace admin - utilisé également pour les autres titres de débuts de pages */
     display: flex;
     justify-content: center;
     margin-top: 40px;
@@ -44,7 +44,10 @@ body {
     font-family: 'Copperplate';
 }
 
-
+.btn { /* propriétés de bases des boutons */
+    padding: 10px 20px;
+    cursor: pointer;
+}
 
 .btn-secondary { /* propriétés des boutons "RETOUR" */
     background-color: #f19a76;
@@ -58,7 +61,14 @@ body {
     font-weight: 900;
 }
 
-.btn { /* propriétés de bases des boutons */
-    padding: 10px 20px;
-    cursor: pointer;
+.btn-supprimer { /* propriétés des boutons "SUPPRIMER" */
+    background-color: #a2493e;
+    color: white;
 }
+
+.btn-supprimer:hover { /* propriétés des boutons "SUPPRIMER" au survol de la souris */
+    background-color: red;
+}
+
+
+

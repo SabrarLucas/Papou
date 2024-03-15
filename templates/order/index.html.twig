@@ -1,7 +1,42 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Commande{% endblock %}
+{% block title %}Commande
+{% endblock %}
 
 {% block body %}
+	<h1>Bon de commande</h1>
 
+	<p>Numéro de commande :
+		{{ order.numOrder }}</p>
+	<p>Date de commande :
+		{{ order.createdAt|date('Y-m-d H:i:s') }}</p>
+	<p>Client :
+		{{ order.userLastname }}
+		{{ order.userFirstname }}</p>
+
+	<h2>Détails de la commande :</h2>
+	<table>
+		<thead>
+			<tr>
+				<th>Produit</th>
+				<th>Total</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for detail in order.details %}
+				<tr>
+					<td>{{ detail.nameProduct }}</td>
+					<td>{{ detail.priceTot }}
+						€</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+
+	<p>Total de la commande :
+		{{ order.total }}
+		€</p>
+
+	<p>Télécharger le bon de commande.</p>
+	<a href="{{ path('order_pdf') }}">Générer le bon de commande au format PDF</a>
 {% endblock %}

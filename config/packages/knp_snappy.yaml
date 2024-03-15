@@ -1,0 +1,9 @@
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     '/home/lucas/Bureau/wkhtmltopdf/wkhtmltopdf'
+        options:    []
+    image:
+        enabled:    false
+        binary:     '/bin/wkhtmltoimage'
+        options:    []

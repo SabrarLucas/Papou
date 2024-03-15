@@ -43,7 +43,7 @@ class CartController extends AbstractController
         return $this->render('cart/index.html.twig', [
             'cart' => $cart, // envoie de la cart a la vue
             'products' => $products, // envoie des produits a la vue
-            'total' => $total
+            'total' => $total // envoie du total de commande a la vue
         ]);
     }
 

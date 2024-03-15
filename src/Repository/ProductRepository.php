@@ -22,23 +22,43 @@ class ProductRepository extends ServiceEntityRepository
         parent::__construct($registry, Product::class);
     }
 
-    public function findProductByWord(string $query) // recupere les produit d'un mot ou un phrase donnee
+    public function findProductByWord(int $page,string $query, int $limit = 16) // recupere les produit d'un mot ou un phrase donnee
     {
-        $qb = $this->createQueryBuilder('p');
-        $qb
-            ->where(
-                $qb->expr()->andX(
-                    $qb->expr()->orX(
-                        $qb->expr()->like('p.name', ':query'),
-                        $qb->expr()->like('p.description', ':query'),
+        $limit = abs($limit);
+
+        $result = [];
+
+        $qr = $this->createQueryBuilder('p');
+        $qr
+            ->andWhere(
+                $qr->expr()->andX(
+                    $qr->expr()->orX(
+                        $qr->expr()->like('p.name', ':query'),
+                        $qr->expr()->like('p.description', ':query'),
                     )
                 )
             )
             ->setParameter('query', '%' . $query . '%')
+            ->setMaxResults($limit)
+            ->setFirstResult(($page * $limit) - $limit);
         ;
-        return $qb
-            ->getQuery()
-            ->getResult();
+
+        $paginator = new Paginator($qr);
+
+        $data = $paginator->getQuery()->getResult();
+
+        if (empty($data)){
+            return $result;
+        }
+
+        $pages = ceil($paginator->count() / $limit);
+
+        $result['data'] = $data;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit;
+
+        return $result;
     }
     
     public function findCategoryDesc(int $page, string $value, int $limit = 16): array // recupere les produit par ordre decroissant d'une categorie donnee
@@ -239,6 +259,59 @@ class ProductRepository extends ServiceEntityRepository
 
         return $result;
    }
+
+   public function findSearchByWord(int $page, array $data, int $limit = 16):array
+   {
+        $limit = abs($limit);
+
+        $result = [];
+
+        $query = $this->createQueryBuilder('p');
+        $query->join('p.id_category', 'c')
+            ->andWhere(
+                $query->expr()->andX(
+                    $query->expr()->orX(
+                        $query->expr()->like('p.name', ':search'),
+                        $query->expr()->like('p.description', ':search'),
+                    )
+                )
+            )
+            ->setParameter('search', '%' . $data['search'] . '%');
+
+        if (count($data['age']) != 0) {
+            $query->andWhere('p.age IN (:age)')
+                ->setParameter('age', $data['age']);
+        }
+        
+        if (count($data['categories']) != 0) {
+            $query->andWhere('c.id IN (:categories)')
+                ->setParameter('categories', $data['categories']);
+        }
+
+        $query->orderBy('p.id', 'DESC')
+        ->setMaxResults($limit)
+        ->setFirstResult(($page * $limit) - $limit);
+        
+        $paginator = new Paginator($query);
+
+        $datas = $paginator->getQuery()->getResult();
+
+        if (empty($datas)){
+            return $result;
+        }
+
+        $pages = ceil($paginator->count() / $limit);
+
+        $result['data'] = $datas;
+        $result['pages'] = $pages;
+        $result['page'] = $page;
+        $result['limit'] = $limit;
+
+        return $result;
+   }
+
+
+   
 
 //    public function findOneBySomeField($value): ?Product
 //    {

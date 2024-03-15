@@ -2,25 +2,41 @@
 
 {% block body %}
 
-
 {% if products|length == 0 %}
-    <div class="product-age-title">
-        <h1>Aucun produit trouver</h1>
+
+    <div class="products-title">
+        <h1>Aucun produit trouvé</h1>
     </div>
-    <div class="product-age-content">
+
+    <div class="products-content">
+
+        <div class="products-left-section">
 
         <div class="product-age-left-section">
-            {{ form_start(form) }}
-                <h2>Categorie</h2>
-                {{form_row(form.categories)}}
-                <h2>Age</h2>
-                {{form_row(form.age)}}
-                <button type="submit">filter</button>
+            {{ form_start(form, {'attr': {'class': 'filter'}}) }}
+                <div class="categories">
+                    <label for="{{ form.categories.vars.id }}" class="categoriesLabel">catégorie</label>
+                    {% for key, value in form.categories %}
+                        <div class="category">
+                            {{ form_widget(value, {'attr': {'class': 'ageInput'}}) }}
+                            <label class="categoryLabel" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        </div>
+                    {% endfor %}   
+                </div>
+                <div class="ages">
+                    <label for="{{ form.age.vars.id }}" class="agesLabel">âge</label>
+                    {% for key, value in form.age %}
+                        <div class="age">
+                            {{ form_widget(value, {'attr': {'class': 'ageInput'}}) }}
+                            <label class="ageLabel" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        </div>
+                    {% endfor %}    
+                </div>
+                <button type="submit" class="button">Filtrer</button>
             {{ form_end(form) }}
+
         </div>
 
-        <div class="product-age-right-section">
-        </div>
     </div>
 {% else %}    
     {% if data.age|length > 1 or data.categories|length != 0 %}
@@ -30,14 +46,14 @@
     {% endif %}
 
     {% if data.age|length == 1 and data.categories|length == 0 %}
-        <div class="product-age-title">
+        <div class="products-title">
             <h1>Nos produits pour les {{ data.age[0] }} ans</h1>
         </div>
     {% endif %}
 
     {% if data.category != 0 %}
-        <div class="product-age-title">
-            <h1>Nos produits de la categorie {{ category.name }}</h1>
+        <div class="products-title">
+            <h1>Nos produits de la catégorie {{ category.name }}</h1>
         </div>
     {% endif %}
     {% if data.category == 0 and data.age|length == 0 and data.categories|length == 0 %}
@@ -46,7 +62,9 @@
         </div>
     {% endif %}
 
-    <div class="product-age-content">
+    <div class="products-content">
+
+        <div class="products-left-section">
 
         <div class="product-age-left-section">
             {{ form_start(form) }}
@@ -56,16 +74,53 @@
                 {{form_row(form.age)}}
                 <button type="submit">filter</button>
             {{ form_end(form) }}
+
         </div>
 
-        <div class="product-age-right-section">
+        <div class="products-right-section">
 
-            {% for product in products.data %}
+            <ul>
+                {% for product in products.data %}
 
-            <li><a href="{{ path('detail' , {'id': product.id}) }}">{{ product.name }}</a></li>
-            
+            <div class="products-age-carousel">
+    
+                <div class="products-age-carousel-container">
+    
+                    <div class="products-carousel-img">
+                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[0].picName}}')"></div>
+                        </a>
+                    </div>
+                    <div class="product-carousel-img">
+                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[1].picName}}')"></div>
+                        </a>
+                    </div>
+                    <div class="product-carousel-img">
+                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[2].picName}}')"></div>
+                        </a>
+                    </div>
+                    <div class="product-carousel-img">
+                        <a href="{{ path('detail' , {'id': product.id}) }}">
+                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[3].picName}}')"></div>
+                        </a>
+                    </div>
+    
+                </div>
+                <div class="btn-favoris"><a href=""><i class="fa-regular fa-heart" title="Ajouter aux favoris"></i></a></div>
+                <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-left"> <!-- bouton de défilement vers la gauche -->
+                <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-right"> <!-- bouton de défilement vers la gauche -->
+    
+                <div class="product-card-detail copperplate">
+                    <div>
+                        <p class="flex justify-center">{{product.name}}</p>
+                        <p class="flex justify-center">{{product.price}} €</p>
+                    </div>
+                </div>
+    
+            </div>
             {% endfor %}
-        </ul>
     {% endif %}
 
 

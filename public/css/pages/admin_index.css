@@ -69,15 +69,6 @@
     color: #0ac0ba;
 }
 
-.admin-index-user-table .btn-supprimer {
-    background-color: #a2493e;
-    color: white;
-}
-
-.admin-index-user-table .btn-supprimer:hover {
-    background-color: red;
-}
-
 .admin-index-user-table .btn-qrcode {
     background-color: #d2df98;
     color: black;

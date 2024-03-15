@@ -3,12 +3,17 @@
 namespace App\Controller;
 
 use App\Entity\Product;
+use App\Entity\Favorite;
 use App\Form\SearchType;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
+use App\Repository\FavoriteRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 
 class MainController extends AbstractController
@@ -42,7 +47,7 @@ class MainController extends AbstractController
     }
 
     #[Route('/product', name: 'product')]
-    public function product(ProductRepository $productRepository, Request $request, CategoryRepository $categoryRepository): Response
+    public function product(ProductRepository $productRepository, Request $request, CategoryRepository $categoryRepository, SessionInterface $session): Response
     {
         $page = $request->query->getInt('page',1); //recupere le numero de page
         
@@ -95,6 +100,12 @@ class MainController extends AbstractController
                 }
             }
         }
+
+         // Récupérer l'URL de la page actuelle
+         $currentUrl = $request->getUri();
+
+         // Stocker l'URL dans la session
+         $session->set('previous_page', $currentUrl);
         
         return $this->render('main/product.html.twig', [
             'products' => $products,
@@ -105,13 +116,19 @@ class MainController extends AbstractController
     }
 
     #[Route('/detail/{id}', name: 'detail')]
-    public function detail(Product $product, ProductRepository $productRepository): Response
+    public function detail(Product $product, ProductRepository $productRepository, Request $request, SessionInterface $session): Response
     {
         $products = $productRepository->findBy(['id_supplier' => $product->getIdSupplier()]); // recuperation des produit associer au partenaire du produit passer en parametre
 
         $products = array_filter($products, function($value) use ($product){ // filtre le produit en parametre dans le tableau
             return $value !== $product;
         });
+
+         // Récupérer l'URL de la page actuelle
+         $currentUrl = $request->getUri();
+
+         // Stocker l'URL dans la session
+         $session->set('previous_page', $currentUrl);
 
         return $this->render('main/detail.html.twig', [
             'product' => $product, // envoie du produit passé en parametre
@@ -120,13 +137,70 @@ class MainController extends AbstractController
     }
 
     #[Route('/favorite', name: 'favorite')]
-    public function favorite(): Response
+    public function favorite(Request $request, SessionInterface $session): Response
     {
         if ($this->getUser()) { // verifier si utilisateur est connecté
             $favorites = $this->getUser()->getFavorites(); // recuperation des coups de coeur de l'utilisateur 
+
+            // Récupérer l'URL de la page actuelle
+         $currentUrl = $request->getUri();
+
+         // Stocker l'URL dans la session
+         $session->set('previous_page', $currentUrl);
+
             return $this->render('main/favorite.html.twig', [
                 'favorites' => $favorites // envoie des coups de coeur
             ]);
+        }
+        return $this->redirectToRoute('main');
+    }
+
+    #[Route('/favorite/add/{id}', name: 'favorite_add')]
+    public function favoriteAdd(Product $product, SessionInterface $session, EntityManagerInterface $manager): Response
+    {
+        if ($this->getUser()) { // verifier si utilisateur est connecté
+            $favorite = new Favorite();
+
+            $favorite->setIdProduct($product)
+                ->setIdUser($this->getUser());
+
+            $manager->persist($favorite);
+            $manager->flush();
+
+            $previousUrl = $session->get('previous_page');
+
+            // Si l'URL précédente est définie, rediriger vers cette page, sinon rediriger vers une page par défaut
+            if ($previousUrl) {
+                return new RedirectResponse($previousUrl);
+            } else {
+                // Rediriger vers une page par défaut
+                return $this->redirectToRoute('main');
+            }
+        }
+        return $this->redirectToRoute('main');
+    }
+
+    #[Route('/favorite/delete/{id}', name: 'favorite_delete')]
+    public function favoriteDelete(Product $product, SessionInterface $session, EntityManagerInterface $manager, FavoriteRepository $favoriteRepository): Response
+    {
+        if ($this->getUser()) { // verifier si utilisateur est connecté
+            $favorite = $favoriteRepository->findOneBy(['id_product' => $product->getId()]);
+
+            $favorite->setIdUser(null)
+                    ->setIdProduct(null);
+
+            $manager->remove($favorite);
+            $manager->flush();
+
+            $previousUrl = $session->get('previous_page');
+
+            // Si l'URL précédente est définie, rediriger vers cette page, sinon rediriger vers une page par défaut
+            if ($previousUrl) {
+                return new RedirectResponse($previousUrl);
+            } else {
+                // Rediriger vers une page par défaut
+                return $this->redirectToRoute('main');
+            }
         }
         return $this->redirectToRoute('main');
     }

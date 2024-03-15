@@ -35,7 +35,7 @@ const Product = ({productsPage}) => {
             <tbody>
                 {productsPage.map((product) => (
                     <tr key={product.id}>
-                        <td><a href="{{ path('detail', {'id': product.id}) }}">{product.name}</a></td>
+                        <td><a href={"http://127.0.0.1:8000/detail/" + product.id}>{product.name}</a></td>
                         <td>{product.company_name}</td>
                         <td>{product.category_name}</td>
                         <td>{product.price}</td>

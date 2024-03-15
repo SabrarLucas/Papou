@@ -73,7 +73,7 @@
     display: flex;
 }
 
-.product-page .btn-box button {
+.product-page .btn-box a {
     font-size: 18px;
     padding: 8px 25px;
     outline: none;

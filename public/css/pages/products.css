@@ -1,16 +1,15 @@
-.product-age-content {
+.products-content {
     display: flex;
 }
 
-
-.product-age-left-section {
+.products-left-section {
     width: 20vw;
     height: auto;
     border-right: 2px solid #f19a76;
     margin-bottom: 40px;
 }
 
-.product-age-right-section {
+.products-right-section {
     display: flex;
     flex-wrap: wrap;
     width: 80vw;
@@ -18,7 +17,7 @@
     margin-bottom: 40px;
 }
 
-.product-age-title {
+.products-title {
     width: 100vw;
     height: 10vw;
     display: flex;
@@ -28,16 +27,30 @@
     font-family: 'Copperplate';
 }
 
-.product-age-pagination-container {
+.products-pagination-container {
     display: flex;
     justify-content: center;
     margin-bottom: 10vh;
 }
 
-.product-age-pagination {
+.products-pagination {
     width: 40vh;
     display: flex;
     justify-content: space-around;
     font-size: 20px;
     color: black;
+}
+
+#categories {
+    display: flex;
+    flex-wrap: wrap;
+    margin-left: 5vw;
+}
+
+#categories input {
+    margin-right: 10vw;
+}
+
+#categories label {
+    margin-right: 100%;
 }

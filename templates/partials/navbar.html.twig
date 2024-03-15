@@ -2,7 +2,7 @@
 
     <div class="section-container" id="left-section"> <!-- partie gauche -->
         <div class="search">
-            <form method="post" action="{{ path('search') }}" class="flex">
+            <form method="GET" action="{{ path('search') }}" class="flex">
                 <input placeholder="Rechercher" name="search" type="text">
                 <button type="submit" title="rechercher"><i class="fa-solid fa-magnifying-glass"></i></button>
             </form>
@@ -17,7 +17,7 @@
 
     <div class="section-container" id="right-section"> <!-- partie droite -->
         <div>
-            <a href="" title="Mes coups de coeur"><i class="fa-solid fa-heart navbar-menu"></i></a>
+            <a href="{{ path('favorite') }}" title="Mes coups de coeur"><i class="fa-solid fa-heart navbar-menu"></i></a>
             <a href="{{ path('cart_index') }}" title="Mon panier"><i class="fa-solid fa-cart-shopping navbar-menu"></i></a>
 
             {% if app.user %}

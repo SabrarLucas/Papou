@@ -64,51 +64,71 @@
 
     <div class="products-content">
 
-        <div class="products-left-section">
 
-        <div class="product-age-left-section">
-            {{ form_start(form) }}
-                <h2>Categorie</h2>
-                {{form_row(form.categories)}}
-                <h2>Age</h2>
-                {{form_row(form.age)}}
-                <button type="submit">filter</button>
+        <div class="product-left-section">
+            {{ form_start(form, {'attr': {'class': 'filter'}}) }}
+                <div class="categories-filter">
+                    <label for="{{ form.categories.vars.id }}" class="categories-label-filter">catégorie</label>
+                    {% for key, value in form.categories %}
+                        <div class="category-filter">
+                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+                            <label class="category-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        </div>
+                    {% endfor %}   
+                </div>
+                <div class="ages-filter">
+                    <label for="{{ form.age.vars.id }}" class="ages-label-filter">âge</label>
+                    {% for key, value in form.age %}
+                        <div class="age-filter">
+                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+                            <label class="age-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        </div>
+                    {% endfor %}    
+                </div>
+                <button type="submit" class="button-filter">Filtrer</button>
             {{ form_end(form) }}
 
         </div>
 
         <div class="products-right-section">
 
-            <ul>
-                {% for product in products.data %}
+            {% for product in products.data %}
 
             <div class="products-age-carousel">
     
                 <div class="products-age-carousel-container">
-    
-                    <div class="products-carousel-img">
-                        <a href="{{ path('detail' , {'id': product.id}) }}">
-                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[0].picName}}')"></div>
-                        </a>
-                    </div>
-                    <div class="product-carousel-img">
-                        <a href="{{ path('detail' , {'id': product.id}) }}">
-                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[1].picName}}')"></div>
-                        </a>
-                    </div>
-                    <div class="product-carousel-img">
-                        <a href="{{ path('detail' , {'id': product.id}) }}">
-                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[2].picName}}')"></div>
-                        </a>
-                    </div>
-                    <div class="product-carousel-img">
-                        <a href="{{ path('detail' , {'id': product.id}) }}">
-                            <div class="products-carousel-img" style="background-image: url('{{product.pictures[3].picName}}')"></div>
-                        </a>
-                    </div>
+
+                    {% for picture in product.pictures %}
+                        <div class="products-carousel-img">
+                            <a href="{{ path('detail' , {'id': product.id}) }}">
+                                <div class="products-carousel-img" style="background-image: url('{{picture.picName}}')"></div>
+                            </a>
+                        </div>
+                    {% endfor %}
     
                 </div>
-                <div class="btn-favoris"><a href=""><i class="fa-regular fa-heart" title="Ajouter aux favoris"></i></a></div>
+                {% if app.user %}
+                        {% set isPresent = false %}
+                        {% for favorite in app.user.favorites %}
+                            {% if product.id == favorite.idProduct.id %}
+                                {% set isPresent = true %}
+                            {% endif %}
+                        {% endfor %}
+
+                        {% if isPresent %}
+                            <div class="btn-favoris">
+                                <a href="{{ path('favorite_delete', {'id': product.id}) }}"><i class="fa-solid fa-heart"></i></a>
+                            </div>
+                        {% else %}
+                            <div class="btn-favoris">
+                                <a href="{{ path('favorite_add', {'id': product.id}) }}"><i class="fa-regular fa-heart"></i></a>
+                            </div>
+                        {% endif %}
+                    {% else %}
+                        <div class="btn-favoris">
+                            <i class="fa-regular fa-heart"></i>
+                        </div>
+                    {% endif %}
                 <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-left"> <!-- bouton de défilement vers la gauche -->
                 <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-right"> <!-- bouton de défilement vers la gauche -->
     
@@ -121,6 +141,8 @@
     
             </div>
             {% endfor %}
+        </div>
+    </div>
     {% endif %}
 
 

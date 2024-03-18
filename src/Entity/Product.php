@@ -62,6 +62,9 @@ class Product
     #[ORM\OneToMany(mappedBy: 'id_product', targetEntity: Favorite::class, orphanRemoval: true)]
     private Collection $favorites;
 
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2, nullable: true)]
+    private ?string $new_price = null;
+
     public function __construct()
     {
         $this->pictures = new ArrayCollection();
@@ -292,6 +295,18 @@ class Product
                 $favorite->setIdProduct(null);
             }
         }
+
+        return $this;
+    }
+
+    public function getNewPrice(): ?string
+    {
+        return $this->new_price;
+    }
+
+    public function setNewPrice(?string $new_price): static
+    {
+        $this->new_price = $new_price;
 
         return $this;
     }

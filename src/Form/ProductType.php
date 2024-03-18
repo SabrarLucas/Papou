@@ -16,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\NumberType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class ProductType extends AbstractType
@@ -49,6 +50,16 @@ class ProductType extends AbstractType
                     new NotBlank([
                         'message' => 'Veuillez entrer un prix au produit'
                     ]),
+                    new Length([
+                        'max' => 9,
+                        'maxMessage' => 'le jouer est trop cher',
+                    ])
+                ]
+            ])
+            ->add('new_price', NumberType::class, [
+                'label' => 'Prix neuf ',
+                'required' => false,
+                'constraints' => [
                     new Length([
                         'max' => 9,
                         'maxMessage' => 'le jouer est trop cher',

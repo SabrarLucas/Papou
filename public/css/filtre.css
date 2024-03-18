@@ -1,0 +1,71 @@
+.filter{
+    margin-left: 50px;
+}
+
+.filter div {
+    display: grid;
+    /* border: 1px solid;
+    border-color: black; */
+}
+
+.categories-label-filter{
+    font-size: 30px;
+    margin-bottom: 15px;
+}
+
+.ages-label-filter{
+    font-size: 30px;
+}
+
+.categories-filter{
+    margin-bottom: 20px;
+}
+
+.ages-filter{
+    margin-bottom: 20px;
+}
+
+.categories-filter div{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 150px;
+    
+}
+
+.category-filter input{
+    margin-left: 10px;
+}
+
+.ages-filter div{
+    display: flex;
+    justify-content: space-between;
+    margin-left: 30px;
+    margin-right: 150px;
+    
+}
+
+.age-filter input{
+    margin-left: 10px;
+}
+
+hr{
+    margin-left: 30px;
+    margin-right: 150px;
+}
+
+.button-filter{
+    border: none;
+    padding-left: 15px;
+    padding-right: 15px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    background-color: #0ac0ba;
+    color: white;
+    font-weight: 900;
+}
+
+.button-filter:hover{
+    transform: scale(1.2);
+    box-shadow: 0 4px 6px rgba(36, 35, 35, 0.1);
+}

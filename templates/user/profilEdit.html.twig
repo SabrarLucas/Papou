@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Profil{% endblock %}
+
+{% block body %}
+<h1>Profil</h1>
+
+{{ form_start(form) }}
+    {{ form_row(form.lastname) }}
+    {{ form_row(form.firstname) }}
+    {{ form_row(form.address) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.phone) }}
+    {{ form_row(form.city) }}
+    {{ form_row(form.zipcode) }}
+    {{ form_row(form.country) }}
+    <div>
+        <button type"submit">valider</button>
+        <a href="{{ path('main') }}">retour</a>
+    </div>
+{{ form_end(form) }}
+{% endblock %}

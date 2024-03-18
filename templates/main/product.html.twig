@@ -14,25 +14,27 @@
 
         <div class="product-age-left-section">
             {{ form_start(form, {'attr': {'class': 'filter'}}) }}
-                <div class="categories">
-                    <label for="{{ form.categories.vars.id }}" class="categoriesLabel">catégorie</label>
+                <div class="categories-filter">
+                    <label for="{{ form.categories.vars.id }}" class="categories-label-filter">catégorie</label>
                     {% for key, value in form.categories %}
-                        <div class="category">
-                            {{ form_widget(value, {'attr': {'class': 'ageInput'}}) }}
-                            <label class="categoryLabel" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        <div class="category-filter">
+                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+                            <label class="category-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
                         </div>
+                        <hr>
                     {% endfor %}   
                 </div>
-                <div class="ages">
-                    <label for="{{ form.age.vars.id }}" class="agesLabel">âge</label>
+                <div class="ages-filter">
+                    <label for="{{ form.age.vars.id }}" class="ages-label-filter">âge</label>
                     {% for key, value in form.age %}
-                        <div class="age">
-                            {{ form_widget(value, {'attr': {'class': 'ageInput'}}) }}
-                            <label class="ageLabel" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                        <div class="age-filter">
+                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+                            <label class="age-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
                         </div>
+                        <hr>
                     {% endfor %}    
                 </div>
-                <button type="submit" class="button">Filtrer</button>
+                <button type="submit" class="button-filter">Filtrer</button>
             {{ form_end(form) }}
 
         </div>
@@ -40,7 +42,7 @@
     </div>
 {% else %}    
     {% if data.age|length > 1 or data.categories|length != 0 %}
-        <div class="product-age-title">
+        <div class="product-title">
             <h1>le resultat du filtre</h1>
         </div>
     {% endif %}
@@ -57,7 +59,7 @@
         </div>
     {% endif %}
     {% if data.category == 0 and data.age|length == 0 and data.categories|length == 0 %}
-        <div class="product-age-title">
+        <div class="product-title">
             <h1>Tout nos produit</h1>
         </div>
     {% endif %}
@@ -74,6 +76,7 @@
                             {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
                             <label class="category-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
                         </div>
+                        <hr>
                     {% endfor %}   
                 </div>
                 <div class="ages-filter">
@@ -83,6 +86,7 @@
                             {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
                             <label class="age-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
                         </div>
+                        <hr>
                     {% endfor %}    
                 </div>
                 <button type="submit" class="button-filter">Filtrer</button>
@@ -142,6 +146,9 @@
             </div>
             {% endfor %}
         </div>
+    </div>
+    <div class="flex justify-center mb-20">
+        {% include "partials/pagination.html.twig" %}
     </div>
     {% endif %}
 

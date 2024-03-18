@@ -4,39 +4,57 @@
 {% endblock %}
 
 {% block body %}
-	<h1>Bon de commande</h1>
 
-	<p>Numéro de commande :
-		{{ order.numOrder }}</p>
-	<p>Date de commande :
-		{{ order.createdAt|date('Y-m-d H:i:s') }}</p>
-	<p>Client :
-		{{ order.userLastname }}
-		{{ order.userFirstname }}</p>
+<h1 class="admin-index-title">Récapitulatif de commande</h1>
 
-	<h2>Détails de la commande :</h2>
-	<table>
-		<thead>
-			<tr>
-				<th>Produit</th>
-				<th>Total</th>
-			</tr>
-		</thead>
-		<tbody>
-			{% for detail in order.details %}
-				<tr>
-					<td>{{ detail.nameProduct }}</td>
-					<td>{{ detail.priceTot }}
-						€</td>
-				</tr>
-			{% endfor %}
-		</tbody>
-	</table>
+<div class="flex justify-center order-index-content">
 
-	<p>Total de la commande :
-		{{ order.total }}
-		€</p>
+	<div class="order-section flex">
 
-	<p>Télécharger le bon de commande.</p>
-	<a href="{{ path('order_pdf') }}">Générer le bon de commande au format PDF</a>
+		<div class="order-index-left">
+
+			<table>
+				<thead>
+					<tr>
+						<th>Produit</th>
+						<th>Total</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for detail in order.details %}
+					<tr>
+						<td>{{ detail.nameProduct }}</td>
+						<td>{{ detail.priceTot }}
+							€</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+			<p class="flex justify-center mt-10 mb-10">Total de la commande : {{ order.total }} €</p>
+
+		</div>
+
+		<div class="order-index-right">
+
+			<div class="order-index-info">
+
+					<p>Numéro de commande : {{ order.numOrder }}</p>
+
+					<p>Date de commande : {{ order.createdAt|date('d-m-Y H:i:s') }}</p>
+
+					<p>Client : {{ order.userLastname }} {{ order.userFirstname }}</p>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="flex justify-center mt-20 mb-40">
+	<a href="{{ path('order_pdf') }}" class="btn btn-secondary">Générer le bon de commande au format PDF</a>
+</div>
+
 {% endblock %}

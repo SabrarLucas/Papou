@@ -37,7 +37,7 @@
     height: 10vh;
 }
 
-.cart-table td {
+.cart-table-td {
     font-size: 20px;
     font-family: 'copperplate';
     text-align: center;
@@ -54,7 +54,7 @@
     font-size: 20px;
 }
 
-.cart-table td:last-child {
+.cart-table-td-trash {
     width: 20vw;
 }
 
@@ -95,4 +95,10 @@
     font-size: 30px;
     padding: 20px 40px;
 
+}
+
+.cart-total {
+    font-size: 25px;
+    font-family: 'copperplate';
+    text-align: center;
 }

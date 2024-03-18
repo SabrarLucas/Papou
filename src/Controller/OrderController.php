@@ -98,7 +98,7 @@ class OrderController extends AbstractController
         $manager->persist($order);
         $manager->flush();
 
-        $cartService->removeCartAll(); // supprimer le panier après la validation
+        //$cartService->removeCartAll(); // supprimer le panier après la validation
 
         return $this->render('order/index.html.twig', [
             'order' => $order

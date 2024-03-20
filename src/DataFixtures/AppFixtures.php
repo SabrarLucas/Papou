@@ -281,11 +281,8 @@ class AppFixtures extends Fixture
             $ca = new CaDay();
 
             $day = date('d/n', strtotime('-'.$i.' day'));
-
-            $invalDay = intval($day);
-
             
-            $ca->setDay($invalDay)
+            $ca->setDay($day)
                 ->setRising($this->faker->randomFloat(2,0,100));
 
             $manager->persist($ca);

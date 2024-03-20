@@ -23,11 +23,9 @@ class CaDayRepository extends ServiceEntityRepository
 
     public function findCaDay(): array
     {
-        $currentMonth = (new \DateTime())->format('m'); // Obtient le mois actuel au format numérique (ex: "03" pour mars)
-    
         return $this->createQueryBuilder('c')
-            ->andWhere('c.month = :currentMonth')
-            ->setParameter('currentMonth', $currentMonth)
+            ->orderBy('c.id', 'DESC')
+            ->setMaxResults(31)
             ->getQuery()
             ->getResult();
     }

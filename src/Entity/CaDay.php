@@ -2,11 +2,11 @@
 
 namespace App\Entity;
 
-use App\Repository\CaDaysRepository;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\CaDayRepository;
 
-#[ORM\Entity(repositoryClass: CaDaysRepository::class)]
+#[ORM\Entity(repositoryClass: CaDayRepository::class)]
 class CaDay
 {
     #[ORM\Id]
@@ -18,10 +18,7 @@ class CaDay
     private ?string $rising = null;
 
     #[ORM\Column]
-    private ?int $day = null;
-
-    #[ORM\Column]
-    private ?int $month = null;
+    private ?string $day = null;
 
     public function getId(): ?int
     {
@@ -40,26 +37,14 @@ class CaDay
         return $this;
     }
 
-    public function getDay(): ?int
+    public function getDay(): ?string
     {
         return $this->day;
     }
 
-    public function setDay(int $day): static
+    public function setDay(string $day): static
     {
         $this->day = $day;
-
-        return $this;
-    }
-
-    public function getMonth(): ?int
-    {
-        return $this->month;
-    }
-
-    public function setMonth(int $month): static
-    {
-        $this->month = $month;
 
         return $this;
     }

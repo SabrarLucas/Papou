@@ -268,11 +268,9 @@ class AppFixtures extends Fixture
         for ($i=0; $i < 12 ; $i++) { 
             $ca = new CaMonth();
 
-            $month = date('n', strtotime('-'.$i.' month'));
-
-            $invalMonth = intval($month);
+            $month = date('n/y', strtotime('-'.$i.' month'));
             
-            $ca->setMonth($invalMonth)
+            $ca->setMonth($month)
                 ->setRising($this->faker->randomFloat(2,0,100));
 
             $manager->persist($ca);
@@ -282,16 +280,12 @@ class AppFixtures extends Fixture
         for ($i=0; $i < 31 ; $i++) { 
             $ca = new CaDay();
 
-            $day = date('d', strtotime('-'.$i.' day'));
+            $day = date('d/n', strtotime('-'.$i.' day'));
 
             $invalDay = intval($day);
 
-            $month = date('n', strtotime('-'.$i.' day'));
-
-            $invalMonth = intval($month);
             
             $ca->setDay($invalDay)
-                ->setMonth($invalMonth)
                 ->setRising($this->faker->randomFloat(2,0,100));
 
             $manager->persist($ca);

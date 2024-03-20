@@ -24,17 +24,15 @@ class CaMonthRepository extends ServiceEntityRepository
     //    /**
     //     * @return CaMonth[] Returns an array of CaMonth objects
     //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('c')
-    //            ->andWhere('c.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('c.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+       public function findCaMonth(): array
+       {
+           return $this->createQueryBuilder('c')
+               ->orderBy('c.id', 'DESC')
+               ->setMaxResults(12)
+               ->getQuery()
+               ->getResult()
+           ;
+       }
 
     //    public function findOneBySomeField($value): ?CaMonth
     //    {

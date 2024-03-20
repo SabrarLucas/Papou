@@ -44,21 +44,22 @@ const Pagination = ({ordersPerPage, supplier}) => {
     return (
         <div>
           <Order ordersPage={ordersPage} />
+          <div className="admin-index-products-pagination">
+            {filteredOrders.length > ordersPerPage  ? (
+              <ReactPaginate
+                breakLabel="..."
+                nextLabel="next >"
+                onPageChange={handlePageClick}
+                pageRangeDisplayed={5}
+                pageCount={pageCount}
+                previousLabel="< previous"
+                renderOnZeroPageCount={null}
+              />
 
-          {filteredOrders.length > ordersPerPage  ? (
-            <ReactPaginate
-              breakLabel="..."
-              nextLabel="next >"
-              onPageChange={handlePageClick}
-              pageRangeDisplayed={5}
-              pageCount={pageCount}
-              previousLabel="< previous"
-              renderOnZeroPageCount={null}
-            />
-
-          ):
-          (<></>)
-          }
+            ):
+            (<></>)
+            }
+          </div>
         </div>
       );
 }

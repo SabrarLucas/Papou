@@ -3,7 +3,6 @@
 namespace App\Entity;
 
 use App\Repository\CaMonthRepository;
-use DateTime;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -19,7 +18,7 @@ class CaMonth
     private ?string $rising = null;
 
     #[ORM\Column]
-    private ?int $month = null;
+    private ?string $month = null;
 
     public function getId(): ?int
     {
@@ -38,12 +37,12 @@ class CaMonth
         return $this;
     }
 
-    public function getMonth(): ?int
+    public function getMonth(): ?string
     {
         return $this->month;
     }
 
-    public function setMonth(?int $month): static
+    public function setMonth(?string $month): static
     {
         $this->month = $month;
 

@@ -14,27 +14,29 @@
 
         <div class="product-age-left-section">
             {{ form_start(form, {'attr': {'class': 'filter'}}) }}
-                <div class="categories-filter">
-                    <label for="{{ form.categories.vars.id }}" class="categories-label-filter">catégorie</label>
+                <div class="filter-section">
+                    <label for="{{ form.categories.vars.id }}" class="filter-title">catégorie</label>
                     {% for key, value in form.categories %}
                         <div class="category-filter">
-                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
                             <label class="category-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+
                         </div>
                         <hr>
                     {% endfor %}   
                 </div>
-                <div class="ages-filter">
-                    <label for="{{ form.age.vars.id }}" class="ages-label-filter">âge</label>
+                <div class="filter-section">
+                    <label for="{{ form.age.vars.id }}" class="filter-title">âge</label>
                     {% for key, value in form.age %}
                         <div class="age-filter">
-                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
                             <label class="age-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+
                         </div>
                         <hr>
                     {% endfor %}    
                 </div>
-                <button type="submit" class="button-filter">Filtrer</button>
+                <button type="submit" class="btn btn-filter">Filtrer</button>
             {{ form_end(form) }}
 
         </div>
@@ -59,7 +61,7 @@
         </div>
     {% endif %}
     {% if data.category == 0 and data.age|length == 0 and data.categories|length == 0 %}
-        <div class="product-title">
+        <div class="products-title">
             <h1>Tout nos produit</h1>
         </div>
     {% endif %}
@@ -67,29 +69,31 @@
     <div class="products-content">
 
 
-        <div class="product-left-section">
+        <div class="products-left-section">
             {{ form_start(form, {'attr': {'class': 'filter'}}) }}
-                <div class="categories-filter">
-                    <label for="{{ form.categories.vars.id }}" class="categories-label-filter">catégorie</label>
+                <div class="filter-section">
+                    <label for="{{ form.categories.vars.id }}" class="filter-title">catégorie</label>
                     {% for key, value in form.categories %}
                         <div class="category-filter">
-                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
                             <label class="category-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+
                         </div>
                         <hr>
                     {% endfor %}   
                 </div>
-                <div class="ages-filter">
-                    <label for="{{ form.age.vars.id }}" class="ages-label-filter">âge</label>
+                <div class="filter-section">
+                    <label for="{{ form.age.vars.id }}" class="filter-title">âge</label>
                     {% for key, value in form.age %}
                         <div class="age-filter">
-                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
                             <label class="age-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+
                         </div>
                         <hr>
                     {% endfor %}    
                 </div>
-                <button type="submit" class="button-filter">Filtrer</button>
+                <button type="submit" class="btn btn-filter">Filtrer</button>
             {{ form_end(form) }}
 
         </div>

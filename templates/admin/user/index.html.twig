@@ -15,6 +15,9 @@
             <th>ID</th>
             <th>Prénom</th>
             <th>Nom</th>
+            <th>Nom boutique</th>
+            <th>Département</th>
+            <th>Ville</th>
             <th>E-mail</th>
             <th>Rôle</th>
             <th>Vérifié</th>
@@ -28,6 +31,13 @@
                 <td>{{ user.id }}</td>
                 <td>{{ user.firstname }}</td>
                 <td>{{ user.lastname }}</td>
+                <td>
+                    {% for supplier in user.suppliers %}
+                        {{ supplier.companyName }}
+                    {% endfor %}
+                </td>
+                <td>{{ user.zipcode }}</td>
+                <td>{{ user.city }}</td>
                 <td>{{ user.email }}</td>
                 <td>
                     {% for role in user.roles %}

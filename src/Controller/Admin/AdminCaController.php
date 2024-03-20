@@ -2,6 +2,7 @@
 
 namespace App\Controller\Admin;
 
+use App\Repository\CaDayRepository;
 use App\Repository\OrderRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -11,7 +12,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminCaController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(OrderRepository $orderRepository): Response
+    public function index(OrderRepository $orderRepository, CaDayRepository $caDayRepository): Response
     {
         $order = $orderRepository->findAll(); // recuperation des commandes
         //creation de tableau (pour les ventes du jour, de la semaine et du mois)

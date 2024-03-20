@@ -2,6 +2,8 @@
 
 namespace App\DataFixtures;
 
+use App\Entity\CaDay;
+use App\Entity\CaMonth;
 use App\Entity\Supplier;
 use App\Entity\User;
 use Faker\Factory;
@@ -261,6 +263,30 @@ class AppFixtures extends Fixture
             $favorite->setIdProduct($products[mt_rand(0,49)]);
 
             $manager->persist($favorite);
+        }
+
+        for ($i=0; $i < 12 ; $i++) { 
+            $ca = new CaMonth();
+
+            $month = date('n/y', strtotime('-'.$i.' month'));
+            
+            $ca->setMonth($month)
+                ->setRising($this->faker->randomFloat(2,0,100));
+
+            $manager->persist($ca);
+
+        }
+
+        for ($i=0; $i < 31 ; $i++) { 
+            $ca = new CaDay();
+
+            $day = date('d/n', strtotime('-'.$i.' day'));
+            
+            $ca->setDay($day)
+                ->setRising($this->faker->randomFloat(2,0,100));
+
+            $manager->persist($ca);
+
         }
 
         $manager->flush();

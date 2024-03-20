@@ -5,18 +5,21 @@
 {% block body %}
 <h1>Profil</h1>
 
-{{ form_start(form) }}
-    {{ form_row(form.lastname) }}
-    {{ form_row(form.firstname) }}
-    {{ form_row(form.address) }}
-    {{ form_row(form.city) }}
-    {{ form_row(form.zipcode) }}
-    {{ form_row(form.email) }}
-    <a href="{{ path('user_order', {'id': app.user.id}) }}">mes achat</a>
-    <button type="button"><a href="{{ path('main') }}">retour</a></button>
-    <button type"submit">valider</button>
-    <button type="button"><a href="{{ path('user_delete', {'id': app.user.id}) }}">supprimer mon compte</a></button
-{{ form_end(form) }}
+    <div><span>Nom:</span> {{ app.user.lastname  }}</div>
+    <div><span>Prenom:</span> {{ app.user.firstname }}</div>
+    <div><span>Email:</span> {{ app.user.email }}</div>
+    <div><span>Adresse:</span> {{ app.user.address }}</div>
+    <div><span>Code postal:</span> {{ app.user.zipcode }}</div>
+    <div><span>Ville:</span> {{ app.user.city }}</div>
 
-<a href="{{ path('app_logout') }}">logout</a>
+    <div><a href="{{ path('user_order', {'id': app.user.id}) }}">mes achat</a></div>
+    <div>
+        <a href="{{ path('user_edit', {'id': app.user.id}) }}">modifier mon compte</a>
+        <a href="{{ path('user_delete', {'id': app.user.id}) }}">supprimer mon compte</a>
+    </div>
+    
+    <div>
+        <a href="{{ path('app_logout') }}">logout</a>
+        <a href="{{ path('main') }}">retour</a>
+    </div>
 {% endblock %}

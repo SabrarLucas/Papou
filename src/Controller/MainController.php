@@ -8,6 +8,7 @@ use App\Form\SearchType;
 use App\Repository\ProductRepository;
 use App\Repository\CategoryRepository;
 use App\Repository\FavoriteRepository;
+use App\Service\FavoriteService;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -137,26 +138,31 @@ class MainController extends AbstractController
     }
 
     #[Route('/favorite', name: 'favorite')]
-    public function favorite(Request $request, SessionInterface $session): Response
+    public function favorite(Request $request, SessionInterface $session, FavoriteService $favoriteService): Response
     {
+        $favorites1 = array();
+        $favorites2 = array(); 
         if ($this->getUser()) { // verifier si utilisateur est connecté
-            $favorites = $this->getUser()->getFavorites(); // recuperation des coups de coeur de l'utilisateur 
-
-            // Récupérer l'URL de la page actuelle
-         $currentUrl = $request->getUri();
-
-         // Stocker l'URL dans la session
-         $session->set('previous_page', $currentUrl);
-
-            return $this->render('main/favorite.html.twig', [
-                'favorites' => $favorites // envoie des coups de coeur
-            ]);
+            $favorites1 = $this->getUser()->getFavorites(); // recuperation des coups de coeur de l'utilisateur 
         }
-        return $this->redirectToRoute('main');
+        else{
+            $favorites2 = $favoriteService->getTotal();
+        }
+
+        // Récupérer l'URL de la page actuelle
+        $currentUrl = $request->getUri();
+
+        // Stocker l'URL dans la session
+        $session->set('previous_page', $currentUrl);
+
+        return $this->render('main/favorite.html.twig', [
+            'favorites1' => $favorites1, // envoie des coups de coeur
+            'favorites2' => $favorites2
+        ]);
     }
 
     #[Route('/favorite/add/{id}', name: 'favorite_add')]
-    public function favoriteAdd(Product $product, SessionInterface $session, EntityManagerInterface $manager): Response
+    public function favoriteAdd(FavoriteService $favoriteService, Product $product, SessionInterface $session, EntityManagerInterface $manager): Response
     {
         if ($this->getUser()) { // verifier si utilisateur est connecté
             $favorite = new Favorite();
@@ -177,11 +183,25 @@ class MainController extends AbstractController
                 return $this->redirectToRoute('main');
             }
         }
+        else{
+
+            $favoriteService->addToFavorite($product); // ajouter produit dans le panier
+
+            $previousUrl = $session->get('previous_page');
+    
+            // Si l'URL précédente est définie, rediriger vers cette page, sinon rediriger vers une page par défaut
+            if ($previousUrl) {
+                return new RedirectResponse($previousUrl);
+            } else {
+                // Rediriger vers une page par défaut
+                return $this->redirectToRoute('main');
+            }    
+        }
         return $this->redirectToRoute('main');
     }
 
     #[Route('/favorite/delete/{id}', name: 'favorite_delete')]
-    public function favoriteDelete(Product $product, SessionInterface $session, EntityManagerInterface $manager, FavoriteRepository $favoriteRepository): Response
+    public function favoriteDelete(FavoriteService $favoriteService, Product $product, SessionInterface $session, EntityManagerInterface $manager, FavoriteRepository $favoriteRepository): Response
     {
         if ($this->getUser()) { // verifier si utilisateur est connecté
             $favorite = $favoriteRepository->findOneBy(['id_product' => $product->getId()]);
@@ -202,6 +222,25 @@ class MainController extends AbstractController
                 return $this->redirectToRoute('main');
             }
         }
+        else{
+            $favoriteService->removeToFavorite($product->getId()); // supprimer un produit du panier
+            $previousUrl = $session->get('previous_page');
+
+            // Si l'URL précédente est définie, rediriger vers cette page, sinon rediriger vers une page par défaut
+            if ($previousUrl) {
+                return new RedirectResponse($previousUrl);
+            } else {
+                // Rediriger vers une page par défaut
+                return $this->redirectToRoute('main');
+            }
+        }
+        return $this->redirectToRoute('main');
+    }
+
+    #[Route('/favorite/delete', name: 'favorite_delete_all')]
+    public function deleteAll(FavoriteService $favoriteService):Response
+    {
+        $favoriteService->removeFavoriteAll();
         return $this->redirectToRoute('main');
     }
 }

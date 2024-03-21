@@ -1,57 +1,78 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>favorite</h1>
+
+
 
     {% if favorites1|length == 0 and favorites2|length == 0 %}
-        <h2>vous n'avez pas de produit dans vos favorie</h2>
+    <h1 class="admin-index-title">Vous n'avez pas de produits favoris</h1>
+
+    <div class="empty-favorite-content">
+        <div>
+            <p>N'hésitez pas à en ajouter à votre liste en cliquant sur les <i class="fa-regular fa-heart"></i></p>
+            <p>que vous croiserez en consultant la <a href="{{ path('product')}}">liste de nos produits</a> !</p>
+        </div>
+    </div>
+
     {% else %}
-        {% if favorites2|length == 0 %}
-            <table>
+    {% if favorites2|length == 0 %}
+
+        <h1 class="admin-index-title">Vos produits favoris</h1>
+
+            <table class="favorite-table">
                 <thead>
                     <tr>
-                        <th>nom</th>
-                        <th>image</th>
-                        <th>prix</th>
-                        <th>detail</th>
-                        <th>supprimer</th>
+                        <th>Nom</th>
+                        <th>Photo</th>
+                        <th>Prix</th>
+                        <th>Détail</th>
+                        <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for favorite in favorites1 %}
                         <tr>
                             <td>{{favorite.idProduct.name}}</td>
-                            <td><img src="{{favorite.idProduct.pictures[0].picName}}" alt="{{favorite.idProduct.name}}"></td>
-                            <td>{{favorite.idProduct.price}}</td>
-                            <td><a href="{{path('detail',{'id': favorite.idProduct.id})}}">detail</a></td>
+                            <td><a href="{{path('detail',{'id': favorite.idProduct.id})}}"><img src="{{favorite.idProduct.pictures[0].picName}}" alt="{{favorite.idProduct.name}}"></a></td>
+                            <td>{{favorite.idProduct.price}} €</td>
+                            <td><a href="{{path('detail',{'id': favorite.idProduct.id})}}" title="Voir le détail"><i class="fa-solid fa-list"></i></a></td>
                             <td><a href="{{path('favorite_delete',{'id': favorite.idProduct.id})}}">supp</a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
-        {% else %}  
-            <table>
+        {% else %}
+
+        <h1 class="admin-index-title">Vos produits favoris</h1>
+
+            <table class="favorite-table">
                 <thead>
                     <tr>
-                        <th>nom</th>
-                        <th>image</th>
-                        <th>prix</th>
-                        <th>detail</th>
-                        <th>supprimer</th>
+                        <th>Nom</th>
+                        <th>Photo</th>
+                        <th>Prix</th>
+                        <th>Détail</th>
+                        <th>Supprimer</th>
                     </tr>
                 </thead>
                 <tbody>
                     {% for favorite in favorites2 %}
                         <tr>
                             <td>{{favorite.name}}</td>
-                            <td><img src="{{favorite.pictures[0].picName}}" alt="{{favorite.name}}"></td>
-                            <td>{{favorite.price}}</td>
-                            <td><a href="{{path('detail',{'id': favorite.id})}}">detail</a></td>
-                            <td><a href="{{path('favorite_delete',{'id': favorite.id})}}">supp</a></td>
+                            <td><a href="{{path('detail',{'id': favorite.id})}}"><img src="{{favorite.pictures[0].picName}}" alt="{{favorite.name}}"></a></td>
+                            <td>{{favorite.price}} €</td>
+                            <td><a href="{{path('detail',{'id': favorite.id})}}" title="Voir le détail"><i class="fa-solid fa-list"></i></a></td>
+                            <td><a href="{{path('favorite_delete',{'id': favorite.id})}}" title="Supprimer de la liste"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
             </table>
         {% endif %}
     {% endif %}
+
+<div class="navigation-buttons-section">
+    <a href="{{ path('main')}}" class="btn btn-secondary">Retour à l'accueil</a>
+    <a href="{{ path('product')}}" class="btn btn-products">Voir nos produits</a>
+</div>
+
 {% endblock %}

@@ -46,3 +46,33 @@
 .footer-link:hover{
     font-size: 30px;
 }
+
+
+/* Media query pour les appareils avec une largeur d'écran inférieure à 768px (typiquement les téléphones) */
+@media only screen and (max-width: 768px) {
+    .footer {
+        flex-direction: column; /* Disposer les éléments en colonne pour les petits écrans */
+        justify-content: center; /* Centrer le contenu verticalement */
+    }
+    .footer-section {
+        margin-top: 20px; /* Ajouter un espace entre les sections */
+    }
+    #footer-left-section, #footer-middle-section, #footer-right-section {
+        width: 100%; /* Occuper toute la largeur pour les petits écrans */
+        height: auto; /* Ajuster la hauteur automatiquement */
+    }
+}
+
+/* Media query pour les appareils avec une largeur d'écran comprise entre 769px et 1024px (typiquement les tablettes en mode paysage) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .footer {
+        font-size: 16px; /* Réduire la taille de la police pour les tablettes en mode paysage */
+    }
+}
+
+/* Media query pour les appareils avec une largeur d'écran supérieure à 1024px (typiquement les ordinateurs de bureau) */
+@media only screen and (min-width: 1025px) {
+    .footer {
+        font-size: 24px; /* Ajuster la taille de la police pour les grands écrans */
+    }
+}

@@ -64,6 +64,10 @@
         </div>
     {% endif %}
 
+    <pre>
+        {{ dump(app.session.get('favorite')) }}
+    </pre>
+
     <div class="products-content">
 
 
@@ -119,19 +123,25 @@
                             {% endif %}
                         {% endfor %}
 
-                        {% if isPresent %}
+                       {% if isPresent %}
                             <div class="btn-favoris">
                                 <a href="{{ path('favorite_delete', {'id': product.id}) }}"><i class="fa-solid fa-heart"></i></a>
                             </div>
                         {% else %}
                             <div class="btn-favoris">
                                 <a href="{{ path('favorite_add', {'id': product.id}) }}"><i class="fa-regular fa-heart"></i></a>
-                            </div>
+                            </div> 
                         {% endif %}
                     {% else %}
-                        <div class="btn-favoris">
-                            <i class="fa-regular fa-heart"></i>
-                        </div>
+                        {% if product.id in app.session.get('favorite') %}
+                            <div class="btn-favoris">
+                                <a href="{{ path('favorite_delete', {'id': product.id}) }}"><i class="fa-solid fa-heart"></i></a>
+                            </div>
+                        {% else %}
+                            <div class="btn-favoris">
+                                <a href="{{ path('favorite_add', {'id': product.id}) }}"><i class="fa-regular fa-heart"></i></a>
+                            </div> 
+                        {% endif %}
                     {% endif %}
                 <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-left"> <!-- bouton de défilement vers la gauche -->
                 <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-right"> <!-- bouton de défilement vers la gauche -->

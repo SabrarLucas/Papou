@@ -1,0 +1,179 @@
+.empty-favorite-content {    /* contenu de la boite de texte si aucun produit dans les favoris */
+    width: 40vw;    /* largeur de la boite du contenu */
+    margin-left: auto;    /* marges */
+    margin-right: auto;    /* marges */
+    background-color: #e3e3e3;    /* couleur de fond du contenu */
+    display: flex;    /* utilisation de flexbox */
+    justify-content: center;    /* centrage du contenu */
+    margin-bottom: 20vh;    /* marges */
+    margin-top: 15vh;    /* marges */
+}
+
+.empty-favorite-content div {    /* div qui contient le text */
+    padding: 50px;    /* donne une épaisseur qui entoure le contenu de la div */
+    font-size: 20px;    /* taille de police du contenu dans la div */
+}
+
+.empty-favorite-content a {    /* lien vers la liste produits */
+    font-size: 25px;    /* taille de police du lien */
+    color: #00988e;
+}
+
+.empty-favorite-content i {    /* icône coeur */
+    font-size: 30px;    /* taille de l'icone */
+}
+
+.favorite-table {    /* tableau de produits favoris */
+    width: 1500px;
+    border-collapse: collapse;
+    margin-top: 10vh;
+    margin-bottom: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.favorite-table th,
+.favorite-table td {
+    padding: 12px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
+}
+
+.favorite-table img {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.favorite-table th {
+    background-color: #f19a76;
+    font-weight: bold;
+    font-size: 20px;
+    color: #000000;
+}
+
+.favorite-table td {
+    font-size: 20px;
+}
+
+.favorite-table tbody tr:hover {
+    background-color: #f19b7623;
+}
+
+.favorite-table tbody tr td:first-child {
+    width: 30%; /* Ajuster la largeur de la colonne "Nom" */
+}
+
+.favorite-table tbody tr td:nth-child(4) {
+    width: 15%;
+}
+
+.favorite-table tbody tr td:nth-child(5) {
+    width: 15%;
+}
+
+.favorite-table tbody tr td:nth-child(3) {
+    width: 20%;
+}
+
+
+.favorite-table tbody tr td:nth-child(2) img {
+    max-width: 150px;   /* Limiter la largeur maximale de l'image */
+    height: auto;   /* Maintenir le ratio hauteur/largeur */
+}
+
+.favorite-table tbody a {
+    color: #f19a76;
+    text-decoration: none;
+}
+
+.favorite-table tbody tr td:last-child a:hover {
+    text-decoration: underline;
+    /* Souligner les liens au survol */
+}
+
+.favorite-table i {
+    font-size: 40px;
+    transition: .3s ease;
+}
+
+.favorite-table i:hover {
+    font-size: 50px;
+    transform: rotate(360deg);
+}
+
+
+/* Media query pour les appareils avec une largeur d'écran inférieure à 768px (typiquement les téléphones) */
+@media only screen and (max-width: 768px) {
+    .favorite-table {
+        width: 100%; /* Faire en sorte que le tableau occupe toute la largeur de l'écran */
+    }
+    .favorite-table th,
+    .favorite-table td {
+        padding: 8px; /* Ajuster le padding pour les petits écrans */
+        font-size: 16px; /* Réduire la taille de la police pour les petits écrans */
+    }
+    .favorite-table tbody tr td:first-child {
+        width: 50%; /* Ajuster la largeur de la colonne "Nom" pour les petits écrans */
+    }
+    .favorite-table tbody tr td:nth-child(4),
+    .favorite-table tbody tr td:nth-child(5),
+    .favorite-table tbody tr td:nth-child(3) {
+        width: 25%; /* Ajuster la largeur des autres colonnes pour les petits écrans */
+    }
+    .favorite-table tbody tr td:nth-child(2) img {
+        max-width: 100px; /* Réduire la largeur maximale de l'image pour les petits écrans */
+    }
+    .favorite-table i {
+        font-size: 30px; /* Réduire la taille de l'icône pour les petits écrans */
+    }
+    .favorite-table i:hover {
+        font-size: 40px; /* Augmenter la taille de l'icône au survol pour les petits écrans */
+    }
+}
+
+
+
+
+/* Media query pour les appareils avec une largeur d'écran inférieure à 768px (typiquement les téléphones) */
+@media only screen and (max-width: 768px) {
+    .empty-favorite-content {
+        width: 80vw;
+        /* Réduire la largeur pour les petits écrans */
+        margin-bottom: 10vh;
+        /* Ajuster les marges */
+        margin-top: 10vh;
+    }
+
+    .empty-favorite-content div {
+        padding: 30px;
+        /* Ajuster l'épaisseur de la bordure */
+        font-size: 16px;
+        /* Réduire la taille de la police pour une meilleure lisibilité */
+    }
+
+    .empty-favorite-content a {
+        font-size: 20px;
+        /* Ajuster la taille de la police pour le lien */
+    }
+
+    .empty-favorite-content i {
+        font-size: 25px;
+        /* Ajuster la taille de la police pour l'icône */
+    }
+}
+
+/* Media query pour les appareils avec une largeur d'écran comprise entre 769px et 1024px (typiquement les tablettes en mode paysage) */
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+    .empty-favorite-content {
+        width: 60vw;
+        /* Réduire la largeur pour les tablettes en mode paysage */
+    }
+}
+
+/* Media query pour les appareils avec une largeur d'écran supérieure à 1024px (typiquement les ordinateurs de bureau) */
+@media only screen and (min-width: 1025px) {
+    .empty-favorite-content {
+        width: 50vw;
+        /* Réduire la largeur pour les grands écrans */
+    }
+}

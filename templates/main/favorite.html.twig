@@ -1,57 +1,36 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-    <h1>favorite</h1>
+<h1>favorite</h1>
 
-    {% if favorites1|length == 0 and favorites2|length == 0 %}
-        <h2>vous n'avez pas de produit dans vos favorie</h2>
-    {% else %}
-        {% if favorites2|length == 0 %}
-            <table>
-                <thead>
-                    <tr>
-                        <th>nom</th>
-                        <th>image</th>
-                        <th>prix</th>
-                        <th>detail</th>
-                        <th>supprimer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for favorite in favorites1 %}
-                        <tr>
-                            <td>{{favorite.idProduct.name}}</td>
-                            <td><img src="{{favorite.idProduct.pictures[0].picName}}" alt="{{favorite.idProduct.name}}"></td>
-                            <td>{{favorite.idProduct.price}}</td>
-                            <td><a href="{{path('detail',{'id': favorite.idProduct.id})}}">detail</a></td>
-                            <td><a href="{{path('favorite_delete',{'id': favorite.idProduct.id})}}">supp</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% else %}  
-            <table>
-                <thead>
-                    <tr>
-                        <th>nom</th>
-                        <th>image</th>
-                        <th>prix</th>
-                        <th>detail</th>
-                        <th>supprimer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for favorite in favorites2 %}
-                        <tr>
-                            <td>{{favorite.name}}</td>
-                            <td><img src="{{favorite.pictures[0].picName}}" alt="{{favorite.name}}"></td>
-                            <td>{{favorite.price}}</td>
-                            <td><a href="{{path('detail',{'id': favorite.id})}}">detail</a></td>
-                            <td><a href="{{path('favorite_delete',{'id': favorite.id})}}">supp</a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
-    {% endif %}
+{% if products|length == 0 %}
+	<h2>vous n'avez pas de produit dans vos favorie</h2>
+{% else %}
+	<table>
+		<thead>
+			<tr>
+				<th>nom</th>
+				<th>image</th>
+				<th>prix</th>
+				<th>detail</th>
+				<th>supprimer</th>
+			</tr>
+		</thead>
+		<tbody>
+			{% for product in products %}
+				<tr>
+					<td>{{product.name}}</td>
+					<td><img src="{{product.pictures[0].picName}}" alt="{{product.name}}"></td>
+					<td>{{product.price}}</td>
+					<td>
+						<a href="{{path('detail',{'id': product.id})}}">detail</a>
+					</td>
+					<td>
+						<a href="{{path('favorite_delete',{'id': product.id})}}">supp</a>
+					</td>
+				</tr>
+			{% endfor %}
+		</tbody>
+	</table>
+}{% endif %}
 {% endblock %}

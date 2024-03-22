@@ -138,15 +138,18 @@ class MainController extends AbstractController
     }
 
     #[Route('/favorite', name: 'favorite')]
-    public function favorite(Request $request, SessionInterface $session, FavoriteService $favoriteService): Response
+    public function favorite(Request $request, SessionInterface $session, FavoriteService $favoriteService, ProductRepository $productRepository): Response
     {
-        $favorites1 = array();
-        $favorites2 = array(); 
         if ($this->getUser()) { // verifier si utilisateur est connecté
-            $favorites1 = $this->getUser()->getFavorites(); // recuperation des coups de coeur de l'utilisateur 
+            $favorites = $this->getUser()->getFavorites(); // recuperation des coups de coeur de l'utilisateur
+            for ($i=0; $i < count($favorites) ; $i++) { 
+               
+                $product = $productRepository->findOneBy(['id' => $favorites[$i]->getIdProduct()->getId()]);
+                $products[] = $product;
+            }
         }
         else{
-            $favorites2 = $favoriteService->getTotal();
+            $products = $favoriteService->getTotal();
         }
 
         // Récupérer l'URL de la page actuelle
@@ -156,8 +159,7 @@ class MainController extends AbstractController
         $session->set('previous_page', $currentUrl);
 
         return $this->render('main/favorite.html.twig', [
-            'favorites1' => $favorites1, // envoie des coups de coeur
-            'favorites2' => $favorites2
+            'products' => $products, // envoie des coups de coeur
         ]);
     }
 

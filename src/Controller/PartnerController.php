@@ -114,7 +114,7 @@ class PartnerController extends AbstractController
                         // on appelle le service d'ajout
                         $file = $pictureService->add($image, $folder);
                         $img = new Picture(); // creation d'un objet image
-                        $img->setPicName($file); 
+                        $img->setPicName('/images/products/mini/'.$file); 
                         $product->addPicture($img); // l'image est associée avec le produit                 
                     }
                 }

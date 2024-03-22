@@ -22,6 +22,16 @@
     font-size: 30px;
 }
 
+.partner-products-table tr {
+    border-top: 1px solid #f19a76;
+    border-bottom: 1px solid #f19a76;
+    transition: .5s ease;
+}
+
+.partner-products-table tbody tr:hover {
+    background-color: #f19b7623;  /* Applique une couleur de fond différente au survol de la souris */
+}
+
 .partner-products-table td {
     height: 4vh;
     font-size: 30px;

@@ -36,7 +36,7 @@
                             <td><a href="{{path('detail',{'id': favorite.idProduct.id})}}"><img src="{{favorite.idProduct.pictures[0].picName}}" alt="{{favorite.idProduct.name}}"></a></td>
                             <td>{{favorite.idProduct.price}} €</td>
                             <td><a href="{{path('detail',{'id': favorite.idProduct.id})}}" title="Voir le détail"><i class="fa-solid fa-list"></i></a></td>
-                            <td><a href="{{path('favorite_delete',{'id': favorite.idProduct.id})}}">supp</a></td>
+                            <td><a href="{{path('favorite_delete',{'id': favorite.idProduct.id})}}" title="Retirer des favoris"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                     {% endfor %}
                 </tbody>
@@ -62,7 +62,7 @@
                             <td><a href="{{path('detail',{'id': favorite.id})}}"><img src="{{favorite.pictures[0].picName}}" alt="{{favorite.name}}"></a></td>
                             <td>{{favorite.price}} €</td>
                             <td><a href="{{path('detail',{'id': favorite.id})}}" title="Voir le détail"><i class="fa-solid fa-list"></i></a></td>
-                            <td><a href="{{path('favorite_delete',{'id': favorite.id})}}" title="Supprimer de la liste"><i class="fa-solid fa-trash"></i></a></td>
+                            <td><a href="{{path('favorite_delete',{'id': favorite.id})}}" title="Retirer des favoris"><i class="fa-solid fa-trash"></i></a></td>
                         </tr>
                     {% endfor %}
                 </tbody>

@@ -40,34 +40,8 @@
                     {% endfor %}
                 </tbody>
             </table>
-        {% else %}
-
-        <h1 class="admin-index-title">Vos produits favoris</h1>
-
-            <table class="favorite-table">
-                <thead>
-                    <tr>
-                        <th>Nom</th>
-                        <th>Photo</th>
-                        <th>Prix</th>
-                        <th>Détail</th>
-                        <th>Supprimer</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    {% for favorite in favorites2 %}
-                        <tr>
-                            <td>{{favorite.name}}</td>
-                            <td><a href="{{path('detail',{'id': favorite.id})}}"><img src="{{favorite.pictures[0].picName}}" alt="{{favorite.name}}"></a></td>
-                            <td>{{favorite.price}} €</td>
-                            <td><a href="{{path('detail',{'id': favorite.id})}}" title="Voir le détail"><i class="fa-solid fa-list"></i></a></td>
-                            <td><a href="{{path('favorite_delete',{'id': favorite.id})}}" title="Supprimer de la liste"><i class="fa-solid fa-trash"></i></a></td>
-                        </tr>
-                    {% endfor %}
-                </tbody>
-            </table>
-        {% endif %}
     {% endif %}
+
 
 <div class="navigation-buttons-section">
     <a href="{{ path('main')}}" class="btn btn-secondary">Retour à l'accueil</a>

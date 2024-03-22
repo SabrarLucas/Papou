@@ -140,6 +140,8 @@ class MainController extends AbstractController
     #[Route('/favorite', name: 'favorite')]
     public function favorite(Request $request, SessionInterface $session, FavoriteService $favoriteService, ProductRepository $productRepository): Response
     {
+        $products = array();
+        
         if ($this->getUser()) { // verifier si utilisateur est connecté
             $favorites = $this->getUser()->getFavorites(); // recuperation des coups de coeur de l'utilisateur
             for ($i=0; $i < count($favorites) ; $i++) { 

@@ -1,25 +1,66 @@
 {% extends 'base.html.twig' %}
 
+
 {% block title %}Profil{% endblock %}
 
 {% block body %}
-<h1>Profil</h1>
 
-    <div><span>Nom:</span> {{ app.user.lastname  }}</div>
-    <div><span>Prenom:</span> {{ app.user.firstname }}</div>
-    <div><span>Email:</span> {{ app.user.email }}</div>
-    <div><span>Adresse:</span> {{ app.user.address }}</div>
-    <div><span>Code postal:</span> {{ app.user.zipcode }}</div>
-    <div><span>Ville:</span> {{ app.user.city }}</div>
+{% include 'partials/delete_dialog.html.twig' %} {# Inclure le HTML de la boîte de dialogue #}
 
-    <div><a href="{{ path('user_order', {'id': app.user.id}) }}">mes achat</a></div>
-    <div>
-        <a href="{{ path('user_edit', {'id': app.user.id}) }}">modifier mon compte</a>
-        <a href="{{ path('user_delete', {'id': app.user.id}) }}">supprimer mon compte</a>
+<h1 class="admin-index-title">Mon profil</h1>
+
+<div class="flex justify-center items-center">
+    <div class="profil-section">
+        <div class="flex">
+            <h2 class="w-1/2">Nom :</h2>
+            <h3 class="w-1/2">{{ app.user.lastname }}</h3>
+        </div>
+        <div class="flex">
+            <h2 class="w-1/2">Prénom :</h2>
+            <h3 class="w-1/2">{{ app.user.firstname }}</h3>
+        </div>
+        <div class="flex">
+            <h2 class="w-1/2">Email :</h2>
+            <h3 class="w-1/2">{{ app.user.email }}</h3>
+        </div>
+        <div class="flex">
+            <h2 class="w-1/2">Adresse :</h2>
+            <h3 class="w-1/2">{{ app.user.address }}</h3>
+        </div>
+        <div class="flex">
+            <h2 class="w-1/2">Code postal :</h2>
+            <h3 class="w-1/2">{{ app.user.zipcode }}</h3>
+        </div>
+        <div class="flex">
+            <h2 class="w-1/2">Ville :</h2>
+            <h3 class="w-1/2">{{ app.user.city }}</h3>
+        </div>
+        <div class="flex justify-center">
+            <a href="{{ path('user_edit', {'id': app.user.id}) }}" class="btn btn-modify">Modifier mes informations</a>
+        </div>
     </div>
-    
+</div>
+
+<div class="partner-index-content">
     <div>
-        <a href="{{ path('app_logout') }}">logout</a>
-        <a href="{{ path('main') }}">retour</a>
+        <div>
+            <a href="{{ path('user_order', {'id': app.user.id}) }}">Mes achats</a>
+        </div>
+        <div>
+            <a href="{{ path('user_delete', {'id': app.user.id}) }}" id="delete-account">Supprimer mon compte</a>
+        </div>
+        <div>
+            <a href="{{ path('app_logout') }}">Logout</a>
+        </div>
+        <div>
+            <a href="{{ path('main') }}">Retour</a>
+        </div>
     </div>
+</div>
+
 {% endblock %}
+
+
+
+
+

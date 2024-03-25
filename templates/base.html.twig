@@ -9,7 +9,6 @@
             {% endblock %}
         </title>
 
-
         {# Liens des feuilles de style css #}
         {% block stylesheets %}
             {{ encore_entry_link_tags('app') }}
@@ -21,19 +20,17 @@
             <link rel="stylesheet" href="{{ asset('css/component/products_carousel/products_carousel.css') }}">
             <link href="{{ asset('css/filtre.css') }}" rel="stylesheet"/>
         {% endblock %}
-
         
         {% block javascripts %}
         {{ encore_entry_script_tags('app') }}
         {{ encore_entry_script_tags('app-order') }}
         {{ encore_entry_script_tags('app-product') }}
         <script src="https://kit.fontawesome.com/a867087266.js" crossorigin="anonymous"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script type="text/javascript" src="{{ asset('js/home_carousel1/jquery.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/home_carousel1/lightslider.js') }}"></script>
         {% endblock %}
     </head>
-
-
 
     <body>
         {% block header %}
@@ -49,21 +46,14 @@
             {% endblock %}
         </footer>
 
-
-
-
-        {# liens des js pour les carrousels #}
+        {# liens des fichier js #}
         <script type="text/javascript" src="{{ asset('js/home_carousel1/home_carousel1.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/age_carousel/swiper-bundle.min.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/age_carousel/swiper.js') }}"></script>
         <script type="text/javascript" src="{{ asset('js/products_carousel/products_carousel.js') }}"></script>
+        <script type="text/javascript" src="{{ asset('js/delete_script.js') }}"></script>
     </body>
     
-
-
-
 </html>
-
-
 
 {# Run `composer require symfony/webpack-encore-bundle` to start using Symfony UX #}

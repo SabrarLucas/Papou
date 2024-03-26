@@ -2,47 +2,39 @@
 
 {% block body %}
 
-{% if products|length == 0 %}
-
-    <div class="products-title">
-        <h1>Aucun produit trouvé</h1>
-    </div>
-
-    <div class="products-content">
-
-        <div class="products-left-section">
-
-        <div class="product-age-left-section">
-            {{ form_start(form, {'attr': {'class': 'filter'}}) }}
-                <div class="filter-section">
-                    <label for="{{ form.categories.vars.id }}" class="filter-title">catégorie</label>
-                    {% for key, value in form.categories %}
-                        <div class="category-filter">
-                            <label class="category-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
-                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
-
-                        </div>
-                        <hr>
-                    {% endfor %}   
-                </div>
-                <div class="filter-section">
-                    <label for="{{ form.age.vars.id }}" class="filter-title">âge</label>
-                    {% for key, value in form.age %}
-                        <div class="age-filter">
-                            <label class="age-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
-                            {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
-
-                        </div>
-                        <hr>
-                    {% endfor %}    
-                </div>
-                <button type="submit" class="btn btn-filter">Filtrer</button>
-            {{ form_end(form) }}
-
+    {% if products|length == 0 %}
+        <div class="products-title">
+            <h1>Aucun produit trouvé</h1>
         </div>
-
-    </div>
-{% else %}    
+        <div class="products-content">
+            <div class="products-left-section">
+            <div class="product-age-left-section">
+                {{ form_start(form, {'attr': {'class': 'filter'}}) }}
+                    <div class="filter-section">
+                        <label for="{{ form.categories.vars.id }}" class="filter-title">catégorie</label>
+                        {% for key, value in form.categories %}
+                            <div class="category-filter">
+                                <label class="category-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                                {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+                            </div>
+                            <hr>
+                        {% endfor %}   
+                    </div>
+                    <div class="filter-section">
+                        <label for="{{ form.age.vars.id }}" class="filter-title">âge</label>
+                        {% for key, value in form.age %}
+                            <div class="age-filter">
+                                <label class="age-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
+                                {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
+                            </div>
+                            <hr>
+                        {% endfor %}    
+                    </div>
+                    <button type="submit" class="btn btn-filter">Filtrer</button>
+                {{ form_end(form) }}
+            </div>
+        </div>
+    {% else %}    
     {% if data.age|length > 1 or data.categories|length != 0 %}
         <div class="products-title">
             <h1>Nos produits</h1>
@@ -66,13 +58,7 @@
         </div>
     {% endif %}
 
-    <pre>
-        {{ dump(app.session.get('favorite')) }}
-    </pre>
-
     <div class="products-content">
-
-
         <div class="products-left-section">
             {{ form_start(form, {'attr': {'class': 'filter'}}) }}
                 <div class="filter-section">
@@ -81,7 +67,6 @@
                         <div class="category-filter">
                             <label class="category-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
                             {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
-
                         </div>
                         <hr>
                     {% endfor %}   
@@ -92,24 +77,17 @@
                         <div class="age-filter">
                             <label class="age-label-filter" for="{{ value.vars.id }}">{{ value.vars.label }}</label>
                             {{ form_widget(value, {'attr': {'class': 'age-input-filter'}}) }}
-
                         </div>
                         <hr>
                     {% endfor %}    
                 </div>
                 <button type="submit" class="btn btn-filter">Filtrer</button>
             {{ form_end(form) }}
-
         </div>
-
         <div class="products-right-section">
-
             {% for product in products.data %}
-
             <div class="products-age-carousel">
-    
                 <div class="products-age-carousel-container">
-
                     {% for picture in product.pictures %}
                         <div class="products-carousel-img">
                             <a href="{{ path('detail' , {'id': product.id}) }}">
@@ -117,46 +95,42 @@
                             </a>
                         </div>
                     {% endfor %}
-    
                 </div>
                 {% if app.user %}
-                        {% set isPresent = false %}
-                        {% for favorite in app.user.favorites %}
-                            {% if product.id == favorite.idProduct.id %}
-                                {% set isPresent = true %}
-                            {% endif %}
-                        {% endfor %}
-
-                       {% if isPresent %}
-                            <div class="btn-favoris">
-                                <a href="{{ path('favorite_delete', {'id': product.id}) }}"><i class="fa-solid fa-heart"></i></a>
-                            </div>
-                        {% else %}
-                            <div class="btn-favoris">
-                                <a href="{{ path('favorite_add', {'id': product.id}) }}"><i class="fa-regular fa-heart"></i></a>
-                            </div> 
+                    {% set isPresent = false %}
+                    {% for favorite in app.user.favorites %}
+                        {% if product.id == favorite.idProduct.id %}
+                            {% set isPresent = true %}
                         {% endif %}
+                    {% endfor %}
+                    {% if isPresent %}
+                        <div class="btn-favoris">
+                            <a href="{{ path('favorite_delete', {'id': product.id}) }}"><i class="fa-solid fa-heart"></i></a>
+                        </div>
                     {% else %}
-                        {% if product.id in app.session.get('favorite') %}
-                            <div class="btn-favoris">
-                                <a href="{{ path('favorite_delete', {'id': product.id}) }}"><i class="fa-solid fa-heart"></i></a>
-                            </div>
-                        {% else %}
-                            <div class="btn-favoris">
-                                <a href="{{ path('favorite_add', {'id': product.id}) }}"><i class="fa-regular fa-heart"></i></a>
-                            </div> 
-                        {% endif %}
+                        <div class="btn-favoris">
+                            <a href="{{ path('favorite_add', {'id': product.id}) }}"><i class="fa-regular fa-heart"></i></a>
+                        </div> 
                     {% endif %}
+                {% else %}
+                    {% if product.id in app.session.get('favorite') %}
+                        <div class="btn-favoris">
+                            <a href="{{ path('favorite_delete', {'id': product.id}) }}"><i class="fa-solid fa-heart"></i></a>
+                        </div>
+                    {% else %}
+                        <div class="btn-favoris">
+                            <a href="{{ path('favorite_add', {'id': product.id}) }}"><i class="fa-regular fa-heart"></i></a>
+                        </div> 
+                    {% endif %}
+                {% endif %}
                 <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-left"> <!-- bouton de défilement vers la gauche -->
                 <img src="{{ asset('images/btn-swipe.png') }}" class="btn-swipe btn-swipe-right"> <!-- bouton de défilement vers la gauche -->
-    
                 <div class="product-card-detail copperplate">
                     <div>
                         <p class="flex justify-center">{{product.name}}</p>
                         <p class="flex justify-center">{{product.price}} €</p>
                     </div>
                 </div>
-    
             </div>
             {% endfor %}
         </div>
@@ -165,8 +139,4 @@
         {% include "partials/pagination.html.twig" %}
     </div>
     {% endif %}
-
-
-
-
 {% endblock %}

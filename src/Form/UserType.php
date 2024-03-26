@@ -118,9 +118,9 @@ class UserType extends AbstractType
             'label' => 'Téléphone',
             'constraints' => [
                 new Length([
-                    'min' => 15,
+                    'min' => 10,
                     'minMessage' => 'Votre numero de telephone est trop court',
-                    'max' => 15,
+                    'max' => 10,
                     'maxMessage' => 'Votre numero de telephone est trop long',
                 ]),
             ]

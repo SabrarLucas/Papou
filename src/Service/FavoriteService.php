@@ -3,7 +3,6 @@
 namespace App\Service;
 
 use App\Entity\Product;
-use App\Entity\Supplier;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
@@ -38,11 +37,6 @@ class FavoriteService{
             }
         }
         $this->getSession()->set('favorite',$favorite);
-    }
-
-    public function removeFavoriteAll():void
-    {
-        $this->getSession()->remove('favorite'); // suppretion de la cart
     }
 
     public function getTotal() :array

@@ -3,6 +3,7 @@
 namespace App\Controller\Admin;
 
 use App\Repository\CaDayRepository;
+use App\Repository\CaMonthRepository;
 use App\Repository\OrderRepository;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -12,7 +13,7 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class AdminCaController extends AbstractController
 {
     #[Route('/', name: 'index')]
-    public function index(OrderRepository $orderRepository, CaDayRepository $caDayRepository): Response
+    public function index(OrderRepository $orderRepository, CaDayRepository $caDayRepository, CaMonthRepository $caMonthRepository): Response
     {
         $order = $orderRepository->findAll(); // recuperation des commandes
         //creation de tableau (pour les ventes du jour, de la semaine et du mois)
@@ -95,11 +96,17 @@ class AdminCaController extends AbstractController
         $nbr = 0; // retour du nbr a 0
         $cart = 0; // retour du panier moyen a 0
 
+
+        $graphCaMonth = $caMonthRepository->findCaMonth();
+        $graphCaDay = $caDayRepository->findCaDay();
+
         return $this->render('admin/index.html.twig', [
             'saleDay' => $saleDay, //l'envoie du tableau saleDay a la vue
             'saleWeek' => $saleWeek, //l'envoie du tableau saleWeek a la vue
             'saleMonth' => $saleMonth, //l'envoie du tableau saleMonth a la vue
             'saleYear' => $saleYear, //l'envoie du tableau saleYear a la vue
+            'graphCaMonth' => $graphCaMonth,
+            'graphCaDay' => $graphCaDay
         ]);
     }
 }

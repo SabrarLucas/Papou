@@ -7,20 +7,31 @@ use App\Form\UserType;
 use App\Entity\Supplier;
 use Endroid\QrCode\QrCode;
 use Endroid\QrCode\Color\Color;
+use App\Form\SupplierProfilType;
+use Symfony\Component\Mime\Email;
 use App\Repository\UserRepository;
 use Endroid\QrCode\Writer\PngWriter;
 use Endroid\QrCode\Encoding\Encoding;
 use Doctrine\ORM\EntityManagerInterface;
 use Endroid\QrCode\ErrorCorrectionLevel;
 use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\Mailer\MailerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Component\Routing\Generator\UrlGeneratorInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface;
 
 #[Route('/admin/user', name: 'admin_user_')]
 class AdminUserController extends AbstractController
 {
+    private $mailer;
+
+    public function __construct(MailerInterface $mailer)
+    {
+        $this->mailer = $mailer;
+    }
+    
     #[Route('/', name: 'index')]
     public function index(UserRepository $userRepository, Request $request): Response
     {
@@ -91,5 +102,69 @@ class AdminUserController extends AbstractController
             ];
 
         return $this->render('admin/user/qr_code.html.twig', $userData);
+    }
+
+    #[Route('/ajout-partenaire', name: 'addPartner')]
+    public function addPartener(Request $request, EntityManagerInterface $manager, UserPasswordHasherInterface $passwordEncoder): Response
+    {
+        $partner = new Supplier();
+        $user = new User();
+        $user->setRoles(['ROLE_PARTNER']); // Attribution du rôle ROLE_PARTNER
+        $partner->setIdUser($user); // Associer l'utilisateur au partenaire
+
+        $form = $this->createForm(UserType::class, $user);
+        $form->handleRequest($request);
+
+        if ($form->isSubmitted() && $form->isValid()) {
+            // Générer un mot de passe provisoire
+            $temporaryPassword = $this->generateTemporaryPassword();
+    
+            // Hacher le mot de passe provisoire
+            $hashedPassword = $passwordEncoder->hashPassword($user, $temporaryPassword);
+            $user->setPassword($hashedPassword);
+
+            $partner->setCompanyName('...')
+                ->setType('...')
+                ->setPicture('...');
+
+            // Enregistrer le partenaire en base de données
+            $manager->persist($partner);
+            $manager->flush();
+
+            // Envoyer le mot de passe provisoire au partenaire
+            $this->sendTemporaryPassword($user->getEmail(), $temporaryPassword);
+
+            $this->redirectToRoute('admin_user_index');
+        }
+
+        return $this->render('admin/user/ajout_partener.html.twig', [
+            'form' => $form->createView(),
+        ]);
+    }
+
+    private function generateTemporaryPassword(): string
+    {
+        // Caractères utilisables pour générer le mot de passe
+        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+        $password = '';
+
+        // Générer le mot de passe en sélectionnant aléatoirement des caractères parmi ceux disponibles
+        for ($i = 0; $i < 10; $i++) {
+            $password .= $characters[rand(0, strlen($characters) - 1)];
+        }
+
+        return $password;
+    }
+
+    private function sendTemporaryPassword(string $recipientEmail, string $temporaryPassword): void
+    {
+        $email = (new Email())
+            ->from('papou@mail.fr') // Adresse e-mail de l'expéditeur
+            ->to($recipientEmail) // Adresse e-mail du destinataire
+            ->subject('Votre mot de passe provisoire') // Sujet de l'e-mail
+            ->text('Votre mot de passe provisoire est : ' . $temporaryPassword); // Corps du message
+
+        // Envoyer l'e-mail
+        $this->mailer->send($email);
     }
 }

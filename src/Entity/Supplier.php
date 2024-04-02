@@ -26,7 +26,7 @@ class Supplier
     #[ORM\Column(length: 50, nullable: true)]
     private ?string $qrcode = null;
 
-    #[ORM\ManyToOne(inversedBy: 'suppliers')]
+    #[ORM\ManyToOne(inversedBy: 'suppliers', cascade: ['persist'])]
     #[ORM\JoinColumn(nullable: false, onDelete: 'CASCADE')]
     private ?User $id_user = null;
 

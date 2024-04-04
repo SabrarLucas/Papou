@@ -19,6 +19,7 @@
 @import "/css/pages/order_index.css";
 @import "/css/pages/favorite.css";
 @import "/css/pages/user_profil.css";
+@import "/css/component/filtre.css";
   
 /* Supression des marges en bordures du site */
 body {
@@ -38,7 +39,9 @@ body {
     align-items: center;
 }
 
-.admin-index-title { /* mise en page des titres de l'espace admin - utilisé également pour les autres titres de débuts de pages */
+ /* mise en page des titres de l'espace admin
+ - utilisé également pour les autres titres de débuts de pages */
+.admin-index-title {
     display: flex;
     justify-content: center;
     margin-top: 40px;

@@ -61,6 +61,9 @@
         width: 100%; /* Occuper toute la largeur pour les petits écrans */
         height: auto; /* Ajuster la hauteur automatiquement */
     }
+    .footer-social {
+        margin-bottom: 30px;
+    }
 }
 
 /* Media query pour les appareils avec une largeur d'écran comprise entre 769px et 1024px (typiquement les tablettes en mode paysage) */

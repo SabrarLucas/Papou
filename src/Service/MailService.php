@@ -16,13 +16,13 @@ class MailService
 
     public function sendEmail(array $emailData): void
     {
-        $email = (new TemplatedEmail()) // creation de l'email
+        $email = (new TemplatedEmail()) // création de l'email
             ->from($emailData['from'])
             ->to($emailData['to'])
             ->subject($emailData['subject'])
             ->htmlTemplate($emailData['htmlTemplate'])
             ->context($emailData['context']);
 
-        $this->mailer->send($email); // envoie de l'email
+        $this->mailer->send($email); // envoi de l'email
     }
 }

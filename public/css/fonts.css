@@ -2,18 +2,20 @@
     font-family: "Copperplate"; /* nom que l'on attribut à la nouvelle police */
     src: url("../fonts/Copperplate.ttf"); /* chemin d'accès du fichier contenant la police */
 }
-.copperplate {
-    font-family: "Copperplate";
+
+.copperplate {  /* création d'une classe css pour un gain de temps */
+    font-family: "Copperplate"; /* famille de police "Copperplate" crée précédemment */
     font-weight: 900;   /* épaisseur de la police */
     font-size: 20px;    /* taille de la police */
 }
 
 @font-face {
-    font-family: "Georgia";
-    src: url("../fonts/Georgia.ttf");
+    font-family: "Georgia"; /* nom que l'on attribut à la nouvelle police */
+    src: url("../fonts/Georgia.ttf"); /* chemin d'accès du fichier contenant la police */
 }
-.georgia {
-    font-family: "Georgia";
-    font-weight: 900;
-    font-size: 20px;
+
+.georgia {  /* création d'une classe css pour un gain de temps */
+    font-family: "Georgia"; /* famille de police "Georgia" crée précédemment */
+    font-weight: 900;   /* épaisseur de la police */
+    font-size: 20px;    /* taille de la police */
 }

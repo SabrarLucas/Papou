@@ -1,38 +1,29 @@
-.partner-index-title {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    margin-bottom: 40px;
-    font-size: 30px;
-    font-family: 'Copperplate';
-}
-
 .partner-index-content {
-    display: flex;
-    justify-content: center;
-    width: 50vw;
-    height: auto;
-    margin-left: auto;
-    margin-right: auto;
-    margin-bottom: 40px;
+    display: flex;  /* utilisation de la flexbox */
+    justify-content: center;    /* centrage du contenu */
+    width: 50vw;    /* largeur */
+    height: auto;   /* adaptation automatique de la hauteur */
+    margin-left: auto;  /* centrage horizontal par rapport au parent */
+    margin-right: auto;  /* centrage horizontal par rapport au parent */
+    margin-bottom: 40px;    /* marge inférieure */
 }
 
-.partner-index-content a {
-    display: flex;
-    justify-content: center;
-    width: 40vw;
-    font-size: 20px;
-    padding: 10px;
-    margin-bottom: 40px;
-    margin-top: 40px;
-    background-color: #f19a76;
-    color: #fff;
-    transition: .5s ease;
+.partner-index-content a {  /* liens contenus dans la div parner-index-content */
+    display: flex;  /* utilisation de la flexbox */
+    justify-content: center;    /* centrage du contenu */
+    width: 40vw;    /* largeur */
+    font-size: 20px;    /* taille des caractère */
+    padding: 10px;  /* épaisseur de cadre */
+    margin-bottom: 40px;    /* marge inférieure */
+    margin-top: 40px;   /* marge supérieure */
+    background-color: #f19a76;  /* couleur de fond */
+    color: #fff;    /* couleur de police */
+    transition: .5s ease;   /* gestion des transition */
 }
 
-.partner-index-content a:hover {
-    background-color: white;
-    color: #f19a76;
-    font-weight: 900;
-    transform: scale(1.2);
+.partner-index-content a:hover {    /* changements de propriétés au survol des liens */
+    background-color: white;    /* on inverse la couleur de fond */
+    color: #f19a76;             /* avec la couleur de police */
+    font-weight: 900;   /* on grossi la taille de police */
+    transform: scale(1.2);  /* on aggrandi la taille du lien entier */
 }

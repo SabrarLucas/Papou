@@ -1,105 +1,121 @@
-
+/* Définition des styles pour la section principale de l'interface d'administration */
 .admin-index-content {
-    width: 100vw;
-    display: flex;
-    margin-bottom: 5vh;
+    width: 100vw; /* Largeur de 100% de la largeur de la fenêtre */
+    display: flex; /* Affichage en mode flex pour les éléments enfants */
+    margin-bottom: 5vh; /* Marge inférieure de 5% de la hauteur de la fenêtre */
 }
 
+/* Styles pour la section de gauche de l'interface d'administration */
 .admin-index-left-section {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    font-size: 20px;
-    width: 20vw;
-    border-right: 1px solid black;
+    display: flex; /* Affichage en mode flex pour les éléments enfants */
+    justify-content: center; /* Alignement horizontal au centre */
+    align-items: center; /* Alignement vertical au centre */
+    font-size: 20px; /* Taille de police */
+    width: 20vw; /* Largeur de 20% de la largeur de la fenêtre */
+    border-right: 1px solid black; /* Bordure droite de 1 pixel solide noire */
 }
 
+/* Styles pour la section de droite de l'interface d'administration */
 .admin-index-right-section {
-    width: 80vw;
-    background-color: #f5f3ce;
+    width: 80vw; /* Largeur de 80% de la largeur de la fenêtre */
+    background-color: #f5f3ce; /* Couleur de fond */
 }
 
+/* Styles pour la table des utilisateurs dans l'interface d'administration */
 .admin-index-user-table {
-    margin-left: auto;
-    margin-right: auto;
-    margin-top: 5vh;
-    margin-bottom: 5vh;
-    width: 80vw;
+    margin-left: auto; /* Marge gauche automatique */
+    margin-right: auto; /* Marge droite automatique */
+    margin-top: 5vh; /* Marge supérieure de 5% de la hauteur de la fenêtre */
+    margin-bottom: 5vh; /* Marge inférieure de 5% de la hauteur de la fenêtre */
+    width: 80vw; /* Largeur de 80% de la largeur de la fenêtre */
 }
 
+/* Styles pour les cellules de la table des utilisateurs */
 .admin-index-user-table td {
-    text-align: center;
-    border: none;
-    padding-top: 8px;
-    padding-bottom: 8px;
-    cursor: default;
+    text-align: center; /* Alignement du texte au centre */
+    border: none; /* Pas de bordure */
+    padding-top: 8px; /* Rembourrage supérieur de 8 pixels */
+    padding-bottom: 8px; /* Rembourrage inférieur de 8 pixels */
+    cursor: default; /* Curseur par défaut */
 }
 
+/* Styles pour les lignes paires de la table des utilisateurs */
 .admin-index-user-table tr:nth-child(even) {
-    background-color: #f2f2f2;  /* Applique une couleur de fond différente pour les lignes paires */
-    transition: .5s ease;
+    background-color: #f2f2f2; /* Couleur de fond pour les lignes paires */
+    transition: .5s ease; /* Transition de couleur en demi-seconde avec effet "ease" */
 }
 
+/* Styles au survol des lignes paires de la table des utilisateurs */
 .admin-index-user-table tr:nth-child(even):hover {
-    background-color: #f19b764f;  /* Applique une couleur de fond différente au survol de la souris */
+    background-color: #f19b764f; /* Couleur de fond au survol des lignes paires */
 }
 
+/* Styles pour les lignes impaires de la table des utilisateurs */
 .admin-index-user-table tr:nth-child(odd) {
-    background-color: #ffffff;  /* Applique une couleur de fond différente pour les lignes impaires */
+    background-color: #ffffff; /* Couleur de fond pour les lignes impaires */
 }
 
+/* Styles au survol des lignes impaires de la table des utilisateurs */
 .admin-index-user-table tr:nth-child(odd):hover {
-    background-color: #f19b764f;  /* Applique une couleur de fond différente au survol de la souris */
+    background-color: #f19b764f; /* Couleur de fond au survol des lignes impaires */
 }
 
+/* Styles pour les en-têtes de la table des utilisateurs */
 .admin-index-user-table th {
-    border:  2px solid rgba(0, 0, 0, 0.5);
-    background-color: #f19a76;
-    padding-top: 5px;
-    padding-bottom: 5px;
+    border: 2px solid rgba(0, 0, 0, 0.5); /* Bordure de 2 pixels solide avec transparence */
+    background-color: #f19a76; /* Couleur de fond */
+    padding-top: 5px; /* Rembourrage supérieur de 5 pixels */
+    padding-bottom: 5px; /* Rembourrage inférieur de 5 pixels */
 }
 
+/* Styles pour les boutons "Modifier" de la table des utilisateurs */
 .admin-index-user-table .btn-modifier {
-    background-color: #0ac0ba;
-    color: white;
+    background-color: #0ac0ba; /* Couleur de fond */
+    color: white; /* Couleur du texte */
 }
 
+/* Styles au survol des boutons "Modifier" de la table des utilisateurs */
 .admin-index-user-table .btn-modifier:hover {
-    background-color: white;
-    color: #0ac0ba;
+    background-color: white; /* Couleur de fond au survol */
+    color: #0ac0ba; /* Couleur du texte au survol */
 }
 
+/* Styles pour les boutons "QR Code" de la table des utilisateurs */
 .admin-index-user-table .btn-qrcode {
-    background-color: #d2df98;
-    color: black;
+    background-color: #d2df98; /* Couleur de fond */
+    color: black; /* Couleur du texte */
 }
 
+/* Styles au survol des boutons "QR Code" de la table des utilisateurs */
 .admin-index-user-table .btn-qrcode:hover {
-    background-color: white;
-    color: black;
+    background-color: white; /* Couleur de fond au survol */
+    color: black; /* Couleur du texte au survol */
 }
 
+/* Styles communs pour les boutons dans la table des utilisateurs */
 .admin-index-user-table .btn-modifier,
 .admin-index-user-table .btn-supprimer,
 .admin-index-user-table .btn-qrcode {
-    padding-top: 3px;
-    padding-bottom: 3px;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-top: 3px; /* Rembourrage supérieur de 3 pixels */
+    padding-bottom: 3px; /* Rembourrage inférieur de 3 pixels */
+    padding-left: 5px; /* Rembourrage gauche de 5 pixels */
+    padding-right: 5px; /* Rembourrage droit de 5 pixels */
 }
 
+/* Styles pour les boutons d'actions administratives dans la table des utilisateurs */
 .admin-index-user-table .admin-actions-btn {
-    display: flex;
-    justify-content: space-around;
+    display: flex; /* Affichage en mode flex pour les éléments enfants */
+    justify-content: space-around; /* Répartition des espaces entre les éléments */
 }
 
+/* Styles pour les chiffres dans la section des chiffres de l'interface d'administration */
 .admin-index-chiffres {
-    width: 30vw;
-    padding: 10px;
-    background-color: #f19a76;
-    color: white;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    font-size: 20px;
-    font-family: 'Copperplate';
+    width: 30vw; /* Largeur de 30% de la largeur de la fenêtre */
+    padding: 10px; /* Rembourrage de 10 pixels */
+    background-color: #f19a76; /* Couleur de fond */
+    color: white; /* Couleur du texte */
+    margin-top: 10px; /* Marge supérieure de 10 pixels */
+    margin-bottom: 10px; /* Marge inférieure de 10 pixels */
+    font-size: 20px; /* Taille de police */
+    font-family: 'Copperplate'; /* Famille de police */
 }
